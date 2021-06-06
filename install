@@ -14,7 +14,10 @@ install_subfolder(){
 case "$1" in
 	all)
 		echo "Installing all software for PinguinPC"
-		ls . | xargs -I{} -l "install_subfolder {} $2"
+		files="$(/bin/ls .)"
+		for file in $files; do
+			install_subfolder "$file" "$2"
+		done
 		;;
 	*)
 		[ -z "$1" ] \

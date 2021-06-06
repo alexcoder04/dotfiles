@@ -10,4 +10,5 @@ echo "$SOURCE_FILE > $CONFIG_DIR/config"
 sed -f "status_command.sed" "$SOURCE_FILE" | reconf "../defaults" \
 	> "$CONFIG_DIR/config"
 cp -v "dracula-powerline.json" "$THEME_FILE"
+echo "NOTE: YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION"
 
