@@ -1,0 +1,21 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "editor.fontSize": 20,
+    "editor.fontFamily": "'Ubuntu Mono Regular', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.formatOnSave": true
+    },
+    "[go]": {
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.defaultFormatter": "golang.go"
+    },
+    "go.gopath": "/home/alex/.local/share/go"
+}

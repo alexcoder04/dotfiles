@@ -1,0 +1,25 @@
+#!/bin/sh
+
+install_subfolder(){
+	[ -z "$1" ] && return
+	echo "Installing $1..."
+	! [ -d "$1" ] && echo "$1 is not a directory" && return
+	! [ -x "$1/install" ] && echo "install script is not executable, aborting." && return
+	prev_dir="$(pwd)"
+	cd "$1"
+	./install "$2"
+	cd "$prev_dir"
+}
+
+case "$1" in
+	all)
+		echo "Installing all software for PinguinPC"
+		ls . | xargs -I{} -l "install_subfolder {} $2"
+		;;
+	*)
+		[ -z "$1" ] \
+			&& echo "You need to provide a parameter" \
+			|| install_subfolder "$1" "$2"
+		;;
+esac
+

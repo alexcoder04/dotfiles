@@ -1,0 +1,9 @@
+#!/bin/sh
+
+CONFIG_DIR="$XDG_CONFIG_HOME/rofi"
+
+[ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR"
+
+cat "onedark-alex.rasi" | reconf "../defaults" > "$CONFIG_DIR/onedark.rasi"
+echo "rofi.theme: $CONFIG_DIR/onedark.rasi" > "$CONFIG_DIR/config"
+

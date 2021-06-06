@@ -1,0 +1,8 @@
+#!/bin/sh
+
+SCRIPTS_DIR="$XDG_DATA_HOME/nemo/scripts"
+
+[ -d "$SCRIPTS_DIR" ] || mkdir -p "$SCRIPTS_DIR"
+
+cp -v "static/"* "$SCRIPTS_DIR/"
+

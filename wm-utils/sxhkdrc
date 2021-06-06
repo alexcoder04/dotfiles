@@ -1,0 +1,136 @@
+
+# ###################################################################
+# TERMINAL
+# ###################################################################
+super + Return
+	+TERMINAL_MAIN+
+
+super + shift + Return
+	+TERMINAL_SECONDARY+
+
+# ###################################################################
+# SYSTEM
+# ###################################################################
+ctrl + alt + s
+	systemctl suspend
+ctrl + alt + p
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e safe-poweroff
+ctrl + alt + r
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e safe-poweroff reboot
+
+# ###################################################################
+# RUN LAUNCHER
+# ###################################################################
+super + r
+	rofi -show run -modi run
+alt + r
+	flatpak-run
+super + ctrl + r
+	rofi -show drun -modi drun
+super + alt + r
+	rofi -show ssh -modi ssh
+super + Tab
+	rofi -show window -modi window
+
+# ###################################################################
+# ALL PROGRAMS
+# ###################################################################
+
+# FIRST ROW
+# Q, W: reserved for window manager
+super + e
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e trans -shell de:en
+super + shift + e
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e trans -shell en:de
+# R: reserved for run prompt
+super + t
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "t"
+# Z: reserved for window manager
+super + u
+	stundenplan
+super + shift + u
+	private-script tt
+super + i
+	internet-search
+super + shift + i
+	private-script i
+super + o
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "o"
+super + p
+	+TERMINAL_MAIN+ -e python
+super + shift + p
+	flatpak run com.github.alainm23.planner
+super + plus
+	pavucontrol
+
+# SECOND ROW
+super + {a, s, g}
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "a/s/g"
+super + s
+	i3 "scratchpad show; move position center"
+super + d
+	+FILEMANAGER_MAIN+
+super + shift + d
+	+FILEMANAGER_SECONDARY+
+super + f
+	+BROWSER_MAIN+
+super + shift + f
+	+BROWSER_SECONDARY+
+# H, J, K, L: window-manager-reserved
+
+# THIRD ROW
+super + y
+	brave-browser --app=https://youtube.com/ --class=WebApp-YouTube9722 --user-data-dir=/home/alex/.local/share/ice/profiles/YouTube9722
+super + shift + y
+	brave-browser --app=https://odysee.com --class=WebApp-Odysee9800 --user-data-dir=/home/alex/.local/share/ice/profiles/Odysee9800
+super + x
+	viko-joiner
+super + shift + x
+	+TERMINAL_MAIN+ -e htop
+super + {c, v}
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "c/v"
+super + b
+	joplin
+super + shift + b
+	+TERMINAL_MAIN+ -e newsboat
+super + n
+	xed
+super + shift + n
+	xed-open
+super + ctrl + n
+	+TERMINAL_MAIN+ -e nvim
+super + m
+	music-play
+super + shift + m
+	+TERMINAL_MAIN+ -e cd && music-player
+super + comma
+	+SETTINGS_APP+
+super + period
+	rofi -show emoji -modi emoji
+super + minus
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "-"
+
+# ###################################################################
+# FUNCTION KEYS
+# ###################################################################
+super + {F1, F2, F3, F5, F6, F7, F8, F12}
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-key"
+# echo some text to the console and start htop to impress friends xD
+alt + F4
+	+TERMINAL_MAIN+ -e bash $HOME/CODE/FUN/fake-hack/fun.sh
+# F9, F10, F11: window-manager-reserved
+
+# ###################################################################
+# OTHER KEYS
+# ###################################################################
+XF86MonBrightnessUp
+	sudo brightness higher
+XF86MonBrightnessDown
+	sudo brightness lower
+super + Print
+	gnome-screenshot
+super + shift + Print
+	gnome-screenshot --interactive
+super + ctrl + Print
+	obs
+

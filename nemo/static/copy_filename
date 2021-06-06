@@ -1,0 +1,4 @@
+#!/bin/sh
+
+printf "$1" | xclip -selection clipboard
+

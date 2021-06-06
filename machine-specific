@@ -1,0 +1,4 @@
+ENV_PATH		$PATH:/home/alex/bin/:/home/alex/.local/bin:/home/alex/.local/share/go/bin:/home/alex/.local/share/cargo/bin
+FISH_PATH		$PATH /home/alex/bin/ /home/alex/.local/bin /home/alex/.local/share/go/bin /home/alex/.local/share/cargo/bin
+I3_FONT_PANGO		SauceCodePro Nerd Font Regular 13
+I3_FONT_BAR		Fira Mono for Powerline 14

@@ -1,0 +1,251 @@
+#         _                                    _                  ___    _  _   
+#  __ _  | |   ___  __  __   ___    ___     __| |   ___   _ __   / _ \  | || |  
+# / _` | | |  / _ \ \ \/ /  / __|  / _ \   / _` |  / _ \ | '__| | | | | | || |_ 
+#| (_| | | | |  __/  >  <  | (__  | (_) | | (_| | |  __/ | |    | |_| | |__   _|
+# \__,_| |_|  \___| /_/\_\  \___|  \___/   \__,_|  \___| |_|     \___/     |_|  
+#        
+# (C) 2020-2021 alexcoder04 <https://github.com/alexcoder04>
+# 
+# My base i3 config
+# Other things, like status command are added to it by a script
+# 
+
+# ------------------------------------------------------------------------------
+# VARIABLES
+# ------------------------------------------------------------------------------
+
+# Keys
+set $mod		Mod4
+set $alt		Mod1
+set $gaps_modifier	F9
+set $layout_modifier	w
+
+# No mouse focus
+focus_follows_mouse	no
+
+# Font
+font pango:		+I3_FONT_PANGO+
+
+# Colors
+set $green		+COLOR_GREEN+	
+set $red		+COLOR_RED+
+set $blue		+COLOR_BLUE+
+set $white		+COLOR_WHITE+
+set $black		+COLOR_BLACK+
+set $light_grey		+COLOR_LIGHT_GREY+
+set $dark_grey		+COLOR_DARK_GREY+
+
+# ------------------------------------------------------------------------------
+# WORKSPACES
+# ------------------------------------------------------------------------------
+
+# Define the workspace names and labels
+set $w0_sth		"   "
+set $w1_browser		"   "
+set $w2_media		"   "
+set $w3_code_1		"   "
+set $w4_code_2		" 1  "
+set $w5_console		" 2  "
+set $w6_utils		"   "
+set $w7			"   "
+set $w8_browser2	"   "
+set $w9_office		"   "
+
+# Switch workspaces
+bindsym $mod+0		workspace $w0_sth
+bindsym $mod+1		workspace $w1_browser
+bindsym $mod+2		workspace $w2_media
+bindsym $mod+3		workspace $w3_code_1
+bindsym $mod+4		workspace $w4_code_2
+bindsym $mod+5		workspace $w5_console
+bindsym $mod+6		workspace $w6_utils
+bindsym $mod+7		workspace $w7
+bindsym $mod+8		workspace $w8_browser2
+bindsym $mod+9		workspace $w9_office
+
+bindsym $alt+h		workspace prev
+bindsym $alt+l		workspace next
+
+# Move window to workspaces
+bindsym $mod+Shift+0	move container to workspace $w0_sth
+bindsym $mod+Shift+1	move container to workspace $w1_browser
+bindsym $mod+Shift+2	move container to workspace $w2_media
+bindsym $mod+Shift+3	move container to workspace $w3_code_1
+bindsym $mod+Shift+4	move container to workspace $w4_code_2
+bindsym $mod+Shift+5	move container to workspace $w5_console
+bindsym $mod+Shift+6	move container to workspace $w6_utils
+bindsym $mod+Shift+7	move container to workspace $w7
+bindsym $mod+Shift+8	move container to workspace $w8_browser2
+bindsym $mod+Shift+9	move container to workspace $w9_office
+
+bindsym $alt+j		move container to workspace prev
+bindsym $altk		move container to workspace next
+
+# move workspaces between mobitors
+bindsym $mod+$alt+h	move workspace to output right
+bindsym $mod+$alt+l	move workspace to output left
+
+# ------------------------------------------------------------------------------
+# WINDOWS
+# ------------------------------------------------------------------------------
+
+# APPEARANCE
+# Color of		border,		background,	text,		indicator,child_border
+client.focused		$green		$green		$black		$blue
+client.unfocused	$blue		$black		$light_grey	$light_grey
+client.focused_inactive	$blue		$dark_grey	$light_grey	$black
+client.urgent		$red		$red		$white		$white
+
+# NAVIGATION
+# Navigating through the windows
+bindsym $mod+h			focus left
+bindsym $mod+j			focus down
+bindsym $mod+k			focus up
+bindsym $mod+l			focus right
+
+# Move the focused window
+bindsym $mod+Shift+h		move left
+bindsym $mod+Shift+j		move down
+bindsym $mod+Shift+k		move up
+bindsym $mod+Shift+l		move right
+
+# BEHAVIOUR
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# close window
+bindsym $mod+q			kill
+
+# Split in horizontal orientation
+bindsym $mod+Shift+$layout_modifier	split h
+# Split in vertical orientation
+bindsym $mod+$layout_modifier		split v
+
+# Fullscreen mode
+bindsym $mod+F11		fullscreen toggle
+
+# Select all windows
+bindsym $alt+z			focus parent
+
+# Change focus between tiling / floating windows
+bindsym $alt+space		focus mode_toggle
+
+# Toggle tiling / floating
+bindsym $mod+space		floating toggle
+
+# LAYOUTS
+# Possible layouts: 'default', 'stacked', 'stacking', 'tabbed', 'splitv', 'splith', 'toggle'
+bindsym $alt+$layout_modifier		layout splith
+bindsym $alt+Ctrl+$layout_modifier	layout splitv
+bindsym $alt+Shift+$layout_modifier	layout tabbed
+
+# ------------------------------------------------------------------------------
+# KEYBINDINGS
+# ------------------------------------------------------------------------------
+
+# i3 keybindings
+bindsym $mod+Shift+r		restart
+bindsym $mod+Shift+q		exit
+
+# Fallback terminal
+bindsym $mod+F10		exec +TERMINAL_MAIN+
+
+# other keybindings were moved to a separate program (sxhkd)
+
+# ------------------------------------------------------------------------------
+# MODES
+# ------------------------------------------------------------------------------
+
+mode "resize" {
+	# Resize the window with arrow keys
+        bindsym h		resize shrink	width 1 px or 1 ppt
+        bindsym j		resize grow	height 1 px or 1 ppt
+        bindsym k		resize shrink	height 1 px or 1 ppt
+        bindsym l		resize grow	width 1 px or 1 ppt
+
+	bindsym Shift+h		resize shrink	width 10 px or 10 ppt
+	bindsym Shift+j		resize grow	height 10 px or 10 ppt
+	bindsym Shift+k		resize shrink	height 10 px or 10 ppt
+	bindsym Shift+l		resize grow	width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+z		mode "resize"
+
+# ------------------------------------------------------------------------------
+# GAPS AND BORDER
+# ------------------------------------------------------------------------------
+# Gaps specific
+gaps inner 25
+gaps outer 0
+bindsym $mod+$gaps_modifier		gaps inner all minus 3
+bindsym $mod+Shift+$gaps_modifier	gaps inner all plus 3
+bindsym $mod+Ctrl+$gaps_modifier	gaps inner all set 25
+
+# Border
+default_border pixel 3
+
+# ------------------------------------------------------------------------------
+# BAR
+# ------------------------------------------------------------------------------
+
+bar {
+	colors {
+		background		$black
+		statusline		$black
+		separator		$dark_grey
+		
+		# color of		border, 	background,	text
+		focused_workspace	$blue		$blue		$black
+		active_workspace	$blue		$blue		$black
+		inactive_workspace	$black		$black		$white
+		urgent_workspace	$red		$red		$white
+	}
+	+I3_STATUS_COMMAND+
+	position top
+	font pango: +I3_FONT_BAR+
+	height 25
+}
+
+# ------------------------------------------------------------------------------
+# DROPDOWN TERMINAL
+# ------------------------------------------------------------------------------
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 1500 800
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] border pixel 5
+bindsym $mod+s scratchpad show; move position center
+
+# ------------------------------------------------------------------------------
+# AUTOSTART
+# ------------------------------------------------------------------------------
+# all of my autostart stuff is handled by a separate script,
+# for better maintainence and possible moving to another WM
+exec_always confmgr autostart wm
+
+# ------------------------------------------------------------------------------
+# APP TO WORKSPACE ASSIGNMENTS 
+# ------------------------------------------------------------------------------
+assign [class="Firefox"]	$w1_browser
+assign [class="vlc"]		$w2_media
+assign [class="pycharm"]	$w4_code_2
+assign [class="Joplin"]		$w9_office
+assign [class="Thunderbird"]	$w8_browser2
+assign [class="Signal"]		$w8_browser2
+assign [class="obs"]		$w2_media
+
+# ------------------------------------------------------------------------------
+# CERTAIN WINDOW OPENING MODES 
+# ------------------------------------------------------------------------------
+for_window [class="i3_float"]			floating enable
+for_window [class="Pavucontrol"]		floating enable
+for_window [class="TIPP10"]			floating enable
+for_window [class="Gnome-2048"]			floating enable
+for_window [class="Signal"]			floating enable
+for_window [class="Catfish"]			floating enable
+for_window [class="Gpick"]			floating enable
+for_window [class="calculator"]			floating enable
+

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SOURCE_FILE="../i3-base/config"
+CONFIG_DIR="$XDG_CONFIG_HOME/i3"
+THEME_FILE="$XDG_DATA_HOME/bumblebee-status/themes/dracula-powerline.json"
+
+[ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR"
+
+echo "$SOURCE_FILE > $CONFIG_DIR/config"
+sed -f "status_command.sed" "$SOURCE_FILE" | reconf "../defaults" \
+	> "$CONFIG_DIR/config"
+cp -v "dracula-powerline.json" "$THEME_FILE"
+

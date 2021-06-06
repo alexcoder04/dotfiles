@@ -1,0 +1,4 @@
+#!/bin/sh
+
+printf "$(pwd)/$1" | xclip -selection clipboard
+

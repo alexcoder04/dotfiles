@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cp -r "$1" "$HOME/Öffentlich/"
+

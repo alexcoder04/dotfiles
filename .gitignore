@@ -1,0 +1,5 @@
+.autopush
+**/__pycache__/**
+**/a.out
+suckless
+xmonad

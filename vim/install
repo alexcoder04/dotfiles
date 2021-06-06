@@ -1,0 +1,8 @@
+#!/bin/sh
+
+CONFIG_DIR="$XDG_CONFIG_HOME/nvim"
+
+[ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR"
+
+cp -v "init.vim" "$CONFIG_DIR/"
+

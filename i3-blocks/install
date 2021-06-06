@@ -1,0 +1,8 @@
+#!/bin/sh
+
+CONFIG_DIR="$XDG_CONFIG_HOME/i3"
+
+sed -f "status_command.sed" "../i3-base/config" | reconf "../defaults" \
+	> "$CONFIG_DIR/config"
+cp -v "i3blocks.conf" "$CONFIG_DIR/i3blocks.conf"
+

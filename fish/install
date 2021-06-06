@@ -1,0 +1,12 @@
+#!/bin/sh
+
+CONFIG_DIR="$XDG_CONFIG_HOME/fish"
+
+echo "Cleaning config directory..."
+rm -rv "$CONFIG_DIR/"*
+mkdir -p "$CONFIG_DIR"
+
+cp -rv "static/"* "$CONFIG_DIR/"
+echo "dynamic/config.fish -> $CONFIG_DIR/config.fish"
+cat "dynamic/config.fish" | reconf "../defaults" > "$CONFIG_DIR/config.fish"
+
