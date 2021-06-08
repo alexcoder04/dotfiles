@@ -86,6 +86,7 @@ abbr cpd "cp -ivr"
 abbr c+x "chmod +x"
 
 alias :q="exit"
+abbr Exit "disown %1 && exit"
 
 abbr v "nvim"
 abbr vim "nvim"
