@@ -11,20 +11,17 @@
 " -------------------------------------------------
 " BASIC SETTINGS
 " -------------------------------------------------
-syntax on
-let mapleader=" "
+set nocompatible
 set mouse=
-set ignorecase
 set clipboard+=unnamedplus
+set tabstop=4 softtabstop=4
 set number relativenumber
-
-" -------------------------------------------------
-" APPEARANCE
-" -------------------------------------------------
-set termguicolors
-set cursorline
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
+set smartcase
+set colorcolumn=80
+set ignorecase
+let mapleader=" "
+filetype plugin indent on
+syntax on
 
 " -------------------------------------------------
 " PLUGINS
@@ -34,27 +31,34 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'preservim/nerdtree'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+" -------------------------------------------------
+" APPEARANCE
+" -------------------------------------------------
+set termguicolors
+set cursorline
+colorscheme dracula
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
 
 " -------------------------------------------------
 " KEYBINDINGS
 " -------------------------------------------------
 " file tree and fuzzy finder
 nmap <C-n> :NERDTreeToggle<CR>
-nmap <C-p> :Files<CR>
+"nmap <C-p> :Files<CR>
 " navigate between splits
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" disable arrow keys
+" disable arrow keys in normal mode
 nnoremap <Left> :echo "you fool..."<CR>
-inoremap <Left> <C-o>:echo "you fool..."<CR>
 nnoremap <Right> :echo "you fool..."<CR>
-inoremap <Right> <C-o>:echo "you fool..."<CR>
 nnoremap <Up> :echo "you fool..."<CR>
 nnoremap <Down> :echo "you fool..."<CR>
 
@@ -62,8 +66,8 @@ nnoremap <Down> :echo "you fool..."<CR>
 nnoremap / :set<Space>hlsearch<CR>/
 
 " jump to the next placeholder
-inoremap <Space><Space> <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
-nnoremap <Space><Space> <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
+inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
+nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 
 " -------------------------------------------------
 " AUTOMATION
@@ -83,13 +87,18 @@ autocmd BufWritePost *.bm.md !pandoc -t beamer "%" -o presentation.pdf & && xrea
 " re-generate config files after editing
 autocmd BufWritePost */vim/init.vim !confmgr install vim
 autocmd BufWritePost */fish/dynamic/config.fish !confmgr install fish
+autocmd BufWritePost */bash/bashrc !confmgr install bash
+autocmd BufWritePost */wm-utils/sxhkdrc !confmgr install wm-utils && killall sxhkd && sxhkd &
+
+" copy arduino files to clipboard on save
+autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
 
 " -------------------------------------------------
 " AUTO-INSERT OFTEN USED PHRASES
 " -------------------------------------------------
 
 " html tags
-autocmd FileType html nnoremap ;! i<!DOCTYPE html><Enter><html<Space>dir="ltr"><Enter><head><Enter><meta<Space>charset="utf-8"<Space>/><Enter><title><++></title><Enter><++><Enter></head><Enter><body><Enter><++><Enter></body><Enter></html><Esc>gg/<++><CR>"_c4l
+autocmd FileType html nnoremap ;! i<!DOCTYPE html><Enter><html<Space>dir="ltr"><Enter><head><Enter><meta<Space>charset="utf-8"<Space>/><Enter><meta<Space>name="viewport"<Space>content="width=device-width,<Space>initial-scale=1.0"><Enter><title><++></title><Enter><++><Enter></head><Enter><body><Enter><++><Enter></body><Enter></html><Esc>gg/<++><CR>"_c4l
 autocmd FileType html inoremap ;d <div></div><Enter><++><Esc>k0f>a
 autocmd FileType html inoremap ;p <p></p><Enter><++><Esc>k0f>a
 autocmd FileType html inoremap ;1 <h1></h1><Enter><++><Esc>k0f>a
@@ -130,10 +139,12 @@ autocmd FileType python inoremap ;r return<Space>
 autocmd FileType python inoremap ;im if<Space>__name__<Space>==<Space>"__main__":<Enter>
 
 " arduino
-autocmd FileType arduino inoremap ;v void (<++>){<Enter><++><Enter>}<Enter><++><Esc>3k0t(a
+autocmd FileType arduino inoremap ;void void (<++>){<Enter><++><Enter>}<Enter><++><Esc>3k0t(a
 autocmd FileType arduino inoremap ;int int (<++>){<Enter><++><Enter>return <++>;<Enter>}<Enter><++><Esc>4k0t(a
 autocmd FileType arduino inoremap ;if if (){<Enter><++><Enter>}<Enter><++><Esc>3k0t)a
 autocmd FileType arduino inoremap ;d delay();<Enter><++><Esc>k0t)a
+autocmd FileType arduino inoremap ;spr Serial.print();<Enter><++><Esc>k0t)a
+autocmd FileType arduino inoremap ;spl Serial.println();<Enter><++><Esc>k0t)a
 
 " auto-generate shebangs
 autocmd FileType python nnoremap #! ggO#!/usr/bin/env<Space>python3<Esc>
@@ -147,6 +158,7 @@ let g:coc_global_extensions = [
   \ 'coc-pairs',
   \ 'coc-snippets',
   \ 'coc-prettier',
-  \ 'coc-json'
+  \ 'coc-json',
+  \ 'coc-eslint'
   \ ]
 

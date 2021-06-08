@@ -113,7 +113,7 @@ function conf
 		case vim
 			$EDITOR $HOME/CODE/df-new/vim/init.vim
 		case sxhkd
-			$EDITOR $HOME/CODE/df-new/wm/sxhkdrc
+			$EDITOR $HOME/CODE/df-new/wm-utils/sxhkdrc
 	end
 end
 
