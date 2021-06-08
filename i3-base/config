@@ -217,7 +217,6 @@ for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 1500 800
 for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] border pixel 5
-bindsym $mod+s scratchpad show; move position center
 
 # ------------------------------------------------------------------------------
 # AUTOSTART
