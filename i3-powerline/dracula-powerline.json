@@ -12,6 +12,9 @@
 	"kernel": {
 		"fg": "#282a36", "bg": "#8be9fd"
 	},
+	"sensors": {
+        "fg": "#282a36", "bg": "#8be9fd"
+	},
 	"nic": {
 		"up": { "bg": "#50fa7b", "fg": "#282a36" }
 	},

@@ -91,6 +91,8 @@ abbr Exit "disown %1 && exit"
 abbr v "nvim"
 abbr vim "nvim"
 
+abbr umount-luks "sudo umount /media/luks && sudo cryptsetup close butterfly"
+
 ##### Fun commands
 abbr gnuhead "cat /home/alex/.local/share/gnu-head-xterm"
 
@@ -131,6 +133,13 @@ end
 function ascii_table
 	curl "http://www.asciitable.com/index/asciifull.gif" > /tmp/.ascii.gif
 	feh /tmp/.ascii.gif &
+	disown %1
+end
+# show the raspberr pi pins
+function raspi_pins
+    curl "https://i1.wp.com/mbrobotics.es/blog/wp-content/uploads/2018/05/Raspberry-GPIO-Pins_B_plus.jpg" > /tmp/raspi.jpg
+	feh /tmp/raspi.jpg &
+	disown %1
 end
 
 # ---------------------------------------------------------

@@ -4,6 +4,8 @@ SXHKD_CONFIG_DIR="$XDG_CONFIG_HOME/sxhkd"
 
 [ -d "$SXHKD_CONFIG_DIR" ] || mkdir -p "$SXHKD_CONFIG_DIR"
 
-cat "sxhkdrc" | reconf "../defaults" \
+echo "./sxhkdrc -> $SXHKD_CONFIG_DIR/sxhkdrc"
+cat "./sxhkdrc" | reconf "../defaults" \
 	> "$SXHKD_CONFIG_DIR/sxhkdrc"
+cp -v "./libinput-gestures.conf" "$XDG_CONFIG_HOME/libinput-gestures.conf"
 

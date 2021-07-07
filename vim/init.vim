@@ -80,9 +80,13 @@ autocmd BufWritePre * %s/\s+$//e
 
 " format JS files with coc-prettier
 autocmd BufWritePre *.js CocCommand prettier.formatFile
+autocmd BufWritePre *.json CocCommand prettier.formatFile
+autocmd BufWritePre *.css CocCommand prettier.formatFile
+autocmd BufWritePre *.html CocCommand prettier.formatFile
 
 " auto-compile beamer presentations on save
-autocmd BufWritePost *.bm.md !pandoc -t beamer "%" -o presentation.pdf & && xreader presentation.pdf &
+autocmd BufWritePost *.bm.md !pandoc -t beamer "%" -o presentation.pdf
+autocmd FileType markdown nnoremap <leader>p :!xreader presentation.pdf &<CR>
 
 " re-generate config files after editing
 autocmd BufWritePost */vim/init.vim !confmgr install vim
@@ -109,8 +113,12 @@ autocmd FileType html inoremap ;b <b></b><Space><++><Esc>FbT>i
 autocmd FileType html inoremap ;ul <ul><Enter><Enter></ul><Enter><++><Esc>2ki
 autocmd FileType html inoremap ;li <li></li><Enter><++><Esc>k0f>a
 autocmd FileType html inoremap ;ln <link<Space>rel="stylesheet"<Space>href="" /><Enter><++><Esc>k$F"i
-autocmd FileType html inoremap ;s <script<Space>src=""></script><Enter><++><Esc>k0f"a
+autocmd FileType html inoremap ;s <script<Space>src="" defer></script><Enter><++><Esc>k0f"a
 autocmd FileType html inoremap ;a <a<Space>href=""><++></a><Enter><++><Esc>k0f"a
+autocmd FileType html inoremap ;btn <button id=""><++></button><Enter><++><Esc>k0f"a
+
+" JS
+autocmd FileType javascript inoremap ;cl console.log();<Enter><++><Esc>k0t(a
 
 " markdown
 autocmd FileType markdown nnoremap ;! :r ~/Vorlagen/presentation.bm.md.drf<CR>ggdd/<++><CR>"_c4l
@@ -150,6 +158,9 @@ autocmd FileType arduino inoremap ;spl Serial.println();<Enter><++><Esc>k0t)a
 autocmd FileType python nnoremap #! ggO#!/usr/bin/env<Space>python3<Esc>
 autocmd FileType sh nnoremap #! ggO#!/bin/sh<Esc>
 
+" newsboat yt subs
+autocmd FileType conf inoremap ;y https://www.youtube.com/feeds/videos.xml?channel_id=<++><Space>"yt"<Space><++><Esc>0
+
 " -------------------------------------------------
 " OTHER STUFF
 " -------------------------------------------------
@@ -159,6 +170,9 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-prettier',
   \ 'coc-json',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-tsserver',
   \ 'coc-eslint'
   \ ]
 

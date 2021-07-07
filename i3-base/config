@@ -222,7 +222,7 @@ for_window [instance="dropdown"] border pixel 5
 # ------------------------------------------------------------------------------
 # all of my autostart stuff is handled by a separate script,
 # for better maintainence and possible moving to another WM
-exec_always confmgr autostart wm
+exec_always wm-init
 
 # ------------------------------------------------------------------------------
 # APP TO WORKSPACE ASSIGNMENTS 
@@ -246,4 +246,5 @@ for_window [class="Signal"]				floating enable
 for_window [class="Catfish"]			floating enable
 for_window [class="Gpick"]				floating enable
 for_window [class="calculator"]			floating enable
+for_window [class="Cinnamon-settings.py"] floating enable
 

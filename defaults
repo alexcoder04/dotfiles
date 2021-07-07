@@ -1,4 +1,4 @@
-TERMINAL_MAIN		alacritty
+TERMINAL_MAIN		/home/alex/.local/share/cargo/bin/alacritty
 TERMINAL_SECONDARY	gnome-terminal
 FILEMANAGER_MAIN	nemo
 FILEMANAGER_SECONDARY	rofifm

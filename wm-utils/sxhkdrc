@@ -64,7 +64,7 @@ super + plus
 	pavucontrol
 
 # SECOND ROW
-super + {a, s, g}
+super + {a, g}
 	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "a/s/g"
 super + s
 	i3 "scratchpad show; move position center"
@@ -108,7 +108,7 @@ super + comma
 super + period
 	rofi -show emoji -modi emoji
 super + minus
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "-"
+	wallpaper-random
 
 # ###################################################################
 # FUNCTION KEYS
