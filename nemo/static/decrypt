@@ -1,0 +1,52 @@
+#!/bin/sh
+
+TEMP_FOLDER="$HOME/tmp"
+SHASUMS_FOLDER="/media/backup/SHASUMS"
+
+check_shasum(){
+		shasum_is="$(sha256sum "$filename" | awk '{print $1}')"
+		shasum_must="$(cat "$filename.sha256sum")"
+		if [ "$shasum_is" = "$shasum_must" ]; then
+				if ! [ -e "$SHASUMS_FOLDER" ]; then
+						zenity --width 300 --warning --text "global shasum could not be checked!"
+						return
+				fi
+				shasum_must_global="$(cat "$SHASUMS_FOLDER/$filename.sha256sum")"
+				if ! [ "$shasum_is" = "$shasum_must_global" ]; then
+						zenity --width 300 --error --text "shasum does not match the global shasum!"
+						exit 1
+				fi
+		else
+				zenity --width 300 --error --text "shasums does not match!"
+				exit 1
+		fi
+		zenity --width 300 --info --text "shasum test was successfull"
+}
+
+[ -z "$1" ] \
+		&& zenity --width 300 --error --text "You need to select a file or folder!" \
+		&& exit 1
+
+cp "$1" "$TEMP_FOLDER/"
+filename="$(printf "$1" | sed 's/.enc$//')"
+if [ -f "$filename.sha256sum" ]; then
+		cp "$filename.sha256sum" "$TEMP_FOLDER/"
+else
+		zenity --width 800 --question --text "no .sha256sum file exists. continue anyway?" \
+				&& ignore_shasum="true" \
+				|| exit 1
+fi
+
+cd "$TEMP_FOLDER"
+alacritty --class "alacritty,i3_float" -e alencrypt -d -r "$filename.enc"
+
+[ -f "$filename.sha256sum" ] && check_shasum
+[ "$ignore_shasum" = "true" ] && check_shasum
+
+bzip2 -d "$filename" \
+		| zenity --width 300 --progress --pulsate --text "archive is beeing decompressed..."
+tar -xf "$(printf "$filename" | sed 's/.bz2$//')" \
+		| zenity --width 300 --progress --pulsate --text "archive is beeing un-tar-ed..." \
+		&& rm "$(printf "$filename" | sed 's/.bz2$//')" "$filename.sha256sum"
+zenity --width 800 --info --text "Your files are found in $TEMP_FOLDER/$(printf "$filename" | sed 's/.tar.bz2$//')"
+

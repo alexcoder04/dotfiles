@@ -1,0 +1,36 @@
+#!/bin/sh
+
+TEMP_FOLDER="$HOME/tmp"
+SHASUM_FOLDER="/media/backup/SHASUMS"
+
+[ -z "$1" ] \
+		&& zenity --width 300 --error --text "You need to select a file or folder!" \
+		&& exit 1
+
+out_file="$(zenity --width 500 --entry --entry-text "$1-$(date "+%Y%m%d")" --text "enter a name for the archive (without file extension)")"
+
+if [ -d "$1" ]; then
+		in_file="$(printf "$1" | tr -d "/")"
+		tar -cf "$TEMP_FOLDER/$out_file.tar" "$in_file" \
+				| zenity --width 300 --progress --pulsate --text ".tar-archive is created"
+		filename="$out_file.tar"
+else
+		cp "$1" "$TEMP_FOLDER/$1"
+		filename="$1"
+fi
+cd "$TEMP_FOLDER"
+bzip2 "$filename" \
+		| zenity --width 300 --progress --pulsate --text "archive is beeing compressed..."
+sha256sum "$filename.bz2" \
+		| awk '{print $1}' > "$filename.bz2.sha256sum" \
+		| zenity --width 300 --progress --pulsate --text "sha256sum is beeing calculated..."
+if [ -d "$SHASUM_FOLDER" ]; then
+		cp "$filename.bz2.sha256sum" "$SHASUM_FOLDER/$filename.bz2.sha256sum" \
+				&& extra_info="copy of the checksum saved to $SHASUM_FOLDER/$filename.bz2.sha256sum"
+else
+		zenity --width 300 --warning --text "global shasum folder does not exist!" \
+				&& extra_info="shasum could not be saved to the external folder!"
+fi
+alacritty --class "alacritty,i3_float" -e $HOME/bin/alencrypt -e -r "$filename.bz2"
+zenity --width 800 --info --text "encrypted file was saved to $TEMP_FOLDER/$filename.enc\nchecksum saved to $TEMP_FOLDER/$filename.sha256sum\n$extra_info"
+
