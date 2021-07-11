@@ -31,8 +31,6 @@ set -gx GOPATH $XDG_DATA_HOME/go
 # prefered programs
 set -gx TERMINAL	+TERMINAL_MAIN+
 set -gx EDITOR		+EDITOR_MAIN+
-set browser_main	+BROWSER_MAIN+
-set browser_alternative	+BROWSER_SECONDARY+
 
 # ---------------------------------------------------------
 # CHECK IF RUNNING IN INTERACTIVE MODE
@@ -50,6 +48,7 @@ abbr gcd "cd $HOME/CODE/PROJECTS/"
 abbr gdot "cd $HOME/CODE/df-new/"
 abbr gtmp "cd $HOME/tmp/"
 abbr gsch "cd $HOME/SCHULE/"
+abbr gki "cd $HOME/CODE/PROJECTS/BWKI"
 
 ##### APT commands
 abbr sagi "sudo apt install"
@@ -59,7 +58,7 @@ abbr apts "apt search"
 abbr alu "apt list --upgradeable"
 
 ##### Git commands
-abbr gstatus "git status"
+abbr gst "git status"
 abbr gpush "git push && [ -f .autopush ] && ./.autopush || echo 'No autopush script is configured for this repository'"
 abbr gpull "git pull"
 abbr gcommit "git commit -m"
