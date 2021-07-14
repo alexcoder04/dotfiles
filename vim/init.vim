@@ -31,8 +31,6 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'preservim/nerdtree'
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -50,7 +48,6 @@ hi! NonText ctermbg=NONE guibg=NONE
 " -------------------------------------------------
 " file tree and fuzzy finder
 nmap <C-n> :NERDTreeToggle<CR>
-"nmap <C-p> :Files<CR>
 " navigate between splits
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -89,10 +86,10 @@ autocmd BufWritePost *.bm.md !pandoc -t beamer "%" -o presentation.pdf
 autocmd FileType markdown nnoremap <leader>p :!xreader presentation.pdf &<CR>
 
 " re-generate config files after editing
-autocmd BufWritePost */vim/init.vim !confmgr install vim
-autocmd BufWritePost */fish/dynamic/config.fish !confmgr install fish
-autocmd BufWritePost */bash/bashrc !confmgr install bash
-autocmd BufWritePost */wm-utils/sxhkdrc !confmgr install wm-utils && killall sxhkd && sxhkd &
+autocmd BufWritePost */vim/init.vim !/home/alex/CODE/df-new/install vim
+autocmd BufWritePost */fish/dynamic/config.fish !/home/alex/CODE/df-new/install fish
+autocmd BufWritePost */bash/bashrc !/home/alex/CODE/df-new/install bash
+autocmd BufWritePost */wm-utils/sxhkdrc !/home/alex/CODE/df-new/install wm-utils && killall sxhkd && sxhkd &
 
 " copy arduino files to clipboard on save
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard

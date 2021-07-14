@@ -7,8 +7,9 @@ THEME_FILE="$XDG_DATA_HOME/bumblebee-status/themes/dracula-powerline.json"
 [ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR"
 
 echo "$SOURCE_FILE > $CONFIG_DIR/config"
-sed -f "status_command.sed" "$SOURCE_FILE" | reconf "../defaults" \
+cat "$SOURCE_FILE" | reconf "../defaults" "../$2.prefs" \
 	> "$CONFIG_DIR/config"
 cp -v "dracula-powerline.json" "$THEME_FILE"
+cp -v "../i3-base/lock.png" "$CONFIG_DIR/"
 echo "NOTE: YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION"
 

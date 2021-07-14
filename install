@@ -1,19 +1,43 @@
 #!/bin/sh
 
+# ------------------------------------------------------------------
+# SETTINGS
+# ------------------------------------------------------------------
+CONFIG_REPO="$HOME/CODE/df-new"
+DEFAULTS_FILE="$CONFIG_REPO/deploy/defaults"
+
+# ------------------------------------------------------------------
+# FUNCTIONS
+# ------------------------------------------------------------------
 install_subfolder(){
 	[ -z "$1" ] && return
 	echo "Installing $1..."
 	! [ -d "$1" ] && echo "$1 is not a directory" && return
-	! [ -x "$1/install" ] && echo "install script is not executable, aborting." && return
+	! [ -x "$1/install" ] && echo "install script does not exist or is not executable, aborting." && return
 	prev_dir="$(pwd)"
 	cd "$1"
+	if [ -z "$2" ]; then
+			if [ -f "$XDG_DATA_HOME/conf-pc-name" ]; then
+					machine="$(cat $XDG_DATA_HOME/conf-pc-name)"
+			else
+					echo "pc name could not determined" && return
+			fi
+	else
+			machine="$2"
+	fi
 	./install "$2"
 	cd "$prev_dir"
 }
 
+# ------------------------------------------------------------------
+# ACTUAL SCRIPT
+# ------------------------------------------------------------------
+cd "$CONFIG_REPO"
+export PATH="$PATH:$CONFIG_REPO"
+
 case "$1" in
 	all)
-		echo "Installing all software for PinguinPC"
+		echo "Installing all software"
 		files="$(/bin/ls .)"
 		for file in $files; do
 			install_subfolder "$file" "$2"

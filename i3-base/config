@@ -143,9 +143,8 @@ bindsym $alt+Shift+$layout_modifier	layout tabbed
 # KEYBINDINGS
 # ------------------------------------------------------------------------------
 
-# i3 keybindings
+# restart wm
 bindsym $mod+Shift+r	restart
-bindsym $mod+Shift+q	exit
 
 # Fallback terminal
 bindsym $mod+F10		exec +TERMINAL_MAIN+

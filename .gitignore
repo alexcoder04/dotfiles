@@ -1,5 +1,8 @@
+xmonad/xmonad.errors
+xmonad/xmonad.o
+xmonad/xmonad-x86_64-linux
 .autopush
 **/__pycache__/**
 **/a.out
 suckless
-xmonad
+*.prefs

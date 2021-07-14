@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+
+def read_settings_file(filename, settings=None):
+    if settings is None:
+        settings = {}
+    f = open(filename)
+    for line in f.readlines():
+        if line == "" or line.startswith("#"):
+            continue
+        if line.startswith("%include"):
+            settings = read_settings_file(f"{os.path.dirname(filename)}/{' '.join(line.split()[1:])}", settings=settings)
+            continue
+        settings[line.split()[0]] = " ".join(line.split()[1:])
+    f.close()
+    return settings
+
+HOME = os.getenv("HOME")
+try:
+    DEFAULTS_FILE = sys.argv[1]
+    CURRENT_PC_PREFS = sys.argv[2]
+except IndexError:
+    print("you need to provide a defaults and a current_pc_prefs file")
+if not os.path.isfile(DEFAULTS_FILE) or not os.path.isfile(CURRENT_PC_PREFS):
+    sys.exit(1)
+
+data = sys.stdin.read()
+
+settings = read_settings_file(DEFAULTS_FILE)
+settings = read_settings_file(CURRENT_PC_PREFS, settings=settings)
+
+for key in settings:
+    data = data.replace(f"+{key}+", settings[key])
+
+sys.stdout.write(data)
+

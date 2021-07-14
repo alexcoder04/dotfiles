@@ -9,14 +9,18 @@ super + shift + Return
 	+TERMINAL_SECONDARY+
 
 # ###################################################################
-# SYSTEM
+# SYSTEM AND WINDOW MANAGER
 # ###################################################################
 ctrl + alt + s
-	systemctl suspend
+	screenlock +suspend
 ctrl + alt + p
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e safe-poweroff
+	safe-poweroff poweroff
 ctrl + alt + r
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e safe-poweroff reboot
+	safe-poweroff reboot
+ctrl + alt + q
+    wm-logout
+ctrl + alt + l
+    screenlock
 
 # ###################################################################
 # RUN LAUNCHER
@@ -113,8 +117,10 @@ super + minus
 # ###################################################################
 # FUNCTION KEYS
 # ###################################################################
-super + {F1, F2, F3, F5, F6, F7, F8, F12}
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-key"
+super + {F1, F2, F3, F5, F6, F7, F8}
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1-8)-key"
+alt + F12
+	fix-keyboard
 # echo some text to the console and start htop to impress friends xD
 alt + F4
 	+TERMINAL_MAIN+ -e bash $HOME/CODE/FUN/fake-hack/fun.sh
