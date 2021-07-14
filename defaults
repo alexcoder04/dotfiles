@@ -6,5 +6,4 @@ BROWSER_MAIN		firefox
 BROWSER_SECONDARY	brave-browser
 EDITOR_MAIN		nvim
 SETTINGS_APP		cinnamon-settings
-%include		./machine-specific
 %include		./colorschemes/dracula

@@ -65,7 +65,7 @@ abbr gcommit "git commit -m"
 abbr gclone "git clone"
 abbr ginit "git init && cp -v $HOME/Vorlagen/gitignore .gitignore"
 abbr gadd "git add"
-abbr gaddall "git add all"
+abbr gaddall "git add -A"
 abbr gcheckout "git checkout"
 abbr gbranch "git branch"
 
