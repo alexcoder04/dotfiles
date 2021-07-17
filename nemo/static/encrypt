@@ -3,9 +3,12 @@
 TEMP_FOLDER="$HOME/tmp"
 SHASUM_FOLDER="/media/backup/SHASUMS"
 
-[ -z "$1" ] \
-		&& zenity --width 300 --error --text "You need to select a file or folder!" \
-		&& exit 1
+fatal_error(){
+		zenity --width 300 --error --text "$1"
+		exit 1
+}
+
+[ -z "$1" ] && fatal_error "You need to select a file or folder!"
 
 out_file="$(zenity --width 500 --entry --entry-text "$1-$(date "+%Y%m%d")" --text "enter a name for the archive (without file extension)")"
 
@@ -28,9 +31,15 @@ if [ -d "$SHASUM_FOLDER" ]; then
 		cp "$filename.bz2.sha256sum" "$SHASUM_FOLDER/$filename.bz2.sha256sum" \
 				&& extra_info="copy of the checksum saved to $SHASUM_FOLDER/$filename.bz2.sha256sum"
 else
-		zenity --width 300 --warning --text "global shasum folder does not exist!" \
+		zenity --width 300 --warning --text "Global shasum folder does not exist!\nThe shasum will not copied automaticly" \
 				&& extra_info="shasum could not be saved to the external folder!"
 fi
-alacritty --class "alacritty,i3_float" -e $HOME/bin/alencrypt -e -r "$filename.bz2"
+pass1="$(zenity --password)"
+pass2="$(zenity --password --text="Confirm password")"
+[ "$pass1" = "$pass2" ] \
+		|| fatal_error "Passwords do not match!"
+printf "$pass1" | $HOME/bin/alencrypt -e -r -s "$filename.bz2" \
+		| zenity --width 300 --progress --pulsate --text "Encrypting file..." \
+		|| fatal_error "Could not encrypt file"
 zenity --width 800 --info --text "encrypted file was saved to $TEMP_FOLDER/$filename.enc\nchecksum saved to $TEMP_FOLDER/$filename.sha256sum\n$extra_info"
 

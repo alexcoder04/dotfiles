@@ -23,9 +23,12 @@ check_shasum(){
 		zenity --width 300 --info --text "shasum test was successfull"
 }
 
-[ -z "$1" ] \
-		&& zenity --width 300 --error --text "You need to select a file or folder!" \
-		&& exit 1
+fatal_error(){
+		zenity --width 300 --error --text "$1"
+		exit 1
+}
+
+[ -z "$1" ] && fatal_error "You need to select a file or folder!"
 
 cp "$1" "$TEMP_FOLDER/"
 filename="$(printf "$1" | sed 's/.enc$//')"
@@ -38,7 +41,10 @@ else
 fi
 
 cd "$TEMP_FOLDER"
-alacritty --class "alacritty,i3_float" -e alencrypt -d -r "$filename.enc"
+password="$(zenity --width 300 --password)"
+printf "$password" | alencrypt -d -r -s "$filename.enc" \
+		| zenity --width 300 --progress --pulsate --text "Your files are beeing decrypted..." \
+		|| fatal_error "Files could not be decrypted!"
 
 [ -f "$filename.sha256sum" ] && check_shasum
 [ "$ignore_shasum" = "true" ] && check_shasum
