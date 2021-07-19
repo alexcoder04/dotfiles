@@ -117,10 +117,12 @@ super + minus
 # ###################################################################
 # FUNCTION KEYS
 # ###################################################################
-super + {F1, F2, F3, F5, F6, F8}
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1,2,3,4,5,6,8)-key"
+super + {F1, F2, F3, F5, F6}
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1,2,3,4,5,6)-key"
 super + F7
     wifi toggle; notify-send -t 3000 "wifi state toggled"
+super + F8
+    monitors-menu
 super + F12
 	fix-keyboard
 # echo some text to the console and start htop to impress friends xD
