@@ -2,8 +2,8 @@
 	"icons": [ "awesome-fonts" ],
 	"defaults": {
 		"separator-block-width": -8,
-		"warning": { "fg": "#282A36", "bg": "#E5C07B" },
-		"critical": { "fg": "#282A36", "bg": "#FF5555" }
+		"warning": { "fg": "#282A36", "bg": "#ffb86c" },
+		"critical": { "fg": "#f8f8f2", "bg": "#FF5555" }
 	},
 	"cycle": [
 		{"fg": "#F8F8F2", "bg": "#6272A4"},
