@@ -1,0 +1,234 @@
+#!/usr/bin/zsh
+#        _                        _            ___  _  _
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|
+#
+# Copyright (c) 2020-2021 alexcoder04 <https://github.com/alexcoder04>
+#      
+# zsh config
+
+# ---------------------------------------------------------
+# ENVIRONMENT VARIABLES
+# ---------------------------------------------------------
+# XDG variables
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:/home/alex/.local/share/flatpak/exports/share
+export XDG_CONFIG_DIRS=/etc/xdg
+# tricks so other programs accept XDG
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
+export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
+export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NVM_DIR=$XDG_DATA_HOME/nvm
+export GOPATH=$XDG_DATA_HOME/go
+# prefered programs
+export TERMINAL=+TERMINAL_MAIN+
+export EDITOR=+EDITOR_MAIN+
+export BROWSER=+BROWSER_MAIN+
+# finally, PATH
+export PATH="$PATH:$HOME/bin/:$HOME/.local/bin:$GOPATH/bin:$CARGO_HOME/bin"
+
+DOTFILES_REPO="$HOME/CODE/df-new"
+
+# ---------------------------------------------------------
+# CHECK IF RUNNING IN INTERACTIVE MODE
+# ---------------------------------------------------------
+[[ -o interactive ]] || exit
+
+# ---------------------------------------------------------
+# LINES CONFIGURED BY ZSH-NEWUSER-INSTALL
+# ---------------------------------------------------------
+HISTFILE=~/.cache/zsh/history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd
+unsetopt beep extendedglob notify
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/zshrc"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# ---------------------------------------------------------
+# ENABLE ABBREVIATIONS (https://dev.to/frost/fish-style-abbreviations-in-zsh-40aa)
+# ---------------------------------------------------------
+# declare a list of expandable aliases to fill up later
+typeset -a ealiases
+ealiases=()
+
+# write a function for adding an alias to the list mentioned above
+function abbrev-alias() {
+    alias $1
+    ealiases+=(${1%%\=*})
+}
+
+# expand any aliases in the current line buffer
+function expand-ealias() {
+    if [[ $LBUFFER =~ "\<(${(j:|:)ealiases})\$" ]]; then
+        zle _expand_alias
+        zle expand-word
+    fi
+    zle magic-space
+}
+zle -N expand-ealias
+
+# Bind the space key to the expand-alias function above, so that space will expand any expandable aliases
+bindkey ' '        expand-ealias
+bindkey '^ '       magic-space     # control-space to bypass completion
+bindkey -M isearch " "      magic-space     # normal space during searches
+
+# A function for expanding any aliases before accepting the line as is and executing the entered command
+expand-alias-and-accept-line() {
+    expand-ealias
+    zle .backward-delete-char
+    zle .accept-line
+}
+zle -N accept-line expand-alias-and-accept-line
+
+# ---------------------------------------------------------
+# ALIASES
+# ---------------------------------------------------------
+
+##### CD's
+abbrev-alias gcd="cd $HOME/CODE/PROJECTS/ && exa"
+abbrev-alias gdot="cd $DOTFILES_REPO/ && exa"
+abbrev-alias gtmp="cd $HOME/tmp/ && exa"
+abbrev-alias gsch="cd $HOME/SCHULE/ && exa"
+abbrev-alias gki="cd $HOME/CODE/PROJECTS/BWKI && exa"
+abbrev-alias gbin="cd $HOME/bin && exa"
+
+##### APT commands
+abbrev-alias sagi="sudo apt install"
+abbrev-alias sau="sudo apt update"
+abbrev-alias saup="sudo apt upgrade"
+abbrev-alias apts="apt search"
+abbrev-alias alu="apt list --upgradeable"
+
+##### Git commands
+abbrev-alias gst="git status"
+abbrev-alias gpush="git push && [ -f .autopush ] && ./.autopush || echo 'No autopush script is configured for this repository'"
+abbrev-alias gpull="git pull"
+abbrev-alias gcommit="git commit -m"
+abbrev-alias gclone="git clone"
+abbrev-alias ginit="git init && cp -v $HOME/Vorlagen/gitignore .gitignore"
+abbrev-alias gadd="git add"
+abbrev-alias gaddall="git add -A"
+abbrev-alias gcheckout="git checkout"
+abbrev-alias gbranch="git branch"
+
+##### System / Terminal commands
+alias cls="clear"
+
+alias ls="exa -hl --group-directories-first"
+alias la="exa -ahl --group-directories-first"
+
+abbrev-alias rm="rm -iv"
+abbrev-alias rmd="rm -vr"
+abbrev-alias mv="mv -iv"
+abbrev-alias cp="cp -iv"
+abbrev-alias cpd="cp -ivr"
+
+abbrev-alias c+x="chmod +x"
+
+alias :q="exit"
+abbrev-alias Exit="disown %1 && exit"
+
+abbrev-alias v="nvim"
+abbrev-alias vim="nvim"
+
+##### Working with disks
+abbrev-alias lsblk="lsblk -f"
+abbrev-alias umount-luks="sudo umount /media/luks && sudo cryptsetup close butterfly"
+abbrev-alias driveoff="sudo hdparm -Y"
+abbrev-alias webserver="python -m http.server 1234"
+
+##### Fun commands
+abbrev-alias gnuhead="cat /home/alex/.local/share/gnu-head-xterm"
+
+##### Translator
+abbrev-alias de:en="trans -shell de:en"
+abbrev-alias en:de="trans -shell en:de"
+
+# ---------------------------------------------------------
+# FUNCTIONS
+# ---------------------------------------------------------
+conf(){
+		case "$1" in
+				i3)
+						$EDITOR $DOTFILES_REPO/i3-base/config ;;
+				fish)
+						$EDITOR $DOTFILES_REPO/fish/dynamic/config.fish ;;
+				bash)
+						$EDITOR $DOTFILES_REPO/bash/bashrc ;;
+				zsh)
+						$EDITOR $DOTFILES_REPO/zsh/zshrc ;;
+				vim)
+						$EDITOR $DOTFILES_REPO/vim/init.vim ;;
+				sxhkd)
+						$EDITOR $DOTFILES_REPO/wm-utils/sxhkdrc ;;
+				*)
+						echo "$1 is not a valid argument" ;;
+		esac
+}
+
+get_data(){
+		grep "$1" "$XDG_DATA_HOME/some_data"
+}
+save_data(){
+		read "value?what is the value to $1? "
+		echo "$1: $value" >> "$XDG_DATA_HOME/some_data"
+}
+
+remember(){
+		case "$1" in
+				ascii)
+						curl "http://www.asciitable.com/index/asciifull.gif" \
+								> /tmp/.ascii.gif
+						feh /tmp/.ascii.gif &
+						disown feh ;;
+				raspi_pins)
+						curl "https://i1.wp.com/mbrobotics.es/blog/wp-content/uploads/2018/05/Raspberry-GPIO-Pins_B_plus.jpg" \
+								> /tmp/.raspi.jpg
+						feh /tmp/.raspi.jpg &
+						disown feh ;;
+				*)
+						echo "invalid argument" ;;
+		esac
+}
+
+# ---------------------------------------------------------
+# PROMPT
+# ---------------------------------------------------------
+eval "$(starship init zsh)"
+
+# ---------------------------------------------------------
+# SYNTAX HIGHLIGHTING
+# ---------------------------------------------------------
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# ---------------------------------------------------------
+# AUTOSTART
+# ---------------------------------------------------------
+# Choose what you want to see
+# ---------------------------------------------------------
+
+# 1) Simple system information
+#pfetch
+
+# 2) More system information
+#neofetch
+
+# 3) Random color script
+random-color-script
+
+# 4) Nice greeting
+#echo "\033[01;32mNice to see you in the Terminal again, Alex =)\033[00m"
+

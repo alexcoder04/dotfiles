@@ -1,0 +1,27 @@
+
+add_newline = false
+format = """$username[@](red)$hostname in $directory$git_status$python
+$time $cmd_duration$character"""
+
+[username]
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format =  "$hostname"
+disabled = false
+
+[character]
+#success_symbol = "[ ](bold green)"
+success_symbol = "[ ](bold green)"
+error_symbol = "[➜](bold red)"
+
+[time]
+disabled = false
+format = "\\[[$time]($style)\\]"
+time_format = "%a, %d %b %H:%M"
+

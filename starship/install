@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "./starship.toml -> $XDG_CONFIG_HOME/starship.toml"
+cat "./starship.toml" | ../reconf "../defaults" "../$1.prefs" > "$XDG_CONFIG_HOME/starship.toml"
+

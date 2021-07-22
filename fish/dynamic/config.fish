@@ -44,11 +44,12 @@ end
 # ---------------------------------------------------------
 
 ##### CD's
-abbr gcd "cd $HOME/CODE/PROJECTS/"
-abbr gdot "cd $HOME/CODE/df-new/"
-abbr gtmp "cd $HOME/tmp/"
-abbr gsch "cd $HOME/SCHULE/"
-abbr gki "cd $HOME/CODE/PROJECTS/BWKI"
+abbr gcd "cd $HOME/CODE/PROJECTS/ && exa"
+abbr gdot "cd $HOME/CODE/df-new/ && exa"
+abbr gtmp "cd $HOME/tmp/ && exa"
+abbr gsch "cd $HOME/SCHULE/ && exa"
+abbr gki "cd $HOME/CODE/PROJECTS/BWKI && exa"
+abbr gbin "cd $HOME/bin && exa"
 
 ##### APT commands
 abbr sagi "sudo apt install"
@@ -76,9 +77,8 @@ alias ls="exa -hl --group-directories-first"
 alias la="exa -ahl --group-directories-first"
 
 abbr rm "rm -iv"
-abbr rmd "rm -ivr"
+abbr rmd "rm -vr"
 abbr mv "mv -iv"
-abbr mvd "mv -ivr"
 abbr cp "cp -iv"
 abbr cpd "cp -ivr"
 
@@ -90,7 +90,11 @@ abbr Exit "disown %1 && exit"
 abbr v "nvim"
 abbr vim "nvim"
 
+##### Working with disks
+abbr lsblk "lsblk -f"
 abbr umount-luks "sudo umount /media/luks && sudo cryptsetup close butterfly"
+abbr driveoff "sudo hdparm -Y"
+abbr webserver "python -m http.server 1234"
 
 ##### Fun commands
 abbr gnuhead "cat /home/alex/.local/share/gnu-head-xterm"

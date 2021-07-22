@@ -1,0 +1,11 @@
+#!/bin/sh
+
+CONFIG_DIR="$XDG_CONFIG_HOME/zsh"
+
+[ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR"
+
+echo "./zshrc -> $CONFIG_DIR/.zshrc"
+cat "./zshrc" | ../reconf "../defaults" "../$1.prefs" > "$CONFIG_DIR/.zshrc"
+
+../install starship
+

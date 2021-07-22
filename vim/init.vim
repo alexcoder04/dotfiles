@@ -90,6 +90,7 @@ autocmd BufWritePost */vim/init.vim !/home/alex/CODE/df-new/install vim
 autocmd BufWritePost */fish/dynamic/config.fish !/home/alex/CODE/df-new/install fish
 autocmd BufWritePost */bash/bashrc !/home/alex/CODE/df-new/install bash
 autocmd BufWritePost */wm-utils/sxhkdrc !/home/alex/CODE/df-new/install wm-utils && killall sxhkd && sxhkd &
+autocmd BufWritePost */zsh/zshrc !/home/alex/CODE/df-new/install zsh
 
 " copy arduino files to clipboard on save
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
