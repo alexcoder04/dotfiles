@@ -64,6 +64,7 @@ nnoremap / :set<Space>hlsearch<CR>/
 
 " jump to the next placeholder
 inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
+inoremap <leader>; ;;
 nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 
 " -------------------------------------------------
@@ -82,8 +83,8 @@ autocmd BufWritePre *.css CocCommand prettier.formatFile
 autocmd BufWritePre *.html CocCommand prettier.formatFile
 
 " auto-compile beamer presentations on save
-autocmd BufWritePost *.bm.md !pandoc -t beamer "%" -o presentation.pdf
-autocmd FileType markdown nnoremap <leader>p :!xreader presentation.pdf &<CR>
+autocmd FileType markdown nnoremap <leader>p :!pdf-preview "%"<CR>
+autocmd FileType markdown nnoremap <leader>a :!autocompile-toggle "%" &<CR>
 
 " re-generate config files after editing
 autocmd BufWritePost */vim/init.vim !/home/alex/CODE/df-new/install vim

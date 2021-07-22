@@ -31,7 +31,7 @@ if [ -d "$SHASUM_FOLDER" ]; then
 		cp "$filename.bz2.sha256sum" "$SHASUM_FOLDER/$filename.bz2.sha256sum" \
 				&& extra_info="copy of the checksum saved to $SHASUM_FOLDER/$filename.bz2.sha256sum"
 else
-		zenity --width 300 --warning --text "Global shasum folder does not exist!\nThe shasum will not copied automaticly" \
+		zenity --width 300 --warning --text "Global shasum folder does not exist!\nThe shasum will not be copied automaticly" \
 				&& extra_info="shasum could not be saved to the external folder!"
 fi
 pass1="$(zenity --password)"

@@ -3,6 +3,11 @@
 TEMP_FOLDER="$HOME/tmp"
 SHASUMS_FOLDER="/media/backup/SHASUMS"
 
+fatal_error(){
+		zenity --width 300 --error --text "$1"
+		exit 1
+}
+
 check_shasum(){
 		shasum_is="$(sha256sum "$filename" | awk '{print $1}')"
 		shasum_must="$(cat "$filename.sha256sum")"
@@ -13,19 +18,12 @@ check_shasum(){
 				fi
 				shasum_must_global="$(cat "$SHASUMS_FOLDER/$filename.sha256sum")"
 				if ! [ "$shasum_is" = "$shasum_must_global" ]; then
-						zenity --width 300 --error --text "shasum does not match the global shasum!"
-						exit 1
+						fatal_error "shasum does not match the global shasum!"
 				fi
 		else
-				zenity --width 300 --error --text "shasums does not match!"
-				exit 1
+				fatal_error "shasums does not match!"
 		fi
 		zenity --width 300 --info --text "shasum test was successfull"
-}
-
-fatal_error(){
-		zenity --width 300 --error --text "$1"
-		exit 1
 }
 
 [ -z "$1" ] && fatal_error "You need to select a file or folder!"
