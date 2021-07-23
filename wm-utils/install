@@ -2,11 +2,13 @@
 
 SXHKD_CONFIG_DIR="$XDG_CONFIG_HOME/sxhkd"
 DUNST_CONFIG_DIR="$XDG_CONFIG_HOME/dunst"
+POLYBAR_CONFIG_DIR="$XDG_CONFIG_HOME/polybar"
 ICONS_DIR="$XDG_DATA_HOME/icons/notify"
 
 [ -d "$SXHKD_CONFIG_DIR" ] || mkdir -p "$SXHKD_CONFIG_DIR"
 [ -d "$DUNST_CONFIG_DIR" ] || mkdir -p "$DUNST_CONFIG_DIR"
 [ -d "$ICONS_DIR" ] || mkdir -p "$ICONS_DIR"
+[ -d "$POLYBAR_CONFIG_DIR" ] || mkdir -p "$POLYBAR_CONFIG_DIR"
 
 echo "./sxhkdrc -> $SXHKD_CONFIG_DIR/sxhkdrc"
 cat "./sxhkdrc" | ../reconf "../defaults" "../$1.prefs" \
@@ -16,4 +18,7 @@ cp -v "./icons/"* "$ICONS_DIR/"
 echo "./dunstrc -> $DUNST_CONFIG_DIR/dunstrc"
 cat "./dunstrc" | ../reconf "../defaults" "../$1.prefs" \
 	> "$DUNST_CONFIG_DIR/dunstrc"
+echo "./polybar.conf > $POLYBAR_CONFIG_DIR/config"
+#cat "./polybar.conf" | ../reconf "../defaults" "../$1.prefs" \
+#    > "$POLYBAR_CONFIG_DIR/config"
 

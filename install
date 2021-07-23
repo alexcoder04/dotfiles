@@ -4,7 +4,6 @@
 # SETTINGS
 # ------------------------------------------------------------------
 CONFIG_REPO="$HOME/CODE/df-new"
-DEFAULTS_FILE="$CONFIG_REPO/deploy/defaults"
 
 # ------------------------------------------------------------------
 # FUNCTIONS
@@ -32,6 +31,7 @@ install_subfolder(){
 # ------------------------------------------------------------------
 # ACTUAL SCRIPT
 # ------------------------------------------------------------------
+cd "$CONFIG_REPO"
 case "$1" in
 	all)
 		echo "Installing all software"

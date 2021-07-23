@@ -202,7 +202,7 @@ bar {
 		inactive_workspace	$black		$black		$white
 		urgent_workspace	$red		$red		$white
 	}
-	+I3_STATUS_COMMAND+
+	status_command +I3_STATUS_COMMAND+
 	position top
 	font pango: +I3_FONT_BAR+
 	height 25

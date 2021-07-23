@@ -131,10 +131,10 @@ alias ls="exa -hl --group-directories-first"
 alias la="exa -ahl --group-directories-first"
 
 abbrev-alias rm="rm -iv"
-abbrev-alias rmd="rm -vr"
+abbrev-alias rmd="rm -fvr"
 abbrev-alias mv="mv -iv"
 abbrev-alias cp="cp -iv"
-abbrev-alias cpd="cp -ivr"
+abbrev-alias cpd="cp -fvr"
 
 abbrev-alias chx="chmod +x"
 
@@ -212,7 +212,7 @@ eval "$(starship init zsh)"
 # ---------------------------------------------------------
 # SYNTAX HIGHLIGHTING
 # ---------------------------------------------------------
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source +ZSH_SYNTAX_PLUGIN+
 
 # ---------------------------------------------------------
 # AUTOSTART

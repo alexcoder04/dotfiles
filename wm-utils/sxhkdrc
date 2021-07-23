@@ -15,8 +15,6 @@ ctrl + alt + s
 	screenlock +suspend
 ctrl + alt + p
 	safe-poweroff poweroff
-ctrl + alt + r
-	safe-poweroff reboot
 ctrl + alt + q
     wm-logout
 ctrl + alt + l
@@ -61,7 +59,7 @@ super + shift + i
 super + o
 	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "o"
 super + p
-	+TERMINAL_MAIN+ -e python
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e python
 super + shift + p
 	flatpak run com.github.alainm23.planner
 super + plus
