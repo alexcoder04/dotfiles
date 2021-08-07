@@ -158,7 +158,7 @@ abbrev-alias de:en="trans -shell de:en"
 abbrev-alias en:de="trans -shell en:de"
 
 ##### Other
-alias newsboat="newsboat -c $XDG_CACHE_HOME/newsboat/cache.db"
+alias newsboat="newsboat -c $XDG_DATA_HOME/newsboatcache.db"
 
 # ---------------------------------------------------------
 # FUNCTIONS
