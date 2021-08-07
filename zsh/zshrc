@@ -98,12 +98,12 @@ zle -N accept-line expand-alias-and-accept-line
 # ---------------------------------------------------------
 
 ##### CD's
-abbrev-alias gcd="cd $HOME/CODE/PROJECTS/ && exa"
-abbrev-alias gdot="cd $DOTFILES_REPO/ && exa"
-abbrev-alias gtmp="cd $HOME/tmp/ && exa"
-abbrev-alias gsch="cd $HOME/SCHULE/ && exa"
-abbrev-alias gki="cd $HOME/CODE/PROJECTS/BWKI && exa"
-abbrev-alias gbin="cd $HOME/bin && exa"
+abbrev-alias gcd="cd $HOME/CODE/PROJECTS/ && exa --icons"
+abbrev-alias gdot="cd $DOTFILES_REPO/ && exa --icons"
+abbrev-alias gtmp="cd $HOME/tmp/ && exa --icons"
+abbrev-alias gsch="cd $HOME/SCHULE/ && exa --icons"
+abbrev-alias gki="cd $HOME/CODE/PROJECTS/BWKI && exa --icons"
+abbrev-alias gbin="cd $HOME/bin && exa --icons"
 
 ##### APT commands
 abbrev-alias sagi="sudo apt install"
@@ -127,8 +127,8 @@ abbrev-alias gbranch="git branch"
 ##### System / Terminal commands
 alias cls="clear"
 
-alias ls="exa -hl --group-directories-first"
-alias la="exa -ahl --group-directories-first"
+alias ls="exa -hl --icons --group-directories-first"
+alias la="exa -ahl --icons --group-directories-first"
 
 abbrev-alias rm="rm -iv"
 abbrev-alias rmd="rm -fvr"
