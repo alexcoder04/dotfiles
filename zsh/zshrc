@@ -157,6 +157,9 @@ abbrev-alias gnuhead="cat /home/alex/.local/share/gnu-head-xterm"
 abbrev-alias de:en="trans -shell de:en"
 abbrev-alias en:de="trans -shell en:de"
 
+##### Other
+alias newsboat="newsboat -c $XDG_CACHE_HOME/newsboat/cache.db"
+
 # ---------------------------------------------------------
 # FUNCTIONS
 # ---------------------------------------------------------

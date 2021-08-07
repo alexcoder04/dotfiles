@@ -94,7 +94,7 @@ super + {c, v}
 super + b
 	joplin
 super + shift + b
-	+TERMINAL_MAIN+ -e newsboat
+	+TERMINAL_MAIN+ -e newsboat -c "$XDG_CACHE_HOME/newsboat/cache.db"
 super + n
 	xed
 super + shift + n
