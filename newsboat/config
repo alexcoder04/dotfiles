@@ -1,0 +1,39 @@
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+#                                                          
+# newsboat (RSS reader) config
+
+auto-reload no
+reload-threads 16
+
+browser "firefox %u &>/dev/null &"
+macro v set browser "rss-yt-viewer" ; open-in-browser ; set browser "firefox %u &>/dev/null &"
+macro V set browser "rss-yt-viewer odysee" ; open-in-browser ; set browser "firefox %u &>/dev/null &"
+macro m set browser "rss-add-to-list %u &>/dev/null &" ; save /tmp/article.txt ; open-in-browser ; set browser "firefox %u &>/dev/null &"
+macro d set browser "rss-dl-queue &>/dev/null &" ; open-in-browser ; set browser "firefox %u &>/dev/null &"
+
+color info cyan white bold
+color listnormal blue default
+color listnormal_unread red default
+color listfocus green black standout bold
+color listfocus_unread red yellow bold
+color article blue default
+
+unbind-key j
+unbind-key k
+unbind-key h
+unbind-key l
+
+bind-key j down
+bind-key k up
+bind-key h quit
+bind-key l open
+
+unbind-key L
+bind-key L toggle-show-read-feeds
+
