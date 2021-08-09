@@ -35,6 +35,18 @@ super + Tab
 	rofi -show window -modi window
 
 # ###################################################################
+# EXTENDED CLIPBOARD
+# ###################################################################
+alt + c
+    clipboardmgr copy
+alt + v
+    clipboardmgr paste
+alt + Insert
+    clipboardmgr show
+super + Insert
+    clipboardmgr phrases
+
+# ###################################################################
 # ALL PROGRAMS
 # ###################################################################
 
