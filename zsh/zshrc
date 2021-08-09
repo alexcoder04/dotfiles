@@ -5,7 +5,7 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|
 #
-# Copyright (c) 2020-2021 alexcoder04 <https://github.com/alexcoder04>
+# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
 #      
 # zsh config
 
@@ -15,171 +15,50 @@
 [[ -o interactive ]] || exit
 
 # ---------------------------------------------------------
-# LINES CONFIGURED BY ZSH-NEWUSER-INSTALL
+# SOURCE OTHER FILES
 # ---------------------------------------------------------
-HISTFILE=~/.cache/zsh/history
+source "$ZDOTDIR/cursor.zsh"
+source "$ZDOTDIR/abbreviations.zsh"
+source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/functions.zsh"
+
+# ---------------------------------------------------------
+# HISTORY CONFIGURATION
+# ---------------------------------------------------------
+HISTFILE="~/.cache/zsh/history"
 HISTSIZE=1000
 SAVEHIST=1000
+
+# ---------------------------------------------------------
+# AUTOCOMPLETION
+# ---------------------------------------------------------
+autoload -U compinit
+zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/zshrc"
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_com_options+=(globdots)
+
+# ---------------------------------------------------------
+# KEYBINDINGS
+# ---------------------------------------------------------
+KEYTIMEOUT=3
+# vi mode
+bindkey -v
+# vi navigation in menu
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+# edit command in editor
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# ---------------------------------------------------------
+# OTHER SETTINGS
+# ---------------------------------------------------------
 setopt autocd
 unsetopt beep extendedglob notify
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/zshrc"
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-
-# ---------------------------------------------------------
-# ENABLE ABBREVIATIONS (https://dev.to/frost/fish-style-abbreviations-in-zsh-40aa)
-# ---------------------------------------------------------
-# declare a list of expandable aliases to fill up later
-typeset -a ealiases
-ealiases=()
-
-# write a function for adding an alias to the list mentioned above
-function abbrev-alias() {
-    alias $1
-    ealiases+=(${1%%\=*})
-}
-
-# expand any aliases in the current line buffer
-function expand-ealias() {
-    if [[ $LBUFFER =~ "\<(${(j:|:)ealiases})\$" ]]; then
-        zle _expand_alias
-        zle expand-word
-    fi
-    zle magic-space
-}
-zle -N expand-ealias
-
-# Bind the space key to the expand-alias function above, so that space will expand any expandable aliases
-bindkey ' '        expand-ealias
-bindkey '^ '       magic-space     # control-space to bypass completion
-bindkey -M isearch " "      magic-space     # normal space during searches
-
-# A function for expanding any aliases before accepting the line as is and executing the entered command
-expand-alias-and-accept-line() {
-    expand-ealias
-    zle .backward-delete-char
-    zle .accept-line
-}
-zle -N accept-line expand-alias-and-accept-line
-
-# ---------------------------------------------------------
-# ALIASES
-# ---------------------------------------------------------
-
-##### CD's
-abbrev-alias gcd="cd $HOME/CODE/PROJECTS/ && exa --icons"
-abbrev-alias gdot="cd $DOTFILES_REPO/ && exa --icons"
-abbrev-alias gtmp="cd $HOME/tmp/ && exa --icons"
-abbrev-alias gsch="cd $HOME/SCHULE/ && exa --icons"
-abbrev-alias gki="cd $HOME/CODE/PROJECTS/BWKI && exa --icons"
-abbrev-alias gbin="cd $HOME/bin && exa --icons"
-
-##### APT commands
-abbrev-alias sagi="sudo apt install"
-abbrev-alias sau="sudo apt update"
-abbrev-alias saup="sudo apt upgrade"
-abbrev-alias apts="apt search"
-abbrev-alias alu="apt list --upgradeable"
-
-##### Git commands
-abbrev-alias gst="git status"
-abbrev-alias gpush="git push && [ -f .autopush ] && ./.autopush || echo 'No autopush script is configured for this repository'"
-abbrev-alias gpull="git pull"
-abbrev-alias gcom="git commit -m"
-abbrev-alias gclone="git clone"
-abbrev-alias ginit="git init && cp -v $HOME/Vorlagen/gitignore .gitignore"
-abbrev-alias gadd="git add"
-abbrev-alias gaddall="git add -A"
-abbrev-alias gcheckout="git checkout"
-abbrev-alias gbranch="git branch"
-
-##### System / Terminal commands
-alias cls="clear"
-
-alias ls="exa -hl --icons --group-directories-first"
-alias la="exa -ahl --icons --group-directories-first"
-
-abbrev-alias rm="rm -iv"
-abbrev-alias rmd="rm -fvr"
-abbrev-alias mv="mv -iv"
-abbrev-alias cp="cp -iv"
-abbrev-alias cpd="cp -fvr"
-
-abbrev-alias chx="chmod +x"
-
-alias :q="exit"
-alias Exit="disown -a && exit"
-
-abbrev-alias v="nvim"
-abbrev-alias vim="nvim"
-
-##### Working with disks
-abbrev-alias lsblk="lsblk -f"
-abbrev-alias umount-luks="sudo umount /media/luks && sudo cryptsetup close butterfly"
-abbrev-alias driveoff="sudo hdparm -Y"
-abbrev-alias webserver="python -m http.server 1234"
-
-##### Fun commands
-abbrev-alias gnuhead="cat /home/alex/.local/share/gnu-head-xterm"
-
-##### Translator
-abbrev-alias de:en="trans -shell de:en"
-abbrev-alias en:de="trans -shell en:de"
-
-##### Other
-alias newsboat="newsboat -c $XDG_DATA_HOME/newsboatcache.db"
-
-# ---------------------------------------------------------
-# FUNCTIONS
-# ---------------------------------------------------------
-conf(){
-		case "$1" in
-				i3)
-						$EDITOR $DOTFILES_REPO/i3-base/config ;;
-				fish)
-						$EDITOR $DOTFILES_REPO/fish/dynamic/config.fish ;;
-				bash)
-						$EDITOR $DOTFILES_REPO/bash/bashrc ;;
-				zsh)
-						$EDITOR $DOTFILES_REPO/zsh/zshrc ;;
-				vim)
-						$EDITOR $DOTFILES_REPO/vim/init.vim ;;
-				sxhkd)
-						$EDITOR $DOTFILES_REPO/wm-utils/sxhkdrc ;;
-				*)
-						echo "$1 is not a valid argument" ;;
-		esac
-}
-
-get_data(){
-		grep "$1" "$XDG_DATA_HOME/some_data"
-}
-save_data(){
-		read "value?what is the value to $1? "
-		echo "$1: $value" >> "$XDG_DATA_HOME/some_data"
-}
-
-remember(){
-		case "$1" in
-				ascii)
-						curl "http://www.asciitable.com/index/asciifull.gif" \
-								> /tmp/.ascii.gif
-						feh /tmp/.ascii.gif &
-						disown feh ;;
-				raspi_pins)
-						curl "https://i1.wp.com/mbrobotics.es/blog/wp-content/uploads/2018/05/Raspberry-GPIO-Pins_B_plus.jpg" \
-								> /tmp/.raspi.jpg
-						feh /tmp/.raspi.jpg &
-						disown feh ;;
-				*)
-						echo "invalid argument" ;;
-		esac
-}
 
 # ---------------------------------------------------------
 # PROMPT

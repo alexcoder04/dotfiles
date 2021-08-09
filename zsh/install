@@ -8,6 +8,7 @@ echo "./zshrc -> $CONFIG_DIR/.zshrc"
 cat "./zshrc" | ../reconf "../defaults" "../$1.prefs" > "$CONFIG_DIR/.zshrc"
 echo "./zshenv -> $HOME/.zshenv"
 cat "./zshenv" | ../reconf "../defaults" "../$1.prefs" > "$HOME/.zshenv"
+/bin/ls *.zsh | xargs -I{} sh -c "cat {} | ../reconf \"../defaults\" \"../$1.prefs\" > \"$CONFIG_DIR/{}\" && echo {} -> $CONFIG_DIR/{}"
 [ -d "$HOME/.cache/zsh" ] || mkdir -v "$HOME/.cache/zsh"
 
 ../install starship
