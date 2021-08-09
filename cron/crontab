@@ -6,5 +6,6 @@
 # 
 # m h  dom mon dow   command
 
-*/20 * * * * eval "export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"; /usr/bin/newsboat -x reload && notify-send "Updated RSS feeds"
+*/20 * * * * eval "export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"; notify-send "Updating RSS feeds..."; /usr/bin/newsboat -x reload && notify-send "Updated RSS feeds"
+*/15 * * * * wallpaper-random
 
