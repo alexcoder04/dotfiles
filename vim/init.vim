@@ -64,7 +64,7 @@ nnoremap / :set<Space>hlsearch<CR>/
 
 " jump to the next placeholder
 inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
-inoremap <leader>; ;;
+inoremap :; ;;
 nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 
 " -------------------------------------------------
@@ -87,11 +87,12 @@ autocmd FileType markdown nnoremap <leader>p :!pdf-preview "%"<CR>
 autocmd FileType markdown nnoremap <leader>a :!autocompile-toggle "%" &<CR>
 
 " re-generate config files after editing
-autocmd BufWritePost */vim/init.vim !/home/alex/CODE/df-new/install vim
-autocmd BufWritePost */fish/dynamic/config.fish !/home/alex/CODE/df-new/install fish
-autocmd BufWritePost */bash/bashrc !/home/alex/CODE/df-new/install bash
-autocmd BufWritePost */wm-utils/sxhkdrc !/home/alex/CODE/df-new/install wm-utils && killall sxhkd && sxhkd &
-autocmd BufWritePost */zsh/zshrc !/home/alex/CODE/df-new/install zsh
+autocmd BufWritePost +DOTFILES_REPO+/vim/init.vim !+DOTFILES_REPO+/install vim
+autocmd BufWritePost +DOTFILES_REPO+/fish/dynamic/config.fish !+DOTFILES_REPO+/install fish
+autocmd BufWritePost +DOTFILES_REPO+/bash/bashrc !+DOTFILES_REPO+/install bash
+autocmd BufWritePost +DOTFILES_REPO+/wm-utils/sxhkdrc !+DOTFILES_REPO+/install wm-utils && killall sxhkd && sxhkd &
+autocmd BufWritePost +DOTFILES_REPO+/zsh/zshrc !+DOTFILES_REPO+/install zsh
+autocmd BufWritePost +DOTFILES_REPO+/zsh/zshenv !+DOTFILES_REPO+/install zsh
 
 " copy arduino files to clipboard on save
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard

@@ -6,9 +6,9 @@ CONFIG_DIR="$XDG_CONFIG_HOME/zsh"
 
 echo "./zshrc -> $CONFIG_DIR/.zshrc"
 cat "./zshrc" | ../reconf "../defaults" "../$1.prefs" > "$CONFIG_DIR/.zshrc"
-echo "setup zshenv..."
-echo "ZDOTDIR=$HOME/.config/zsh" > "$HOME/.zshenv"
-[ -d "$HOME/.cache/zsh" ] || mkdir "$HOME/.cache/zsh"
+echo "./zshenv -> $HOME/.zshenv"
+cat "./zshenv" | ../reconf "../defaults" "../$1.prefs" > "$HOME/.zshenv"
+[ -d "$HOME/.cache/zsh" ] || mkdir -v "$HOME/.cache/zsh"
 
 ../install starship
 

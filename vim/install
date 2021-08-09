@@ -4,5 +4,7 @@ CONFIG_DIR="$XDG_CONFIG_HOME/nvim"
 
 [ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR"
 
-cp -v "init.vim" "$CONFIG_DIR/"
+echo "./init.vim -> $CONFIG_DIR/init.vim"
+cat "./init.vim" | ../reconf "../defaults" "../$1.prefs" \
+		> "$CONFIG_DIR/init.vim"
 
