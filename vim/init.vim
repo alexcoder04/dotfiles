@@ -93,9 +93,13 @@ autocmd BufWritePost +DOTFILES_REPO+/bash/bashrc !+DOTFILES_REPO+/install bash
 autocmd BufWritePost +DOTFILES_REPO+/wm-utils/sxhkdrc !+DOTFILES_REPO+/install wm-utils && killall sxhkd && sxhkd &
 autocmd BufWritePost +DOTFILES_REPO+/zsh/zshrc !+DOTFILES_REPO+/install zsh
 autocmd BufWritePost +DOTFILES_REPO+/zsh/zshenv !+DOTFILES_REPO+/install zsh
+autocmd BufWritePost +DOTFILES_REPO+/cron/crontab !+DOTFILES_REPO+/install cron
 
 " copy arduino files to clipboard on save
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
+
+" compile a project
+nnoremap <leader>b :!./build.sh<CR>
 
 " -------------------------------------------------
 " AUTO-INSERT OFTEN USED PHRASES

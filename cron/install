@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "./crontab -> crontab.$USER"
+cat ./crontab | crontab -
+echo "IF YOU WANT TO UPDATE THE ROOT CRONTAB,
+YOU NEED TO DO IT MANUALLY!"
+
