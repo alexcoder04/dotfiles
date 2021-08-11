@@ -130,7 +130,7 @@ super + minus
 super + {F1, F2, F3, F5, F6}
 	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1,2,3,4,5,6)-key"
 super + F7
-    wifi toggle; notify-send -t 3000 "wifi state toggled"
+    wifi toggle; notify-send -t 3000 "wifi toggled"
 super + F8
     monitors-menu
 super + F12
