@@ -70,6 +70,9 @@ nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 " -------------------------------------------------
 " AUTOMATION
 " -------------------------------------------------
+"  LaTeX fix
+autocmd BufEnter *.tex set filetype=tex
+
 " put current line in the middle if typing
 autocmd InsertEnter * norm zz
 
@@ -81,10 +84,6 @@ autocmd BufWritePre *.js CocCommand prettier.formatFile
 autocmd BufWritePre *.json CocCommand prettier.formatFile
 autocmd BufWritePre *.css CocCommand prettier.formatFile
 autocmd BufWritePre *.html CocCommand prettier.formatFile
-
-" auto-compile beamer presentations on save
-autocmd FileType markdown nnoremap <leader>p :!pdf-preview "%"<CR>
-autocmd FileType markdown nnoremap <leader>a :!autocompile-toggle "%" &<CR>
 
 " re-generate config files after editing
 autocmd BufWritePost +DOTFILES_REPO+/vim/init.vim !+DOTFILES_REPO+/install vim
@@ -98,8 +97,13 @@ autocmd BufWritePost +DOTFILES_REPO+/cron/crontab !+DOTFILES_REPO+/install cron
 " copy arduino files to clipboard on save
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
 
+
 " compile a project
 nnoremap <leader>b :!./build.sh<CR>
+
+" work with LaTeX stuff
+autocmd FileType tex,markdown nnoremap <leader>l :!latex-build "%"<CR>
+autocmd FileType tex,markdown nnoremap <leader>p :!xreader /tmp/latex-tmp.pdf 2>/dev/null &<CR>
 
 " -------------------------------------------------
 " AUTO-INSERT OFTEN USED PHRASES
@@ -133,6 +137,19 @@ autocmd FileType markdown inoremap ;1 #<Enter><++><Esc>kA<Space>
 autocmd FileType markdown inoremap ;2 ##<Enter><++><Esc>kA<Space>
 autocmd FileType markdown inoremap ;3 ###<Enter><++><Esc>kA<Space>
 autocmd FileType markdown inoremap ;l <Enter><Esc>I<Space>-<Space>
+
+" LaTeX
+autocmd FileType tex inoremap ;1 \section{}<Enter><++><Esc>k0f{a
+autocmd FileType tex inoremap ;2 \subsection{}<Enter><++><Esc>k0f{a
+autocmd FileType tex inoremap ;3 \subsubsection{}<Enter><++><Esc>k0f{a
+autocmd FileType tex inoremap ;4 \subsubsubsection{}<Enter><++><Esc>k0f{a
+autocmd FileType tex inoremap ;i \textit{}<Space><++><Esc>F{a
+autocmd FileType tex inoremap ;b \textbf{}<Space><++><Esc>F{a
+autocmd FileType tex inoremap ;em \emph{}<Space><++><Esc>F{a
+autocmd FileType tex inoremap ;u \underline{}<Space><++><Esc>F{a
+autocmd FileType tex inoremap ;ul \begin{itemize}<Enter>\item<Space><Enter>\end{itemize}<Esc>2kA
+autocmd FileType tex inoremap ;ol \begin{enumerate}<Enter>\item<Space><Enter>\end{enumerate}<Esc>2kA
+autocmd FileType tex inoremap ;l <Enter>\item<Space>
 
 " python
 autocmd FileType python inoremap ;if if :<Enter><++><Enter><Backspace><++><Esc>2k0t:a
