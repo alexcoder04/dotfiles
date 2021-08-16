@@ -10,12 +10,15 @@
 # zsh aliases
 
 ##### CD's
-abbrev-alias gcd="cd $HOME/CODE/PROJECTS/ && exa --icons"
-abbrev-alias gdot="cd $DOTFILES_REPO/ && exa --icons"
-abbrev-alias gtmp="cd $HOME/tmp/ && exa --icons"
-abbrev-alias gsch="cd $HOME/SCHULE/ && exa --icons"
-abbrev-alias gki="cd $HOME/CODE/PROJECTS/BWKI && exa --icons"
-abbrev-alias gbin="cd $HOME/bin && exa --icons"
+abbrev-alias tcd="cd $HOME/CODE/PROJECTS/ && exa --icons"
+abbrev-alias tdot="cd $DOTFILES_REPO/ && exa --icons"
+abbrev-alias ttmp="cd $HOME/tmp/ && exa --icons"
+abbrev-alias tsch="cd $HOME/SCHULE/ && exa --icons"
+abbrev-alias tki="cd $HOME/CODE/PROJECTS/BWKI && exa --icons"
+abbrev-alias tbin="cd $HOME/bin && exa --icons"
+abbrev-alias tdok="cd $HOME/Dokumente && exa --icons"
+abbrev-alias tbuch="cd $HOME/Dokumente/Buch && exa --icons"
+abbrev-alias twall="cd $XDG_DATA_HOME/backgrounds && exa --icons"
 
 ##### APT commands
 abbrev-alias sagi="sudo apt install"

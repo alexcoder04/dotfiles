@@ -37,14 +37,17 @@ remember(){
 				ascii)
 						curl "http://www.asciitable.com/index/asciifull.gif" \
 								> /tmp/.ascii.gif
-						feh /tmp/.ascii.gif &
-						disown feh ;;
+						feh /tmp/.ascii.gif & ;;
 				raspi_pins)
 						curl "https://i1.wp.com/mbrobotics.es/blog/wp-content/uploads/2018/05/Raspberry-GPIO-Pins_B_plus.jpg" \
 								> /tmp/.raspi.jpg
-						feh /tmp/.raspi.jpg &
-						disown feh ;;
+						feh /tmp/.raspi.jpg & ;;
+				latex_colors)
+						curl "https://sharelatex-wiki-cdn-671420.c.cdn77.org/learn-scripts/images/d/d3/ColoursEx6.png" \
+								>/tmp/latexcolors.png
+						feh /tmp/latexcolors.png & ;;
 				*) echo "invalid argument" ;;
 		esac
+		disown feh
 }
 

@@ -25,7 +25,7 @@ source "$ZDOTDIR/functions.zsh"
 # ---------------------------------------------------------
 # HISTORY CONFIGURATION
 # ---------------------------------------------------------
-HISTFILE="~/.cache/zsh/history"
+HISTFILE=~/.cache/zsh/zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
