@@ -43,13 +43,7 @@ end
 # ALIASES
 # ---------------------------------------------------------
 
-##### CD's
-abbr gcd "cd $HOME/CODE/PROJECTS/ && exa"
-abbr gdot "cd $HOME/CODE/df-new/ && exa"
-abbr gtmp "cd $HOME/tmp/ && exa"
-abbr gsch "cd $HOME/SCHULE/ && exa"
-abbr gki "cd $HOME/CODE/PROJECTS/BWKI && exa"
-abbr gbin "cd $HOME/bin && exa"
+source "$XDG_CONFIG_HOME/fish/bookmarks.fish"
 
 ##### APT commands
 abbr sagi "sudo apt install"

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+case "$1" in
+  lf)
+    awk '{print "map",$1,"$lf -remote \"send $id cd",$2 "\""}' "./source" ;;
+  bash)
+    awk '{print "alias",$1 "=\"cd",$2 "\""}' "./source" ;;
+  zsh)
+    awk '{print "abbrev-alias",$1 "=\"cd",$2,"&& exa --icons\""}' "./source" ;;
+  fish)
+    awk '{print "abbr",$1,"\"cd",$2 "\""}' "./source" ;;
+  *)
+    echo "Not supperted output format!"
+	exit 1 ;;
+esac
+

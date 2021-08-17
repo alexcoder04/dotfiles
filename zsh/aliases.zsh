@@ -9,17 +9,6 @@
 #      
 # zsh aliases
 
-##### CD's
-abbrev-alias tcd="cd $HOME/CODE/PROJECTS/ && exa --icons"
-abbrev-alias tdot="cd $DOTFILES_REPO/ && exa --icons"
-abbrev-alias ttmp="cd $HOME/tmp/ && exa --icons"
-abbrev-alias tsch="cd $HOME/SCHULE/ && exa --icons"
-abbrev-alias tki="cd $HOME/CODE/PROJECTS/BWKI && exa --icons"
-abbrev-alias tbin="cd $HOME/bin && exa --icons"
-abbrev-alias tdok="cd $HOME/Dokumente && exa --icons"
-abbrev-alias tbuch="cd $HOME/Dokumente/Buch && exa --icons"
-abbrev-alias twall="cd $XDG_DATA_HOME/backgrounds && exa --icons"
-
 ##### APT commands
 abbrev-alias sagi="sudo apt install"
 abbrev-alias sau="sudo apt update"
@@ -58,6 +47,9 @@ alias Exit="disown -a && exit"
 
 abbrev-alias v="nvim"
 abbrev-alias vim="nvim"
+
+alias bat="bat --plain --theme=Dracula --paging=never"
+alias lf="lf_run"
 
 ##### Working with disks
 abbrev-alias lsblk="lsblk -f"

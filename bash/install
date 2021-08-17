@@ -9,4 +9,6 @@ cat "./bashrc" | ../reconf "../defaults" "../$1.prefs" > "$HOME/.bashrc"
 echo "../sh/env -> $DATA_DIR/env.bash"
 cat "./_header" "../sh/env" | ../reconf "../defaults" "../$1.prefs" > "$DATA_DIR/env.bash"
 cp -v "aliases" "$DATA_DIR/aliases.bash"
+echo "creating bookmarks"
+cd "../bookmarks" && ./build bash > "$DATA_DIR/bookmarks.bash"
 

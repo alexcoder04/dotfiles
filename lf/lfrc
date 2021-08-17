@@ -1,0 +1,72 @@
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+#                                                          
+# lf config
+
+# Basic settings
+set drawbox 
+#set preview 
+set icons 
+set ignorecase 
+
+# Previews
+set previewer ~/.config/lf/previewer.sh
+set cleaner ~/.config/lf/clear_img.sh
+
+# Commands
+cmd chmod ${{
+		chmod +x "$f"
+		lf -remote 'send reload'
+}}
+
+cmd trash %trash-put "$f"
+
+cmd add_wallpaper %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
+cmd set_wallpaper %feh --bg-scale --no-fehbg "$f"
+
+cmd unarchive ${{
+		case "$f" in
+				*.tar.bz2)   tar xjf "$f"   ;;
+				*.tar.gz)    tar xzf "$f"   ;;
+				*.bz2)       bunzip2 "$f"   ;;
+				*.rar)       unrar x "$f"   ;;
+				*.gz)        gunzip "$f"    ;;
+				*.tar)       tar xf "$f"    ;;
+				*.tbz2)      tar xjf "$f"   ;;
+				*.tgz)       tar xzf "$f"   ;;
+				*.zip)       unzip "$f"     ;;
+				*.Z)         uncompress "$f";;
+				*.7z)        7z x "$f"      ;;
+				*.tar.xz)    tar xf "$f"    ;;
+				*.tar.zst)   unzstd "$f"    ;;
+				*) echo "Unsupported format" ;;
+		esac
+}}
+
+cmd archive ${{
+		echo "Not supported yet"
+		sleep 3
+}}
+
+# Remove default mappings
+map m
+map e
+map c
+map d
+map w
+map a
+
+map md push %mkdir<space>
+map mf push %touch<space>
+map cx chmod
+map dd trash
+map e $$EDITOR "$f"
+map wp add_wallpaper
+map ae unarchive
+map ac archive
+

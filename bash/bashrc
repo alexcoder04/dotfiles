@@ -20,6 +20,9 @@ source "$HOME/.local/share/bash/env.bash"
 if [ -f "$XDG_DATA_HOME/bash/aliases.bash" ]; then
     . "$XDG_DATA_HOME/bash/aliases.bash"
 fi
+if [ -f "$XDG_DATA_HOME/bash/bookmarks.bash" ]; then
+    . "$XDG_DATA_HOME/bash/bookmarks.bash"
+fi
 
 # ---------------------------------------------------------
 # If not running interactively, don't do anything

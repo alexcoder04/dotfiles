@@ -20,7 +20,9 @@
 source "$ZDOTDIR/cursor.zsh"
 source "$ZDOTDIR/abbreviations.zsh"
 source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/bookmarks.zsh"
 source "$ZDOTDIR/functions.zsh"
+source "$ZDOTDIR/lf_icons.zsh"
 
 # ---------------------------------------------------------
 # HISTORY CONFIGURATION

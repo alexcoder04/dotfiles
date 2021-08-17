@@ -9,7 +9,10 @@ mkdir -p "$CONFIG_DIR"
 cp -rv "static/"* "$CONFIG_DIR/"
 echo "dynamic/config.fish -> $CONFIG_DIR/config.fish"
 cat "dynamic/config.fish" | ../reconf "../defaults" "../$1.prefs" > "$CONFIG_DIR/config.fish"
-echo "NOTE: YOU NEED TO RESTART THE FISH SHELL TO APPLY THE NEW CONFIGURATION"
+echo "creating bookmarks"
+pre="$(pwd)"
+cd "../bookmarks" && ./build fish > "$CONFIG_DIR/bookmarks.fish"
+cd "$pre"
 
 ../install starship
 
