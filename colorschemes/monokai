@@ -1,7 +1,12 @@
-COLOR_GREEN              #A6E22E
 COLOR_RED                #F92672
+COLOR_GREEN              #A6E22E
 COLOR_BLUE               #66D9EF
-COLOR_WHITE              #FFFFFF
+COLOR_YELLOW             #F4BF75
+COLOR_CYAN               #66D9EF
+COLOR_WHITE              #F8F6E2
 COLOR_BLACK              #262626
 COLOR_LIGHT_GREY         #AAAAAA
 COLOR_DARK_GREY          #404552
+COLOR_MAGENTA            #F92672
+COLOR_DARK_BLUE          #2AA198
+COLOR_PURPLE             #AE81EF

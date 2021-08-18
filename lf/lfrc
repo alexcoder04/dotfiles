@@ -10,7 +10,7 @@
 
 # Basic settings
 set drawbox 
-#set preview 
+set preview 
 set icons 
 set ignorecase 
 
@@ -29,21 +29,22 @@ cmd trash %trash-put "$f"
 cmd add_wallpaper %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
 cmd set_wallpaper %feh --bg-scale --no-fehbg "$f"
 
+# from: <https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc#L80>
 cmd unarchive ${{
 		case "$f" in
-				*.tar.bz2)   tar xjf "$f"   ;;
-				*.tar.gz)    tar xzf "$f"   ;;
-				*.bz2)       bunzip2 "$f"   ;;
-				*.rar)       unrar x "$f"   ;;
-				*.gz)        gunzip "$f"    ;;
-				*.tar)       tar xf "$f"    ;;
-				*.tbz2)      tar xjf "$f"   ;;
-				*.tgz)       tar xzf "$f"   ;;
-				*.zip)       unzip "$f"     ;;
-				*.Z)         uncompress "$f";;
-				*.7z)        7z x "$f"      ;;
-				*.tar.xz)    tar xf "$f"    ;;
-				*.tar.zst)   unzstd "$f"    ;;
+				*.tar.bz2)    tar xjf "$f"   ;;
+				*.tar.gz)     tar xzf "$f"   ;;
+				*.bz2)        bunzip2 "$f"   ;;
+				*.rar)        unrar x "$f"   ;;
+				*.gz)         gunzip "$f"    ;;
+				*.tar)        tar xf "$f"    ;;
+				*.tbz2)       tar xjf "$f"   ;;
+				*.tgz)        tar xzf "$f"   ;;
+				*.zip)        unzip "$f"     ;;
+				*.Z)          uncompress "$f";;
+				*.7z)         7z x "$f"      ;;
+				*.tar.xz)     tar xf "$f"    ;;
+				*.tar.zst)    unzstd "$f"    ;;
 				*) echo "Unsupported format" ;;
 		esac
 }}
@@ -61,6 +62,7 @@ map d
 map w
 map a
 
+# Keybinds
 map md push %mkdir<space>
 map mf push %touch<space>
 map cx chmod
