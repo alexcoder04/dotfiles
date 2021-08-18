@@ -132,7 +132,7 @@ super + minus
 super + {F1, F2, F3, F5}
 	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1,2,3,4,5)-key"
 super + F6
-    sh -c 'cd "+DOTFILES_REPO+" && /bin/ls | grep "i3-*" | rofi -dmenu -i -p "i3 mode" | xargs ./install && i3 restart'
+    i3-mode-change
 super + F7
     wifi toggle; notify-send -t 3000 "wifi toggled"
 super + F8

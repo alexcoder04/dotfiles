@@ -11,7 +11,10 @@ def read_settings_file(filename, settings=None):
         if line == "" or line.startswith("#"):
             continue
         if line.startswith("%include"):
-            settings = read_settings_file(f"{os.path.dirname(filename)}/{' '.join(line.split()[1:])}", settings=settings)
+            settings = read_settings_file(
+                f"{os.path.dirname(filename)}/{' '.join(line.split()[1:])}",
+                settings=settings
+            )
             continue
         settings[line.split()[0]] = " ".join(line.split()[1:])
     f.close()
