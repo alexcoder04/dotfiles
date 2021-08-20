@@ -8,6 +8,10 @@ fatal_error(){
 		exit 1
 }
 
+progress_bar(){
+		zenity --width 500 --progress --auto-close --text "$1" $2
+}
+
 [ -z "$1" ] && fatal_error "You need to select a file or folder!"
 
 out_file="$(zenity --width 500 --entry --entry-text "$1-$(date "+%Y%m%d")" --text "enter a name for the archive (without file extension)")"
@@ -15,7 +19,7 @@ out_file="$(zenity --width 500 --entry --entry-text "$1-$(date "+%Y%m%d")" --tex
 if [ -d "$1" ]; then
 		in_file="$(printf "$1" | tr -d "/")"
 		tar -cf "$TEMP_FOLDER/$out_file.tar" "$in_file" \
-				| zenity --width 300 --progress --pulsate --text ".tar-archive is created"
+				| progress_bar ".tar-archive is created" "--pulsate"
 		filename="$out_file.tar"
 else
 		cp "$1" "$TEMP_FOLDER/$1"
@@ -23,10 +27,10 @@ else
 fi
 cd "$TEMP_FOLDER"
 bzip2 "$filename" \
-		| zenity --width 300 --progress --pulsate --text "archive is beeing compressed..."
+		| progress_bar "archive is beeing compressed..." "--pulsate"
 sha256sum "$filename.bz2" \
 		| awk '{print $1}' > "$filename.bz2.sha256sum" \
-		| zenity --width 300 --progress --pulsate --text "sha256sum is beeing calculated..."
+		| progress_bar "sha256sum is beeing calculated..." "--pulsate"
 if [ -d "$SHASUM_FOLDER" ]; then
 		cp "$filename.bz2.sha256sum" "$SHASUM_FOLDER/$filename.bz2.sha256sum" \
 				&& extra_info="copy of the checksum saved to $SHASUM_FOLDER/$filename.bz2.sha256sum"
@@ -38,8 +42,8 @@ pass1="$(zenity --password)"
 pass2="$(zenity --password --text="Confirm password")"
 [ "$pass1" = "$pass2" ] \
 		|| fatal_error "Passwords do not match!"
-printf "$pass1" | $HOME/bin/alencrypt -e -r -s "$filename.bz2" \
-		| zenity --width 300 --progress --pulsate --text "Encrypting file..." \
+printf "$pass1" | $HOME/bin/alencrypt -e -r -s -p "$filename.bz2" \
+		| progress_bar "Encrypting file..." \
 		|| fatal_error "Could not encrypt file"
 zenity --width 800 --info --text "encrypted file was saved to $TEMP_FOLDER/$filename.enc\nchecksum saved to $TEMP_FOLDER/$filename.sha256sum\n$extra_info"
 
