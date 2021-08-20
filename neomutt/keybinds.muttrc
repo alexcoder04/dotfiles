@@ -1,0 +1,21 @@
+
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Co sidebar-open
+
+bind pager j noop
+bind pager k noop
+bind pager j next-line
+bind pager k previous-line
+bind pager \Cd noop
+bind pager \Cu noop
+bind pager \Cd half-down
+bind pager \Cu half-up
+
+bind index G last-entry
+bind index g noop
+bind index gg first-entry
+bind index / search
+bind index d noop
+bind index dd delete-message
+
