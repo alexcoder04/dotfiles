@@ -20,19 +20,26 @@ def read_settings_file(filename, settings=None):
     f.close()
     return settings
 
-HOME = os.getenv("HOME")
-try:
-    DEFAULTS_FILE = sys.argv[1]
-    CURRENT_PC_PREFS = sys.argv[2]
-except IndexError:
-    print("you need to provide a defaults and a current_pc_prefs file")
-if not os.path.isfile(DEFAULTS_FILE) or not os.path.isfile(CURRENT_PC_PREFS):
+override = {}
+setting_files = []
+for arg in sys.argv[1:]:
+    if arg.startswith("#"):
+        [key, value] = arg[1:].split("=")
+        override[key] = value
+        continue
+    setting_files.append(arg)
+
+if len(setting_files) == 0:
+    print("No setting files provided")
     sys.exit(1)
 
 data = sys.stdin.read()
 
-settings = read_settings_file(DEFAULTS_FILE)
-settings = read_settings_file(CURRENT_PC_PREFS, settings=settings)
+settings = read_settings_file(setting_files[0])
+for file in setting_files[1:]:
+    settings = read_settings_file(file, settings=settings)
+
+settings.update(override)
 
 for key in settings:
     data = data.replace(f"+{key}+", settings[key])

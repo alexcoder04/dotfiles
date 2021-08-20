@@ -8,7 +8,7 @@ POLY_CONFIG_DIR="$XDG_CONFIG_HOME/polybar"
 [ -d "$POLY_CONFIG_DIR" ] || mkdir -vp "$POLY_CONFIG_DIR"
 
 echo "$SOURCE_FILE -> $CONFIG_DIR/config"
-cat "$SOURCE_FILE" | ../reconf "../defaults" "../$1.prefs" \
+cat "$SOURCE_FILE" | ../reconf "../defaults" "../$1.prefs" "#BARS_LAUNCH_COMMAND=bar-launch i3-polybar" \
 	> "$CONFIG_DIR/config"
 echo "./polybar.config -> $POLY_CONFIG_DIR/config"
 cat "./polybar.config" | ../reconf "../defaults" "../$1.prefs" \

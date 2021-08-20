@@ -214,7 +214,7 @@ bar {
 for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 1500 800
 for_window [instance="dropdown"] move scratchpad
-for_window [instance="dropdown"] border pixel 5
+for_window [instance="dropdown"] border pixel 7
 
 # ------------------------------------------------------------------------------
 # AUTOSTART
@@ -222,6 +222,7 @@ for_window [instance="dropdown"] border pixel 5
 # all of my autostart stuff is handled by a separate script,
 # for better maintainence and possible moving to another WM
 exec_always wm-init
+exec_always +BARS_LAUNCHER_COMMAND+
 
 # ------------------------------------------------------------------------------
 # APP TO WORKSPACE ASSIGNMENTS 
@@ -233,6 +234,7 @@ assign [class="Joplin"]			$w9_office
 assign [class="Thunderbird"]	$w8_browser2
 assign [class="Signal"]			$w8_browser2
 assign [class="obs"]			$w2_media
+assign [class="mpv"]			$w2_media
 
 # ------------------------------------------------------------------------------
 # CERTAIN WINDOW OPENING MODES 
