@@ -2,7 +2,6 @@
 
 SOURCE_FILE="./config"
 CONFIG_DIR="$XDG_CONFIG_HOME/i3"
-POLY_CONFIG_DIR="$XDG_CONFIG_HOME/polybar"
 
 [ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
 [ -d "$POLY_CONFIG_DIR" ] || mkdir -vp "$POLY_CONFIG_DIR"
@@ -10,8 +9,6 @@ POLY_CONFIG_DIR="$XDG_CONFIG_HOME/polybar"
 echo "$SOURCE_FILE -> $CONFIG_DIR/config"
 cat "$SOURCE_FILE" | ../reconf "../defaults" "../$1.prefs" "#BARS_LAUNCHER_COMMAND=bar-launch i3-polybar" \
 	> "$CONFIG_DIR/config"
-echo "./polybar.config -> $POLY_CONFIG_DIR/config"
-cat "./polybar.config" | ../reconf "../defaults" "../$1.prefs" \
-	> "$POLY_CONFIG_DIR/config"
+../install polybar
 echo "NOTE: YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION"
 

@@ -17,7 +17,7 @@ ctrl + alt + p
 	safe-poweroff poweroff
 ctrl + alt + q
     wm-logout
-ctrl + alt + l
+ctrl + alt + e
     screenlock
 
 # ###################################################################
@@ -134,7 +134,7 @@ super + {F1, F2, F3, F5}
 super + F6
     i3-mode-change
 super + F7
-    wifi toggle; notify-send -t 3000 "wifi toggled"
+    wifi toggle; notify-send "wifi toggled"
 super + F8
     monitors-menu
 super + F12

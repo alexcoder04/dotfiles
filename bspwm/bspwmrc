@@ -1,0 +1,48 @@
+#!/bin/sh
+#  ____ _____ 
+# |  _ \_   _|  Derek Taylor (DistroTube)
+# | | | || |  	http://www.youtube.com/c/DistroTube
+# | |_| || |  	http://www.gitlab.com/dwt1/ 
+# |____/ |_|  	
+# =========================================================
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# alexcoder04 <https://github.com/alexcoder04>
+#                                                          
+# minimal bspwm config
+# added auto-detect monitors, own autostart scripts and customied some settings
+# 
+# vim: tabstop=2 shiftwidth=2 expandtab
+
+#### BSPWM configuration ####
+bspc config border_width                  3
+bspc config window_gap                    10
+bspc config single_monocle                false
+bspc config split_ratio                   0.50
+bspc config borderless_monocle            true
+bspc config gapless_monocle               true
+bspc config remove_disabled_monitors      true
+bspc config merge_overlapping_monitors    true
+bspc config focus_follows_pointer         false
+bspc config pointer_modifier              mod4
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
+
+#### BSPWM coloring ####
+bspc config normal_border_color		      "+COLOR_DARK_GREY+"
+bspc config active_border_color	          "+COLOR_CYAN+"
+bspc config focused_border_color	      "+COLOR_GREEN+"
+bspc config presel_feedback_color	      "+COLOR_WHITE+"
+
+for m in $(xrandr | grep " connected " | cut -d" " -f1); do
+  bspc monitor "$m" -d 1 2 3 4 5 6 7 8 9 0
+done
+
+wm-init &
+bar-launch bspwm &
+

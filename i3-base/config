@@ -231,10 +231,10 @@ assign [class="Firefox"]		$w1_browser
 assign [class="vlc"]			$w2_media
 assign [class="pycharm"]		$w4_code_2
 assign [class="Joplin"]			$w9_office
-assign [class="Thunderbird"]	$w8_browser2
 assign [class="Signal"]			$w8_browser2
 assign [class="obs"]			$w2_media
 assign [class="mpv"]			$w2_media
+assign [class="qutebrowser"]	$w1_browser
 
 # ------------------------------------------------------------------------------
 # CERTAIN WINDOW OPENING MODES 

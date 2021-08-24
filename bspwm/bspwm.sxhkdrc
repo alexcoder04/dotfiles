@@ -1,0 +1,50 @@
+
+########################### WM COMMANDS #######################################
+ctrl + alt + r
+    bspc wm -r
+
+########################### NAVIGATION ########################################
+# windows
+super + {_,shift +,ctrl +} {h,j,k,l}
+    bspc node -{f,s,p} {west,south,north,east}
+alt + {_,shift + }Tab
+    bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+# desktops
+alt + {j,k}
+    bspc desktop -f {prev,next}.local
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} ^{1-9,10}
+# monitors
+alt + {h,l}
+    bspc monitor -f {prev,next}
+super + alt + {h,l}
+    bspc node -m {prev,next} --follow
+
+########################## CHANGE WINDOW PROPERTIES ###########################
+# fullscreen
+super + {_, shift + }F11
+    bspc node -t {fullscreen,tiled}
+# floating
+super + {_,shift + }space
+    bspc node -t {floating,tiled}
+# sticky
+super + F9
+    bspc node -t floating && bspc node -g sticky
+super + shift + F9
+    bspc node -t tiled && bspc node -g sticky
+# resize
+ctrl + alt + {h,j,k,l}
+    bspc node -z {right -15 0,bottom 0 +15,bottom 0 -15,right +15 0}
+
+################################## OTHER ######################################
+super + q
+    bspc node -c
+
+super + Escape
+    bspc node -p cancel
+
+super + F10
+    bspc-cmd
+
