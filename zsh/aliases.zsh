@@ -29,7 +29,7 @@ abbrev-alias gcheckout="git checkout"
 abbrev-alias gbranch="git branch"
 
 ##### System / Terminal commands
-alias cls="clear"
+alias cls='[ "$(seq 1 7 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cyan; clear'
 
 alias ls="exa -hl --icons --group-directories-first"
 alias la="exa -ahl --icons --group-directories-first"
@@ -67,3 +67,5 @@ abbrev-alias en:de="trans -shell en:de"
 ##### Other
 alias newsboat="newsboat -c $XDG_DATA_HOME/newsboatcache.db"
 abbrev-alias topc="cd $HOME/CODE/utils/topc && python3 server.py"
+abbrev-alias mount-nspire="sudo LD_LIBRARY_PATH=/lib:/usr/local/lib nspire-fuse /media/nspire"
+

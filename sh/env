@@ -37,3 +37,10 @@ export PAGER=+PAGER+
 # finally, PATH
 export PATH="+ENV_PATH+"
 
+# colors
+export COLOR_RED="+COLOR_RED+"
+export COLOR_GREEN="+COLOR_GREEN+"
+export COLOR_CYAN="+COLOR_CYAN+"
+export COLOR_DARK_GREY="+COLOR_DARK_GREY+"
+export COLOR_WHITE="+COLOR_WHITE+"
+

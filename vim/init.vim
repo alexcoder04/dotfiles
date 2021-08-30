@@ -70,8 +70,11 @@ nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 " -------------------------------------------------
 " AUTOMATION
 " -------------------------------------------------
-"  LaTeX fix
+" fix file types
 autocmd BufEnter *.tex set filetype=tex
+autocmd BufEnter *.muttrc set filetype=neomuttrc
+
+autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab
 
 " put current line in the middle if typing
 autocmd InsertEnter * norm zz
@@ -93,17 +96,24 @@ autocmd BufWritePost +DOTFILES_REPO+/wm-utils/sxhkdrc !+DOTFILES_REPO+/install w
 autocmd BufWritePost +DOTFILES_REPO+/zsh/zshrc !+DOTFILES_REPO+/install zsh
 autocmd BufWritePost +DOTFILES_REPO+/zsh/zshenv !+DOTFILES_REPO+/install zsh
 autocmd BufWritePost +DOTFILES_REPO+/cron/crontab !+DOTFILES_REPO+/install cron
+autocmd BufWritePost +DOTFILES_REPO+/lf/lfrc !+DOTFILES_REPO+/install lf
+autocmd BufWritePost +DOTFILES_REPO+/qutebrowser/config.py !+DOTFILES_REPO+/install qutebrowser
+autocmd BufWritePost */BWKI/repo/nn/*.py !+TERMINAL_MAIN+ --hold --class "alacritty,i3_float" -e sh -c 'python3 "%" && echo ---end---' &
 
 " copy arduino files to clipboard on save
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
 
-
 " compile a project
 nnoremap <leader>b :!./build.sh<CR>
+nnoremap <leader>fs ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
+autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.py" && +TERMINAL_MAIN+ --hold -e ssh pi@raspberry "python3 /tmp/code.py" &<CR>
 
 " work with LaTeX stuff
 autocmd FileType tex,markdown nnoremap <leader>l :!latex-build "%"<CR>
 autocmd FileType tex,markdown nnoremap <leader>p :!xreader /tmp/latex-tmp.pdf 2>/dev/null &<CR>
+
+" line wrap in LaTeX
+autocmd FileType tex set tw=80
 
 " -------------------------------------------------
 " AUTO-INSERT OFTEN USED PHRASES
@@ -121,7 +131,7 @@ autocmd FileType html inoremap ;b <b></b><Space><++><Esc>FbT>i
 autocmd FileType html inoremap ;ul <ul><Enter><Enter></ul><Enter><++><Esc>2ki
 autocmd FileType html inoremap ;li <li></li><Enter><++><Esc>k0f>a
 autocmd FileType html inoremap ;ln <link<Space>rel="stylesheet"<Space>href="" /><Enter><++><Esc>k$F"i
-autocmd FileType html inoremap ;s <script<Space>src="" defer></script><Enter><++><Esc>k0f"a
+autocmd FileType html inoremap ;s <script<Space>src=""<Space>defer></script><Enter><++><Esc>k0f"a
 autocmd FileType html inoremap ;a <a<Space>href=""><++></a><Enter><++><Esc>k0f"a
 autocmd FileType html inoremap ;btn <button id=""><++></button><Enter><++><Esc>k0f"a
 
@@ -147,8 +157,8 @@ autocmd FileType tex inoremap ;i \textit{}<Space><++><Esc>F{a
 autocmd FileType tex inoremap ;b \textbf{}<Space><++><Esc>F{a
 autocmd FileType tex inoremap ;em \emph{}<Space><++><Esc>F{a
 autocmd FileType tex inoremap ;u \underline{}<Space><++><Esc>F{a
-autocmd FileType tex inoremap ;ul \begin{itemize}<Enter>\item<Space><Enter>\end{itemize}<Esc>2kA
-autocmd FileType tex inoremap ;ol \begin{enumerate}<Enter>\item<Space><Enter>\end{enumerate}<Esc>2kA
+autocmd FileType tex inoremap ;ul \begin{itemize}<Enter>\item<Space><Enter>\end{itemize}<Esc>kA
+autocmd FileType tex inoremap ;ol \begin{enumerate}<Enter>\item<Space><Enter>\end{enumerate}<Esc>kA
 autocmd FileType tex inoremap ;l <Enter>\item<Space>
 
 " python
