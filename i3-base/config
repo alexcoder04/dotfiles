@@ -156,7 +156,6 @@ bindsym $mod+F10		exec +TERMINAL_MAIN+
 # ------------------------------------------------------------------------------
 
 mode "resize" {
-	# Resize the window with arrow keys
     bindsym h		resize shrink	width 1 px or 1 ppt
     bindsym j		resize grow	height 1 px or 1 ppt
     bindsym k		resize shrink	height 1 px or 1 ppt

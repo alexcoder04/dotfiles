@@ -40,6 +40,7 @@ call plug#end()
 set termguicolors
 set cursorline
 colorscheme dracula
+" override background color, so it's transparent
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 
@@ -75,6 +76,7 @@ autocmd BufEnter *.tex set filetype=tex
 autocmd BufEnter *.muttrc set filetype=neomuttrc
 
 autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab
+autocmd BufEnter *.sh set tabstop=2 shiftwidth=2 expandtab
 
 " put current line in the middle if typing
 autocmd InsertEnter * norm zz
@@ -86,7 +88,7 @@ autocmd BufWritePre * %s/\s+$//e
 autocmd BufWritePre *.js CocCommand prettier.formatFile
 autocmd BufWritePre *.json CocCommand prettier.formatFile
 autocmd BufWritePre *.css CocCommand prettier.formatFile
-autocmd BufWritePre *.html CocCommand prettier.formatFile
+nnoremap <leader>hf :autocmd BufWritePre *.html CocCommand prettier.formatFile
 
 " re-generate config files after editing
 autocmd BufWritePost +DOTFILES_REPO+/vim/init.vim !+DOTFILES_REPO+/install vim
@@ -105,7 +107,11 @@ autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
 
 " compile a project
 nnoremap <leader>b :!./build.sh<CR>
+
+" add a vim setings line for tabs=2
 nnoremap <leader>fs ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
+
+" auto-run a python file on the raspberry pi (at the moment useless and unsafe)
 autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.py" && +TERMINAL_MAIN+ --hold -e ssh pi@raspberry "python3 /tmp/code.py" &<CR>
 
 " work with LaTeX stuff

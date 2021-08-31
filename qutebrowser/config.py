@@ -4,6 +4,7 @@ import json
 import os
 
 XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME")
+HOME = os.getenv("HOME")
 
 MY_BLACK = "+COLOR_BLACK+"
 MY_DARK_BLUE = "+COLOR_DARK_BLUE+"
@@ -70,6 +71,8 @@ c.tabs.width = 50
 c.url.default_page = "about:blank"
 c.url.start_pages = ["about:blank"]
 c.url.searchengines = json.load(open(f"{XDG_CONFIG_HOME}/qutebrowser/searchengines.json"))
+c.downloads.location.directory = f"{HOME}/tmp"
+c.downloads.remove_finished = 1000
 
 c.aliases = {
             "tab-new": "open -t"

@@ -10,7 +10,7 @@ case "$1" in
   fish)
     awk '{print "abbr",$1,"\"cd",$2 "\""}' "./source" ;;
   *)
-    echo "Not supperted output format!"
+    echo "Not supported output format!"
 	exit 1 ;;
 esac
 

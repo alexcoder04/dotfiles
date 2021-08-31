@@ -55,7 +55,7 @@ alias lf="lf_run"
 abbrev-alias lsblk="lsblk -f"
 abbrev-alias umount-luks="sudo umount /media/luks && sudo cryptsetup close butterfly"
 abbrev-alias driveoff="sudo hdparm -Y"
-abbrev-alias webserver="python -m http.server 1234"
+abbrev-alias webserver="python3 -m http.server 1234"
 
 ##### Fun commands
 abbrev-alias gnuhead="cat /home/alex/.local/share/gnu-head-xterm"
