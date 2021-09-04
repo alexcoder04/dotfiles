@@ -85,7 +85,7 @@ source "+ZSH_SYNTAX_PLUGIN+"
 #neofetch
 
 # 3) Random color script
-random-color-script
+colorscript random
 
 # 4) Nice greeting
 #echo "\033[01;32mNice to see you in the Terminal again, Alex =)\033[00m"

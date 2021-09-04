@@ -101,7 +101,9 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 line-size = 3
 font-0 = "Inconsolata:size=15;3"
-font-1 = "FontAwesome:size=13;2"
+font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=13;1"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;1"
+font-3 = "Font Awesome 5 Brands:pixelsize=13;1"
 
 try-position = right
 tray-maxsize = 15
@@ -159,7 +161,7 @@ ws-icon-2 = 2;
 ws-icon-3 = 3;
 ws-icon-4 = 4;
 ws-icon-5 = 5;
-ws-icon-6 = 6;
+ws-icon-6 = 6;
 ws-icon-7 = 7;
 ws-icon-8 = 8;
 ws-icon-9 = 9;
@@ -251,7 +253,7 @@ type = custom/script
 exec = cat /proc/cpuinfo | grep "cpu MHz" | head -n 1 | awk '{print $NF,"MHz"}'
 interval = 3
 
-format-prefix = " "
+format-prefix = "  "
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-underline = ${colors.cyan}
@@ -356,7 +358,7 @@ format-muted-background = ${colors.background}
 
 [module/wireless-network]
 type = internal/network
-interface = wlp0s20f3
+interface = wlan0
 interval = 5
 
 label-connected =  %upspeed%  %downspeed%
