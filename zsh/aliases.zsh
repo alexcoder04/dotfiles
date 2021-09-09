@@ -50,6 +50,7 @@ abbrev-alias vim="nvim"
 
 alias bat="bat --plain --theme=Dracula --paging=never"
 alias lf="lf_run"
+alias sudo="doas"
 
 ##### Working with disks
 abbrev-alias lsblk="lsblk -f"
@@ -65,7 +66,7 @@ abbrev-alias de:en="trans -shell de:en"
 abbrev-alias en:de="trans -shell en:de"
 
 ##### Other
-alias newsboat="newsboat -c $XDG_DATA_HOME/newsboatcache.db"
+alias newsboat="newsboat-selector"
 abbrev-alias topc="cd $HOME/CODE/utils/topc && python3 server.py"
 abbrev-alias mount-nspire="sudo LD_LIBRARY_PATH=/lib:/usr/local/lib nspire-fuse /media/nspire"
 

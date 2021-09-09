@@ -144,7 +144,7 @@ bindsym $alt+Shift+$layout_modifier	layout tabbed
 # ------------------------------------------------------------------------------
 
 # restart wm
-bindsym $mod+Shift+r	restart
+bindsym $alt+Ctrl+r	restart
 
 # Fallback terminal
 bindsym $mod+F10		exec +TERMINAL_MAIN+
@@ -176,11 +176,11 @@ bindsym $mod+z		mode "resize"
 # GAPS AND BORDER
 # ------------------------------------------------------------------------------
 # Gaps specific
-gaps inner							25
-gaps outer							0
+gaps inner							10
+gaps outer							5
 bindsym $mod+$gaps_modifier			gaps inner all minus 3
 bindsym $mod+Shift+$gaps_modifier	gaps inner all plus 3
-bindsym $mod+Ctrl+$gaps_modifier	gaps inner all set 25
+bindsym $mod+Ctrl+$gaps_modifier	gaps inner all set 10
 
 # Border
 default_border pixel				3

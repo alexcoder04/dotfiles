@@ -34,6 +34,29 @@ bind-key k up
 bind-key h quit
 bind-key l open
 
+unbind-key G
+unbind-key g
+unbind-key d
+unbind-key u
 unbind-key L
+
+bind-key d pagedown
+bind-key u pageup
+bind-key G end
+bind-key g home
 bind-key L toggle-show-read-feeds
+
+# highlighting (from https://github.com/LukeSmithxyz/voidrice/blob/master/.config/newsboat/config)
+highlight all "---.*---" yellow
+highlight feedlist ".*(0/0))" black
+highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
+highlight article "(^Link:.*|^Date:.*)" default default
+highlight article "https?://[^ ]+" green default
+highlight article "^(Title):.*$" blue default
+highlight article "\\[[0-9][0-9]*\\]" magenta default bold
+highlight article "\\[image\\ [0-9]+\\]" green default bold
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
+highlight article ":.*\\(link\\)$" cyan default
+highlight article ":.*\\(image\\)$" blue default
+highlight article ":.*\\(embedded flash\\)$" magenta default
 

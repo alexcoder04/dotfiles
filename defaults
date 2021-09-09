@@ -1,7 +1,7 @@
-TERMINAL_MAIN		/home/alex/.local/share/cargo/bin/alacritty
-TERMINAL_SECONDARY	gnome-terminal
+TERMINAL_MAIN		alacritty
+TERMINAL_SECONDARY	alacritty
 FILEMANAGER_MAIN	nemo
-FILEMANAGER_SECONDARY	rofifm
+FILEMANAGER_SECONDARY	alacritty -e lf_run
 BROWSER_MAIN		firefox
 BROWSER_SECONDARY	brave-browser
 EDITOR_MAIN		nvim

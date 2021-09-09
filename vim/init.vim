@@ -116,10 +116,13 @@ autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.p
 
 " work with LaTeX stuff
 autocmd FileType tex,markdown nnoremap <leader>l :!latex-build "%"<CR>
-autocmd FileType tex,markdown nnoremap <leader>p :!xreader /tmp/latex-tmp.pdf 2>/dev/null &<CR>
+"autocmd FileType markdown nnoremap <leader>p :w<CR>:!pandoc -f markdown -t latex -V "margin-top=2cm" -V "margin-bottom=2cm" -o /tmp/preview.pdf "%" && zathura /tmp/preview.pdf &<CR>
+autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview "%"<CR>
 
 " line wrap in LaTeX
 autocmd FileType tex set tw=80
+autocmd FileType tex nnoremap <leader>e yyI\begin{<Esc>A}<Esc>pI\end{<Esc>A}<Esc>O
+autocmd FileType tex imap ;e <Esc>b<leader>e
 
 " -------------------------------------------------
 " AUTO-INSERT OFTEN USED PHRASES
@@ -142,7 +145,7 @@ autocmd FileType html inoremap ;a <a<Space>href=""><++></a><Enter><++><Esc>k0f"a
 autocmd FileType html inoremap ;btn <button id=""><++></button><Enter><++><Esc>k0f"a
 
 " JS
-autocmd FileType javascript inoremap ;cl console.log();<Enter><++><Esc>k0t(a
+autocmd FileType javascript inoremap ;cl console.log();<Enter><++><Esc>k0t(i
 
 " markdown
 autocmd FileType markdown nnoremap ;! :r ~/Vorlagen/presentation.bm.md.drf<CR>ggdd/<++><CR>"_c4l
@@ -161,7 +164,7 @@ autocmd FileType tex inoremap ;3 \subsubsection{}<Enter><++><Esc>k0f{a
 autocmd FileType tex inoremap ;4 \subsubsubsection{}<Enter><++><Esc>k0f{a
 autocmd FileType tex inoremap ;i \textit{}<Space><++><Esc>F{a
 autocmd FileType tex inoremap ;b \textbf{}<Space><++><Esc>F{a
-autocmd FileType tex inoremap ;em \emph{}<Space><++><Esc>F{a
+autocmd FileType tex inoremap ;i \emph{}<Space><++><Esc>F{a
 autocmd FileType tex inoremap ;u \underline{}<Space><++><Esc>F{a
 autocmd FileType tex inoremap ;ul \begin{itemize}<Enter>\item<Space><Enter>\end{itemize}<Esc>kA
 autocmd FileType tex inoremap ;ol \begin{enumerate}<Enter>\item<Space><Enter>\end{enumerate}<Esc>kA
