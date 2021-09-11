@@ -29,10 +29,15 @@ abbrev-alias gcheckout="git checkout"
 abbrev-alias gbranch="git branch"
 
 ##### System / Terminal commands
-alias cls='[ "$(seq 1 7 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cyan; clear'
+alias cls='[ "$(seq 1 5 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cyan; clear'
 
-alias ls="exa -hl --icons --group-directories-first"
-alias la="exa -ahl --icons --group-directories-first"
+if [ "$TERM" = "linux" ]; then
+  alias ls="exa -hl --group-directories-first"
+  alias la="exa -ahl --group-directories-first"
+else
+  alias ls="exa -hl --icons --group-directories-first"
+  alias la="exa -ahl --icons --group-directories-first"
+fi
 
 abbrev-alias rm="rm -iv"
 abbrev-alias rmd="rm -fvr"
@@ -45,12 +50,14 @@ abbrev-alias chx="chmod +x"
 alias :q="exit"
 alias Exit="disown -a && exit"
 
-abbrev-alias v="nvim"
-abbrev-alias vim="nvim"
+alias v="nvim"
+alias vim="nvim"
 
+alias -g p="pacman"
 alias bat="bat --plain --theme=Dracula --paging=never"
 alias lf="lf_run"
 alias sudo="doas"
+alias grep="grep --color=auto"
 
 ##### Working with disks
 abbrev-alias lsblk="lsblk -f"

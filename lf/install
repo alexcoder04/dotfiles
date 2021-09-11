@@ -7,4 +7,6 @@ CONFIG_DIR="$HOME/.config/lf"
 cat "./lfrc" <(cd ../bookmarks && ./build lf) \
 		| ../reconf "../defaults" "../$1.prefs" \
 		> "$CONFIG_DIR/lfrc"
+cp -v ./*.sh "$CONFIG_DIR/"
+chmod +x "$CONFIG_DIR/"*.sh
 

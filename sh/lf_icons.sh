@@ -1,11 +1,22 @@
 
-export LF_ICONS="\
+[ "$TERM" = "linux" ] \
+  && export LF_ICONS="\
+tw=D:\
+st=D:\
+ow=D:\
+dt=D:\
+di=D:\
+fi=F:\
+ln=L:\
+or=L:\
+ex=E:" \
+  || export LF_ICONS="\
 tw=:\
 st=:\
 ow=:\
 dt=:\
 di=:\
-fi=:\
+fi=:\
 ln=:\
 or=:\
 ex=:\

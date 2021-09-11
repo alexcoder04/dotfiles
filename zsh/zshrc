@@ -42,6 +42,20 @@ compinit
 _com_options+=(globdots)
 
 # ---------------------------------------------------------
+# CD INTO FOLDER SELECTED INSIDE LF
+# ---------------------------------------------------------
+# from https://github.com/LukeSmithxyz/voidrice/blob/master/.config/zsh/.zshrc
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp" >/dev/null
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+
+# ---------------------------------------------------------
 # KEYBINDINGS
 # ---------------------------------------------------------
 KEYTIMEOUT=3
@@ -55,12 +69,19 @@ bindkey -M menuselect 'l' vi-forward-char
 # edit command in editor
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+# run stuff on key press
+bindkey -s '^o' 'lfcd\n'
+bindkey -s '^f' 'lf_run\n'
+bindkey -s '^h' 'htop\n'
 
 # ---------------------------------------------------------
 # OTHER SETTINGS
 # ---------------------------------------------------------
 setopt autocd
 unsetopt beep extendedglob notify
+# set font if in tty
+[ "$TERM" = "linux" ] \
+  && setfont "ter-118n"
 
 # ---------------------------------------------------------
 # PROMPT

@@ -24,34 +24,54 @@ cmd chmod ${{
 		lf -remote 'send reload'
 }}
 
-cmd trash %trash-put "$f"
+cmd trash %trash-put $fx
+cmd remove_interactive %rm -i $fx
+cmd remove_force %rm $fx
 
 cmd add_wallpaper %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
 cmd set_wallpaper %feh --bg-scale --no-fehbg "$f"
 
 # from: <https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc#L80>
 cmd unarchive ${{
-		case "$f" in
-				*.tar.bz2)    tar xjf "$f"   ;;
-				*.tar.gz)     tar xzf "$f"   ;;
-				*.bz2)        bunzip2 "$f"   ;;
-				*.rar)        unrar x "$f"   ;;
-				*.gz)         gunzip "$f"    ;;
-				*.tar)        tar xf "$f"    ;;
-				*.tbz2)       tar xjf "$f"   ;;
-				*.tgz)        tar xzf "$f"   ;;
-				*.zip)        unzip "$f"     ;;
-				*.Z)          uncompress "$f";;
-				*.7z)         7z x "$f"      ;;
-				*.tar.xz)     tar xf "$f"    ;;
-				*.tar.zst)    unzstd "$f"    ;;
-				*) echo "Unsupported format" ;;
-		esac
+	case "$f" in
+		*.tar.bz2)    tar xjf "$f"   ;;
+		*.tar.gz)     tar xzf "$f"   ;;
+		*.bz2)        bunzip2 "$f"   ;;
+		*.rar)        unrar x "$f"   ;;
+		*.gz)         gunzip "$f"    ;;
+		*.tar)        tar xf "$f"    ;;
+		*.tbz2)       tar xjf "$f"   ;;
+		*.tgz)        tar xzf "$f"   ;;
+		*.zip)        unzip "$f"     ;;
+		*.Z)          uncompress "$f";;
+		*.7z)         7z x "$f"      ;;
+		*.tar.xz)     tar xf "$f"    ;;
+		*.tar.zst)    unzstd "$f"    ;;
+		*) echo "Unsupported format" ;;
+	esac
 }}
 
 cmd archive ${{
 		echo "Not supported yet"
 		sleep 3
+}}
+
+# from https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc
+cmd open ${{
+	case $(file --mime-type $f -b) in
+		application/pdf|application/vnd*|application/epub*)
+			setsid -f zathura $fx >/dev/null 2>&1 ;;
+		image/*)
+			setsid -f feh $fx ;;
+		audio/*)
+			mpv --audio-display=no $f ;;
+		video/*)
+			setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+		text/*)
+			$EDITOR $fx ;;
+		*)
+			for f in $fx; do setsid -f xdg-open $f >/dev/null 2>&1; done ;;
+	esac
 }}
 
 # Remove default mappings
@@ -67,6 +87,8 @@ map md push %mkdir<space>
 map mf push %touch<space>
 map cx chmod
 map dd trash
+map DD remove_interactive
+map dD remove_force
 map e $$EDITOR "$f"
 map wp add_wallpaper
 map ae unarchive
