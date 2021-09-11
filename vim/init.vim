@@ -14,7 +14,9 @@
 set nocompatible
 set mouse=
 set clipboard+=unnamedplus
-set tabstop=4 softtabstop=4
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+set autoindent
+set fileformat=unix
 set number relativenumber
 set smartcase
 set colorcolumn=80
@@ -31,6 +33,7 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'preservim/nerdtree'
+Plug 'alexcoder04/lightline.vim'
 
 call plug#end()
 
@@ -49,19 +52,24 @@ hi! NonText ctermbg=NONE guibg=NONE
 " -------------------------------------------------
 " file tree and fuzzy finder
 nmap <C-n> :NERDTreeToggle<CR>
-" navigate between splits
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-" disable arrow keys in normal mode
+" disable arrow keys in normal mode xD
 nnoremap <Left> :echo "you fool..."<CR>
 nnoremap <Right> :echo "you fool..."<CR>
 nnoremap <Up> :echo "you fool..."<CR>
 nnoremap <Down> :echo "you fool..."<CR>
+" working with tabs
+nnoremap <leader>t :tabnext<CR>
+nnoremap <leader>T :tabprevious<CR>
+nnoremap <C-t> :tabnew<Space>
+" working with splits
+nnoremap <leader>S :split<Space>
+nnoremap <leader>s :vsplit<Space>
 
 " search highlight
 nnoremap / :set<Space>hlsearch<CR>/
+
+" global replace
+nnoremap S :%s///g<Left><Left>
 
 " jump to the next placeholder
 inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
@@ -215,4 +223,10 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-eslint'
   \ ]
+
+" lightline config
+let g:lightline = {
+  \ 'colorscheme': 'dracula'
+  \ }
+set noshowmode
 
