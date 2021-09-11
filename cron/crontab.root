@@ -6,5 +6,5 @@
 # 
 # m h  dom mon dow   command
 
-5 */2 * * * /usr/bin/apt update
+#5 */2 * * * /usr/bin/apt update
 
