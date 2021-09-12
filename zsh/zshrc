@@ -73,6 +73,7 @@ bindkey '^e' edit-command-line
 bindkey -s '^o' 'lfcd\n'
 bindkey -s '^f' 'lf_run\n'
 bindkey -s '^h' 'htop\n'
+bindkey -s '^b' ' &>/dev/null & disown'
 
 # ---------------------------------------------------------
 # OTHER SETTINGS

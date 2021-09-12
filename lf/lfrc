@@ -31,6 +31,12 @@ cmd remove_force %rm $fx
 cmd add_wallpaper %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
 cmd set_wallpaper %feh --bg-scale --no-fehbg "$f"
 
+cmd share_http ${{
+    for file in $fx; do
+        share_http "$file"
+    done
+}}
+
 # from: <https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc#L80>
 cmd unarchive ${{
 	case "$f" in

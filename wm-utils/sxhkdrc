@@ -129,8 +129,10 @@ super + minus
 # ###################################################################
 # FUNCTION KEYS
 # ###################################################################
-super + {F1, F2, F3, F5}
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1,2,3,4,5)-key"
+super + {F1, F2, F3, F4}
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1,2,3,4)-key"
+super + shift + F5
+    unmount-drive
 super + F6
     i3-mode-change
 super + F7

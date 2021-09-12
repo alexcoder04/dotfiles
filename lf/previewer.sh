@@ -19,6 +19,9 @@ cache() {
 file="$1"
 shift
 
+[ -s "$file" ] \
+  || echo "\033[0;31mEmpty file\033[0m"
+
 if [ -n "$FIFO_UEBERZUG" ]; then
   case "$(file -Lb --mime-type -- "$file")" in
     image/*)

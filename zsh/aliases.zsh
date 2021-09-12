@@ -58,6 +58,7 @@ alias bat="bat --plain --theme=Dracula --paging=never"
 alias lf="lf_run"
 alias sudo="doas"
 alias grep="grep --color=auto"
+alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
 
 ##### Working with disks
 abbrev-alias lsblk="lsblk -f"
