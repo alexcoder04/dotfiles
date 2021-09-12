@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import json
 import os
 
 XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME")
@@ -70,9 +69,21 @@ c.tabs.width = 50
 
 c.url.default_page = "about:blank"
 c.url.start_pages = ["about:blank"]
-c.url.searchengines = json.load(open(f"{XDG_CONFIG_HOME}/qutebrowser/searchengines.json"))
-c.downloads.location.directory = f"{HOME}/tmp"
+c.url.searchengines = {
+    "DEFAULT": "https://duckduckgo.com/?q={}",
+    "sp": "https://startpage.com/sp/search?q={}",
+    "ggl": "https://google.com/search?q={}",
+    "wa": "https://wiki.archlinux.org/index.php?search={}",
+    "wu": "https://duckduckgo.com/?q=site:wiki.ubuntuusers.de+{}",
+    "so": "https://stackoverflow.com/search?q={}",
+    "wie": "https://en.wikipedia.org/w/index.php?search={}",
+    "wid": "https://de.wikipedia.org/w/index.php?search={}",
+    "yt": "https://youtube.com/results?search_query={}"
+    }
+c.downloads.location.directory = f"{HOME}/Temp"
 c.downloads.remove_finished = 1000
+
+config.load_autoconfig()
 
 c.aliases = {
             "tab-new": "open -t"
