@@ -1,7 +1,7 @@
 TERMINAL_MAIN		alacritty
 TERMINAL_SECONDARY	alacritty
-FILEMANAGER_MAIN	nemo
-FILEMANAGER_SECONDARY	alacritty -e lf_run
+FILEMANAGER_MAIN	alacritty -e sh -c 'lf_run'
+FILEMANAGER_SECONDARY	alacritty -e sh -c 'lf_run'
 BROWSER_MAIN		firefox
 BROWSER_SECONDARY	brave-browser
 EDITOR_MAIN		nvim

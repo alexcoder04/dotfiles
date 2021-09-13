@@ -34,6 +34,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'preservim/nerdtree'
 Plug 'alexcoder04/lightline.vim'
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -58,8 +59,8 @@ nnoremap <Right> :echo "you fool..."<CR>
 nnoremap <Up> :echo "you fool..."<CR>
 nnoremap <Down> :echo "you fool..."<CR>
 " working with tabs
-nnoremap <leader>t :tabnext<CR>
-nnoremap <leader>T :tabprevious<CR>
+nnoremap <leader>g :tabnext<CR>
+nnoremap <leader>G :tabprevious<CR>
 nnoremap <C-t> :tabnew<Space>
 " working with splits
 nnoremap <leader>S :split<Space>
@@ -69,12 +70,42 @@ nnoremap <leader>s :vsplit<Space>
 nnoremap / :set<Space>hlsearch<CR>/
 
 " global replace
-nnoremap S :%s///g<Left><Left>
+nnoremap S :%s///g<Left><Left><Left>
 
 " jump to the next placeholder
 inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
 inoremap :; ;;
 nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
+
+" -------------------------------------------------
+" DO STUFF WITH LEADER KEY
+" -------------------------------------------------
+" compile a project
+nnoremap <leader>b :!./build.sh<CR>
+
+" add a vim setings line for tabs=2
+nnoremap <leader>t2 ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
+
+" format
+nnoremap <leader>f :CocCommand prettier.formatFile
+
+" auto-run a python file on the raspberry pi (at the moment useless and unsafe)
+autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.py" && +TERMINAL_MAIN+ --hold -e ssh pi@raspberry "python3 /tmp/code.py" &<CR>
+
+" build LaTeX and MD
+autocmd FileType tex nnoremap <leader>p :w<CR>:!latex-build "%"<CR>
+autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview "%"<CR>
+
+" LaTeX \begin\end ENV
+autocmd FileType tex nnoremap <leader>e yyI\begin{<Esc>A}<Esc>pI\end{<Esc>A}<Esc>O
+autocmd FileType tex imap ;e <Esc>b<leader>e
+
+" table mode in MD
+autocmd FileType markdown TableModeEnable
+autocmd FileType markdown nnoremap <leader>tm :TableModeToggle<CR>
+
+" line width
+nnoremap <leader>ll :set tw=80<CR>
 
 " -------------------------------------------------
 " AUTOMATION
@@ -83,6 +114,7 @@ nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 autocmd BufEnter *.tex set filetype=tex
 autocmd BufEnter *.muttrc set filetype=neomuttrc
 
+" tab settings for diffrent file types
 autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab
 autocmd BufEnter *.sh set tabstop=2 shiftwidth=2 expandtab
 
@@ -96,7 +128,6 @@ autocmd BufWritePre * %s/\s+$//e
 autocmd BufWritePre *.js CocCommand prettier.formatFile
 autocmd BufWritePre *.json CocCommand prettier.formatFile
 autocmd BufWritePre *.css CocCommand prettier.formatFile
-nnoremap <leader>hf :autocmd BufWritePre *.html CocCommand prettier.formatFile
 
 " re-generate config files after editing
 autocmd BufWritePost +DOTFILES_REPO+/vim/init.vim !+DOTFILES_REPO+/install vim
@@ -113,24 +144,8 @@ autocmd BufWritePost */BWKI/repo/nn/*.py !+TERMINAL_MAIN+ --hold --class "alacri
 " copy arduino files to clipboard on save
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
 
-" compile a project
-nnoremap <leader>b :!./build.sh<CR>
-
-" add a vim setings line for tabs=2
-nnoremap <leader>fs ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
-
-" auto-run a python file on the raspberry pi (at the moment useless and unsafe)
-autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.py" && +TERMINAL_MAIN+ --hold -e ssh pi@raspberry "python3 /tmp/code.py" &<CR>
-
-" work with LaTeX stuff
-autocmd FileType tex,markdown nnoremap <leader>l :!latex-build "%"<CR>
-"autocmd FileType markdown nnoremap <leader>p :w<CR>:!pandoc -f markdown -t latex -V "margin-top=2cm" -V "margin-bottom=2cm" -o /tmp/preview.pdf "%" && zathura /tmp/preview.pdf &<CR>
-autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview "%"<CR>
-
-" line wrap in LaTeX
+" settings in LaTeX
 autocmd FileType tex set tw=80
-autocmd FileType tex nnoremap <leader>e yyI\begin{<Esc>A}<Esc>pI\end{<Esc>A}<Esc>O
-autocmd FileType tex imap ;e <Esc>b<leader>e
 
 " -------------------------------------------------
 " AUTO-INSERT OFTEN USED PHRASES
