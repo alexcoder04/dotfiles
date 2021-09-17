@@ -35,6 +35,9 @@ export BROWSER="+BROWSER_MAIN+"
 export VISUAL="+VISUAL+"
 export PAGER=+PAGER+
 
+# GTK theme
+export GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
+
 # finally, PATH
 export PATH="+ENV_PATH+"
 

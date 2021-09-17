@@ -1,7 +1,16 @@
+#        _                        _            ___  _  _
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|
+#
+# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+#
+# starship config file
 
 add_newline = false
-format = """$username[@](red)$hostname in $directory$git_status$python
-$time $cmd_duration$character"""
+format = """[\\[](purple) $username[@](red)$hostname [\\]](purple) in $directory$git_status $python$golang$nodejs
+$time $jobs$cmd_duration$character"""
 
 [username]
 style_user = "green bold"
@@ -15,10 +24,40 @@ ssh_only = false
 format =  "$hostname"
 disabled = false
 
+[directory]
+truncation_length = 5
+style = "bold cyan"
+read_only_style = "red bold"
+read_only = "🔒(ro)"
+home_symbol = " "
+format = "[$path]($style) [$read_only]($read_only_style) "
+
+[git_status]
+format = "[git](blue):\\[$ahead_behind $staged$untracked$modified$renamed$deleted$conflicted$stashed\\]"
+ahead = "[⇡](yellow)"
+behind = "[⇣](red)"
+diverged = "[⇕](red)"
+up_to_date = "[](green)"
+conflicted = "[=](red)"
+untracked = "[?](red)"
+stashed = "$"
+modified = "[!](red)"
+staged = "[+](cyan)"
+renamed = "[>](red)"
+deleted = "[x](red)"
+
+[jobs]
+format = "[$symbol$number]($style) "
+symbol = " "
+style = "blue bold"
+number_threshold = 1
+
 [character]
 #success_symbol = "[ ](bold green)"
-success_symbol = "[ ](bold green)"
-error_symbol = "[➜](bold red)"
+success_symbol = "[ ](bold green)"
+#success_symbol = "[ ](bold green)"
+#error_symbol = "[!➜](bold red)"
+error_symbol = "[ ](bold red)"
 
 [time]
 disabled = false

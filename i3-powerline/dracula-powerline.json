@@ -1,7 +1,7 @@
 {
 	"icons": [ "awesome-fonts" ],
 	"defaults": {
-		"separator-block-width": -8,
+		"separator-block-width": -1,
 		"warning": { "fg": "#282A36", "bg": "#ffb86c" },
 		"critical": { "fg": "#f8f8f2", "bg": "#FF5555" }
 	},

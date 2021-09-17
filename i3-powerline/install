@@ -2,7 +2,8 @@
 
 SOURCE_FILE="../i3-base/config"
 CONFIG_DIR="$XDG_CONFIG_HOME/i3"
-THEME_DIR="$XDG_DATA_HOME/bumblebee-status/themes/"
+#THEME_DIR="$XDG_DATA_HOME/bumblebee-status/themes/"
+THEME_DIR="/usr/share/bumblebee-status/themes"
 
 [ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
 [ -d "$THEME_DIR" ] || mkdir -vp "$THEME_DIR"
@@ -10,7 +11,7 @@ THEME_DIR="$XDG_DATA_HOME/bumblebee-status/themes/"
 echo "$SOURCE_FILE -> $CONFIG_DIR/config"
 cat "$SOURCE_FILE" | ../reconf "../defaults" "../$1.prefs" \
 	> "$CONFIG_DIR/config"
-cp -v "dracula-powerline.json" "$THEME_DIR/dracula-powerline.json"
+doas cp -v "dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
 cp -v "../i3-base/lock.png" "$CONFIG_DIR/"
 echo "NOTE: YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION"
 

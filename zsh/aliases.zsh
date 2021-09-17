@@ -9,14 +9,14 @@
 #      
 # zsh aliases
 
-##### APT commands
+##### apt commands
 abbrev-alias sagi="sudo apt install"
 abbrev-alias sau="sudo apt update"
 abbrev-alias saup="sudo apt upgrade"
 abbrev-alias apts="apt search"
 abbrev-alias alu="apt list --upgradeable"
 
-##### Git commands
+##### git commands
 abbrev-alias gst="git status"
 abbrev-alias gpush="git push && [ -f .autopush ] && ./.autopush || echo 'No autopush script is configured for this repository'"
 abbrev-alias gpull="git pull"
@@ -28,9 +28,10 @@ abbrev-alias gaddall="git add -A"
 abbrev-alias gcheckout="git checkout"
 abbrev-alias gbranch="git branch"
 
-##### System / Terminal commands
+##### basic terminal commands
 alias cls='[ "$(seq 1 5 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cyan; clear'
 
+# make ls look nice but still tty-friendly
 if [ "$TERM" = "linux" ]; then
   alias ls="exa -hl --group-directories-first"
   alias la="exa -ahl --group-directories-first"
@@ -39,6 +40,7 @@ else
   alias la="exa -ahl --icons --group-directories-first"
 fi
 
+# rm, cp, mv
 abbrev-alias rm="rm -iv"
 abbrev-alias rmd="rm -fvr"
 abbrev-alias mv="mv -iv"
@@ -47,9 +49,11 @@ abbrev-alias cpd="cp -fvr"
 
 abbrev-alias chx="chmod +x"
 
+# how to exit the shell
 alias :q="exit"
 alias Exit="disown -a && exit"
 
+##### programs
 alias v="nvim"
 alias vim="nvim"
 
@@ -59,6 +63,9 @@ alias lf="lf_run"
 alias sudo="doas"
 alias grep="grep --color=auto"
 alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
+alias newsboat="newsboat-selector"
+abbrev-alias topc="cd $HOME/CODE/utils/topc && python3 server.py"
+abbrev-alias mount-nspire="sudo LD_LIBRARY_PATH=/lib:/usr/local/lib nspire-fuse /media/nspire"
 
 ##### Working with disks
 abbrev-alias lsblk="lsblk -f"
@@ -72,9 +79,4 @@ abbrev-alias gnuhead="cat /home/alex/.local/share/gnu-head-xterm"
 ##### Translator
 abbrev-alias de:en="trans -shell de:en"
 abbrev-alias en:de="trans -shell en:de"
-
-##### Other
-alias newsboat="newsboat-selector"
-abbrev-alias topc="cd $HOME/CODE/utils/topc && python3 server.py"
-abbrev-alias mount-nspire="sudo LD_LIBRARY_PATH=/lib:/usr/local/lib nspire-fuse /media/nspire"
 

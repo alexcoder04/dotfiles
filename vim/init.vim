@@ -87,7 +87,7 @@ nnoremap <leader>b :!./build.sh<CR>
 nnoremap <leader>t2 ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
 
 " format
-nnoremap <leader>f :CocCommand prettier.formatFile
+nnoremap <leader>f :CocCommand prettier.formatFile<CR>
 
 " auto-run a python file on the raspberry pi (at the moment useless and unsafe)
 autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.py" && +TERMINAL_MAIN+ --hold -e ssh pi@raspberry "python3 /tmp/code.py" &<CR>
@@ -95,6 +95,7 @@ autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.p
 " build LaTeX and MD
 autocmd FileType tex nnoremap <leader>p :w<CR>:!latex-build "%"<CR>
 autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview "%"<CR>
+autocmd FileType markdown nnoremap <leader>P :w<CR>:!md-preview "%" export<CR>
 
 " LaTeX \begin\end ENV
 autocmd FileType tex nnoremap <leader>e yyI\begin{<Esc>A}<Esc>pI\end{<Esc>A}<Esc>O
@@ -236,7 +237,8 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-tsserver',
-  \ 'coc-eslint'
+  \ 'coc-eslint',
+  \ 'coc-pyright'
   \ ]
 
 " lightline config

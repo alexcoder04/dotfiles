@@ -1,16 +1,35 @@
 #!/bin/bash
+#        _                        _            ___  _  _
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|
+#
+# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+#      
+# generate bookmarks for different applications
+
+die(){
+  echo "$1"
+  exit 1
+}
+
+[ -z "$1" ] && die "Missing argument"
+
+[ -z "$2" ] \
+    && sourcefile="./source" \
+    || sourcefile="$2"
 
 case "$1" in
   lf)
-    awk '{print "map",$1,"$lf -remote \"send $id cd",$2 "\""}' "./source" ;;
+    awk '{print "map",$1,"$lf -remote \"send $id cd",$2 "\""}' "$sourcefile" ;;
   bash)
-    awk '{print "alias",$1 "=\"cd",$2 "\""}' "./source" ;;
+    awk '{print "alias",$1 "=\"cd",$2 "\""}' "$sourcefile" ;;
   zsh)
-    awk '{print "abbrev-alias",$1 "=\"cd",$2,"&& exa --icons\""}' "./source" ;;
+    awk '{print "abbrev-alias",$1 "=\"cd",$2,"&& exa --icons\""}' "$sourcefile" ;;
   fish)
-    awk '{print "abbr",$1,"\"cd",$2 "\""}' "./source" ;;
+    awk '{print "abbr",$1,"\"cd",$2 "\""}' "$sourcefile" ;;
   *)
-    echo "Not supported output format!"
-	exit 1 ;;
+      die "Not supported output format" ;;
 esac
 

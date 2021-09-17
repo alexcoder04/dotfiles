@@ -31,7 +31,7 @@ save_data(){
 		echo "$1: $value" >> "$XDG_DATA_HOME/some_data"
 }
 
-# download some information that is hard to remember
+# download and show some information that is hard to remember
 remember(){
 		case "$1" in
 				ascii)
