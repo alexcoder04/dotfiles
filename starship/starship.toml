@@ -34,9 +34,9 @@ format = "[$path]($style) [$read_only]($read_only_style) "
 
 [git_status]
 format = "[git](blue):\\[$ahead_behind $staged$untracked$modified$renamed$deleted$conflicted$stashed\\]"
-ahead = "[⇡](yellow)"
-behind = "[⇣](red)"
-diverged = "[⇕](red)"
+ahead = "[A](yellow)"
+behind = "[B](red)"
+diverged = "[D](red)"
 up_to_date = "[](green)"
 conflicted = "[=](red)"
 untracked = "[?](red)"
