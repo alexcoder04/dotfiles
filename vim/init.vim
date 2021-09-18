@@ -65,6 +65,18 @@ nnoremap <C-t> :tabnew<Space>
 " working with splits
 nnoremap <leader>S :split<Space>
 nnoremap <leader>s :vsplit<Space>
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
+nnoremap <leader>H <C-w>H
+nnoremap <leader>J <C-w>J
+nnoremap <leader>K <C-w>K
+nnoremap <leader>L <C-w>L
+nnoremap <leader><C-h> :vertical resize -5<CR>
+nnoremap <leader><C-j> :resize +5<CR>
+nnoremap <leader><C-k> :resize -5<CR>
+nnoremap <leader><C-l> :vertical resize +5<CR>
 
 " search highlight
 nnoremap / :set<Space>hlsearch<CR>/

@@ -9,7 +9,7 @@
 # starship config file
 
 add_newline = false
-format = """[\\[](purple) $username[@](red)$hostname [\\]](purple) in $directory$git_status $python$golang$nodejs
+format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in $directory$git_status $python$golang$nodejs
 $time $jobs$cmd_duration$character"""
 
 [username]
