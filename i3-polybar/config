@@ -144,7 +144,7 @@ bindsym $alt+Shift+$layout_modifier	layout tabbed
 # ------------------------------------------------------------------------------
 
 # restart wm
-bindsym $mod+Shift+r	restart
+bindsym Ctrl+$alt+r	restart
 
 # Fallback terminal
 bindsym $mod+F10		exec +TERMINAL_MAIN+
@@ -152,36 +152,28 @@ bindsym $mod+F10		exec +TERMINAL_MAIN+
 # other keybindings were moved to a separate program (sxhkd)
 
 # ------------------------------------------------------------------------------
-# MODES
+# RESIZE WINDOWS
 # ------------------------------------------------------------------------------
 
-mode "resize" {
-	# Resize the window with arrow keys
-    bindsym h		resize shrink	width 1 px or 1 ppt
-    bindsym j		resize grow	height 1 px or 1 ppt
-    bindsym k		resize shrink	height 1 px or 1 ppt
-    bindsym l		resize grow	width 1 px or 1 ppt
+bindsym Ctrl+$alt+h			resize shrink	width 1 px or 1 ppt
+bindsym Ctrl+$alt+j			resize grow		height 1 px or 1 ppt
+bindsym Ctrl+$alt+k			resize shrink	height 1 px or 1 ppt
+bindsym Ctrl+$alt+l			resize grow		width 1 px or 1 ppt
 
-    bindsym Shift+h		resize shrink	width 10 px or 10 ppt
-    bindsym Shift+j		resize grow	height 10 px or 10 ppt
-    bindsym Shift+k		resize shrink	height 10 px or 10 ppt
-    bindsym Shift+l		resize grow	width 10 px or 10 ppt
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+z		mode "resize"
+bindsym Ctrl+$alt+Shift+h	resize shrink	width 15 px or 15 ppt
+bindsym Ctrl+$alt+Shift+j	resize grow		height 15 px or 15 ppt
+bindsym Ctrl+$alt+Shift+k	resize shrink	height 15 px or 15 ppt
+bindsym Ctrl+$alt+Shift+l	resize grow		width 15 px or 15 ppt
 
 # ------------------------------------------------------------------------------
 # GAPS AND BORDER
 # ------------------------------------------------------------------------------
 # Gaps specific
-gaps inner							25
-gaps outer							0
+gaps inner							10
+gaps outer							5
 bindsym $mod+$gaps_modifier			gaps inner all minus 3
 bindsym $mod+Shift+$gaps_modifier	gaps inner all plus 3
-bindsym $mod+Ctrl+$gaps_modifier	gaps inner all set 25
+bindsym $mod+Ctrl+$gaps_modifier	gaps inner all set 10
 
 # Border
 default_border pixel				3

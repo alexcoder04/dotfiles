@@ -65,7 +65,7 @@ font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;1"
 font-3 = "Font Awesome 5 Brands:pixelsize=13;1"
 
 modules-left = i3 xwindow 
-modules-right = bitcoin battery cpu temperature cpufreq memory wireless-network date volume 
+modules-right = updates bitcoin battery cpu temperature cpufreq memory wireless-network date volume 
 
 separator =  " "
 
@@ -324,6 +324,19 @@ ramp-3 = 
 ramp-4 = 
 ramp-foreground = ${colors.foreground}
 ramp-background = ${colors.background}
+
+################################################################################
+
+[module/updates]
+type = custom/script
+exec = pacman -Qu | wc -l
+interval = 1200
+
+format-prefix = "  "
+
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-underline = ${colors.purple}
 
 ################################################################################
 
