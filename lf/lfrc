@@ -19,6 +19,10 @@ set drawbox
 set preview 
 set icons 
 set ignorecase 
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
+set filesep "\n"
 
 # -----------------------------------------------------
 # PREVIEWS
