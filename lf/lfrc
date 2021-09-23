@@ -33,7 +33,7 @@ set cleaner ~/.config/lf/clear_img.sh
 # -----------------------------------------------------
 # COMMANDS
 # -----------------------------------------------------
-cmd chmod ${{
+cmd chmodx ${{
 		chmod +x "$f"
 		lf -remote 'send reload'
 }}
@@ -88,7 +88,7 @@ cmd open ${{
 		video/*)
 			setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
 		text/*)
-			$EDITOR $fx ;;
+			nvim -c 'nnoremap H :q<CR>' $fx ;;
 		*)
 			for f in $fx; do setsid -f xdg-open $f >/dev/null 2>&1; done ;;
 	esac
@@ -105,9 +105,11 @@ map d
 map w
 map a
 
+map r rename
+
 map md push %mkdir<space>
 map mf push %touch<space>
-map cx chmod
+map cx chmodx
 map dd trash
 map DD remove_interactive
 map dD remove_force
