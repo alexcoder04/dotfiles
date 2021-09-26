@@ -41,11 +41,11 @@ else
 fi
 
 # rm, cp, mv
-abbrev-alias rm="rm -iv"
-abbrev-alias rmd="rm -fvr"
-abbrev-alias mv="mv -iv"
-abbrev-alias cp="cp -iv"
-abbrev-alias cpd="cp -fvr"
+abbrev-alias rm="rm -Iv"
+abbrev-alias rmd="rm -Ifvr"
+abbrev-alias mv="mv -Iv"
+abbrev-alias cp="cp -Iv"
+abbrev-alias cpd="cp -Ifvr"
 
 abbrev-alias chx="chmod +x"
 
@@ -54,8 +54,9 @@ alias :q="exit"
 alias Exit="disown -a && exit"
 
 ##### programs
-alias v="nvim"
-alias vim="nvim"
+alias -g v="nvim"
+alias -g vi="nvim"
+alias -g vim="nvim"
 
 alias -g p="pacman"
 alias bat="bat --plain --theme=Dracula --paging=never"

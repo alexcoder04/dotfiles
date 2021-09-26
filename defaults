@@ -1,7 +1,7 @@
 TERMINAL_MAIN		alacritty
 TERMINAL_SECONDARY	alacritty
-FILEMANAGER_MAIN	    alacritty -e sh -c 'TERM=xterm lf_run'
-FILEMANAGER_SECONDARY	alacritty -e sh -c 'TERM=xterm lf_run'
+FILEMANAGER_MAIN	    alacritty -e sh -c 'export TERM=xterm; . $DOTFILES_REPO/sh/lf_icons.sh; lf_run'
+FILEMANAGER_SECONDARY	alacritty -e sh -c 'export TERM=xterm; . $DOTFILES_REPO/sh/lf_icons.sh; lf_run'
 BROWSER_MAIN		firefox
 BROWSER_SECONDARY	qutebrowser
 EDITOR_MAIN		nvim
