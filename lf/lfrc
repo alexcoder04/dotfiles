@@ -23,6 +23,7 @@ set shell zsh
 set shellopts '-euy'
 set ifs "\n"
 set filesep "\n"
+set info size
 
 # -----------------------------------------------------
 # PREVIEWS
@@ -40,7 +41,7 @@ cmd chmodx ${{
 
 cmd trash %trash-put $fx
 cmd remove_interactive %rm -i $fx
-cmd remove_force %rm $fx
+cmd remove_force %rm -rf $fx
 
 cmd add_wallpaper %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
 cmd set_wallpaper %feh --bg-scale --no-fehbg "$f"
@@ -52,7 +53,7 @@ cmd share_http ${{
 }}
 
 # from: <https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc#L80>
-cmd unarchive ${{
+cmd unarchive !{{
 	case "$f" in
 		*.tar.bz2)    tar xjf "$f"   ;;
 		*.tar.gz)     tar xzf "$f"   ;;
@@ -71,9 +72,8 @@ cmd unarchive ${{
 	esac
 }}
 
-cmd archive ${{
-		echo "Not supported yet"
-		sleep 3
+cmd archive !{{
+    echo "$fx" | xargs -n 1 basename | xargs -t tar -czf "$f.tar.gz"
 }}
 
 # from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
@@ -89,6 +89,17 @@ cmd open ${{
 			setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
 		text/*)
 			nvim -c 'nnoremap H :q<CR>' $fx ;;
+        application/gzip)
+            extract_to="$(basename $f .tar.gz)"
+            if [ -d "$extract_to" ]; then
+                counter=1
+                while [ -d "$extract_to-$counter" ]; do
+                    counter=$(($counter+1))
+                done
+                extract_to="$extract_to-$counter"
+            fi
+            mkdir "$extract_to"
+            tar -xzf "$f" -C "$extract_to" ;;
 		*)
 			for f in $fx; do setsid -f xdg-open $f >/dev/null 2>&1; done ;;
 	esac
@@ -100,7 +111,6 @@ cmd open ${{
 # Remove default mappings
 map m
 map e
-map c
 map d
 map w
 map a
@@ -113,8 +123,12 @@ map cx chmodx
 map dd trash
 map DD remove_interactive
 map dD remove_force
+map c cut
+map U clear
 map e $$EDITOR "$f"
 map wp add_wallpaper
 map ae unarchive
 map ac archive
+map T $$SHELL
+map H set hidden!
 

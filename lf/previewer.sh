@@ -19,8 +19,10 @@ cache() {
 file="$1"
 shift
 
-[ -s "$file" ] \
-  || echo "\033[0;31mEmpty file\033[0m"
+if [ ! -s "$file" ]; then
+  echo "\033[0;31mEmpty file\033[0m"
+  exit 0
+fi
 
 if [ -n "$FIFO_UEBERZUG" ]; then
   case "$(file -Lb --mime-type -- "$file")" in
@@ -44,8 +46,26 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     text/*)
       bat --plain --theme=Dracula --paging=never --color=always "$file" | head -n 60
       ;;
-    application/pdf)
+    */pdf)
       pdftotext -l 5 "$file" - | head -n 60
+      ;;
+    application/gzip)
+      echo "\033[36mGzip Archive:\033[0m"
+      tar -tzf "$file" | xargs -I{} echo " {}"
+      ;;
+    application/x-tar|applicationx-ustar)
+      echo "\033[36mTar archive:\033[0m"
+      tar -tf "$file" | xargs -I{} echo " {}"
+      ;;
+    application/zip)
+      echo "\033[36mZip archive:\033[0m"
+      zipinfo "$file"
+      ;;
+    audio/*)
+      mediainfo "$file"
+      ;;
+    *)
+      echo "\033[0;36mBinary file\033[0m"
       ;;
   esac
 fi
