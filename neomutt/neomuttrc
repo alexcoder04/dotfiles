@@ -19,6 +19,8 @@ set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 
 set editor = "nvim"
+auto_view text/html
+set mailcap_path = "~/.config/neomutt/mailcap:~/.mailcap:/usr/share/neomutt/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap"
 set new_mail_command = "notify-send '%n/%u new mail(s)'"
 
 source "~/.config/neomutt/dracula.muttrc"
