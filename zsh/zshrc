@@ -27,9 +27,11 @@ source "$ZDOTDIR/lf_icons.zsh"
 # ---------------------------------------------------------
 # HISTORY CONFIGURATION
 # ---------------------------------------------------------
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_DUPS
 HISTFILE=~/.cache/zsh/zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 # ---------------------------------------------------------
 # AUTOCOMPLETION
@@ -71,8 +73,6 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 # run stuff on key press
 bindkey -s '^o' 'lfcd\n'
-bindkey -s '^f' 'lf_run\n'
-bindkey -s '^h' 'htop\n'
 bindkey -s '^b' ' &>/dev/null & disown'
 
 # ---------------------------------------------------------
@@ -81,8 +81,7 @@ bindkey -s '^b' ' &>/dev/null & disown'
 setopt autocd
 unsetopt beep extendedglob notify
 # set font if in tty
-[ "$TERM" = "linux" ] \
-  && setfont "ter-118n"
+tty | grep "/dev/tty[1-6]" >/dev/null 2>&1 && setfont "ter-118n"
 
 # ---------------------------------------------------------
 # PROMPT

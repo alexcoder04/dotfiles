@@ -29,7 +29,7 @@ abbrev-alias gcheckout="git checkout"
 abbrev-alias gbranch="git branch"
 
 ##### basic terminal commands
-alias cls='[ "$(seq 1 5 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cyan; clear'
+alias cls='[ "$(seq 1 3 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cyan; clear'
 
 # make ls look nice but still tty-friendly
 if [ "$TERM" = "linux" ]; then
@@ -41,11 +41,11 @@ else
 fi
 
 # rm, cp, mv
-abbrev-alias rm="rm -Iv"
+abbrev-alias rm="rm -iv"
 abbrev-alias rmd="rm -Ifvr"
-abbrev-alias mv="mv -Iv"
-abbrev-alias cp="cp -Iv"
-abbrev-alias cpd="cp -Ifvr"
+abbrev-alias mv="mv -iv"
+abbrev-alias cp="cp -iv"
+abbrev-alias cpd="cp -ifvr"
 
 abbrev-alias chx="chmod +x"
 
@@ -65,6 +65,7 @@ alias sudo="doas"
 alias grep="grep --color=auto"
 alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
 alias newsboat="newsboat-selector"
+alias sizeof="du --max-depth 0 -h"
 abbrev-alias topc="cd $HOME/CODE/utils/topc && python3 server.py"
 abbrev-alias mount-nspire="sudo LD_LIBRARY_PATH=/lib:/usr/local/lib nspire-fuse /media/nspire"
 
