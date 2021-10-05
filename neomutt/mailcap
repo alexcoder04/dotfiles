@@ -1,4 +1,4 @@
-text/plain; $EDITOR %s ;
+text/plain; cat %s ; copiousoutput
 text/html; w3m -I %{charset} -T text/html; copiousoutput
 image/*; setsid feh %s >/dev/null & ;
 video/*; setsid mpv --quiet %s >/dev/null &;

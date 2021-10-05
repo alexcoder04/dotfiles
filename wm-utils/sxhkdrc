@@ -12,7 +12,9 @@ super + shift + Return
 # SYSTEM AND WINDOW MANAGER
 # ###################################################################
 ctrl + alt + s
-	screenlock +suspend
+	screenlock --suspend
+ctrl + alt + shift + s
+	screenlock --suspend-only
 ctrl + alt + p
 	safe-poweroff poweroff
 ctrl + alt + q
@@ -136,7 +138,9 @@ super + shift + F5
 super + F6
     i3-mode-change
 super + F7
-    wifi toggle; notify-send "wifi toggled"
+    $HOME/music.sh
+super + shift + F7
+    /home/alex/music.sh stop
 super + F8
     monitors-menu
 super + F12
