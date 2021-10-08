@@ -9,6 +9,7 @@
 # some functions from other sources:
 # <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
 # <https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc#L80>
+# <https://github.com/gokcehan/lf/wiki/Tips>
 #                                                          
 # lf config
 
@@ -34,6 +35,19 @@ set cleaner ~/.config/lf/clear_img.sh
 # -----------------------------------------------------
 # COMMANDS
 # -----------------------------------------------------
+cmd set-columns %{{
+    w=$(tput cols)
+    if [ $w -le 100 ]; then
+        lf -remote "send $id set ratios 1:2"
+    else
+        lf -remote "send $id set ratios 1:2:3"
+    fi
+}}
+
+cmd select-all %{{
+    ls | xargs -I{} lf -remote "send $id toggle {}"
+}}
+
 cmd chmodx ${{
 		chmod +x "$f"
 		lf -remote 'send reload'
@@ -42,6 +56,27 @@ cmd chmodx ${{
 cmd trash %trash-put $fx
 cmd remove_interactive %rm -i $fx
 cmd remove_force %rm -rf $fx
+
+# from: https://github.com/gokcehan/lf/wiki/Tips#bulk-rename-multiple-files
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    [ -n "$fs" ] && fs="$(ls)"
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l <"$new")" -ne "$(wc -l <"$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}
 
 cmd add_wallpaper %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
 cmd set_wallpaper %feh --bg-scale --no-fehbg "$f"
@@ -105,6 +140,15 @@ cmd open ${{
 	esac
 }}
 
+# from https://github.com/gokcehan/lf/wiki/Tips#new-folder-with-selected-items
+cmd folder-with-items %{{
+    set -f
+    printf "folder name: "
+    read newd
+    mkdir -- "$newd"
+    mv -- $fx "$newd"
+}}
+
 # -----------------------------------------------------
 # KEYBINDS
 # -----------------------------------------------------
@@ -116,8 +160,10 @@ map w
 map a
 
 map r rename
+map R bulk-rename
 
 map md push %mkdir<space>
+map mD folder-with-items
 map mf push %touch<space>
 map cx chmodx
 map dd trash
@@ -131,4 +177,12 @@ map ae unarchive
 map ac archive
 map T $$SHELL
 map H set hidden!
+map <c-l> reload
+map <c-l> set-columns
+map <c-a> select-all
+
+# -----------------------------------------------------
+# STARTUP
+# -----------------------------------------------------
+set-columns
 

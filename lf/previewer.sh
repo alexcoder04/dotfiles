@@ -20,7 +20,7 @@ file="$1"
 shift
 
 if [ ! -s "$file" ]; then
-  echo "\033[0;31mEmpty file\033[0m"
+  echo "\033[0;41mempty file\033[0m"
   exit 0
 fi
 
@@ -65,7 +65,7 @@ if [ -n "$FIFO_UEBERZUG" ]; then
       mediainfo "$file"
       ;;
     *)
-      echo "\033[0;36mBinary file\033[0m"
+      echo "\033[0;46mbinary file\033[0m"
       ;;
   esac
 fi
