@@ -1,0 +1,24 @@
+#!/bin/sh
+
+die(){
+  echo "ERROR: $1"
+  exit 1
+}
+
+[ -z "$1" ] \
+  && output="bash" \
+  || output="$1"
+
+[ -f "./aliases" ] \
+  || die "aliases source file not found"
+
+case "$output" in
+  bash)
+    sed 's/^ABBREVIATION\s/alias /; s/^GLOBAL_ALIAS\s/alias /' "./aliases" ;;
+  zsh)
+    sed 's/^ABBREVIATION\s/abbrev-alias /; s/^GLOBAL_ALIAS\s/alias -g /' "./aliases" ;;
+  fish)
+    sed 's/^ABBREVIATION\s/abbrev /; s/^GLOBAL_ALIAS\s/alias /' "./aliases" ;;
+  *) die "unknown output format" ;;
+esac
+

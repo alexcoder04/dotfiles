@@ -6,15 +6,26 @@ CONFIG_DIR="$XDG_CONFIG_HOME/zsh"
 
 echo "./zshrc -> $CONFIG_DIR/.zshrc"
 cat "./zshrc" | ../reconf "../defaults" "../$1.prefs" > "$CONFIG_DIR/.zshrc"
+
 echo "../sh/env -> $HOME/.zshenv"
 cat "./_header" "../sh/env" | ../reconf "../defaults" "../$1.prefs" > "$HOME/.zshenv"
-/bin/ls *.zsh | xargs -I{} sh -c "cat {} | ../reconf \"../defaults\" \"../$1.prefs\" > \"$CONFIG_DIR/{}\" && echo \"{} -> $CONFIG_DIR/{}\""
+
+echo "../sh/aliases -> $CONFIG_DIR/aliases.zsh"
+pre="$(pwd)"
+cd "../sh" && ./aliases-gen "zsh" > "$CONFIG_DIR/aliases.zsh"
+cd "$pre"
+
+/bin/ls *.zsh \
+  | xargs -I{} sh -c "cat {} | ../reconf \"../defaults\" \"../$1.prefs\" > \"$CONFIG_DIR/{}\" && echo \"{} -> $CONFIG_DIR/{}\""
+
 echo "creating bookmarks"
 pre="$(pwd)"
 cd "../bookmarks" && ./build zsh > "$CONFIG_DIR/bookmarks.zsh"
 cd "$pre"
+
 echo "creating cache dir"
 [ -d "$HOME/.cache/zsh" ] || mkdir -v "$HOME/.cache/zsh"
+
 cp -v "../sh/lf_icons.sh" "$CONFIG_DIR/lf_icons.zsh"
 
 ../install starship

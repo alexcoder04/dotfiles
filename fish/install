@@ -14,5 +14,7 @@ pre="$(pwd)"
 cd "../bookmarks" && ./build fish > "$CONFIG_DIR/bookmarks.fish"
 cd "$pre"
 
+echo "WARN: the fish install script does not use unified shell aliases yet"
+
 ../install starship
 
