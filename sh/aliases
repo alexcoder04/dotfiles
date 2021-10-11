@@ -96,7 +96,7 @@ alias lf="lf_run"
 alias sudo="doas"
 alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
 alias newsboat="newsboat-selector"
-alias sizeof="du --max-depth 0 -h"
+GLOBAL_ALIAS sizeof="du --max-depth 0 -h"
 ABBREVIATION topc="cd $HOME/Scripts/uploader && python3 server.py"
 
 # Working with disks

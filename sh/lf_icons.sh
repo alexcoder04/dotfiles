@@ -172,3 +172,16 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
+
+export LF_COLORS="\
+.git/=02:\
+.gitignore*=02:\
+Makefile*=33:\
+PKGBUILD.*=33:\
+README.*=33:\
+*.md=33:\
+ln=01;36:\
+di=01;34:\
+ex=01;32:\
+"
+

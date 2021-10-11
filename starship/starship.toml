@@ -10,7 +10,7 @@
 
 add_newline = false
 format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in $directory$git_status $python$golang$nodejs
-$time $jobs$cmd_duration$character"""
+$custom$time $jobs$cmd_duration$character"""
 
 [username]
 style_user = "green bold"
@@ -54,14 +54,21 @@ number_threshold = 1
 
 [character]
 #success_symbol = "[ ](bold green)"
-success_symbol = "[ ](bold green)"
 #success_symbol = "[ ](bold green)"
+success_symbol = "[ ](bold green)"
 #error_symbol = "[!➜](bold red)"
-error_symbol = "[ ](bold red)"
+#error_symbol = "[ ](bold red)"
+error_symbol = "[ ](bold red)"
 vicmd_symbol = "[ ](bold blue)"
 
 [time]
 disabled = false
 format = "\\[[$time]($style)\\]"
 time_format = "%a, %d %b %H:%M"
+
+[custom.lf_level]
+command = "echo :lf$LF_LEVEL: "
+when = "[ ! -z $LF_LEVEL ]"
+style = "cyan"
+format = "[$output]($style)"
 
