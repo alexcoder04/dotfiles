@@ -100,6 +100,7 @@ nnoremap <leader>t2 ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>exp
 
 " format
 nnoremap <leader>f :CocCommand prettier.formatFile<CR>
+nnoremap <leader>fa :autocmd BufWritePre :CocCommand prettier.formatFile<CR>
 
 " auto-run a python file on the raspberry pi (at the moment useless and unsafe)
 autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.py" && +TERMINAL_MAIN+ --hold -e ssh pi@raspberry "python3 /tmp/code.py" &<CR>

@@ -265,14 +265,17 @@ format-underline = ${colors.cyan}
 [module/date]
 type = internal/date
 interval = 1
-date = "%a %d.%m"
-time = "%H:%M:%S"
+date = %a, %d.%m
+time = %T
+;date = "%a %d.%m"
+;time = "%H:%M:%S"
 format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 format-underline = ${colors.foreground}
-label = %time% %date%
+#label = %time% %date%
+label = %date% - %time%
 
 ################################################################################
 

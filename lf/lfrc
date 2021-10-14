@@ -25,6 +25,7 @@ set shellopts '-euy'
 set ifs "\n"
 set filesep "\n"
 set info size
+set incsearch
 
 # -----------------------------------------------------
 # PREVIEWS
@@ -61,7 +62,7 @@ cmd remove_force %rm -rf $fx
 cmd bulk-rename ${{
     old="$(mktemp)"
     new="$(mktemp)"
-    [ -n "$fs" ] && fs="$(ls)"
+    [ -z "$fs" ] && fs="$(ls)"
     printf '%s\n' "$fs" >"$old"
     printf '%s\n' "$fs" >"$new"
     $EDITOR "$new"
@@ -165,7 +166,7 @@ map R bulk-rename
 map md push %mkdir<space>
 map mD folder-with-items
 map mf push %touch<space>
-map cx chmodx
+map x chmodx
 map dd trash
 map DD remove_interactive
 map dD remove_force
@@ -177,6 +178,7 @@ map ae unarchive
 map ac archive
 map T $$SHELL
 map H set hidden!
+map ws set_wallpaper
 map <c-l> reload
 map <c-l> set-columns
 map <c-a> select-all

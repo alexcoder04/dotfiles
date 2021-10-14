@@ -39,6 +39,7 @@ export PAGER=+PAGER+
 
 # GTK theme
 export GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
+export NO_AT_BRIDGE=1
 
 # finally, PATH
 export PATH="+ENV_PATH+"

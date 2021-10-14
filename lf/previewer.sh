@@ -44,10 +44,10 @@ if [ -n "$FIFO_UEBERZUG" ]; then
       draw "$cache" "$@"
       ;;
     text/*)
-      bat --plain --theme=Dracula --paging=never --color=always "$file" | head -n 60
+      bat --plain --theme=Dracula --paging=never --color=always "$file"
       ;;
     */pdf)
-      pdftotext -l 5 "$file" - | head -n 60
+      pdftotext -l 5 "$file" -
       ;;
     application/gzip)
       echo "\033[36mGzip Archive:\033[0m"
@@ -64,8 +64,13 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     audio/*)
       mediainfo "$file"
       ;;
+    message/rfc822)
+      cat "$file"
+      ;;
     *)
-      echo "\033[0;46mbinary file\033[0m"
+      [ -x "$file" ] \
+        && echo "\033[0;46mbinary executable\033[0m" \
+        || echo "\033[0;46mbinary file\033[0m"
       ;;
   esac
 fi
