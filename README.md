@@ -1,6 +1,8 @@
 
 # My dotfiles
 
+![my desktop](./screenshots/i3-i3blocks-screenshot.png)
+
 This repository contains the configuration files I use on the daily basis on my
 Linux machine. Most of them rely on my scripts
 (https://github.com/alexcoder04/scripts) to function properly.
