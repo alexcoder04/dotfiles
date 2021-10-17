@@ -21,6 +21,7 @@ set number relativenumber
 set smartcase
 set colorcolumn=80
 set ignorecase
+set dir=/media/cache/nvim
 let mapleader=" "
 filetype plugin indent on
 syntax on
@@ -99,7 +100,7 @@ nnoremap <leader>b :!./build.sh<CR>
 nnoremap <leader>t2 ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
 
 " format
-nnoremap <leader>f :CocCommand prettier.formatFile<CR>
+nnoremap <leader>f :CocCommand prettier.formatFile<CR>:w<CR>
 nnoremap <leader>fa :autocmd BufWritePre :CocCommand prettier.formatFile<CR>
 
 " auto-run a python file on the raspberry pi (at the moment useless and unsafe)
