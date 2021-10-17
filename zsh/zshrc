@@ -29,6 +29,8 @@ source "$ZDOTDIR/lf_icons.zsh"
 # ---------------------------------------------------------
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+HISTORY_IGNORE="(git add *|git push|git status|* && exa --icons)"
 HISTFILE=~/.cache/zsh/zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
