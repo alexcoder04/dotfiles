@@ -5,7 +5,11 @@ DATA_DIR="$XDG_DATA_HOME/bash"
 [ -d "$DATA_DIR" ] || mkdir -p "$DATA_DIR"
 
 echo "./bashrc -> $HOME/.bashrc"
-cat "./bashrc" | ../reconf "../defaults" "../$1.prefs" > "$HOME/.bashrc"
+[ -f "options.$1" ] \
+  && bashrc_files="./bashrc options.$1" \
+  || bashrc_files="./bashrc"
+echo "used files: $bashrc_files"
+cat $bashrc_files | ../reconf "../defaults" "../$1.prefs" > "$HOME/.bashrc"
 
 echo "../sh/env -> $DATA_DIR/env.bash"
 cat "./_header" "../sh/env" | ../reconf "../defaults" "../$1.prefs" > "$DATA_DIR/env.bash"

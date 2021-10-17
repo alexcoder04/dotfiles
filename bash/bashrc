@@ -15,6 +15,14 @@
 source "$HOME/.local/share/bash/env.bash"
 
 # ---------------------------------------------------------
+# If not running interactively, don't do anything
+# ---------------------------------------------------------
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# ---------------------------------------------------------
 # ALIASES
 # ---------------------------------------------------------
 if [ -f "$XDG_DATA_HOME/bash/aliases.bash" ]; then
@@ -25,24 +33,16 @@ if [ -f "$XDG_DATA_HOME/bash/bookmarks.bash" ]; then
 fi
 
 # ---------------------------------------------------------
-# If not running interactively, don't do anything
-# ---------------------------------------------------------
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-# ---------------------------------------------------------
 # HISTORY OPTIONS
 # ---------------------------------------------------------
 HISTCONTROL=ignoreboth
 HISTFILE=$XDG_CACHE_HOME/bash_history
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=10000
 shopt -s histappend
 
 # ---------------------------------------------------------
-# SHOPT
+# SHOPTS
 # ---------------------------------------------------------
 shopt -s autocd
 shopt -s cdspell
