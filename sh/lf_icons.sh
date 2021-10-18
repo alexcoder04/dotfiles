@@ -179,6 +179,7 @@ export LF_COLORS="\
 Makefile*=33:\
 PKGBUILD.*=33:\
 README.*=33:\
+LICENSE.*=33:\
 *.md=33:\
 ln=01;36:\
 di=01;34:\

@@ -1,10 +1,4 @@
-xmonad/xmonad.errors
-xmonad/xmonad.o
-xmonad/xmonad.hi
-xmonad/xmonad-x86_64-linux
 bookmarks/source
-.autopush
-**/__pycache__/**
-**/a.out
+.autopush*
 suckless
 *.prefs

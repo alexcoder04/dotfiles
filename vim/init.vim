@@ -99,6 +99,9 @@ nnoremap <leader>b :!./build.sh<CR>
 " add a vim setings line for tabs=2
 nnoremap <leader>t2 ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
 
+" add nice copyright note
+nnoremap <leader>cp gg:r<Space>~/Projects/alexcoder04/copyright-note-template<CR>
+
 " format
 nnoremap <leader>f :CocCommand prettier.formatFile<CR>:w<CR>
 nnoremap <leader>fa :autocmd BufWritePre :CocCommand prettier.formatFile<CR>
