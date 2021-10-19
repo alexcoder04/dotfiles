@@ -30,7 +30,7 @@ source "$ZDOTDIR/lf_icons.zsh"
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
-HISTORY_IGNORE="(git add *|git push|git status|* && exa --icons)"
+HISTORY_IGNORE="(git add *|git push|git commit *|* && exa --icons)"
 HISTFILE=~/.cache/zsh/zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -114,7 +114,8 @@ source "+ZSH_SYNTAX_PLUGIN+"
 #echo "\033[01;32mNice to see you in the Terminal again, Alex =)\033[00m"
 
 # 5) auto-check whether in tty or gui
-[ "$TERM" = "linux" ] \
-  && neofetch \
-  || colorscript random
+case "$(tty)" in
+    /dev/tty*) neofetch ;;
+    *) colorscript random ;;
+esac
 

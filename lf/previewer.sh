@@ -61,6 +61,9 @@ if [ -n "$FIFO_UEBERZUG" ]; then
       echo "\033[36mZip archive:\033[0m"
       zipinfo "$file"
       ;;
+    application/json)
+      bat "$file"
+      ;;
     audio/*)
       mediainfo "$file"
       ;;
