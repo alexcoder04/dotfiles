@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CONFIG_DIR="$XDG_CONFIG_HOME/mpv"
+
+[ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
+
+cp -v "./mpv.conf" "$CONFIG_DIR/"
+cp -rv "./script-opts" "$CONFIG_DIR/"
+cp -rv "./scripts" "$CONFIG_DIR/"
+

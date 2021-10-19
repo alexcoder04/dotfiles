@@ -21,7 +21,7 @@ ABBREVIATION alu="apt list --upgradeable"
 # GIT COMMANDS
 # --------------------------------------------------------------------
 ABBREVIATION gst="git status"
-ABBREVIATION gpush="git push && [ -f .autopush ] && ./.autopush || echo 'No autopush script is configured for this repository'"
+ABBREVIATION gpush="git push"
 ABBREVIATION gpull="git pull"
 ABBREVIATION gcom="git commit -m"
 ABBREVIATION gclone="git clone"

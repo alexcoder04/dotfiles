@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mkdir -vp "$XDG_CONFIG_HOME/sx"
+cp -v "./sxrc" "$XDG_CONFIG_HOME/sx/sxrc"
+

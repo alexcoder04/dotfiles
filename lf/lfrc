@@ -184,8 +184,10 @@ map T $$SHELL
 map H set hidden!
 map ws set_wallpaper
 map <c-l> reload
-map <c-l> set-columns
+map <c-L> set-columns
 map <c-a> select-all
+
+map <c-r> :rename; cmd-word-back; cmd-left
 
 # -----------------------------------------------------
 # STARTUP
