@@ -4,16 +4,15 @@
 ![my desktop](./screenshots/i3-i3blocks-screenshot.png)
 
 This repository contains the configuration files I use on the daily basis on my
-Linux machine. Most of them rely on my scripts
-(https://github.com/alexcoder04/scripts) to function properly.
-
-**Note**: the configs are made to fit my specific needs and work only well on my
-machine so far.
+Linux machine. The primary aim of this repository is to maintain my personal
+files, but if you find something useful you can integrate it in your own setup.
+Most of the configs rely on my scripts (https://github.com/alexcoder04/scripts)
+to function properly.
 
 ## Installation system
 
 **Note**: the install and reconf scripts are very buggy and cannot deal with any
-kind of misformed input.
+kind of misformed input, not existing files etc.
 
 Every folder contains the configuration files for a particular program as well
 as an `install` script. These scripts are supposed to be called from the main
