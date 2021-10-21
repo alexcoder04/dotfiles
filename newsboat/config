@@ -14,11 +14,7 @@
 auto-reload no
 reload-threads 16
 
-browser "firefox %u &>/dev/null &"
-macro v set browser "rss-yt-viewer" ; open-in-browser ; set browser "firefox %u &>/dev/null &"
-macro V set browser "rss-yt-viewer odysee" ; open-in-browser ; set browser "firefox %u &>/dev/null &"
-macro m set browser "rss-add-to-list %u &>/dev/null &" ; save /tmp/article.txt ; open-in-browser ; set browser "firefox %u &>/dev/null &"
-macro d set browser "rss-dl-queue &>/dev/null &" ; open-in-browser ; set browser "firefox %u &>/dev/null &"
+browser "qutebrowser %u &>/dev/null &"
 
 color info cyan white bold
 color listnormal blue default

@@ -11,7 +11,8 @@ THEME_DIR="/usr/share/bumblebee-status/themes"
 echo "$SOURCE_DIR/{config/bar.config} -> $CONFIG_DIR/config"
 cat "$SOURCE_DIR/config" "$SOURCE_DIR/bar.config" | ../reconf "../defaults" "../$1.prefs" \
 	> "$CONFIG_DIR/config"
-doas cp -v "dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
+#doas cp -v "dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
 cp -v "../i3-base/lock.png" "$CONFIG_DIR/"
+echo "NOTE: bumblebee-status theme needs to be updated manually"
 echo "NOTE: YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION"
 
