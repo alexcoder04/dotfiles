@@ -16,14 +16,14 @@ HOME = os.getenv("HOME")
 XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME")
 
 # define colors
-MY_BLACK = "+COLOR_BLACK+"
-MY_DARK_BLUE = "+COLOR_DARK_BLUE+"
-MY_LIGHT_BLUE = "+COLOR_CYAN+"
-MY_WHITE = "+COLOR_WHITE+"
-MY_DARK_GREY = "+COLOR_DARK_GREY+"
-MY_GREEN = "+COLOR_GREEN+"
-MY_RED = "+COLOR_RED+"
-MY_YELLOW = "+COLOR_YELLOW+"
+MY_BLACK = os.getenv("COLOR_BLACK")
+MY_DARK_BLUE = os.getenv("COLOR_DARK_BLUE")
+MY_LIGHT_BLUE = os.getenv("COLOR_CYAN")
+MY_WHITE = os.getenv("COLOR_WHITE")
+MY_DARK_GREY = os.getenv("COLOR_DARK_GREY")
+MY_GREEN = os.getenv("COLOR_GREEN")
+MY_RED = os.getenv("COLOR_RED")
+MY_YELLOW = os.getenv("COLOR_YELLOW")
 
 # actually just set colors (alphabetically)
 c.colors.completion.category.bg = MY_DARK_BLUE
@@ -60,9 +60,9 @@ c.colors.tabs.even.bg = MY_DARK_BLUE
 c.colors.tabs.even.fg = MY_WHITE
 c.colors.tabs.odd.bg = MY_BLACK
 c.colors.tabs.odd.fg = MY_WHITE
-c.colors.tabs.selected.even.bg = MY_LIGHT_BLUE
+c.colors.tabs.selected.even.bg = MY_GREEN
 c.colors.tabs.selected.even.fg = MY_BLACK
-c.colors.tabs.selected.odd.bg = MY_LIGHT_BLUE
+c.colors.tabs.selected.odd.bg = MY_GREEN
 c.colors.tabs.selected.odd.fg = MY_BLACK
 
 # fonts

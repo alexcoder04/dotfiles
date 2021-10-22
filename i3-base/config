@@ -27,13 +27,13 @@ focus_follows_mouse		no
 font pango:				+I3_FONT_PANGO+
 
 # Colors
-set $green				+COLOR_GREEN+	
-set $red				+COLOR_RED+
-set $blue				+COLOR_BLUE+
-set $white				+COLOR_WHITE+
-set $black				+COLOR_BLACK+
-set $light_grey			+COLOR_LIGHT_GREY+
-set $dark_grey			+COLOR_DARK_GREY+
+set_from_resource $green		i3wm.color2   #00ff00
+set_from_resource $red			i3wm.color1   #ff0000
+set_from_resource $blue			i3wm.color6   #008888
+set_from_resource $white		i3wm.color7   #ffffff
+set_from_resource $black		i3wm.color0   #000000
+set_from_resource $light_grey	i3wm.color8   #555555
+set_from_resource $dark_grey	i3wm.color15  #dddddd
 
 # ------------------------------------------------------------------------------
 # WORKSPACES

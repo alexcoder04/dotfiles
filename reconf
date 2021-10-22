@@ -8,6 +8,7 @@ def read_settings_file(filename, settings=None):
         settings = {}
     f = open(filename)
     for line in f.readlines():
+        line = line.strip()
         if line == "" or line.startswith("#"):
             continue
         if line.startswith("%include"):

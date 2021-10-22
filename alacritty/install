@@ -4,5 +4,5 @@ CONFIG_FOLDER="$XDG_CONFIG_HOME/alacritty"
 [ -d "$CONFIG_FOLDER" ] || mkdir -p "$CONFIG_FOLDER"
 
 cp -v "./alacritty.yml" "$CONFIG_FOLDER/alacritty.yml"
-cp -v "./dracula.yml" "$CONFIG_FOLDER/dracula.yml"
+cp -v "./$COLORSCHEME.yml" "$CONFIG_FOLDER/colorscheme.yml"
 

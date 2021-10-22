@@ -32,7 +32,8 @@ syntax on
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'morhetz/gruvbox'
+"Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'preservim/nerdtree'
 Plug 'alexcoder04/lightline.vim'
 Plug 'dhruvasagar/vim-table-mode'
@@ -44,7 +45,7 @@ call plug#end()
 " -------------------------------------------------
 set termguicolors
 set cursorline
-colorscheme dracula
+colorscheme gruvbox
 " override background color, so it's transparent
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
@@ -259,7 +260,7 @@ let g:coc_global_extensions = [
 
 " lightline config
 let g:lightline = {
-  \ 'colorscheme': 'dracula'
+  \ 'colorscheme': 'gruvbox'
   \ }
 set noshowmode
 

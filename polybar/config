@@ -26,18 +26,18 @@ compositing-overline = over
 compositing-underline = over
 compositing-border = over
 format-foreground = #90282a36
-format-background = +COLOR_WHITE+
+format-background = ${env:COLOR_WHITE:#ffffff}
 
 [colors]
 background = #95282a36
-foreground = +COLOR_WHITE+
-cyan = +COLOR_CYAN+
-green = +COLOR_GREEN+
-yellow = +COLOR_YELLOW+
-magenta = +COLOR_MAGENTA+
-purple = +COLOR_PURPLE+
-red = +COLOR_RED+
-lightgrey = +COLOR_LIGHT_GREY+
+foreground = ${env:COLOR_WHITE:#ffffff}
+cyan = ${env:COLOR_CYAN:#00ffff}
+green = ${env:COLOR_GREEN:#00ff00}
+lightgrey = ${env:COLOR_LIGHT_GREY:#dddddd}
+magenta = ${env:COLOR_MAGENTA:#ff0000}
+purple = ${env:COLOR_PURPLE:#ff00ff}
+red = ${env:COLOR_RED:#ff0000}
+yellow = ${env:COLOR_YELLOW:#ffff00}
 
 ################################################################################
 ############                         MAINBAR-I3                     ############
@@ -45,7 +45,7 @@ lightgrey = +COLOR_LIGHT_GREY+
 
 [bar/mainbar-i3]
 
-monitor = ${env:MONITOR}
+monitor = ${env:MONITOR:HDMI-1}
 monitor-strict = false
 override-redirect = false
 bottom = false

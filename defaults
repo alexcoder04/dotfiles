@@ -3,7 +3,8 @@ TERMINAL_SECONDARY	alacritty
 FILEMANAGER_MAIN	    alacritty -e sh -c 'export TERM=xterm; . $DOTFILES_REPO/sh/lf_icons.sh; lf_run'
 FILEMANAGER_SECONDARY	alacritty -e sh -c 'export TERM=xterm; . $DOTFILES_REPO/sh/lf_icons.sh; lf_run'
 BROWSER_MAIN		qutebrowser
-BROWSER_SECONDARY	firefox
-EDITOR_MAIN		nvim
-SETTINGS_APP		cinnamon-settings
-%include		./colorschemes/dracula
+BROWSER_SECONDARY	        firefox
+EDITOR_MAIN		            nvim
+SETTINGS_APP		        cinnamon-settings
+COLORSCHEME                 gruvbox
+%include		            ./colorschemes/gruvbox
