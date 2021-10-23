@@ -10,6 +10,8 @@
 # start X server with sx - config file
 # 
 
+xrdb "$XDG_CONFIG_HOME/X11/Xresources"
+
 [ -z "$WINDOW_MANAGER" ] \
   && exec i3 \
   || exec $WINDOW_MANAGER

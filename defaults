@@ -6,5 +6,5 @@ BROWSER_MAIN		qutebrowser
 BROWSER_SECONDARY	        firefox
 EDITOR_MAIN		            nvim
 SETTINGS_APP		        cinnamon-settings
-COLORSCHEME                 gruvbox
-%include		            ./colorschemes/gruvbox
+COLORSCHEME                 dracula
+%include		            ./colorschemes/dracula
