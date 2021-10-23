@@ -95,6 +95,8 @@ super + f
 super + shift + f
 	+BROWSER_SECONDARY+
 super + ctrl + f
+	firefox-profile-select
+super + ctrl + f
     qutebrowser
 # H, J, K, L: window-manager-reserved
 

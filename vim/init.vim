@@ -111,10 +111,12 @@ nnoremap <leader>fa :autocmd BufWritePre :CocCommand prettier.formatFile<CR>
 " auto-run a python file on the raspberry pi (at the moment useless and unsafe)
 autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.py" && +TERMINAL_MAIN+ --hold -e ssh pi@raspberry "python3 /tmp/code.py" &<CR>
 
-" build LaTeX and MD
+" build LaTeX and MD, run Python
 autocmd FileType tex nnoremap <leader>p :w<CR>:!latex-build "%"<CR>
 autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview "%"<CR>
 autocmd FileType markdown nnoremap <leader>P :w<CR>:!md-preview "%" export<CR>
+autocmd BufEnter *.bm.md nnoremap <leader>p :w<CR>:!md-preview "%" beamer<CR>
+autocmd FileType python nnoremap <leader>p :w<CR>:!python3 "%"<CR>
 
 " LaTeX \begin\end ENV
 autocmd FileType tex nnoremap <leader>e yyI\begin{<Esc>A}<Esc>pI\end{<Esc>A}<Esc>O
@@ -156,7 +158,7 @@ autocmd BufWritePost +DOTFILES_REPO+/bash/bashrc !+DOTFILES_REPO+/install bash
 autocmd BufWritePost +DOTFILES_REPO+/wm-utils/sxhkdrc !+DOTFILES_REPO+/install wm-utils && killall sxhkd && sxhkd &
 autocmd BufWritePost +DOTFILES_REPO+/zsh/* !+DOTFILES_REPO+/install zsh
 autocmd BufWritePost +DOTFILES_REPO+/cron/crontab !+DOTFILES_REPO+/install cron
-autocmd BufWritePost +DOTFILES_REPO+/lf/lfrc !+DOTFILES_REPO+/install lf
+autocmd BufWritePost +DOTFILES_REPO+/lf/* !+DOTFILES_REPO+/install lf
 autocmd BufWritePost +DOTFILES_REPO+/qutebrowser/config.py !+DOTFILES_REPO+/install qutebrowser
 autocmd BufWritePost */BWKI/repo/nn/*.py !+TERMINAL_MAIN+ --hold --class "alacritty,i3_float" -e sh -c 'python3 "%" && echo ---end---' &
 

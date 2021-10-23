@@ -45,6 +45,13 @@ cmd set-columns %{{
     fi
 }}
 
+cmd reload-window :{{
+    unselect
+    clear
+    set-columns
+    reload
+}}
+
 cmd select-all %{{
     ls | xargs -I{} lf -remote "send $id toggle {}"
 }}
@@ -112,21 +119,21 @@ cmd archive !{{
     echo "$fx" | xargs -n 1 basename | xargs -t tar -czf "$f.tar.gz"
 }}
 
-# from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
+# adapted from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
 cmd open ${{
-	case $(file --mime-type $f -b) in
+	case "$(file --mime-type "$f" -b)" in
 		application/pdf|application/vnd*|application/epub*)
-			setsid -f zathura $fx >/dev/null 2>&1 ;;
+			setsid -f zathura "$f" >/dev/null 2>&1 ;;
 		image/*)
-			setsid -f feh $fx ;;
+			setsid -f feh "$f" ;;
 		audio/*)
 			mpv --audio-display=no $f ;;
 		video/*)
 			setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
 		text/*)
-			nvim -c 'nnoremap H :q<CR>' $fx ;;
+			nvim -c 'nnoremap H :q<CR>' "$f" ;;
         application/gzip)
-            extract_to="$(basename $f .tar.gz)"
+            extract_to="$(basename "$f" .tar.gz)"
             if [ -d "$extract_to" ]; then
                 counter=1
                 while [ -d "$extract_to-$counter" ]; do
@@ -137,7 +144,11 @@ cmd open ${{
             mkdir "$extract_to"
             tar -xzf "$f" -C "$extract_to" ;;
 		*)
-			for f in $fx; do setsid -f xdg-open $f >/dev/null 2>&1; done ;;
+            if [ ! -s "$f" ]; then
+                nvim -c 'nnoremap H :q<CR>' "$f"
+            else
+                setsid -f xdg-open "$f" >/dev/null 2>&1
+            fi ;;
 	esac
 }}
 
@@ -153,6 +164,8 @@ cmd folder-with-items %{{
 cmd on-cd %{{
     printf "\033]0; $(pwd | sed "s|$HOME|~|" | tail -c 30) \007" > /dev/tty
 }}
+
+cmd q :quit
 
 # -----------------------------------------------------
 # KEYBINDS
@@ -183,8 +196,7 @@ map ac archive
 map T $$SHELL
 map H set hidden!
 map ws set_wallpaper
-map <c-l> reload
-map <c-L> set-columns
+map <c-l> reload-window
 map <c-a> select-all
 
 map <c-r> :rename; cmd-word-back; cmd-left
