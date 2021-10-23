@@ -35,8 +35,8 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 "Plug 'morhetz/gruvbox'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'preservim/nerdtree'
-Plug 'alexcoder04/lightline.vim'
+"Plug 'preservim/nerdtree'
+Plug 'alexcoder04/lightline.vim' " own fork, because of colorschemes
 Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
@@ -55,7 +55,7 @@ hi! NonText ctermbg=NONE guibg=NONE
 " KEYBINDINGS
 " -------------------------------------------------
 " file tree and fuzzy finder
-nmap <C-n> :NERDTreeToggle<CR>
+"nmap <C-n> :NERDTreeToggle<CR>
 " disable arrow keys in normal mode xD
 nnoremap <Left> :echo "you fool..."<CR>
 nnoremap <Right> :echo "you fool..."<CR>
@@ -108,9 +108,6 @@ nnoremap <leader>cp gg:r<Space>~/Projects/alexcoder04/copyright-note-template<CR
 nnoremap <leader>f :CocCommand prettier.formatFile<CR>:w<CR>
 nnoremap <leader>fa :autocmd BufWritePre :CocCommand prettier.formatFile<CR>
 
-" auto-run a python file on the raspberry pi (at the moment useless and unsafe)
-autocmd FileType python nnoremap <leader>R :!rsync "%" "pi@raspberry:/tmp/code.py" && +TERMINAL_MAIN+ --hold -e ssh pi@raspberry "python3 /tmp/code.py" &<CR>
-
 " build LaTeX and MD, run Python
 autocmd FileType tex nnoremap <leader>p :w<CR>:!latex-build "%"<CR>
 autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview "%"<CR>
@@ -160,9 +157,8 @@ autocmd BufWritePost +DOTFILES_REPO+/zsh/* !+DOTFILES_REPO+/install zsh
 autocmd BufWritePost +DOTFILES_REPO+/cron/crontab !+DOTFILES_REPO+/install cron
 autocmd BufWritePost +DOTFILES_REPO+/lf/* !+DOTFILES_REPO+/install lf
 autocmd BufWritePost +DOTFILES_REPO+/qutebrowser/config.py !+DOTFILES_REPO+/install qutebrowser
-autocmd BufWritePost */BWKI/repo/nn/*.py !+TERMINAL_MAIN+ --hold --class "alacritty,i3_float" -e sh -c 'python3 "%" && echo ---end---' &
 
-" copy arduino files to clipboard on save
+" copy arduino files to clipboard on save to paste them into Arduino IDE
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
 
 " settings in LaTeX
@@ -192,7 +188,6 @@ autocmd FileType html inoremap ;btn <button id=""><++></button><Enter><++><Esc>k
 autocmd FileType javascript inoremap ;cl console.log();<Enter><++><Esc>k0t(i
 
 " markdown
-autocmd FileType markdown nnoremap ;! :r ~/Vorlagen/presentation.bm.md.drf<CR>ggdd/<++><CR>"_c4l
 autocmd FileType markdown inoremap ;i ** <++><Esc>F*i
 autocmd FileType markdown inoremap ;b **** <++><Esc>F*hi
 autocmd FileType markdown inoremap ;` ```<Enter><++><Enter>```<Enter><++><Esc>3kA
@@ -265,5 +260,5 @@ let g:coc_global_extensions = [
 let g:lightline = {
   \ 'colorscheme': 'dracula'
   \ }
-set noshowmode
+set noshowmode " we don't need to show the mode, lightline takes care of it
 
