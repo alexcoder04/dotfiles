@@ -38,24 +38,19 @@ ABBREVIATION gbranch="git branch"
 alias cls='[ "$(seq 1 3 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cyan; clear'
 
 # make ls look nice but still tty-friendly and consider exa not beeing installed
-case "$(tty)" in
-  /dev/tty*)
-    if which exa >/dev/null; then
-      alias ls="exa -hl --group-directories-first"
-      alias la="exa -ahl --group-directories-first"
-    else
-      alias ls="ls -lFh --group-directories-first"
-      alias la="ls -AlF --group-directories-first"
-    fi ;;
-  *)
-    if which exa >/dev/null; then
-      alias ls="exa -hl --icons --group-directories-first"
-      alias la="exa -ahl --icons --group-directories-first"
-    else
-      alias ls="ls -lFh --group-directories-first"
-      alias la="ls -AlF --group-directories-first"
-    fi ;;
-esac
+if which exa >/dev/null; then
+    case "$(tty)" in
+        /dev/tty*)
+          alias ls="exa -hl --group-directories-first"
+          alias la="exa -ahl --group-directories-first" ;;
+        *)
+          alias ls="exa -hl --icons --group-directories-first"
+          alias la="exa -ahl --icons --group-directories-first" ;;
+    esac
+else
+  alias ls="ls -lFh --group-directories-first"
+  alias la="ls -AlF --group-directories-first"
+fi
 
 # rm, cp, mv, ln
 ABBREVIATION ln="ln -v"
@@ -65,10 +60,11 @@ ABBREVIATION mv="mv -iv"
 ABBREVIATION cp="cp -iv"
 ABBREVIATION cpd="cp -ifvr"
 
-# grep
+# grep and diff
 alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
+alias diff="diff --color=auto"
 
 # how often do you do this...
 ABBREVIATION chx="chmod +x"
@@ -82,27 +78,34 @@ esac
 
 # other stuff
 ABBREVIATION lsblk="lsblk -f"
+ABBREVIATION webserver="python3 -m http.server 1234"
 
 # --------------------------------------------------------------------
-# PROGRAMS
+# AUTO-USE SUDO
+# --------------------------------------------------------------------
+ABBREVIATION mount="doas mount"
+ABBREVIATION umount="doas umount"
+ABBREVIATION p="doas pacman"
+
+# --------------------------------------------------------------------
+# REBIND SOME PROGRAMS
 # --------------------------------------------------------------------
 GLOBAL_ALIAS v="nvim"
 GLOBAL_ALIAS vi="nvim"
 GLOBAL_ALIAS vim="nvim"
+GLOBAL_ALIAS vimdiff="nvim -d"
 
-GLOBAL_ALIAS p="pacman"
+GLOBAL_ALIAS sudo="doas"
+GLOBAL_ALIAS sizeof="du --max-depth 0 -h"
 alias bat="bat --plain --theme=Dracula --paging=never"
 alias lf="lf_run"
-alias sudo="doas"
 alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
 alias newsboat="newsboat-selector"
-GLOBAL_ALIAS sizeof="du --max-depth 0 -h"
-ABBREVIATION topc="cd $HOME/Scripts/uploader && python3 server.py"
+alias ffmpeg="ffmpeg -hide_banner"
 
 # Working with disks
 ABBREVIATION umount-luks="sudo umount /media/luks && sudo cryptsetup close butterfly"
 ABBREVIATION driveoff="sudo hdparm -Y"
-ABBREVIATION webserver="python3 -m http.server 1234"
 
 # Fun commands
 ABBREVIATION gnuhead="cat /home/alex/.local/share/gnu-head-xterm"
