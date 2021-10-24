@@ -296,15 +296,7 @@ format-background = ${colors.background}
 [module/temperature]
 type = internal/temperature
 interval = 5
-; To list all the zone types, run
-; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
-thermal-zone = 0
-
-; Use `sensors` to find preferred temperature source, then run
-; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
-; to find path to desired file
-; Default reverts to thermal zone setting
-hwmon-path = /sys/class/thermal/thermal_zone5/temp
+thermal-zone = 7
 
 warn-temperature = 60
 format = <ramp> <label>
@@ -332,7 +324,7 @@ ramp-background = ${colors.background}
 
 [module/updates]
 type = custom/script
-exec = pacman -Qu | wc -l
+exec = checkupdates | wc -l
 interval = 1200
 
 format-prefix = "  "
