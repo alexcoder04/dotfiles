@@ -1,12 +1,9 @@
 #!/bin/sh
 
 DUNST_CONFIG_DIR="$XDG_CONFIG_HOME/dunst"
-ICONS_DIR="$XDG_DATA_HOME/icons/notify"
 
 [ -d "$DUNST_CONFIG_DIR" ] || mkdir -vp "$DUNST_CONFIG_DIR"
-[ -d "$ICONS_DIR" ] || mkdir -vp "$ICONS_DIR"
 
-cp -v "./icons/"* "$ICONS_DIR/"
 echo "./dunstrc -> $DUNST_CONFIG_DIR/dunstrc"
 cat "./dunstrc" | ../reconf "../defaults" "../$1.prefs" \
 	> "$DUNST_CONFIG_DIR/dunstrc"

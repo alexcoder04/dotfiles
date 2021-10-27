@@ -8,3 +8,7 @@ Particulary, I use a fork of i3 called i3-gaps that has some more features.
 The bar config is in a separate file because some of the configurations, like
 `i3-polybar` use a different bar.
 
+### Lock image
+
+http://www.groundreport.com/wp-content/uploads/2017/05/icon-1968247_960_720.png
+

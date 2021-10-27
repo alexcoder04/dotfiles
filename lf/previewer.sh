@@ -62,7 +62,7 @@ if [ -n "$FIFO_UEBERZUG" ]; then
       zipinfo "$file"
       ;;
     application/json)
-      bat "$file"
+      bat --plain --theme=Dracula --paging=never --color=always "$file"
       ;;
     audio/*)
       mediainfo "$file"

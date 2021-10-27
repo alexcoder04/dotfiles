@@ -10,25 +10,6 @@ colors:
   cursor:
     text:   CellBackground
     cursor: CellForeground
-  vi_mode_cursor:
-    text:   CellBackground
-    cursor: CellForeground
-  # search:
-  #   matches:
-  #     foreground: '#000000'
-  #     background: '#ffffff'
-  #   focused_match:
-  #    foreground: CellBackground
-  #    background: CellForeground
-  #   bar:
-  #     background: ''
-  #     foreground: ''
-  # line_indicator:
-  #   foreground: None
-  #   background: None
-  selection:
-    text:       CellBackground
-    background: CellForeground
   bright:
     black:   '#928374'
     red:     '#fb4934'
@@ -56,4 +37,3 @@ colors:
     magenta: '#8f3f71'
     cyan:    '#427b58'
     white:   '#a89984'
-  # indexed_colors: []
