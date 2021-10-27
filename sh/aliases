@@ -21,13 +21,13 @@ ABBREVIATION alu="apt list --upgradeable"
 # GIT COMMANDS
 # --------------------------------------------------------------------
 ABBREVIATION gst="git status"
-ABBREVIATION gpush="git push"
+ABBREVIATION gps="git push"
 ABBREVIATION gpull="git pull"
 ABBREVIATION gcom="git commit -m"
 ABBREVIATION gclone="git clone"
-ABBREVIATION ginit="git init && cp -v $HOME/Vorlagen/gitignore .gitignore"
+ABBREVIATION ginit="git init"
 ABBREVIATION gadd="git add"
-ABBREVIATION gaddall="git add -A"
+ABBREVIATION gadda="git add -A"
 ABBREVIATION gcheckout="git checkout"
 ABBREVIATION gbranch="git branch"
 
@@ -85,7 +85,6 @@ ABBREVIATION webserver="python3 -m http.server 1234"
 # --------------------------------------------------------------------
 ABBREVIATION mount="doas mount"
 ABBREVIATION umount="doas umount"
-ABBREVIATION p="doas pacman"
 
 # --------------------------------------------------------------------
 # REBIND SOME PROGRAMS
@@ -96,6 +95,7 @@ GLOBAL_ALIAS vim="nvim"
 GLOBAL_ALIAS vimdiff="nvim -d"
 
 GLOBAL_ALIAS sudo="doas"
+GLOBAL_ALIAS p="pacman"
 GLOBAL_ALIAS sizeof="du --max-depth 0 -h"
 alias bat="bat --plain --theme=Dracula --paging=never"
 alias lf="lf_run"

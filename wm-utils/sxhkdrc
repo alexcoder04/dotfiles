@@ -37,6 +37,18 @@ super + Tab
 	rofi -show window -modi window
 
 # ###################################################################
+# DUNST
+# ###################################################################
+ctrl + space
+    dunstctl close
+ctrl + shift + space
+    dunstctl close-all
+ctrl + period
+    dunstctl history-pop
+ctrl + comma
+    dunstctl context
+
+# ###################################################################
 # EXTENDED CLIPBOARD
 # ###################################################################
 alt + c

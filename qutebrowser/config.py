@@ -103,6 +103,10 @@ config.bind("t", "open -t")
 config.bind("Y", "yank selection")
 config.load_autoconfig()
 
+# some privacy options
+# TODO auto-change user agent
+c.content.headers.user_agent = "Mozilla/5.0 (X11; Linux x86_64; rv:93.0) Gecko/20100101 Firefox/93.0"
+
 # other settings
 c.qt.args = ["blink-settings=darkMode=1"]
 c.scrolling.smooth = False
