@@ -1,5 +1,5 @@
 
-# My dotfiles
+# My .files
 
 ![my desktop](./screenshots/i3-i3blocks-screenshot.png)
 
@@ -32,3 +32,10 @@ machines). The pc-name is determined by: passed argument (e. g.
 `./install zsh <machine>`); content of `$XDG_DATA_HOME/conf-pc-name`; content of
 `/etc/hostname`.
 
+## Licensing
+
+The configs are written by after studying the according documentation for the
+most part and published under the GNU GPLv3 (see `LICENSE`). However, some parts
+are copied from other sources, so different licensing terms may apply to them.
+For foreign code, you can always find the source I got it from in the comments
+or README files in the subfolders.
