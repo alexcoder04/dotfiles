@@ -12,7 +12,5 @@ cat "./bspwmrc" | ../reconf "../defaults" "../$1.prefs" \
 echo "./bspwm.sxhkdrc -> $SXHKD_CONFIG_DIR/bspwm.sxhkdrc"
 cat "./bspwm.sxhkdrc" | ../reconf "../defaults" "../$1.prefs" \
 		>"$SXHKD_CONFIG_DIR/bspwm.sxhkdrc"
-cp -v "./compton.conf" "$XDG_CONFIG_HOME/compton.conf"
-cp -v "./compton.conf" "$XDG_CONFIG_HOME/picom.conf"
 echo "RESTART BSPWM TO UPDATE THE CONFIGURATION"
 
