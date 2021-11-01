@@ -145,9 +145,13 @@ super + minus
 # ###################################################################
 # FUNCTION KEYS
 # ###################################################################
-super + {F1, F2, F3, F4}
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1,2,3,4)-key"
-super + shift + F5
+super + {F1, F2, F3}
+	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1,2,3)-key"
+super + F4
+    password
+super + shift + F4
+    password --otp
+super + F5
     unmount-drive
 super + F6
     i3-mode-change
@@ -172,9 +176,7 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	sudo brightness lower
 super + Print
-	gnome-screenshot
-super + shift + Print
-	gnome-screenshot --interactive
-super + ctrl + Print
-	obs
+	screenshot
+super +shift + Print
+	screenshot --select
 
