@@ -10,6 +10,7 @@
 
 export ZDOTDIR="$HOME/.config/zsh"
 export DOTFILES_REPO="+DOTFILES_REPO+"
+export SCRIPTS_DIR="+SCRIPTS_DIR+"
 
 # XDG variables
 export XDG_CONFIG_HOME="$HOME/.config"

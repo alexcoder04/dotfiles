@@ -110,9 +110,10 @@ nnoremap <leader>fa :autocmd BufWritePre :CocCommand prettier.formatFile<CR>
 
 " build LaTeX and MD, run Python
 autocmd FileType tex nnoremap <leader>p :w<CR>:!latex-build "%"<CR>
-autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview "%"<CR>
-autocmd FileType markdown nnoremap <leader>P :w<CR>:!md-preview "%" export<CR>
-autocmd BufEnter *.bm.md nnoremap <leader>p :w<CR>:!md-preview "%" beamer<CR>
+autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview -i "%"<CR>
+autocmd FileType markdown nnoremap <leader>P :w<CR>:!md-preview -i "%" -e<CR>
+autocmd BufEnter *.bm.md nnoremap <leader>p :w<CR>:!md-preview -i "%" -t beamer<CR>
+autocmd BufEnter *.bm.md nnoremap <leader>P :w<CR>:!md-preview -i "%" -t beamer -e<CR>
 autocmd FileType python nnoremap <leader>p :w<CR>:!python3 "%"<CR>
 
 " LaTeX \begin\end ENV
@@ -150,14 +151,14 @@ autocmd BufWritePre *.json CocCommand prettier.formatFile
 autocmd BufWritePre *.css CocCommand prettier.formatFile
 
 " re-generate config files after editing
-autocmd BufWritePost +DOTFILES_REPO+/vim/init.vim !+DOTFILES_REPO+/install vim
-autocmd BufWritePost +DOTFILES_REPO+/fish/dynamic/config.fish !+DOTFILES_REPO+/install fish
-autocmd BufWritePost +DOTFILES_REPO+/bash/bashrc !+DOTFILES_REPO+/install bash
-autocmd BufWritePost +DOTFILES_REPO+/wm-utils/sxhkdrc !+DOTFILES_REPO+/install wm-utils && killall sxhkd && sxhkd &
-autocmd BufWritePost +DOTFILES_REPO+/zsh/* !+DOTFILES_REPO+/install zsh
-autocmd BufWritePost +DOTFILES_REPO+/cron/crontab !+DOTFILES_REPO+/install cron
-autocmd BufWritePost +DOTFILES_REPO+/lf/* !+DOTFILES_REPO+/install lf
-autocmd BufWritePost +DOTFILES_REPO+/qutebrowser/config.py !+DOTFILES_REPO+/install qutebrowser
+autocmd BufWritePost $DOTFILES_REPO/vim/init.vim !$DOTFILES_REPO/install vim
+autocmd BufWritePost $DOTFILES_REPO/fish/dynamic/config.fish !$DOTFILES_REPO/install fish
+autocmd BufWritePost $DOTFILES_REPO/bash/bashrc !$DOTFILES_REPO/install bash
+autocmd BufWritePost $DOTFILES_REPO/wm-utils/sxhkdrc !$DOTFILES_REPO/install wm-utils && killall sxhkd && sxhkd &
+autocmd BufWritePost $DOTFILES_REPO/zsh/* !$DOTFILES_REPO/install zsh
+autocmd BufWritePost $DOTFILES_REPO/cron/crontab !$DOTFILES_REPO/install cron
+autocmd BufWritePost $DOTFILES_REPO/lf/* !$DOTFILES_REPO/install lf
+autocmd BufWritePost $DOTFILES_REPO/qutebrowser/config.py !$DOTFILES_REPO/install qutebrowser
 
 " copy arduino files to clipboard on save to paste them into Arduino IDE
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
