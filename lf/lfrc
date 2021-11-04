@@ -27,6 +27,8 @@ set filesep "\n"
 set info size
 set incsearch
 
+set promptfmt "\033[34;1m[ \033[32;1m%u\033[31m@\033[33m%h \033[34;1m]\033[0m in \033[36;1;4m%d\033[35;4m%f \033[0m"
+
 # -----------------------------------------------------
 # PREVIEWS
 # -----------------------------------------------------
@@ -152,6 +154,13 @@ cmd open ${{
 	esac
 }}
 
+new-name %{{
+    set -f
+    printf "new name: "
+    read newname
+    mv "$f" "$newname"
+}}
+
 # from https://github.com/gokcehan/lf/wiki/Tips#new-folder-with-selected-items
 cmd folder-with-items %{{
     set -f
@@ -200,6 +209,7 @@ map <c-l> reload-window
 map <c-a> select-all
 
 map <c-r> :rename; cmd-word-back; cmd-left
+map <c-R> new-name
 
 # -----------------------------------------------------
 # STARTUP

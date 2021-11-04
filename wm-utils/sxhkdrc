@@ -160,7 +160,7 @@ super + F7
 super + shift + F7
     /home/alex/music.sh stop
 super + F8
-    monitors-menu
+    monitors-set --interactive
 super + F12
 	fix-keyboard
 # echo some text to the console and start htop to impress friends xD

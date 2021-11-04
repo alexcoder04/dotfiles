@@ -103,6 +103,9 @@ alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
 alias newsboat="newsboat-selector"
 alias ffmpeg="ffmpeg -hide_banner"
 
+# sx starts up Xorg, so sw starts up Wayland (Sway) xD
+alias sw="sway"
+
 # Working with disks
 ABBREVIATION umount-luks="sudo umount /media/luks && sudo cryptsetup close butterfly"
 ABBREVIATION driveoff="sudo hdparm -Y"
