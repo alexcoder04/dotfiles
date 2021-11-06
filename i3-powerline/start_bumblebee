@@ -1,0 +1,28 @@
+#!/bin/sh
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# 
+# start up bumblebee-status with my settings
+# requires: bumblebee-status
+#                                                          
+
+bumblebee-status \
+  -m datetime shell:bitcoin arch_update cpu sensors memory battery nic brightness amixer \
+  -p \
+    datetime.format="%d.%m.%Y %T" \
+    arch_update.interval=1800 \
+    bitcoin.command="bitcoinprice -si" bitcoin.interval=1800 \
+    cpu.interval=2 cpu.warning=25 cpu.critical=50 cpu.left-click="true" \
+    sensors.interval=10 sensors.use_sensors="False" \
+    memory.usedonly="True" memory.warning=20 memory.critical=30 memory.interval=11 memory.left-click="true" \
+    nic.format="" nic.exclude="eth,lo,enp,virbr" nic.interval=13 nic.right-click="wifi-toggle && notify-send 'wifi toggled'" \
+    battery.interval=17 battery.left-click="true" \
+    brightness.use_acpi="True" \
+    amixer.interval=20 \
+  -t dracula-powerline-custom
+

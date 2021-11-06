@@ -14,6 +14,9 @@ cat "$SOURCE_DIR/config" "$SOURCE_DIR/bar.config" | ../reconf "../defaults" "../
 #doas cp -v "dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
 cp -v "dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
 cp -v "../i3-base/lock.png" "$CONFIG_DIR/"
+cp -v "./start_bumblebee" "$CONFIG_DIR/"
+chmod -v +x "$CONFIG_DIR/start_bumblebee"
+
 echo "NOTE: bumblebee-status theme needs to be updated manually"
 echo "NOTE: YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION"
 
