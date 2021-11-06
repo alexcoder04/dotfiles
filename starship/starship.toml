@@ -9,7 +9,7 @@
 # starship config file
 
 add_newline = false
-format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in $directory$git_status $python$golang$nodejs
+format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in $directory$git_status$git_branch $python$golang$nodejs
 $custom$time $jobs$cmd_duration$character"""
 
 [username]
@@ -26,6 +26,7 @@ disabled = false
 
 [directory]
 truncation_length = 5
+truncation_symbol = "…/"
 style = "bold cyan"
 read_only_style = "red bold"
 read_only = "🔒(ro)"
@@ -45,6 +46,10 @@ modified = "[!](red)"
 staged = "[+](cyan)"
 renamed = "[>](red)"
 deleted = "[x](red)"
+
+[git_branch]
+style = "yellow"
+format = " on [$symbol$branch]($style)"
 
 [jobs]
 format = "[$symbol$number]($style) "
