@@ -154,11 +154,15 @@ cmd open ${{
 	esac
 }}
 
-new-name %{{
+cmd new-name %{{
     set -f
     printf "new name: "
     read newname
     mv "$f" "$newname"
+}}
+
+cmd normalize-name %{{
+    mv "$f" "$(echo "$f" | sed 's/\s/_/g')"
 }}
 
 # from https://github.com/gokcehan/lf/wiki/Tips#new-folder-with-selected-items
@@ -185,9 +189,12 @@ map e
 map d
 map w
 map a
+map r
 
-map r rename
-map R bulk-rename
+map rr rename
+map rR :rename; cmd-word-back; cmd-left
+map RR new-name
+map <c-r> bulk-rename
 
 map md push %mkdir<space>
 map mD folder-with-items
@@ -207,9 +214,7 @@ map H set hidden!
 map ws set_wallpaper
 map <c-l> reload-window
 map <c-a> select-all
-
-map <c-r> :rename; cmd-word-back; cmd-left
-map <c-R> new-name
+map _ normalize-name
 
 # -----------------------------------------------------
 # STARTUP

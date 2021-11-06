@@ -96,7 +96,7 @@ nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 " DO STUFF WITH LEADER KEY
 " -------------------------------------------------
 " compile a project
-nnoremap <leader>b :!./build.sh<CR>
+nnoremap <leader>b :w<CR>:!./build.sh<CR>
 
 " add a vim setings line for tabs=2
 nnoremap <leader>t2 ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
