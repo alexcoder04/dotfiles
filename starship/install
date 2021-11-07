@@ -1,5 +1,9 @@
 #!/bin/sh
 
-echo "./starship.toml -> $XDG_CONFIG_HOME/starship.toml"
-cat "./starship.toml" | ../reconf "../defaults" "../$1.prefs" > "$XDG_CONFIG_HOME/starship.toml"
+[ "$1" = "pinguin" ] \
+  && file="starship.toml" \
+  || file="starship.$1.toml"
+
+echo "./$file -> $XDG_CONFIG_HOME/starship.toml"
+cat "./$file" | ../reconf "../defaults" "../$1.prefs" > "$XDG_CONFIG_HOME/starship.toml"
 
