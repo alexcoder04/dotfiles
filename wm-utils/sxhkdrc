@@ -134,7 +134,7 @@ super + shift + n
 super + ctrl + n
 	+TERMINAL_MAIN+ -e nvim
 super + m
-	+TERMINAL_MAIN+ --hold -e neomutt
+	signal-desktop
 super + comma
 	+SETTINGS_APP+
 super + period

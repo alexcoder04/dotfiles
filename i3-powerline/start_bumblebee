@@ -11,17 +11,17 @@
 # requires: bumblebee-status
 #                                                          
 
-bumblebee-status \
+exec bumblebee-status \
   -m datetime shell:bitcoin arch_update cpu sensors memory battery nic brightness amixer \
   -p \
     datetime.format="%d.%m.%Y %T" \
-    arch_update.interval=1800 \
     bitcoin.command="bitcoinprice -si" bitcoin.interval=1800 \
+    arch_update.interval=1800 \
     cpu.interval=2 cpu.warning=25 cpu.critical=50 cpu.left-click="true" \
     sensors.interval=10 sensors.use_sensors="False" \
     memory.usedonly="True" memory.warning=20 memory.critical=30 memory.interval=11 memory.left-click="true" \
-    nic.format="" nic.exclude="eth,lo,enp,virbr" nic.interval=13 nic.right-click="wifi-toggle && notify-send 'wifi toggled'" \
     battery.interval=17 battery.left-click="true" \
+    nic.format="" nic.exclude="eth,lo,enp,virbr" nic.interval=13 nic.right-click="wifi-toggle && notify-send 'wifi toggled'" \
     brightness.use_acpi="True" \
     amixer.interval=20 \
   -t dracula-powerline-custom

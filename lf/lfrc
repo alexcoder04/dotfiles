@@ -38,7 +38,7 @@ set cleaner ~/.config/lf/clear_img.sh
 # -----------------------------------------------------
 # COMMANDS
 # -----------------------------------------------------
-cmd set-columns %{{
+cmd set-columns ${{
     w=$(tput cols)
     if [ $w -le 100 ]; then
         lf -remote "send $id set ratios 1:2"
@@ -124,7 +124,7 @@ cmd archive !{{
 # adapted from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
 cmd open ${{
 	case "$(file --mime-type "$f" -b)" in
-		application/pdf|application/vnd*|application/epub*)
+		application/pdf | application/vnd* | application/epub*)
 			setsid -f zathura "$f" >/dev/null 2>&1 ;;
 		image/*)
 			setsid -f feh "$f" ;;
@@ -132,7 +132,7 @@ cmd open ${{
 			mpv --audio-display=no $f ;;
 		video/*)
 			setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-		text/*)
+		text/* | application/json)
 			nvim -c 'nnoremap H :q<CR>' "$f" ;;
         application/gzip)
             extract_to="$(basename "$f" .tar.gz)"
@@ -220,4 +220,5 @@ map _ normalize-name
 # STARTUP
 # -----------------------------------------------------
 set-columns
+on-cd
 
