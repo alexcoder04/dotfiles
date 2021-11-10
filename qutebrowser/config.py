@@ -67,7 +67,7 @@ c.colors.tabs.selected.odd.fg = MY_BLACK
 
 # fonts
 c.fonts.default_family = "Inconsolata"
-c.fonts.default_size = "10pt"
+c.fonts.default_size = "15pt"
 c.fonts.web.family.standard = "Inconsolata"
 
 # how to show tabs
