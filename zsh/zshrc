@@ -89,7 +89,7 @@ tty | grep -q "/dev/tty[1-6]" && setfont "ter-118n"
 # PROMPT && AUTOSTART
 # ---------------------------------------------------------
 eval "$(starship init zsh)"
-source "$ZDOTDIR/startup.zsh"
+[ -z "$LF_LEVEL" ] && source "$ZDOTDIR/startup.zsh"
 
 # ---------------------------------------------------------
 # SYNTAX HIGHLIGHTING

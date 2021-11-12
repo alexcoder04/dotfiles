@@ -10,7 +10,8 @@
 
 add_newline = false
 format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in $directory$git_status$git_branch $python$golang$nodejs
-$custom$time $jobs$cmd_duration$character"""
+$custom $jobs$character"""
+right_format = "$cmd_duration $time"
 
 [username]
 style_user = "green bold"
@@ -21,7 +22,8 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format =  "$hostname"
+style = "yellow"
+format =  "[$hostname]($style)"
 disabled = false
 
 [directory]
@@ -66,14 +68,18 @@ success_symbol = "[ ](bold green)"
 error_symbol = "[ ](bold red)"
 vicmd_symbol = "[ ](bold blue)"
 
+[cmd_duration]
+format = "\\[[$duration]($style)\\]"
+
 [time]
 disabled = false
 format = "\\[[$time]($style)\\]"
+style = "yellow"
 time_format = "%a, %d %b %H:%M"
 
 [custom.lf_level]
-command = "echo :lf$LF_LEVEL: "
+command = "echo :lf$LF_LEVEL:"
 when = "[ ! -z $LF_LEVEL ]"
-style = "cyan"
+style = "bg:cyan fg:black"
 format = "[$output]($style)"
 
