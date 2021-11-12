@@ -18,6 +18,12 @@ cd "$pre"
 /bin/ls *.zsh \
   | xargs -I{} sh -c "cat {} | ../reconf \"../defaults\" \"../$1.prefs\" > \"$CONFIG_DIR/{}\" && echo \"{} -> $CONFIG_DIR/{}\""
 
+if [ -f "./startup.$1" ]; then
+  cp -v "./startup.$1" "$CONFIG_DIR/startup.zsh"
+else
+  cp -v "./startup.default" "$CONFIG_DIR/startup.zsh"
+fi
+
 echo "creating bookmarks"
 pre="$(pwd)"
 cd "../bookmarks" && ./build zsh > "$CONFIG_DIR/bookmarks.zsh"

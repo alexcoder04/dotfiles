@@ -1,0 +1,4 @@
+#!/usr/bin/zsh
+
+echo "Welcome to the Z Shell"
+

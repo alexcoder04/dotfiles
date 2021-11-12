@@ -83,39 +83,16 @@ bindkey -s '^b' ' &>/dev/null & disown'
 setopt autocd
 unsetopt beep extendedglob notify
 # set font if in tty
-tty | grep "/dev/tty[1-6]" >/dev/null 2>&1 && setfont "ter-118n"
+tty | grep -q "/dev/tty[1-6]" && setfont "ter-118n"
 
 # ---------------------------------------------------------
-# PROMPT
+# PROMPT && AUTOSTART
 # ---------------------------------------------------------
 eval "$(starship init zsh)"
+source "$ZDOTDIR/startup.zsh"
 
 # ---------------------------------------------------------
 # SYNTAX HIGHLIGHTING
 # ---------------------------------------------------------
 source "+ZSH_SYNTAX_PLUGIN+"
-
-# ---------------------------------------------------------
-# AUTOSTART
-# ---------------------------------------------------------
-# Choose what you want to see
-# ---------------------------------------------------------
-
-# 1) Simple system information
-#pfetch
-
-# 2) More system information
-#neofetch
-
-# 3) Random color script
-#colorscript random
-
-# 4) Nice greeting
-#echo "\033[01;32mNice to see you in the Terminal again, Alex =)\033[00m"
-
-# 5) auto-check whether in tty or gui
-case "$(tty)" in
-    /dev/tty*) neofetch ;;
-    *) colorscript random ;;
-esac
 

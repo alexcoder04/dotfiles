@@ -1,0 +1,8 @@
+#!/usr/bin/zsh
+
+# neofetch in tty, colorscript in terminal
+case "$(tty)" in
+    /dev/tty*) neofetch ;;
+    *) colorscript random ;;
+esac
+

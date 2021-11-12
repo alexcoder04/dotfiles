@@ -30,7 +30,7 @@ truncation_symbol = ".../"
 style = "bold cyan"
 read_only_style = "red bold"
 read_only = "[ro]"
-home_symbol = " "
+home_symbol = "[~]"
 format = "[$path]($style) [$read_only]($read_only_style) "
 
 [git_status]
@@ -61,7 +61,7 @@ number_threshold = 1
 [character]
 #success_symbol = "[ ](bold green)"
 #success_symbol = "[ ](bold green)"
-success_symbol = "[>>> ](bold green)"
+success_symbol = "[>>>](bold green)"
 error_symbol = "[! ](bold red)"
 #error_symbol = "[ ](bold red)"
 #error_symbol = "[ ](bold red)"
