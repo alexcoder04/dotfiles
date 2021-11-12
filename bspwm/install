@@ -7,10 +7,10 @@ SXHKD_CONFIG_DIR="$XDG_CONFIG_HOME/sxhkd"
 [ -d "$SXHKD_CONFIG_DIR" ] || mkdir -vp "$SXHKD_CONFIG_DIR"
 
 echo "./bspwmrc -> $BSPWM_CONFIG_DIR/bspwmrc"
-cat "./bspwmrc" | ../reconf "../defaults" "../$1.prefs" \
+cat "./bspwmrc" | ../reconf \
 		>"$BSPWM_CONFIG_DIR/bspwmrc"
 echo "./bspwm.sxhkdrc -> $SXHKD_CONFIG_DIR/bspwm.sxhkdrc"
-cat "./bspwm.sxhkdrc" | ../reconf "../defaults" "../$1.prefs" \
+cat "./bspwm.sxhkdrc" | ../reconf \
 		>"$SXHKD_CONFIG_DIR/bspwm.sxhkdrc"
 echo "RESTART BSPWM TO UPDATE THE CONFIGURATION"
 

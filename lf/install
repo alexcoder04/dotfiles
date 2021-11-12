@@ -4,9 +4,8 @@ CONFIG_DIR="$HOME/.config/lf"
 
 [ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
 
-cat "./lfrc" <(cd ../bookmarks && ./build lf) \
-		| ../reconf "../defaults" "../$1.prefs" \
-		> "$CONFIG_DIR/lfrc"
+echo "./lfrc + bookmarks -> $CONFIG_DIR/lfrc"
+cat "./lfrc" <(cd ../bookmarks && ./build lf) > "$CONFIG_DIR/lfrc"
 cp -v ./*.sh "$CONFIG_DIR/"
 chmod +x "$CONFIG_DIR/"*.sh
 

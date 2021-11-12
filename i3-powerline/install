@@ -9,7 +9,7 @@ THEME_DIR="$XDG_DATA_HOME/bumblebee-status/themes/"
 [ -d "$THEME_DIR" ] || mkdir -vp "$THEME_DIR"
 
 echo "$SOURCE_DIR/{config/bar.config} -> $CONFIG_DIR/config"
-cat "$SOURCE_DIR/config" "$SOURCE_DIR/bar.config" | ../reconf "../defaults" "../$1.prefs" \
+cat "$SOURCE_DIR/config" "$SOURCE_DIR/bar.config" | ../reconf \
 	> "$CONFIG_DIR/config"
 #doas cp -v "dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
 cp -v "dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"

@@ -5,7 +5,7 @@ CONFIG_DIR="$XDG_CONFIG_HOME/X11"
 [ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
 
 echo "./Xresources -> $CONFIG_DIR/Xresources"
-cat "./Xresources" | ../reconf "../defaults" "../$1.prefs" \
+cat "./Xresources" | ../reconf \
     > "$CONFIG_DIR/Xresources"
 xrdb "$CONFIG_DIR/Xresources"
 

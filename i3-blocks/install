@@ -3,10 +3,10 @@
 CONFIG_DIR="$XDG_CONFIG_HOME/i3"
 
 echo "../i3-base/config -> $CONFIG_DIR/config"
-cat "../i3-base/config" "../i3-base/bar.config" | ../reconf "../defaults" "../$1-i3-blocks.prefs" \
+cat "../i3-base/config" "../i3-base/bar.config" | ../reconf \
 		> "$CONFIG_DIR/config"
 echo "./i3blocks.conf -> $CONFIG_DIR/i3blocks.conf"
-cat "./i3blocks.conf" | ../reconf "../defaults" "../$1-i3-blocks.prefs"\
+cat "./i3blocks.conf" | ../reconf \
 		> "$CONFIG_DIR/i3blocks.conf"
 echo "NOTE: YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION"
 

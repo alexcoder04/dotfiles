@@ -5,18 +5,21 @@ CONFIG_DIR="$XDG_CONFIG_HOME/zsh"
 [ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
 
 echo "./zshrc -> $CONFIG_DIR/.zshrc"
-cat "./zshrc" | ../reconf "../defaults" "../$1.prefs" > "$CONFIG_DIR/.zshrc"
+cat "./zshrc" | ../reconf \
+    > "$CONFIG_DIR/.zshrc"
 
 echo "../sh/env -> $HOME/.zshenv"
-cat "./_header" "../sh/env" | ../reconf "../defaults" "../$1.prefs" > "$HOME/.zshenv"
+cat "./_header" "../sh/env" | ../reconf \
+    > "$HOME/.zshenv"
 
 echo "../sh/aliases -> $CONFIG_DIR/aliases.zsh"
 pre="$(pwd)"
-cd "../sh" && ./aliases-gen "zsh" > "$CONFIG_DIR/aliases.zsh"
+cd "../sh" && ./aliases-gen "zsh" \
+    > "$CONFIG_DIR/aliases.zsh"
 cd "$pre"
 
 /bin/ls *.zsh \
-  | xargs -I{} sh -c "cat {} | ../reconf \"../defaults\" \"../$1.prefs\" > \"$CONFIG_DIR/{}\" && echo \"{} -> $CONFIG_DIR/{}\""
+  | xargs -I{} sh -c "cat {} | ../reconf > \"$CONFIG_DIR/{}\" && echo \"{} -> $CONFIG_DIR/{}\""
 
 if [ -f "./startup.$1" ]; then
   cp -v "./startup.$1" "$CONFIG_DIR/startup.zsh"
@@ -26,7 +29,8 @@ fi
 
 echo "creating bookmarks"
 pre="$(pwd)"
-cd "../bookmarks" && ./build zsh > "$CONFIG_DIR/bookmarks.zsh"
+cd "../bookmarks" && ./build zsh \
+    > "$CONFIG_DIR/bookmarks.zsh"
 cd "$pre"
 
 echo "creating cache dir"

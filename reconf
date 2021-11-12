@@ -1,8 +1,20 @@
 #!/usr/bin/env python3
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# 
+# replace strings in config files with settings
+# all environmental variables that start with RECONF_ are considered settings
+#                                                          
 
 import os
 import sys
 
+# legacy
 def read_settings_file(filename, settings=None):
     if settings is None:
         settings = {}
@@ -21,27 +33,40 @@ def read_settings_file(filename, settings=None):
     f.close()
     return settings
 
-override = {}
-setting_files = []
-for arg in sys.argv[1:]:
-    if arg.startswith("#"):
-        [key, value] = arg[1:].split("=")
-        override[key] = value
-        continue
-    setting_files.append(arg)
+# new
+def read_settings():
+    settings = {}
+    for key in os.environ:
+        if key.startswith("RECONF_"):
+            settings[key[7:]] = os.environ[key]
+    return settings
 
-if len(setting_files) == 0:
-    print("No setting files provided")
-    sys.exit(1)
+# legacy
+if len(sys.argv) > 1:
+    sys.stderr.write("additional arguments passed, using legacy mode")
+    override = {}
+    setting_files = []
+    for arg in sys.argv[1:]:
+        if arg.startswith("#"):
+            [key, value] = arg[1:].split("=")
+            override[key] = value
+            continue
+        setting_files.append(arg)
+
+    if len(setting_files) == 0:
+        print("No setting files provided")
+        sys.exit(1)
+
+    settings = read_settings_file(setting_files[0])
+    for file in setting_files[1:]:
+        settings = read_settings_file(file, settings=settings)
+
+    settings.update(override)
+# new
+else:
+    settings = read_settings()
 
 data = sys.stdin.read()
-
-settings = read_settings_file(setting_files[0])
-for file in setting_files[1:]:
-    settings = read_settings_file(file, settings=settings)
-
-settings.update(override)
-
 for key in settings:
     data = data.replace(f"+{key}+", settings[key])
 

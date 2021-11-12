@@ -134,6 +134,7 @@ nnoremap <leader>ll :set tw=80<CR>
 autocmd BufEnter *.tex set filetype=tex
 autocmd BufEnter *.muttrc set filetype=neomuttrc
 autocmd BufEnter *dunstrc set filetype=dosini
+autocmd BufEnter *.prefs2 set filetype=sh
 
 " tab settings for diffrent file types
 autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab

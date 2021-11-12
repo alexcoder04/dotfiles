@@ -5,6 +5,6 @@ DUNST_CONFIG_DIR="$XDG_CONFIG_HOME/dunst"
 [ -d "$DUNST_CONFIG_DIR" ] || mkdir -vp "$DUNST_CONFIG_DIR"
 
 echo "./dunstrc -> $DUNST_CONFIG_DIR/dunstrc"
-cat "./dunstrc" | ../reconf "../defaults" "../$1.prefs" \
+cat "./dunstrc" | ../reconf \
 	> "$DUNST_CONFIG_DIR/dunstrc"
 

@@ -5,7 +5,7 @@ SXHKD_CONFIG_DIR="$XDG_CONFIG_HOME/sxhkd"
 [ -d "$SXHKD_CONFIG_DIR" ] || mkdir -p "$SXHKD_CONFIG_DIR"
 
 echo "./sxhkdrc -> $SXHKD_CONFIG_DIR/sxhkdrc"
-cat "./sxhkdrc" | ../reconf "../defaults" "../$1.prefs" \
+cat "./sxhkdrc" | ../reconf \
 	> "$SXHKD_CONFIG_DIR/sxhkdrc"
 cp -v "./libinput-gestures.conf" "$XDG_CONFIG_HOME/libinput-gestures.conf"
 cp -v "./picom.conf" "$XDG_CONFIG_HOME/picom.conf"
