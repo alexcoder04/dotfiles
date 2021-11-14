@@ -3,20 +3,20 @@
 # TERMINAL
 # ###################################################################
 super + Return
-	+TERMINAL_MAIN+
+    +TERMINAL_MAIN+
 
 super + shift + Return
-	+TERMINAL_SECONDARY+
+    +TERMINAL_SECONDARY+
 
 # ###################################################################
 # SYSTEM AND WINDOW MANAGER
 # ###################################################################
 ctrl + alt + s
-	screenlock --suspend
+    screenlock --suspend
 ctrl + alt + shift + s
-	screenlock --suspend-only
+    screenlock --suspend-only
 ctrl + alt + p
-	safe-poweroff poweroff
+    safe-poweroff poweroff
 ctrl + alt + q
     wm-logout
 ctrl + alt + e
@@ -26,15 +26,15 @@ ctrl + alt + e
 # RUN LAUNCHER
 # ###################################################################
 super + r
-	rofi -show run -modi run
+    rofi -show run -modi run
 alt + r
-	flatpak-run
+    flatpak-run
 super + ctrl + r
-	rofi -show drun -modi drun
+    rofi -show drun -modi drun
 super + alt + r
-	rofi -show ssh -modi ssh
+    rofi -show ssh -modi ssh
 super + Tab
-	rofi -show window -modi window
+    rofi -show window -modi window
 
 # ###################################################################
 # DUNST
@@ -67,76 +67,46 @@ super + Insert
 # FIRST ROW
 # Q, W: reserved for window manager
 super + e
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e trans -shell de:en
+    +TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e trans -shell de:en
 super + shift + e
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e trans -shell en:de
+    +TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e trans -shell en:de
 # R: reserved for run prompt
-super + t
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "t"
 # Z: reserved for window manager
-super + u
-	stundenplan
-super + shift + u
-	private-script tt
 super + i
-	internet-search
-super + shift + i
-	private-script i
-super + o
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "o"
+    internet-search
 super + p
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e python
-super + shift + p
-	flatpak run com.github.alainm23.planner
+    +TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e python
 super + plus
-	pavucontrol
+    pavucontrol
 
 # SECOND ROW
 super + a
     sh -c 'echo "$HOME/.local/share/backgrounds/lauterbach-wallpapers" > /tmp/wpdirs && wallpaper-random'
 super + g
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "g"
+    +TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "g"
 super + s
-	i3 "scratchpad show; move position center"
+    i3 "scratchpad show; move position center"
 super + d
-	+FILEMANAGER_MAIN+
+    +FILEMANAGER_MAIN+
 super + shift + d
-	+FILEMANAGER_SECONDARY+
+    +FILEMANAGER_SECONDARY+
 super + f
 	+BROWSER_MAIN+
 super + shift + f
-	+BROWSER_SECONDARY+
+    +BROWSER_SECONDARY+
 super + ctrl + f
-	firefox-profile-select
+    firefox-profile-select
 super + ctrl + f
     qutebrowser
 # H, J, K, L: window-manager-reserved
 
 # THIRD ROW
-super + y
-	brave-browser --app=https://youtube.com/ --class=WebApp-YouTube9722 --user-data-dir=/home/alex/.local/share/ice/profiles/YouTube9722
-super + shift + y
-	brave-browser --app=https://odysee.com --class=WebApp-Odysee9800 --user-data-dir=/home/alex/.local/share/ice/profiles/Odysee9800
 super + x
-	viko-joiner
-super + shift + x
-	+TERMINAL_MAIN+ -e htop
-super + {c, v}
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "c/v"
+    +TERMINAL_MAIN+ -e htop
 super + b
-	joplin
-super + shift + b
-	+TERMINAL_MAIN+ -e newsboat -c "$XDG_DATA_HOME/newsboatcache.db"
-super + n
-	xed
-super + shift + n
-	xed-open
-super + ctrl + n
-	+TERMINAL_MAIN+ -e nvim
+    newsboat-selector
 super + m
 	signal-desktop
-super + comma
-	+SETTINGS_APP+
 super + period
 	rofi -show emoji -modi emoji
 super + minus
@@ -145,8 +115,6 @@ super + minus
 # ###################################################################
 # FUNCTION KEYS
 # ###################################################################
-super + {F1, F2, F3}
-	+TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "F-(1,2,3)-key"
 super + F4
     password
 super + shift + F4
@@ -163,20 +131,17 @@ super + F8
     monitors-set --interactive
 super + F12
 	fix-keyboard
-# echo some text to the console and start htop to impress friends xD
-alt + F4
-	+TERMINAL_MAIN+ -e bash $HOME/CODE/FUN/fake-hack/fun.sh
 # F9, F10, F11: window-manager-reserved
 
 # ###################################################################
 # OTHER KEYS
 # ###################################################################
 XF86MonBrightnessUp
-	sudo brightness higher
+    sudo /usr/local/bin/brightness higher
 XF86MonBrightnessDown
-	sudo brightness lower
+    sudo /usr/local/bin/brightness lower
 super + Print
-	screenshot
+    screenshot
 super +shift + Print
-	screenshot --select
+    screenshot --select
 
