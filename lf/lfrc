@@ -27,7 +27,7 @@ set filesep "\n"
 set info size
 set incsearch
 
-set promptfmt "\033[34;1m[ \033[32;1m%u\033[31m@\033[33m%h \033[34;1m]\033[0m in \033[36;1;4m%d\033[35;4m%f \033[0m"
+set promptfmt "\033[34;1m[ \033[32;1m%u\033[31m@\033[33m%h \033[34;1m]\033[0m in \033[36;1;4m%d\033[0;1;35m%f \033[0m"
 
 # -----------------------------------------------------
 # PREVIEWS
@@ -127,9 +127,9 @@ cmd open ${{
 		application/pdf | application/vnd* | application/epub*)
 			setsid -f zathura "$f" >/dev/null 2>&1 ;;
 		image/*)
-			setsid -f feh "$f" ;;
+			setsid -f sxiv $fx ;;
 		audio/*)
-			mpv --audio-display=no $f ;;
+			mpv --audio-display=no $fx ;;
 		video/*)
 			setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
 		text/* | application/json)

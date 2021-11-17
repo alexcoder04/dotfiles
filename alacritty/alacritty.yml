@@ -24,7 +24,7 @@ font:
   bold_italic:
     family: Inconsolata
     style: Bold Italic
-  size: 13.0
+  size: 13.5
 
 draw_bold_text_with_bright_colors: true
 
