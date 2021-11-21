@@ -210,6 +210,7 @@ assign [class="qutebrowser"]	$w1_browser
 # CERTAIN WINDOW OPENING MODES 
 # ------------------------------------------------------------------------------
 for_window [class="i3_float"]			floating enable
+for_window [class="Qemu-system-x86_64"] floating enable
 for_window [class="Pavucontrol"]		floating enable
 for_window [class="TIPP10"]				floating enable
 for_window [class="Gnome-2048"]			floating enable

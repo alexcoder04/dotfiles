@@ -8,5 +8,4 @@ echo "./sxhkdrc -> $SXHKD_CONFIG_DIR/sxhkdrc"
 cat "./sxhkdrc" | ../reconf \
 	> "$SXHKD_CONFIG_DIR/sxhkdrc"
 cp -v "./libinput-gestures.conf" "$XDG_CONFIG_HOME/libinput-gestures.conf"
-cp -v "./picom.conf" "$XDG_CONFIG_HOME/picom.conf"
 

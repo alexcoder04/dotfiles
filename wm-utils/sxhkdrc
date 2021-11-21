@@ -104,7 +104,7 @@ super + ctrl + f
 super + x
     +TERMINAL_MAIN+ -e htop
 super + b
-    newsboat-selector
+    +TERMINAL_MAIN+ -e newsboat-selector
 super + m
 	signal-desktop
 super + period
