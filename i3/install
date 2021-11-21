@@ -1,0 +1,56 @@
+#!/bin/sh
+
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/i3"
+THEME_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/bumblebee-status/themes"
+
+mkdir -vp "$CONFIG_DIR"
+mkdir -vp "$THEME_DIR"
+
+[ -z "$RECONF_I3_MODE" ] \
+  && export RECONF_I3_MODE="blocks"
+
+case "$RECONF_I3_MODE" in
+  blocks) 
+    echo "Installing i3 in BLOCKS mode"
+    export RECONF_I3_STATUS_COMMAND="i3blocks -c ~/.config/i3/i3blocks.conf"
+
+    echo "./main.config+./bar.config -> $CONFIG_DIR/config"
+    cat "./main.config" "./bar.config" | ../reconf \
+      > "$CONFIG_DIR/config"
+
+    echo "./i3blocks.conf -> $CONFIG_DIR/i3blocks.conf"
+    cat "./i3blocks.conf" | ../reconf \
+      > "$CONFIG_DIR/i3blocks.conf"
+
+    ;;
+
+  polybar)
+    echo "Installing i3 in POLYBAR mode"
+    export RECONF_BARS_LAUNCHER_COMMAND="bar-launch i3-polybar"
+
+    echo "./main.config -> $CONFIG_DIR/config"
+    cat "./main.config" | ../reconf \
+      > "$CONFIG_DIR/config"
+
+    ;;
+
+  powerline)
+    echo "Installing i3 in POWERLINE mode"
+    echo "./main.config+./bar.config -> $CONFIG_DIR/config"
+    cat "./main.config" "./bar.config" | ../reconf \
+      > "$CONFIG_DIR/config"
+
+    cp -v "./dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
+    cp -v "./lock.png" "$CONFIG_DIR/lock.png"
+    cp -v "./start_bumblebee" "$CONFIG_DIR/start_bumblebee"
+    chmod -v +x "$CONFIG_DIR/start_bumblebee"
+
+    ;;
+
+  *)
+    echo "Unknown mode!"
+    exit 1 ;;
+esac
+
+echo "YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION!"
+
