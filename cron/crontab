@@ -2,6 +2,6 @@
 # m h  dom mon dow   command
 
 0 * * * * /usr/bin/newsboat -c $HOME/.cache/newsboat/00main.cache -u $HOME/.config/newsboat/00main.urls -x reload
-*/15 * * * * DISPLAY=:1 XAUTHORITY=$HOME/.local/share/sx/xauthority $HOME/Scripts/wallpaper-random
+*/15 * * * * DISPLAY=:1 XAUTHORITY=$HOME/.local/share/sx/xauthority $HOME/Scripts/wallpaper-select random
 0 * * * * /usr/bin/trash-empty 14
 

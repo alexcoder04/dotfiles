@@ -30,7 +30,7 @@ source "$ZDOTDIR/lf_vars.zsh"
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
-HISTORY_IGNORE="(git add *|git push|git commit *|* && exa --icons)"
+HISTORY_IGNORE="(git add *|git commit *|* && exa --icons|mpv http*)"
 HISTFILE=~/.cache/zsh/zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
