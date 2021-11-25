@@ -9,8 +9,8 @@
 # starship config file
 
 add_newline = false
-format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in $directory$git_status$git_branch $python$golang$nodejs
-$custom $jobs$character"""
+format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in \\[ $directory\\] $git_status$git_branch \\[ $jobs$python$golang$nodejs\\]
+$custom $character"""
 right_format = "$cmd_duration $time"
 
 [username]
@@ -33,7 +33,7 @@ style = "bold cyan"
 read_only_style = "red bold"
 read_only = "🔒(ro)"
 home_symbol = " "
-format = "[$path]($style) [$read_only]($read_only_style) "
+format = "[$path]($style) [$read_only]($read_only_style)"
 
 [git_status]
 format = "[git](blue):\\[$ahead_behind $staged$untracked$modified$renamed$deleted$conflicted$stashed\\]"

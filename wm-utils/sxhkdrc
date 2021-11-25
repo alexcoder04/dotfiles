@@ -117,6 +117,8 @@ super + underscore
 # ###################################################################
 # FUNCTION KEYS
 # ###################################################################
+super + F3
+    killall picom; picom --experimental-backends
 super + F4
     password
 super + shift + F4

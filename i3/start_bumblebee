@@ -22,7 +22,7 @@ exec bumblebee-status \
     memory.usedonly="True" memory.warning=20 memory.critical=30 memory.interval=11 memory.left-click="true" \
     battery.interval=17 battery.left-click="true" \
     nic.format="" nic.exclude="eth,lo,enp,virbr" nic.interval=13 nic.right-click="wifi-toggle && notify-send 'wifi toggled'" \
-    brightness.use_acpi="True" \
+    brightness.use_acpi="True" brightness.wheel-up="sudo /usr/local/bin/brightness higher" brightness.wheel-down="sudo /usr/local/bin/brightness lower" \
     amixer.interval=20 \
   -t dracula-powerline-custom
 
