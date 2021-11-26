@@ -56,7 +56,7 @@ format = " on [$symbol$branch]($style)"
 [jobs]
 format = "[$symbol$number]($style) "
 symbol = " "
-style = "blue bold"
+style = "purple bold"
 number_threshold = 1
 
 [character]
