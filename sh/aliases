@@ -20,16 +20,17 @@ ABBREVIATION alu="apt list --upgradeable"
 # --------------------------------------------------------------------
 # GIT COMMANDS
 # --------------------------------------------------------------------
-ABBREVIATION gst="git status"
-ABBREVIATION gps="git push"
-ABBREVIATION gpull="git pull"
-ABBREVIATION gcom="git commit -m"
-ABBREVIATION gclone="git clone"
-ABBREVIATION ginit="git init"
 ABBREVIATION gadd="git add"
 ABBREVIATION gadda="git add -A"
-ABBREVIATION gcheckout="git checkout"
 ABBREVIATION gbranch="git branch"
+ABBREVIATION gcheckout="git checkout"
+ABBREVIATION gclone="git clone"
+ABBREVIATION gcom="git commit -m"
+ABBREVIATION gdif="git diff"
+ABBREVIATION ginit="git init"
+ABBREVIATION gps="git push"
+ABBREVIATION gpull="git pull --rebase"
+ABBREVIATION gst="git status"
 
 # --------------------------------------------------------------------
 # DEFAULT OPTIONS FOR BASIC BASIC TERMINAL COMMANDS
@@ -78,6 +79,7 @@ esac
 
 # other stuff
 ABBREVIATION lsblk="lsblk -f"
+ABBREVIATION df="df -h"
 ABBREVIATION webserver="python3 -m http.server 1234"
 
 # --------------------------------------------------------------------

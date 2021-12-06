@@ -211,7 +211,7 @@ map ae unarchive
 map ac archive
 map T $$SHELL
 map H set hidden!
-map ws set_wallpaper
+map wp set_wallpaper
 map <c-l> reload-window
 map <c-a> select-all
 map _ normalize-name

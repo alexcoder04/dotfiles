@@ -44,7 +44,11 @@ if [ -n "$FIFO_UEBERZUG" ]; then
       draw "$cache" "$@"
       ;;
     text/*)
-      bat --plain --theme=Dracula --paging=never --color=always "$file"
+      case "${file##*.}" in
+        ino*) lang="-l C" ;;
+        *) lang="" ;;
+      esac
+      bat --plain --theme=Dracula --paging=never --color=always $lang "$file"
       ;;
     */pdf)
       pdftotext -l 5 "$file" -
