@@ -20,16 +20,16 @@ ABBREVIATION alu="apt list --upgradeable"
 # --------------------------------------------------------------------
 # GIT COMMANDS
 # --------------------------------------------------------------------
-ABBREVIATION gadd="git add"
-ABBREVIATION gadda="git add -A"
+ABBREVIATION gad="git add"
+ABBREVIATION gada="git add -A"
 ABBREVIATION gbranch="git branch"
 ABBREVIATION gcheckout="git checkout"
-ABBREVIATION gclone="git clone"
+ABBREVIATION gcln="git clone"
 ABBREVIATION gcom="git commit -m"
 ABBREVIATION gdif="git diff"
 ABBREVIATION ginit="git init"
 ABBREVIATION gps="git push"
-ABBREVIATION gpull="git pull --rebase"
+ABBREVIATION gpl="git pull --rebase"
 ABBREVIATION gst="git status"
 
 # --------------------------------------------------------------------

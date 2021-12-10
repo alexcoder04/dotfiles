@@ -70,5 +70,8 @@ data = sys.stdin.read()
 for key in settings:
     data = data.replace(f"+{key}+", settings[key])
 
-sys.stdout.write(data)
+for l in data.split("\n"):
+    if l.startswith("#"):
+        continue
+    sys.stdout.write(l + "\n")
 

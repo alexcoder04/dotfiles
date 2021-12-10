@@ -49,7 +49,6 @@ monitor = ${env:MONITOR:HDMI-1}
 monitor-strict = false
 override-redirect = false
 bottom = false
-fixed-center = true
 width = 100%
 height = 28
 enable-ipc = true
@@ -64,7 +63,7 @@ font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=13;1"
 font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;1"
 font-3 = "Font Awesome 5 Brands:pixelsize=13;1"
 
-modules-left = i3 xwindow 
+modules-left = i3
 modules-right = updates bitcoin battery cpu temperature cpufreq memory wireless-network date volume 
 
 separator =  " "
@@ -385,16 +384,5 @@ format-disconnected = <label-disconnected>
 format-disconnected-foreground = ${colors.yellow}
 format-disconnected-background = ${colors.background}
 format-disconnected-underline =${colors.red}
-
-################################################################################
-
-[module/xwindow]
-type = internal/xwindow
-
-label-maxlen = 35
-format-prefix = "  "
-format-underline = ${colors.foreground}
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 
 # vim:ft=dosini

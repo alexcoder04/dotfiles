@@ -127,7 +127,7 @@ cmd open ${{
 		application/pdf | application/vnd* | application/epub*)
 			setsid -f zathura "$f" >/dev/null 2>&1 ;;
 		image/*)
-			setsid -f sxiv $fx ;;
+			setsid -f nsxiv $fx ;;
 		audio/*)
 			mpv --audio-display=no $fx ;;
 		video/*)

@@ -44,5 +44,5 @@ install_subfolder(){
 cd "$CONFIG_REPO"
 [ -z "$1" ] \
 	&& echo "You need to provide a package to install" \
-	|| install_subfolder "$1" "$2"
+	|| install_subfolder "$1"
 
