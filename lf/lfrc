@@ -180,6 +180,16 @@ cmd on-cd %{{
 
 cmd q :quit
 
+# git commands
+cmd git_pull ${{
+    git pull --rebase || true; echo "press ENTER"; read _
+}}
+
+cmd git_status ${{
+    git status || true; echo "press ENTER to exit or s<enter> to enter a shell"; read inp
+    [ "$inp" = "s" ] && $SHELL
+}}
+
 # -----------------------------------------------------
 # KEYBINDS
 # -----------------------------------------------------
@@ -192,9 +202,12 @@ map a
 map r
 
 map rr rename
-map rR :rename; cmd-word-back; cmd-left
+map rR rename; cmd-word-back; cmd-left
 map RR new-name
 map <c-r> bulk-rename
+
+map gp git_pull
+map gs git_status
 
 map md push %mkdir<space>
 map mD folder-with-items

@@ -27,6 +27,8 @@ else
   cp -v "./startup.default" "$CONFIG_DIR/startup.zsh"
 fi
 
+cp -v "./zprofile" "$CONFIG_DIR/.zprofile"
+
 echo "creating bookmarks"
 pre="$(pwd)"
 cd "../bookmarks" && ./build zsh \

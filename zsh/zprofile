@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/zsh
 #        _                        _            ___  _  _   
 #   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
 #  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
@@ -7,12 +7,9 @@
 # 
 # Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
 # 
-# start X server with sx - config file
-# 
+# zsh profile, run at login in tty
+#
 
-xrdb "$XDG_CONFIG_HOME/X11/Xresources" &
-
-[ -z "$WINDOW_MANAGER" ] \
-  && exec i3 \
-  || exec $WINDOW_MANAGER
+eval "$(ssh-agent)"
+setfont "ter-118n"
 

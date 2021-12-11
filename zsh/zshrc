@@ -82,8 +82,6 @@ bindkey -s '^b' ' &>/dev/null & disown'
 # ---------------------------------------------------------
 setopt autocd
 unsetopt beep extendedglob notify
-# set font if in tty
-tty | grep -q "/dev/tty[1-6]" && setfont "ter-118n"
 
 # ---------------------------------------------------------
 # PROMPT && AUTOSTART
