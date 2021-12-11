@@ -73,5 +73,7 @@ for key in settings:
 for l in data.split("\n"):
     if l.startswith("#"):
         continue
+    if l == "":
+        continue
     sys.stdout.write(l + "\n")
 

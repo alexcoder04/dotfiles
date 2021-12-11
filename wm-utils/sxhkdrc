@@ -84,8 +84,6 @@ super + a
     sh -c 'echo "$HOME/.local/share/backgrounds/lauterbach-wallpapers" > /tmp/wpdirs && wallpaper-select random'
 super + g
     +TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "g"
-super + s
-    i3 "scratchpad show; move position center"
 super + d
     +FILEMANAGER_MAIN+
 super + shift + d

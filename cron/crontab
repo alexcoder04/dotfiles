@@ -2,6 +2,6 @@
 # m h  dom mon dow   command
 
 0 * * * * /usr/local/bin/myenv '/usr/bin/newsboat -c $XDG_CACHE_HOME/newsboat/00main.cache -u $XDG_CONFIG_HOME/newsboat/00main.urls -x reload'
-*/15 * * * * /usr/local/bin/myenv 'DISPLAY=:1 XAUTHORITY=$XDG_DATA_HOME/sx/xauthority wallpaper-select random'
+*/15 * * * * /usr/local/bin/myenv 'DISPLAY=:1 XAUTHORITY=$XDG_DATA_HOME/sx/xauthority SWAYSOCK="/run/user/$(id -u)/swaysock" wallpaper-select random'
 0 * * * * /usr/local/bin/myenv '/usr/bin/trash-empty 14'
 

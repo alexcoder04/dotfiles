@@ -9,7 +9,7 @@ export RECONF_FILEMANAGER_MAIN="alacritty -e sh -c 'export TERM=xterm; . $DOTFIL
 export RECONF_FILEMANAGER_SECONDARY="alacritty -e sh -c 'export TERM=xterm; . $DOTFILES_REPO/sh/lf_icons.sh; lf_run'"
 export RECONF_I3_FONT_BAR="Inconsolata 15"
 export RECONF_I3_FONT_PANGO="Inconsolata 15"
-export RECONF_I3_MODE="sway"
+export RECONF_I3_MODE="polybar"
 export RECONF_PAGER="nvimpager"
 export RECONF_PATH="$SCRIPTS_DIR:$HOME/Programs:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/defaul/bin"
 export RECONF_SCRIPTS_DIR="$HOME/Scripts"
