@@ -48,6 +48,7 @@ if which exa >/dev/null; then
           alias ls="exa -hl --icons --group-directories-first"
           alias la="exa -ahl --icons --group-directories-first" ;;
     esac
+    alias tree="exa -T -L 3"
 else
   alias ls="ls -lFh --color=auto --group-directories-first"
   alias la="ls -AlF --color=auto --group-directories-first"

@@ -10,6 +10,8 @@
 # start X server with sx - config file
 # 
 
+export XDG_SESSION_TYPE="x11"
+
 xrdb "$XDG_CONFIG_HOME/X11/Xresources" &
 
 [ -z "$WINDOW_MANAGER" ] \
