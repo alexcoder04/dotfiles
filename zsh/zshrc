@@ -84,9 +84,18 @@ setopt autocd
 unsetopt beep extendedglob notify
 
 # ---------------------------------------------------------
-# PROMPT && AUTOSTART
+# PROMPT
 # ---------------------------------------------------------
-eval "$(starship init zsh)"
+case "$TERM" in
+    xterm-256color)
+        eval "$(starship init zsh)" ;;
+    screen)
+        export STARSHIP_CONFIG="$HOME/.config/starship-ascii.toml"
+        eval "$(starship init zsh)" ;;
+    *)
+        export STARSHIP_CONFIG="$HOME/.config/starship-ascii.toml"
+        eval "$(starship init zsh)" ;;
+esac
 [ -z "$LF_LEVEL" ] && source "$ZDOTDIR/startup.zsh"
 
 # ---------------------------------------------------------

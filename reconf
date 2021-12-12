@@ -14,26 +14,7 @@
 import os
 import sys
 
-# legacy
-def read_settings_file(filename, settings=None):
-    if settings is None:
-        settings = {}
-    f = open(filename)
-    for line in f.readlines():
-        line = line.strip()
-        if line == "" or line.startswith("#"):
-            continue
-        if line.startswith("%include"):
-            settings = read_settings_file(
-                f"{os.path.dirname(filename)}/{' '.join(line.split()[1:])}",
-                settings=settings
-            )
-            continue
-        settings[line.split()[0]] = " ".join(line.split()[1:])
-    f.close()
-    return settings
-
-# new
+# read settings from the environment
 def read_settings():
     settings = {}
     for key in os.environ:
@@ -41,39 +22,21 @@ def read_settings():
             settings[key[7:]] = os.environ[key]
     return settings
 
-# legacy
-if len(sys.argv) > 1:
-    sys.stderr.write("additional arguments passed, using legacy mode")
-    override = {}
-    setting_files = []
-    for arg in sys.argv[1:]:
-        if arg.startswith("#"):
-            [key, value] = arg[1:].split("=")
-            override[key] = value
-            continue
-        setting_files.append(arg)
-
-    if len(setting_files) == 0:
-        print("No setting files provided")
-        sys.exit(1)
-
-    settings = read_settings_file(setting_files[0])
-    for file in setting_files[1:]:
-        settings = read_settings_file(file, settings=settings)
-
-    settings.update(override)
-# new
-else:
+if __name__ == "__main__":
     settings = read_settings()
 
-data = sys.stdin.read()
-for key in settings:
-    data = data.replace(f"+{key}+", settings[key])
+    # read data
+    data = sys.stdin.read()
 
-for l in data.split("\n"):
-    if l.startswith("#"):
-        continue
-    if l == "":
-        continue
-    sys.stdout.write(l + "\n")
+    # configure
+    for key in settings:
+        data = data.replace(f"+{key}+", settings[key])
+
+    # minify and output
+    for l in data.split("\n"):
+        if l.startswith("#"):
+            continue
+        if l == "":
+            continue
+        sys.stdout.write(l + "\n")
 

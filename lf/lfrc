@@ -182,10 +182,12 @@ cmd q :quit
 
 # git commands
 cmd git_pull ${{
+    echo "git:-------------------------------------------"
     git pull --rebase || true; echo "press ENTER"; read _
 }}
 
 cmd git_status ${{
+    echo "git:-------------------------------------------"
     git status || true; echo "press ENTER to exit or s<enter> to enter a shell"; read inp
     [ "$inp" = "s" ] && $SHELL
 }}

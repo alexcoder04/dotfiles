@@ -1,0 +1,24 @@
+
+# starship
+export RECONF_STARSHIP_READ_ONLY="[ro]"
+export RECONF_STARSHIP_HOME="~"
+export RECONF_STARSHIP_GIT_OK="o"
+export RECONF_STARSHIP_GIT_BRANCH='|´'
+export RECONF_STARSHIP_JOBS="*"
+export RECONF_STARSHIP_SUCCESS=">>> "
+export RECONF_STARSHIP_ERROR="-! "
+
+# programs
+export RECONF_EDITOR_MAIN="nvim"
+export RECONF_FILEMANAGER_MAIN="alacritty -e sh -c 'export TERM=xterm; . $DOTFILES_REPO/sh/lf_icons.sh; lf_run'"
+export RECONF_FILEMANAGER_SECONDARY="alacritty -e sh -c 'export TERM=xterm; . $DOTFILES_REPO/sh/lf_icons.sh; lf_run'"
+export RECONF_PAGER="nvimpager"
+export RECONF_VISUAL="nvim"
+
+# other
+export RECONF_COLORSCHEME="dracula"
+export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
+export RECONF_ENV_PATH="$SCRIPTS_DIR:$HOME/Programs:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/defaul/bin"
+export RECONF_PATH="$RECONF_ENV_PATH"
+export RECONF_SCRIPTS_DIR="$HOME/Scripts"
+

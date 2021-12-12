@@ -1,0 +1,9 @@
+
+export RECONF_STARSHIP_READ_ONLY="🔒[ro]"
+export RECONF_STARSHIP_HOME=" "
+export RECONF_STARSHIP_GIT_OK=""
+export RECONF_STARSHIP_GIT_BRANCH=" "
+export RECONF_STARSHIP_JOBS=" "
+export RECONF_STARSHIP_SUCCESS=" "
+export RECONF_STARSHIP_ERROR=" "
+

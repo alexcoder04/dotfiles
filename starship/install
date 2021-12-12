@@ -1,10 +1,16 @@
 #!/bin/sh
 
-[ "$1" = "pinguin" ] \
-  && file="starship.toml" \
-  || file="starship.$1.toml"
-
-echo "./$file -> $XDG_CONFIG_HOME/starship.toml"
-cat "./$file" | ../reconf \
+echo "default:"
+. "./icons.prefs2"
+echo "./starship.toml -> $XDG_CONFIG_HOME/starship.toml"
+cat "./starship.toml" | ../reconf \
     > "$XDG_CONFIG_HOME/starship.toml"
+
+echo
+
+echo "ascii only:"
+. "./ascii.prefs2"
+echo "./starship.toml -> $XDG_CONFIG_HOME/starship-ascii.toml"
+cat "./starship.toml" | ../reconf \
+    > "$XDG_CONFIG_HOME/starship-ascii.toml"
 
