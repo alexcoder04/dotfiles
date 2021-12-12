@@ -87,7 +87,7 @@ unsetopt beep extendedglob notify
 # PROMPT
 # ---------------------------------------------------------
 case "$TERM" in
-    xterm-256color)
+    xterm*)
         export STARSHIP_CONFIG="$HOME/.config/starship.toml"
         eval "$(starship init zsh)" ;;
     screen)

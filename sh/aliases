@@ -78,11 +78,6 @@ case "$0" in
   *bash) alias Exit="disown -a && exit" ;;
 esac
 
-# other stuff
-ABBREVIATION lsblk="lsblk -f"
-ABBREVIATION df="df -h"
-ABBREVIATION webserver="python3 -m http.server 1234"
-
 # --------------------------------------------------------------------
 # AUTO-USE SUDO
 # --------------------------------------------------------------------
@@ -106,6 +101,10 @@ command -v lf_run >/dev/null && alias lf="lf_run"
 alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
 alias newsboat="newsboat-selector"
 alias ffmpeg="ffmpeg -hide_banner"
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+ABBREVIATION lsblk="lsblk -f"
+ABBREVIATION df="df -h"
+ABBREVIATION webserver="python3 -m http.server 1234"
 
 # sx starts up Xorg, so sw starts up Wayland (Sway) xD
 alias sw="sway"
