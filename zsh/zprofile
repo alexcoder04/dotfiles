@@ -10,6 +10,9 @@
 # zsh profile, run at login in tty
 #
 
-eval "$(ssh-agent)"
-setfont "ter-118n"
+case "$(tty)" in
+    /dev/tty*)
+        eval "$(ssh-agent)"
+        setfont "ter-118n" ;;
+esac
 

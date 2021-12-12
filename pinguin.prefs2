@@ -1,7 +1,14 @@
 
+# paths
+export RECONF_SCRIPTS_DIR="$HOME/Scripts"
+export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
+export RECONF_ENV_PATH="$SCRIPTS_DIR:$HOME/Programs:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/defaul/bin"
+export RECONF_PATH="$SCRIPTS_DIR:$HOME/Programs:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/defaul/bin"
+
 # programs
 export RECONF_BROWSER_MAIN="qutebrowser"
 export RECONF_BROWSER_SECONDARY="firefox"
+export RECONF_EDITOR_MAIN="nvim"
 export RECONF_FILEMANAGER_MAIN="alacritty -e sh -c 'export TERM=xterm; . $DOTFILES_REPO/sh/lf_icons.sh; lf_run'"
 export RECONF_FILEMANAGER_SECONDARY="alacritty -e sh -c 'export TERM=xterm; . $DOTFILES_REPO/sh/lf_icons.sh; lf_run'"
 export RECONF_PAGER="nvimpager"
@@ -14,12 +21,7 @@ export RECONF_VISUAL="nvim"
 export RECONF_ZSH_SYNTAX_PLUGIN="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 export RECONF_BARS_LAUNCHER_COMMAND="killall polybar"
 export RECONF_COLORSCHEME="dracula"
-export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
-export RECONF_EDITOR_MAIN="nvim"
-export RECONF_ENV_PATH="$SCRIPTS_DIR:$HOME/Programs:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/defaul/bin"
 export RECONF_I3_FONT_BAR="Inconsolata 15"
 export RECONF_I3_FONT_PANGO="Inconsolata 15"
-export RECONF_PATH="$SCRIPTS_DIR:$HOME/Programs:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/defaul/bin"
-export RECONF_SCRIPTS_DIR="$HOME/Scripts"
 export RECONF_SECOND_MONITOR_POSITION="right"
 
