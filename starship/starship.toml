@@ -31,9 +31,7 @@ truncation_length = 5
 truncation_symbol = "…/"
 style = "bold cyan"
 read_only_style = "red bold"
-#read_only = "🔒[ro]"
 read_only = "+STARSHIP_READ_ONLY+"
-#home_symbol = " "
 home_symbol = "+STARSHIP_HOME+"
 format = "[$path]($style) [$read_only]($read_only_style)"
 
@@ -42,7 +40,6 @@ format = "[git](blue):\\[$ahead_behind $staged$untracked$modified$renamed$delete
 ahead = "[A](yellow)"
 behind = "[B](red)"
 diverged = "[D](red)"
-#up_to_date = "[](green)"
 up_to_date = "[+STARSHIP_GIT_OK+](green)"
 conflicted = "[=](red)"
 untracked = "[?](red)"
@@ -59,21 +56,14 @@ format = " on [$symbol$branch]($style)"
 
 [jobs]
 format = "[$symbol$number]($style) "
-#symbol = " "
 symbol = "+STARSHIP_JOBS+"
 style = "purple bold"
 number_threshold = 1
 
 [character]
-#success_symbol = "[ ](bold green)"
-#success_symbol = "[ ](bold green)"
-#success_symbol = "[ ](bold green)"
 success_symbol = "[+STARSHIP_SUCCESS+](bold green)"
-#error_symbol = "[!➜](bold red)"
-#error_symbol = "[ ](bold red)"
-#error_symbol = "[ ](bold red)"
 error_symbol = "[+STARSHIP_ERROR+](bold red)"
-vicmd_symbol = "[ ](bold blue)"
+vicmd_symbol = "[+STARHIP_VI+](bold blue)"
 
 [cmd_duration]
 format = "\\[[$duration]($style)\\]"

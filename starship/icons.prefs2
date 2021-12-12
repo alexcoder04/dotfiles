@@ -6,4 +6,12 @@ export RECONF_STARSHIP_GIT_BRANCH=" "
 export RECONF_STARSHIP_JOBS=" "
 export RECONF_STARSHIP_SUCCESS=" "
 export RECONF_STARSHIP_ERROR=" "
+export STARHIP_VI=" "
+
+#export RECONF_SUCCESS = "[ ](bold green)"
+#export RECONF_SUCCESS = "[ ](bold green)"
+#export RECONF_SUCCESS = "[ ](bold green)"
+#export RECONF_ERROR = "[!➜](bold red)"
+#export RECONF_ERROR = "[ ](bold red)"
+#export RECONF_ERROR = "[ ](bold red)"
 
