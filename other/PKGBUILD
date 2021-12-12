@@ -1,5 +1,6 @@
 # Maintainer: Derek Taylor (DistroTube) <derek@distrotube.com>
 # Contributor: Kunkgg <goukun07@gmail.com>
+# this modified PKGBUILD uses ~/.config/X11/Xresources for one of the scripts
 pkgname=shell-color-scripts
 _pkgname=shell-color-scripts
 pkgver=1.0.r62.01fac13
