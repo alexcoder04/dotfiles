@@ -6,6 +6,17 @@ CONFIG_DIR="$HOME/.config/lf"
 
 echo "./lfrc + bookmarks -> $CONFIG_DIR/lfrc"
 cat "./lfrc" <(cd ../bookmarks && ./build lf) > "$CONFIG_DIR/lfrc"
-cp -v ./*.sh "$CONFIG_DIR/"
+
+if command -v ueberzug >/dev/null; then
+    echo "installing with ueberzug support..."
+    cp -v "./clear_img.sh" "$CONFIG_DIR/"
+    cp -v "./draw_img.sh" "$CONFIG_DIR/"
+    cp -v "./previewer.sh" "$CONFIG_DIR/"
+else
+    echo "installing without ueberzug support..."
+    cp -v "./clear_img-plain.sh" "$CONFIG_DIR/clear_img.sh"
+    cp -v "./previewer-plain.sh" "$CONFIG_DIR/previewer.sh"
+fi
+
 chmod +x "$CONFIG_DIR/"*.sh
 

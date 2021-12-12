@@ -47,6 +47,7 @@ if [ -n "$FIFO_UEBERZUG" ]; then
       case "${file##*.}" in
         ino) lang="-l C" ;;
         config|conf|cfg) lang="-l conf" ;;
+        prefs2) lang="-l sh" ;;
         *) lang="" ;;
       esac
       bat --plain --theme=Dracula --paging=never --color=always $lang "$file"
