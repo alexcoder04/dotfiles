@@ -63,7 +63,7 @@ number_threshold = 1
 [character]
 success_symbol = "[+STARSHIP_SUCCESS+](bold green)"
 error_symbol = "[+STARSHIP_ERROR+](bold red)"
-vicmd_symbol = "[+STARHIP_VI+](bold blue)"
+vicmd_symbol = "[+STARSHIP_VI+](bold blue)"
 
 [cmd_duration]
 format = "\\[[$duration]($style)\\]"
