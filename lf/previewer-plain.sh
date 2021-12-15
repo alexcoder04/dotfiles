@@ -9,6 +9,13 @@ if [ ! -s "$file" ]; then
 fi
 
 case "$(file -Lb --mime-type -- "$file")" in
+  image/*)
+    timg -g "${2}x${3}" "$file"
+    ;;
+  video/*)
+    ffmpegthumbnailer -i "$file" -o - -c png -s 0 \
+      | timg -g "${2}x${3}" -
+    ;;
   text/*)
     case "${file##*.}" in
       ino) lang="-l C" ;;

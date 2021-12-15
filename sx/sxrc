@@ -12,7 +12,7 @@
 
 export XDG_SESSION_TYPE="x11"
 
-xrdb "$XDG_CONFIG_HOME/X11/Xresources" &
+xrdb -load "$XDG_CONFIG_HOME/X11/Xresources"
 
 [ -z "$WINDOW_MANAGER" ] \
   && exec i3 \
