@@ -82,8 +82,6 @@ super + plus
 # SECOND ROW
 super + a
     sh -c 'echo "$HOME/.local/share/backgrounds/lauterbach-wallpapers" > /tmp/wpdirs && wallpaper-select random'
-super + g
-    +TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e empty-keybind "g"
 super + d
     +FILEMANAGER_MAIN+
 super + shift + d
@@ -102,11 +100,11 @@ super + x
 super + b
     +TERMINAL_MAIN+ -e newsboat-selector
 super + m
-	signal-desktop
+    signal-desktop
 super + period
-	rofi -show emoji -modi emoji
+    rofi -show emoji -modi emoji
 super + minus
-	wallpaper-select random
+    wallpaper-select random
 super + underscore
     wallpaper-select
 
@@ -142,6 +140,6 @@ XF86MonBrightnessDown
     sudo /usr/local/bin/brightness lower
 super + Print
     screenshot
-super +shift + Print
+super + shift + Print
     screenshot --select
 
