@@ -2,9 +2,9 @@
     follow = mouse
     width = 500
     height = 100
-    origin = top-right
-    notification_limit = 5
-    offset = 10x40
+    origin = bottom-left
+    notification_limit = 7
+    offset = 10x10
     separator_height = 2
     frame_color = "+COLOR_CYAN+"
     separator_color = frame
@@ -13,9 +13,9 @@
     font = Inconsolata 15
     markup = full
     format = "<b>%s</b>\n%b"
-    alignment = right
+    alignment = left
 
-    icon_position = right
+    icon_position = left
     max_icon_size = 32
 
     dmenu = /usr/bin/rofi -dmenu -i -p "dunst"

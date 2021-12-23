@@ -122,9 +122,9 @@ super + F5
 super + F6
     i3-mode-change
 super + F7
-    $HOME/music.sh
+    music
 super + shift + F7
-    /home/alex/music.sh stop
+    music --stop
 super + F8
     monitors-set --interactive
 super + F12
