@@ -106,6 +106,7 @@ alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 ABBREVIATION lsblk="lsblk -f"
 ABBREVIATION df="df -h"
 ABBREVIATION webserver="python3 -m http.server 1234"
+ABBREVIATION lastmounts="tail /proc/mounts"
 
 # sx starts up Xorg, so sw starts up Wayland (Sway) xD
 alias sw="sway"
