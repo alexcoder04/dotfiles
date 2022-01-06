@@ -22,11 +22,12 @@ ABBREVIATION alu="apt list --upgradeable"
 # --------------------------------------------------------------------
 ABBREVIATION gad="git add"
 ABBREVIATION gada="git add -A"
-ABBREVIATION gbranch="git branch"
+ABBREVIATION gbr="git branch"
 ABBREVIATION gcheckout="git checkout"
 ABBREVIATION gcln="git clone"
-ABBREVIATION gcom="git commit -m"
+ABBREVIATION gcom="git commit -S -m"
 ABBREVIATION gdif="git diff"
+ABBREVIATION gfetch="git fetch --all"
 ABBREVIATION ginit="git init"
 ABBREVIATION gps="git push"
 ABBREVIATION gpl="git pull --rebase"
@@ -114,9 +115,6 @@ alias sw="sway"
 # Working with disks
 ABBREVIATION umount-luks="sudo umount /media/luks && sudo cryptsetup close butterfly"
 ABBREVIATION driveoff="sudo hdparm -Y"
-
-# Fun commands
-ABBREVIATION gnuhead="cat /home/alex/.local/share/gnu-head-xterm"
 
 # Translator
 ABBREVIATION de:en="trans -shell de:en"
