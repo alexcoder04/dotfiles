@@ -97,6 +97,8 @@ super + ctrl + f
 # THIRD ROW
 super + x
     +TERMINAL_MAIN+ -e htop
+super + v
+    +TERMINAL_MAIN+ -e nvim
 super + b
     +TERMINAL_MAIN+ -e newsboat-selector
 super + m

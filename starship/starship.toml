@@ -10,7 +10,7 @@
 
 add_newline = false
 format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in \\[ $directory\\] $git_status$git_branch \\[ $jobs$python$golang$nodejs\\]
-$custom $character"""
+${custom.chroot} ${custom.lf_level} $character"""
 right_format = "$cmd_duration $time"
 
 [username]
@@ -78,5 +78,11 @@ time_format = "%a, %d %b %H:%M"
 command = "echo :lf$LF_LEVEL:"
 when = "[ ! -z $LF_LEVEL ]"
 style = "bg:cyan fg:black"
+format = "[$output]($style)"
+
+[custom.chroot]
+command = "echo :chroot:"
+when = "ischroot"
+style = "bg:blue fg:black"
 format = "[$output]($style)"
 
