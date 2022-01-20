@@ -1,7 +1,12 @@
 
 # m h  dom mon dow   command
 
+# load RSS feeds
 0 * * * * /usr/local/bin/myenv '/usr/bin/newsboat -c $XDG_CACHE_HOME/newsboat/00main.cache -u $XDG_CONFIG_HOME/newsboat/00main.urls -x reload'
+# new wallpaper every 15 mins
 */15 * * * * /usr/local/bin/myenv 'DISPLAY=:1 XAUTHORITY=$XDG_DATA_HOME/sx/xauthority SWAYSOCK="/run/user/$(id -u)/swaysock" wallpaper-select random'
+# delete old files (>2 weeks) from trash
 0 * * * * /usr/local/bin/myenv '/usr/bin/trash-empty 14'
+# so maybe this way?
+0 */2 * * * /bin/rm -rf /home/alex/.w3m
 

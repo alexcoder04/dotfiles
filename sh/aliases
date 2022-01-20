@@ -23,54 +23,52 @@ ABBREVIATION alu="apt list --upgradeable"
 ABBREVIATION gad="git add"
 ABBREVIATION gada="git add -A"
 ABBREVIATION gbr="git branch"
-ABBREVIATION gcheckout="git checkout"
+ABBREVIATION gco="git checkout"
 ABBREVIATION gcln="git clone"
 ABBREVIATION gcom="git commit -S -m"
 ABBREVIATION gdif="git diff"
-ABBREVIATION gfetch="git fetch --all"
-ABBREVIATION ginit="git init"
+ABBREVIATION gft="git fetch --all"
+ABBREVIATION gin="git init"
 ABBREVIATION gps="git push"
 ABBREVIATION gpl="git pull --rebase"
+ABBREVIATION grs="git restore"
 ABBREVIATION gst="git status"
 
 # --------------------------------------------------------------------
-# DEFAULT OPTIONS FOR BASIC BASIC TERMINAL COMMANDS
+# BASIC BASIC TERMINAL COMMANDS
 # --------------------------------------------------------------------
 # the only thing DOS is superior in: it has a shorter clear command
 alias cls='[ "$(seq 1 3 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cyan; clear'
 
 # make ls look nice but still tty-friendly and consider exa not beeing installed
-if which exa >/dev/null; then
-    case "$(tty)" in
-        /dev/tty*)
-          alias ls="exa -hl --group-directories-first"
-          alias la="exa -ahl --group-directories-first" ;;
-        *)
-          alias ls="exa -hl --icons --group-directories-first"
-          alias la="exa -ahl --icons --group-directories-first" ;;
-    esac
-    alias tree="exa -T -L 3"
+if command -v exa >/dev/null; then
+  case "$(tty)" in
+    /dev/tty*)
+      alias ls="exa -hl --group-directories-first"
+      alias la="exa -ahl --group-directories-first" ;;
+    *)
+      alias ls="exa -hl --icons --group-directories-first"
+      alias la="exa -ahl --icons --group-directories-first" ;;
+  esac
+  alias tree="exa -T -L 3"
 else
   alias ls="ls -lFh --color=auto --group-directories-first"
   alias la="ls -AlF --color=auto --group-directories-first"
 fi
 
 # rm, cp, mv, ln
-ABBREVIATION ln="ln -v"
-ABBREVIATION rm="rm -iv"
-ABBREVIATION rmd="rm -Ifvr"
-ABBREVIATION mv="mv -iv"
 ABBREVIATION cp="cp -iv"
 ABBREVIATION cpd="cp -ifvr"
+ABBREVIATION ln="ln -vs"
+ABBREVIATION mv="mv -iv"
+ABBREVIATION rm="rm -iv"
+ABBREVIATION rmd="rm -Ifvr"
 
 # grep and diff
 alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias diff="diff --color=auto"
-
-# how often do you do this...
-ABBREVIATION chx="chmod +x"
 
 # how to exit the shell
 alias :q="exit"
@@ -80,43 +78,45 @@ case "$0" in
 esac
 
 # --------------------------------------------------------------------
-# AUTO-USE SUDO
+# REBIND SOME STUFF
 # --------------------------------------------------------------------
-ABBREVIATION mount="doas mount"
-ABBREVIATION umount="doas umount"
-
-# --------------------------------------------------------------------
-# REBIND SOME PROGRAMS
-# --------------------------------------------------------------------
+# everything is neovim
 GLOBAL_ALIAS v="nvim"
 GLOBAL_ALIAS vi="nvim"
 GLOBAL_ALIAS vim="nvim"
 GLOBAL_ALIAS vimdiff="nvim -d"
 
-command -v lf_run >/dev/null && alias lf="lf_run"
-GLOBAL_ALIAS sudo="doas"
-GLOBAL_ALIAS p="pacman"
-GLOBAL_ALIAS sizeof="du --max-depth 0 -h"
+# my options
 GLOBAL_ALIAS cal="cal -m"
-GLOBAL_ALIAS py="python3"
+GLOBAL_ALIAS duf="duf -hide-fs devtmpfs -hide-mp /sys/fs/cgroup"
+GLOBAL_ALIAS sizeof="du --max-depth 0 -h"
+GLOBAL_ALIAS wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias bat="bat --plain --theme=Dracula --paging=never"
-alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
-alias newsboat="newsboat-selector"
+alias df="df -h"
 alias ffmpeg="ffmpeg -hide_banner"
-alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
-ABBREVIATION lsblk="lsblk -f"
-ABBREVIATION df="df -h"
-ABBREVIATION webserver="python3 -m http.server 1234"
+alias lsblk="lsblk -f"
+alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
+
+# handy stuff
+ABBREVIATION chx="chmod +x"
 ABBREVIATION lastmounts="tail /proc/mounts"
+ABBREVIATION webserver="python3 -m http.server 1234"
+GLOBAL_ALIAS p="pacman"
+GLOBAL_ALIAS py="python3"
+GLOBAL_ALIAS sudo="doas"
+alias newsboat="newsboat-selector"
+
+# lf wrapper
+command -v lf_run >/dev/null && alias lf="lf_run"
+
+# Working with disks
+ABBREVIATION umount-luks="sudo umount /media/drive && sudo cryptsetup close drive"
+ABBREVIATION driveoff="sudo hdparm -Y"
 
 # sx starts up Xorg, so sw starts up Wayland (Sway) xD
 alias sw="sway"
 
-# Working with disks
-ABBREVIATION umount-luks="sudo umount /media/luks && sudo cryptsetup close butterfly"
-ABBREVIATION driveoff="sudo hdparm -Y"
-
-# Translator
+# translator
 ABBREVIATION de:en="trans -shell de:en"
 ABBREVIATION en:de="trans -shell en:de"
 

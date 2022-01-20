@@ -90,6 +90,8 @@ super + f
 	+BROWSER_MAIN+
 super + shift + f
     +BROWSER_SECONDARY+
+super + shift + ctrl + f
+    firefox --private-window
 super + ctrl + f
     firefox-profile-select
 # H, J, K, L: window-manager-reserved
