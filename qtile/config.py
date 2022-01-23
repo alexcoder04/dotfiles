@@ -188,7 +188,6 @@ def bar_sep():
 def init_bar(systray=False):
     widgets = [
         widget.CurrentLayoutIcon(),
-        widget.WindowCount(),
         widget.GroupBox(
             disable_drag=True,
             hide_unused=True,
@@ -202,13 +201,13 @@ def init_bar(systray=False):
             ),
         bar_sep(),
         widget.Net(
-            format="{down} ↓↑ {up}",
+            format=" {down} {up}",
             update_interval=3
             ),
         widget.NetGraph(
             fill_color=theme["dark_grey"],
             graph_color=theme["green"],
-            samples=50,
+            start_pos="bottom",
             frequency=3
             ),
         bar_sep(),
@@ -217,7 +216,6 @@ def init_bar(systray=False):
             fill_color=theme["dark_grey"],
             graph_color=theme["blue"],
             device="nvme0n1",
-            samples=50,
             frequency=5
             ),
         bar_sep(),
@@ -228,7 +226,6 @@ def init_bar(systray=False):
         widget.MemoryGraph(
             fill_color=theme["dark_grey"],
             graph_color=theme["purple"],
-            samples=50,
             frequency=5
             ),
         bar_sep(),
@@ -238,9 +235,8 @@ def init_bar(systray=False):
             ),
         widget.CPUGraph(
             fill_color=theme["dark_grey"],
-            graph_color=theme["yellow"],
-            frequency=2,
-            samples=50
+            graph_color=theme["magenta"],
+            frequency=2
             ),
         widget.ThermalZone(
                 zone="/sys/class/thermal/thermal_zone7/temp",
@@ -254,18 +250,18 @@ def init_bar(systray=False):
         widget.Battery(
             format="{char} {percent:2.0%} ({hour:d}:{min:02d} / {watt:.2f}W)",
             background=theme["black"],
-            foreground=theme["green"],
+            foreground=theme["yellow"],
             discharge_char="",
             charge_char="",
             empty_char="",
             full_char="",
             low_foreground=theme["red"],
             low_percentage=0.25,
-            unknown_char="🤔"
+            unknown_char=""
             ),
         bar_sep(),
         widget.Volume(
-                foreground=theme["magenta"],
+                foreground=theme["purple"],
                 fmt=" {}",
                 step=5,
                 update_interval=0.5
