@@ -197,7 +197,9 @@ def init_bar(systray=False):
             urgent_border=theme["red"]
             ),
         widget.Spacer(),
-        widget.CryptoTicker(),
+        widget.CryptoTicker(
+            foreground=theme["green"]
+            ),
         bar_sep(),
         widget.Net(
             format="{down} ↓↑ {up}",
@@ -252,7 +254,7 @@ def init_bar(systray=False):
         widget.Battery(
             format="{char} {percent:2.0%} ({hour:d}:{min:02d} / {watt:.2f}W)",
             background=theme["black"],
-            foreground=theme["white"],
+            foreground=theme["green"],
             discharge_char="",
             charge_char="",
             empty_char="",
@@ -263,6 +265,7 @@ def init_bar(systray=False):
             ),
         bar_sep(),
         widget.Volume(
+                foreground=theme["magenta"],
                 fmt=" {}",
                 step=5,
                 update_interval=0.5
