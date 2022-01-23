@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# 
+# qtile config
+# 
 
 # -----------------------------------------------------------------------------
 # IMPORTS
@@ -117,11 +127,35 @@ for i, (wlabel, wlayout) in enumerate(workspaces):
     groups.append(group)
 
 layout_theme = {
-    "border_width": 2,
-    "margin": 5,
     "border_focus": theme["green"],
     "border_normal": theme["dark_grey"],
+    "border_width": 2,
+    "margin": 5,
     }
+
+floating_layout_theme = layout_theme.copy()
+floating_layout_theme["border_focus"] = theme["cyan"]
+floating_layout_theme["border_width"] = 3
+
+floating_layout = layout.Floating(
+        **floating_layout_theme,
+        float_rules=[
+            *layout.Floating.default_float_rules,
+            Match(title='Confirmation'),
+            Match(title='Qalculate!'),
+            Match(wm_class='pinentry-gtk-2'),
+            Match(wm_class="i3_float"),
+            Match(wm_class="Qemu-system-x86_64"),
+            Match(wm_class="Pavucontrol"),
+            Match(wm_class="TIPP10"),
+            Match(wm_class="Gnome-2048"),
+            Match(wm_class="Signal"),
+            Match(wm_class="Catfish"),
+            Match(wm_class="Gpick"),
+            Match(wm_class="calculator"),
+            Match(wm_class="Cinnamon-settings.py"),
+            ]
+        )
 
 layouts = [
     layout.MonadTall(**layout_theme),
@@ -133,12 +167,12 @@ layouts = [
 # SCREENS AND BARS
 # -----------------------------------------------------------------------------
 widget_defaults = dict(
-    font="Inconsolata",
-    fontsize=16,
-    padding=3,
-    foreground=theme["white"],
     background=theme["black"],
     border_width=0
+    font="Inconsolata",
+    fontsize=16,
+    foreground=theme["white"],
+    padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -164,8 +198,6 @@ def init_bar(systray=False):
             ),
         widget.Spacer(),
         widget.CryptoTicker(),
-        bar_sep(),
-        widget.CheckUpdates(no_update_string="-"),
         bar_sep(),
         widget.Net(
             format="{down} ↓↑ {up}",
@@ -259,26 +291,6 @@ def init_screens():
     return [default_screen()]
 
 screens = init_screens()
-
-floating_layout = layout.Floating(
-        **layout_theme,
-        float_rules=[
-            *layout.Floating.default_float_rules,
-            Match(title='Confirmation'),
-            Match(title='Qalculate!'),
-            Match(wm_class='pinentry-gtk-2'),
-            Match(wm_class="i3_float"),
-            Match(wm_class="Qemu-system-x86_64"),
-            Match(wm_class="Pavucontrol"),
-            Match(wm_class="TIPP10"),
-            Match(wm_class="Gnome-2048"),
-            Match(wm_class="Signal"),
-            Match(wm_class="Catfish"),
-            Match(wm_class="Gpick"),
-            Match(wm_class="calculator"),
-            Match(wm_class="Cinnamon-settings.py"),
-            ]
-        )
 
 # -----------------------------------------------------------------------------
 # MY INIT SCRIPT
