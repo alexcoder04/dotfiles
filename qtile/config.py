@@ -168,7 +168,7 @@ layouts = [
 # -----------------------------------------------------------------------------
 widget_defaults = dict(
     background=theme["black"],
-    border_width=0
+    border_width=0,
     font="Inconsolata",
     fontsize=16,
     foreground=theme["white"],
@@ -200,7 +200,7 @@ def init_bar(systray=False):
         widget.CryptoTicker(),
         bar_sep(),
         widget.Net(
-            format="{down} ↓↑ {up}",
+            format="{down} ↓↑ {up}",
             update_interval=3
             ),
         widget.NetGraph(
@@ -211,6 +211,7 @@ def init_bar(systray=False):
             ),
         bar_sep(),
         widget.HDDBusyGraph(
+            fmt="{}",
             fill_color=theme["dark_grey"],
             graph_color=theme["blue"],
             device="nvme0n1",
@@ -219,7 +220,7 @@ def init_bar(systray=False):
             ),
         bar_sep(),
         widget.Memory(
-            format="{MemUsed: .0f}{mm}",
+            format="{MemUsed: .0f}{mm}",
             update_interval=5
             ),
         widget.MemoryGraph(
@@ -262,11 +263,12 @@ def init_bar(systray=False):
             ),
         bar_sep(),
         widget.Volume(
+                fmt=" {}",
                 step=5,
                 update_interval=0.5
                 ),
         bar_sep(),
-        widget.Clock(format="%a, %e.%m - %R:%S"),
+        widget.Clock(format=" %a, %e.%m - %R:%S"),
         ]
     if systray:
         widgets.append(bar_sep())
