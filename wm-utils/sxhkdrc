@@ -33,8 +33,8 @@ super + ctrl + r
     rofi -show drun -modi drun
 super + alt + r
     rofi -show ssh -modi ssh
-super + Tab
-    rofi -show window -modi window
+#super + Tab
+#    rofi -show window -modi window
 
 # ###################################################################
 # DUNST
@@ -122,6 +122,10 @@ super + F4
 super + shift + F4
     password --otp
 super + F5
+    addmount
+super + ctrl + F5
+    addmount --usb
+super + shift + F5
     unmount-drive
 super + F6
     i3-mode-change

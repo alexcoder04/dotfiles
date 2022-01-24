@@ -84,7 +84,6 @@ keys = [
 
     # Session (restart / quit)
     Key([alt, "control"], "r", lazy.restart()),
-    Key([alt, "control"], "q", lazy.shutdown()),
 
     # Fallback terminal
     Key([mod], "F10", lazy.spawn(terminal)),
