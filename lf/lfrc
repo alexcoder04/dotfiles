@@ -117,8 +117,12 @@ cmd unarchive !{{
 	esac
 }}
 
-cmd archive !{{
+cmd archive_tar !{{
     echo "$fx" | xargs -n 1 basename | xargs -t tar -czf "$f.tar.gz"
+}}
+
+cmd archive_zip !{{
+    echo "$fx" | xargs -n 1 basename | xargs -t zip -r "$f.zip"
 }}
 
 # adapted from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
@@ -211,6 +215,10 @@ map <c-r> bulk-rename
 map gp git_pull
 map gs git_status
 
+map ae unarchive
+map act archive_tar
+map acz archive_zip
+
 map md push %mkdir<space>
 map mD folder-with-items
 map mf push %touch<space>
@@ -222,8 +230,6 @@ map c cut
 map U clear
 map e $$EDITOR "$f"
 map wp add_wallpaper
-map ae unarchive
-map ac archive
 map T $$SHELL
 map H set hidden!
 map wp set_wallpaper
