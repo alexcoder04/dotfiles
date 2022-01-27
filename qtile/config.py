@@ -207,7 +207,7 @@ def init_bar(systray=False):
             fill_color=theme["dark_grey"],
             graph_color=theme["green"],
             start_pos="bottom",
-            frequency=3
+            frequency=5
             ),
         bar_sep(),
         widget.HDDBusyGraph(
@@ -235,7 +235,7 @@ def init_bar(systray=False):
         widget.CPUGraph(
             fill_color=theme["dark_grey"],
             graph_color=theme["magenta"],
-            frequency=2
+            frequency=5
             ),
         widget.ThermalZone(
                 zone="/sys/class/thermal/thermal_zone7/temp",
@@ -264,6 +264,10 @@ def init_bar(systray=False):
                 fmt=" {}",
                 step=5,
                 update_interval=0.5
+                ),
+        bar_sep(),
+        widget.Backlight(
+                backlight_name="intel_backlight"
                 ),
         bar_sep(),
         widget.Clock(format=" %a, %e.%m - %R:%S"),

@@ -115,6 +115,7 @@ ABBREVIATION driveoff="sudo hdparm -Y"
 
 # sx starts up Xorg, so sw starts up Wayland (Sway) xD
 alias sw="sway"
+alias sq="WINDOW_MANAGER='qtile start' sx"
 
 # translator
 ABBREVIATION de:en="trans -shell de:en"

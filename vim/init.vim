@@ -31,14 +31,16 @@ syntax on
 " -------------------------------------------------
 call plug#begin()
 
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+" color schemes
 "Plug 'morhetz/gruvbox'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'preservim/nerdtree'
+
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'alexcoder04/lightline.vim' " own fork, because of colorschemes
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'mboughaba/i3config.vim'
 
 call plug#end()
 
@@ -137,6 +139,8 @@ autocmd BufEnter *.tex set filetype=tex
 autocmd BufEnter *.muttrc set filetype=neomuttrc
 autocmd BufEnter *dunstrc set filetype=dosini
 autocmd BufEnter *.prefs2 set filetype=sh
+autocmd BufEnter $XDG_CONFIG_HOME/i3/config set filetype=i3config
+autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
 
 " tab settings for diffrent file types
 autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab
