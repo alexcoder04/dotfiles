@@ -97,6 +97,8 @@ super + ctrl + f
 # H, J, K, L: window-manager-reserved
 
 # THIRD ROW
+super + y
+    sh -c 'rofi -dmenu -p video | xargs mpv & notify-send -t 1000 "opening video..."'
 super + x
     +TERMINAL_MAIN+ -e htop
 super + v

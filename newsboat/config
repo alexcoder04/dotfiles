@@ -23,7 +23,7 @@ color listnormal blue default
 color listnormal_unread red default
 color listfocus green black standout bold
 color listfocus_unread red yellow bold
-color article blue default
+color article white default bold
 
 unbind-key j
 unbind-key k
