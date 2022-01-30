@@ -71,4 +71,10 @@ export COLOR_DARK_BLUE="+COLOR_DARK_BLUE+"
 
 # different settings
 export SECOND_MONITOR_POSITION="+SECOND_MONITOR_POSITION+"
+export VIM_HEAVY_PLUGINS="+VIM_HEAVY_PLUGINS+"
+if [ -d "/media/cache" ]; then
+  export NVIMCACHE="/media/cache/nvim"
+else
+  export NVIMCACHE="$XDG_CACHE_HOME/nvim"
+fi
 

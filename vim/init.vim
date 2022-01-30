@@ -21,10 +21,14 @@ set number relativenumber
 set smartcase
 set colorcolumn=80
 set ignorecase
-set dir=/media/cache/nvim
 let mapleader=" "
 filetype plugin indent on
 syntax on
+if $NVIMCACHE != ""
+  set dir=$NVIMCACHE
+else
+  set dir=$HOME/.cache/nvim
+endif
 
 " -------------------------------------------------
 " PLUGINS
@@ -36,11 +40,14 @@ call plug#begin()
 "Plug 'altercation/vim-colors-solarized'
 Plug 'dracula/vim', { 'as': 'dracula' }
 
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'alexcoder04/lightline.vim' " own fork, because of colorschemes
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mboughaba/i3config.vim'
+
+if $VIM_HEAVY_PLUGINS == "yes"
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+endif
 
 call plug#end()
 

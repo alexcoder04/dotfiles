@@ -10,6 +10,7 @@
 # qutebrowser config
 
 import os
+import subprocess
 
 # get env vars
 HOME = os.getenv("HOME")
@@ -24,6 +25,22 @@ MY_DARK_GREY = os.getenv("COLOR_DARK_GREY")
 MY_GREEN = os.getenv("COLOR_GREEN")
 MY_RED = os.getenv("COLOR_RED")
 MY_YELLOW = os.getenv("COLOR_YELLOW")
+
+# smaller font size on smaller screens
+def get_font_size():
+    # all active screens with xrandr
+    # TODO what about wayland?
+    active_screens = [
+        i for i in subprocess.check_output("xrandr").decode("utf-8").split("\n")
+        if " connected " in i and "mm x " in i
+        ]
+    for i in active_screens:
+        os.system(f"sh -c notify-send '{i}'")
+        x, _, _ = i.split()[-3:]
+        # small if one of the screens smaller than 250mm tall
+        if int(x.replace("mm", "")) < 250:
+            return "9pt"
+    return "15pt"
 
 # actually just set colors (alphabetically)
 c.colors.completion.category.bg = MY_DARK_BLUE
@@ -67,7 +84,7 @@ c.colors.tabs.selected.odd.fg = MY_BLACK
 
 # fonts
 c.fonts.default_family = "Inconsolata"
-c.fonts.default_size = "15pt"
+c.fonts.default_size = get_font_size()
 c.fonts.web.family.standard = "Inconsolata"
 
 # how to show tabs
@@ -95,8 +112,11 @@ c.url.searchengines = {
     }
 
 # downloads
-c.downloads.location.directory = f"{HOME}/Temp"
 c.downloads.remove_finished = 1000
+for folder in [f"{HOME}/Temp", f"{HOME}/Downloads", HOME]:
+    if os.path.isdir(folder):
+        c.downloads.location.directory = folder
+        break
 
 # keybindings
 config.bind("t", "open -t")
