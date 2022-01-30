@@ -1,6 +1,19 @@
+
+# -----------------------------------------------------------------------------
+# home server test box thingie
+# -----------------------------------------------------------------------------
+
+# path
+export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
 export RECONF_ENV_PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 export RECONF_PATH="$RECONF_ENV_PATH"
-export RECONF_EDITOR_MAIN="nvim"
-export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
 export RECONF_ZSH_SYNTAX_PLUGIN="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# default programs
+export RECONF_EDITOR_MAIN="nvim"
+export PAGER="less"
+
+# other
 export RECONF_COLORSCHEME="dracula"
+export RECONF_VIM_HEAVY_PLUGINS="no"
+

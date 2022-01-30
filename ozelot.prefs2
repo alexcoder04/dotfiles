@@ -1,17 +1,29 @@
-export RECONF_ENV_PATH="$SCRIPTS_DIR:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
-export RECONF_SCRIPTS_DIR="$SCRIPTS_DIR"
-export RECONF_PATH="$RECONF_ENV_PATH"
-export RECONF_EDITOR_MAIN="nvim"
+
+# -----------------------------------------------------------------------------
+# an ancient tiny netbook
+# -----------------------------------------------------------------------------
+
+# path
 export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
-export RECONF_COLORSCHEME="dracula"
-export RECONF_TERMINAL_MAIN="qterminal"
+export RECONF_ENV_PATH="$SCRIPTS_DIR:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+export RECONF_PATH="$RECONF_ENV_PATH"
+export RECONF_SCRIPTS_DIR="$SCRIPTS_DIR"
+
+# default programs
 export RECONF_BROWSER_MAIN="firefox-esr"
-export RECONF_BROWSER_SECONDARY="firefox-esr"
-export RECONF_I3_FONT_PANGO="Monospace 8"
-export RECONF_I3_FONT_BAR="Monospace 8"
+export RECONF_BROWSER_SECONDARY="qutebrowser"
+export RECONF_EDITOR_MAIN="nvim"
 export RECONF_FILEMANAGER_MAIN="pcmanfm-qt"
-export RECONF_FILEMANAGER_SECONDARY="pcmanfm-qt"
+export RECONF_FILEMANAGER_SECONDARY="qterminal -e lf"
 export RECONF_PAGER="less"
-export RECONF_PRE_X=". ${XDG_DATA_HOME:-$HOME/.local/share}/bash/env.bash && "
+export RECONF_TERMINAL_MAIN="qterminal"
+
+# i3
 export RECONF_I3_BAR_HEIGHT=""
+export RECONF_I3_FONT_BAR="Monospace 8"
+export RECONF_I3_FONT_PANGO="Monospace 8"
+export RECONF_PRE_X=". ${XDG_DATA_HOME:-$HOME/.local/share}/bash/env.bash && "
+
+# other
+export RECONF_COLORSCHEME="dracula"
 export RECONF_VIM_HEAVY_PLUGINS="no"

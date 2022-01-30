@@ -1,4 +1,8 @@
 
+# -----------------------------------------------------------------------------
+# my main production machine
+# -----------------------------------------------------------------------------
+
 # paths
 export RECONF_SCRIPTS_DIR="$HOME/Scripts"
 export RECONF_DOTFILES_REPO="$HOME/Dotfiles"

@@ -7,5 +7,4 @@ CONFIG_DIR="$XDG_CONFIG_HOME/qutebrowser"
 echo "./config.py -> $CONFIG_DIR/config.py"
 cat "./config.py" | ../reconf \
     > "$CONFIG_DIR/config.py"
-echo "You need $CONFIG_DIR/searchengines.json if you want to customize the search engines"
 
