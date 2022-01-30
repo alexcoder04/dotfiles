@@ -1,0 +1,12 @@
+troot              /
+tm                 /media
+tdot               $DOTFILES_REPO
+tbin               $SCRIPTS_DIR
+th                 $HOME
+tdoc               $HOME/Documents
+tdow               $HOME/Downloads
+tpic               $HOME/Pictures
+tvid               $HOME/Videos
+tsh                $XDG_DATA_HOME
+twall              $XDG_DATA_HOME/backgrounds
+tconf              $XDG_CONFIG_HOME
