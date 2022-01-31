@@ -37,18 +37,19 @@ mod = "mod4"
 alt = "mod1"
 terminal = getenv("TERMINAL", "alacritty")
 theme = {
-        "black":     getenv("COLOR_BLACK", "#000000"),
-        "blue":      getenv("COLOR_BLUE", "#0000ff"),
-        "cyan":      getenv("COLOR_CYAN", "#00ffff"),
-        "dark_blue": getenv("COLOR_DARK_BLUE", "#000088"),
-        "dark_grey": getenv("COLOR_DARK_GREY", "#222222"),
-        "green":     getenv("COLOR_GREEN", "#00ff00"),
-        "grey":      getenv("COLOR_GREY", "#555555"),
-        "magenta":   getenv("COLOR_MAGENTA", "#ff3333"),
-        "purple":    getenv("COLOR_PURPLE", "#ff00ff"),
-        "red":       getenv("COLOR_RED", "#ff0000"),
-        "white":     getenv("COLOR_WHITE", "#ffffff"),
-        "yellow":    getenv("COLOR_YELLOW", "#ffff00"),
+        "black":      getenv("COLOR_BLACK", "#000000"),
+        "blue":       getenv("COLOR_BLUE", "#0000ff"),
+        "cyan":       getenv("COLOR_CYAN", "#00ffff"),
+        "dark_blue":  getenv("COLOR_DARK_BLUE", "#000088"),
+        "dark_grey":  getenv("COLOR_DARK_GREY", "#222222"),
+        "green":      getenv("COLOR_GREEN", "#00ff00"),
+        "grey":       getenv("COLOR_GREY", "#555555"),
+        "light_grey": getenv("COLOR_LIGHT_GREY", "#dddddd"),
+        "magenta":    getenv("COLOR_MAGENTA", "#ff3333"),
+        "purple":     getenv("COLOR_PURPLE", "#ff00ff"),
+        "red":        getenv("COLOR_RED", "#ff0000"),
+        "white":      getenv("COLOR_WHITE", "#ffffff"),
+        "yellow":     getenv("COLOR_YELLOW", "#ffff00"),
         }
 
 # -----------------------------------------------------------------------------
@@ -165,14 +166,14 @@ layouts = [
 # -----------------------------------------------------------------------------
 # SCREENS AND BARS
 # -----------------------------------------------------------------------------
-widget_defaults = dict(
-    background=theme["black"],
-    border_width=0,
-    font="Inconsolata",
-    fontsize=16,
-    foreground=theme["white"],
-    padding=3,
-)
+widget_defaults = {
+        "background":   theme["black"],
+        "border_width": 0,
+        "font":         "Inconsolata",
+        "fontsize":     16,
+        "foreground":   theme["white"],
+        "padding":      3
+    }
 extension_defaults = widget_defaults.copy()
 
 def get_active_screens():
@@ -191,8 +192,9 @@ def init_bar(systray=False):
             disable_drag=True,
             hide_unused=True,
             this_current_screen_border=theme["green"],
-            this_screen_border=theme["cyan"],
-            urgent_border=theme["red"]
+            other_current_screen_border=theme["cyan"],
+            urgent_border=theme["red"],
+            inactive=theme["light_grey"]
             ),
         widget.Spacer(),
         widget.CryptoTicker(
@@ -277,22 +279,16 @@ def init_bar(systray=False):
         widgets.append(widget.Systray())
     return bar.Bar(widgets, 24)
 
-def default_screen():
-    return Screen(top=init_bar(systray=False))
-
-def screen_with_systray():
-    return Screen(top=init_bar(systray=True))
-
 def init_screens():
     if qtile is None or qtile.core.name == "x11":
         screens = []
         for i, _ in enumerate(get_active_screens()):
             if i == 0:
-                screens.append(screen_with_systray())
+                screens.append(Screen(top=init_bar(systray=True)))
                 continue
-            screens.append(default_screen())
+            screens.append(Screen(top=init_bar(systray=False)))
         return screens
-    return [default_screen()]
+    return [Screen(top=init_bar(systray=False))]
 
 screens = init_screens()
 
