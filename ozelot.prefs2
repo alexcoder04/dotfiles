@@ -27,3 +27,4 @@ export RECONF_PRE_X=". ${XDG_DATA_HOME:-$HOME/.local/share}/bash/env.bash && "
 # other
 export RECONF_COLORSCHEME="dracula"
 export RECONF_VIM_HEAVY_PLUGINS="no"
+export RECONF_KEYBOARD_LAYOUT="en_US"

@@ -143,7 +143,10 @@ nnoremap <leader>ll :set tw=80<CR>
 " -------------------------------------------------
 " fix file types
 autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
+autocmd BufEnter $DOTFILES_REPO/sh/aliases set filetype=sh
+autocmd BufEnter $DOTFILES_REPO/sh/env set filetype=sh
 autocmd BufEnter $XDG_CONFIG_HOME/i3/config set filetype=i3config
+autocmd BufEnter $XDG_CONFIG_HOME/newsboat/*.urls set filetype=conf
 autocmd BufEnter *.muttrc set filetype=neomuttrc
 autocmd BufEnter *.prefs2 set filetype=sh
 autocmd BufEnter *.tex set filetype=tex
