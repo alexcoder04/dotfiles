@@ -20,10 +20,6 @@ set drawbox
 set preview 
 set icons 
 set ignorecase 
-set shell zsh
-set shellopts '-euy'
-set ifs "\n"
-set filesep "\n"
 set info size
 set incsearch
 
@@ -118,7 +114,7 @@ cmd unarchive !{{
 }}
 
 cmd archive_tar !{{
-    echo "$fx" | xargs -n 1 basename | xargs -t tar -czf "$f.tar.gz"
+    echo "$fx" | xargs -n 1 basename | xargs -t tar -vczf "$f.tar.gz"
 }}
 
 cmd archive_zip !{{

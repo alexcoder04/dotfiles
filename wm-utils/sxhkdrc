@@ -145,9 +145,9 @@ super + F12
 # OTHER KEYS
 # ###################################################################
 XF86MonBrightnessUp
-    sudo /usr/local/bin/brightness higher
+    doas /usr/local/bin/brightness higher
 XF86MonBrightnessDown
-    sudo /usr/local/bin/brightness lower
+    doas /usr/local/bin/brightness lower
 super + Print
     screenshot
 super + shift + Print
