@@ -1,15 +1,47 @@
 #!/bin/bash
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# 
+# i3 config installer
+# it became quite complex over the time, supporting multiple themes (modes)
+# and different machines
+# 
 
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/i3"
 THEME_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/bumblebee-status/themes"
+MACHINE="$1"
 
 mkdir -vp "$CONFIG_DIR"
 mkdir -vp "$THEME_DIR"
 
+# -----------------------------------------------------------------------------
+# MACHINE_SPECIFIC I3BLOCKS
+# -----------------------------------------------------------------------------
+install_i3blocks(){
+  if [ -f "./$MACHINE-i3blocks.conf" ]; then
+      file="./$MACHINE-i3blocks.conf"
+  else
+      file="./default-i3blocks.conf"
+  fi
+  echo "$file -> $CONFIG_DIR/i3blocks.conf"
+  cat "$file" | ../reconf > "$CONFIG_DIR/i3blocks.conf"
+}
+
+# -----------------------------------------------------------------------------
+# DEFAULT MODE IS I3BLOCKS
+# -----------------------------------------------------------------------------
 [ -z "$RECONF_I3_MODE" ] \
   && export RECONF_I3_MODE="blocks"
 
 case "$RECONF_I3_MODE" in
+  # -----------------------------------------------------------------------------
+  # I3BLOCKS MODE
+  # -----------------------------------------------------------------------------
   blocks) 
     echo "Installing i3 in BLOCKS mode"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X i3blocks -c ~/.config/i3/i3blocks.conf"
@@ -18,13 +50,13 @@ case "$RECONF_I3_MODE" in
     cat "./pre.config" "./x11.config" "./main.config" "./bar.config" $RECONF_I3_ADDONS \
         | ../reconf > "$CONFIG_DIR/config"
 
-    echo "./i3blocks.conf -> $CONFIG_DIR/i3blocks.conf"
-    cat "./i3blocks.conf" | ../reconf \
-      > "$CONFIG_DIR/i3blocks.conf"
-    cp -v "./lock.png" "$CONFIG_DIR/lock.png"
+    install_i3blocks
 
     ;;
 
+  # -----------------------------------------------------------------------------
+  # POLYBAR MODE
+  # -----------------------------------------------------------------------------
   polybar)
     echo "Installing i3 in POLYBAR mode"
     export RECONF_BARS_LAUNCHER_COMMAND="$RECONF_PRE_X bar-launch i3-polybar"
@@ -32,10 +64,12 @@ case "$RECONF_I3_MODE" in
     echo "./pre.config+./main.config+./x11.config+[addons] -> $CONFIG_DIR/config"
     cat "./pre.config" "./x11.config" "./main.config" $RECONF_I3_ADDONS \
         | ../reconf > "$CONFIG_DIR/config"
-    cp -v "./lock.png" "$CONFIG_DIR/lock.png"
 
     ;;
 
+  # -----------------------------------------------------------------------------
+  # POWERLINE (BUMBLEBEE-STATUS) MODE
+  # -----------------------------------------------------------------------------
   powerline)
     echo "Installing i3 in POWERLINE mode"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X $CONFIG_DIR/start_bumblebee"
@@ -45,12 +79,14 @@ case "$RECONF_I3_MODE" in
         | ../reconf > "$CONFIG_DIR/config"
 
     cp -v "./dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
-    cp -v "./lock.png" "$CONFIG_DIR/lock.png"
     cp -v "./start_bumblebee" "$CONFIG_DIR/start_bumblebee"
     chmod -v +x "$CONFIG_DIR/start_bumblebee"
 
     ;;
 
+  # -----------------------------------------------------------------------------
+  # SWAY (I3BLOCKS) MODE
+  # -----------------------------------------------------------------------------
   sway)
     echo "Installing i3 in SWAY mode"
     export CONFIG_DIR="$XDG_CONFIG_HOME/sway"
@@ -60,9 +96,7 @@ case "$RECONF_I3_MODE" in
     cat "./pre.config" "./wayland.config" "./main.config" "./bar.config" <(../wm-utils/sxhkdtosway.py <../wm-utils/sxhkdrc) $RECONF_I3_ADDONS | ../reconf \
       > "$CONFIG_DIR/config"
 
-    echo "./i3blocks.conf -> $CONFIG_DIR/i3blocks.conf"
-    cat "./i3blocks.conf" | ../reconf \
-      > "$CONFIG_DIR/i3blocks.conf"
+    install_i3blocks
 
     ;;
 
@@ -70,6 +104,11 @@ case "$RECONF_I3_MODE" in
     echo "Unknown mode!"
     exit 1 ;;
 esac
+
+# -----------------------------------------------------------------------------
+# EVERYONE NEEDS THE LOCK SCREEN ICON
+# -----------------------------------------------------------------------------
+cp -v "./lock.png" "$CONFIG_DIR/lock.png"
 
 echo "YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION!"
 

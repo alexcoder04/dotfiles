@@ -1,7 +1,7 @@
 
 # i3wm
 
-i3 is my window manager of choice. Particulary, I use a fork of i3 called
+i3 is my window manager of choice. Particulary, I mainly use a fork of i3 called
 i3-gaps that has some more features.
 
 On the wayland side an i3-compatible compositor called sway exists. The config
@@ -12,14 +12,33 @@ to full-screen in floating WMs since I was a kid. Why? If I'm working on
 something, I want it to get all of my screen size and all of my attention,
 that's why tiling WMs just make more sense to me.
 
-i3 is not the most advanced tiling window manager and I might try out something
-different at some time in the future, but I'm sticking to i3 because of
-convenience for now.
+i3 is not the most advanced tiling window manager and I try out other WMs from
+time to time, but i3 is what worked best for me until now.
 
-I have three different i3 setups, using i3blocks, bumblebee-status and polybar.
-I switch from one to another from time to time, if I get bored. The sway setup
-uses i3blocks only for now. Because of this variety, the config is split into
-multiple parts, which are assembled in the right way depending on the mode.
+## Install system
+
+My config became quite complex over the time, and it can be assembled in very
+different ways depending on which theme I want or which machine I'm on, so
+there are a lot of files in this directory. Here is what they are for:
+
+ - `*.config`: i3 config files for different things (gaps, wayland, bar, ...).
+   They are assembled into one file on install depending on which functionality
+   is needed.
+ - `*-i3blocks.conf`: i3blocks configs for different machines
+ - `dracula-powerline.json`: custom bumblebee-status theme
+ - `lock.png`: lock screen image which is merged with a screenshot when the
+   screen is locked
+ - `start-bumblebee`: startup script for bumblebee-status with all the options I
+   want
+
+### Available themes ("modes")
+
+ - i3blocks
+ - powerline (feat. bumblebee-status)
+ - polybar (you guessed it, using polybar)
+ - sway (sway version, using i3blocks)
+
+---
 
 Lock image:
 http://www.groundreport.com/wp-content/uploads/2017/05/icon-1968247_960_720.png
