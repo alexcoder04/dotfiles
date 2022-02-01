@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "Assuming your current location ($PWD) as \$DOTFILES_REPO..."
+
+if [ -z "$SCRIPTS_DIR" ]; then
+  echo -n "Enter scripts location (empty for $HOME/Scripts): "
+  read choice
+  
+  if [ -z "$choice" ]; then
+    export SCRIPTS_DIR="$HOME/Scripts"
+  fi
+else
+ echo "Found scripts location: $SCRIPTS_DIR"
+fi
+
