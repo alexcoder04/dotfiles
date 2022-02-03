@@ -55,8 +55,13 @@ cmd select-all %{{
 }}
 
 cmd chmodx ${{
-		chmod +x "$f"
-		lf -remote 'send reload'
+    chmod +x "$f"
+    lf -remote 'send reload'
+}}
+
+cmd sizeof %{{
+    echo -n "\033[33mSize: \033[0m"
+    du --max-depth 0 -h "$f" | cut -f1
 }}
 
 cmd trash %trash-put $fx
@@ -202,6 +207,7 @@ map d
 map w
 map a
 map r
+map i
 
 map rr rename
 map rR rename; cmd-word-back; cmd-left
@@ -232,6 +238,7 @@ map wp set_wallpaper
 map <c-l> reload-window
 map <c-a> select-all
 map _ normalize-name
+map i sizeof
 
 # -----------------------------------------------------
 # STARTUP
