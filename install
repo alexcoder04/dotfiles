@@ -3,46 +3,59 @@
 # ------------------------------------------------------------------
 # SETTINGS
 # ------------------------------------------------------------------
-[ -z "$DOTFILES_REPO" ] \
-    && CONFIG_REPO="$HOME/Dotfiles" \
-	|| CONFIG_REPO="$DOTFILES_REPO"
+CONFIG_REPO="${DOTFILES_REPO:-$HOME/Dotfiles}"
+if [ ! -d "$CONFIG_REPO" ]; then
+  echo "$CONFIG_REPO does not exist"
+  exit 1
+fi
 
 # ------------------------------------------------------------------
 # FUNCTIONS
 # ------------------------------------------------------------------
 install_subfolder(){
-	[ -z "$1" ] && return
-	if [ -z "$2" ]; then
-			if [ -f "$XDG_DATA_HOME/conf-pc-name" ]; then
-					machine="$(cat $XDG_DATA_HOME/conf-pc-name)"
-					echo "using $XDG_DATA_HOME/conf-pc-name for machine name"
-			else
-					machine="$(cat /etc/hostname)"
-					echo "using /etc/hostname for machine name"
-			fi
-	else
-			machine="$2"
-			echo "using provided argument for machine name"
-	fi
-	! [ -d "$1" ] \
-        && echo "$1 is not a directory" && return
-	! [ -x "$1/install" ] \
-        && echo "install script does not exist or is not executable, aborting." && return
-    echo "Sourcing settings..."
-    . "./$machine.prefs2"
-    . "./colorschemes/$RECONF_COLORSCHEME.prefs2"
-	prev_dir="$(pwd)"
-	cd "$1"
-	echo "Installing $1 for $machine..."
-	./install "$machine"
-	cd "$prev_dir"
+  [ -z "$1" ] && return
+
+  if [ -z "$2" ]; then
+    if [ -f "$XDG_DATA_HOME/conf-pc-name" ]; then
+      machine="$(cat $XDG_DATA_HOME/conf-pc-name)"
+      echo "using $XDG_DATA_HOME/conf-pc-name for machine name"
+    else
+      machine="$(cat /etc/hostname)"
+      echo "using /etc/hostname for machine name"
+    fi
+  else
+    machine="$2"
+    echo "using provided argument for machine name"
+  fi
+
+  if [ ! -d "$1" ]; then
+    echo "$1 is not a directory"
+    return
+  fi
+
+  if [ ! -x "$1/install" ]; then
+    echo "install script does not exist or is not executable, aborting."
+    return
+  fi
+
+  echo "Sourcing settings..."
+  . "./$machine.prefs2"
+  . "./colorschemes/$RECONF_COLORSCHEME.prefs2"
+
+  cd "$1"
+  echo "Installing $1 for $machine..."
+  ./install "$machine"
+  cd "$OLDPWD"
 }
 
 # ------------------------------------------------------------------
 # ACTUAL SCRIPT
 # ------------------------------------------------------------------
 cd "$CONFIG_REPO"
-[ -z "$1" ] \
-	&& echo "You need to provide a package to install" \
-	|| install_subfolder "$1"
+if [ -z "$1" ]; then
+  echo "You need to provide a package to install"
+  exit 1
+fi
+
+install_subfolder "$1"
 

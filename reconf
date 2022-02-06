@@ -34,9 +34,9 @@ if __name__ == "__main__":
 
     # minify and output
     for l in data.split("\n"):
-        if l.startswith("#"):
+        if l.strip().startswith("#"):
             continue
-        if l == "":
+        if l.strip() == "":
             continue
         sys.stdout.write(l + "\n")
 

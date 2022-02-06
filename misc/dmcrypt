@@ -1,5 +1,6 @@
+
 # ---------------------------------------------------------------
-# /etc/conf.d/dmcrypt
+# main part of /etc/conf.d/dmcrypt
 # ---------------------------------------------------------------
 # (drive encryption setup)
 # How long to wait for each timeout (in seconds).
@@ -10,11 +11,4 @@ dmcrypt_retries=5
 target=home
 source=UUID="-UUID-"
 options=--allow-discards
-
-# ---------------------------------------------------------------
-# /etc/davfs2/davfs2.conf
-# ---------------------------------------------------------------
-cache_dir       /run/davfs
-cache_size      1024
-table_size      4096
 

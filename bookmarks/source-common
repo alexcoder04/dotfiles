@@ -6,6 +6,7 @@ th                 $HOME
 tdoc               $HOME/Documents
 tdow               $HOME/Downloads
 tpic               $HOME/Pictures
+tcd                $HOME/Projects
 tvid               $HOME/Videos
 tsh                $XDG_DATA_HOME
 twall              $XDG_DATA_HOME/backgrounds

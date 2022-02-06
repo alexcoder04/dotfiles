@@ -11,7 +11,7 @@ export RECONF_ZSH_SYNTAX_PLUGIN="/usr/share/zsh-syntax-highlighting/zsh-syntax-h
 
 # default programs
 export RECONF_EDITOR_MAIN="nvim"
-export PAGER="less"
+export RECONF_PAGER="less"
 
 # other
 export RECONF_COLORSCHEME="dracula"

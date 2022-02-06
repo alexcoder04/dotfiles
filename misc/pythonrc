@@ -1,6 +1,9 @@
+#!/usr/bin/python3
 import os
 import atexit
 import readline
+
+# the location of this file is defined in $PYTHONSTARTUP
 
 history = os.path.join(os.path.expanduser('~'), '.cache/python_history')
 try:

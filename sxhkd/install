@@ -7,5 +7,4 @@ SXHKD_CONFIG_DIR="$XDG_CONFIG_HOME/sxhkd"
 echo "./sxhkdrc -> $SXHKD_CONFIG_DIR/sxhkdrc"
 cat "./sxhkdrc" | ../reconf \
 	> "$SXHKD_CONFIG_DIR/sxhkdrc"
-cp -v "./libinput-gestures.conf" "$XDG_CONFIG_HOME/libinput-gestures.conf"
 

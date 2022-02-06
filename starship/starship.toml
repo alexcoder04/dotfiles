@@ -75,14 +75,14 @@ style = "yellow"
 time_format = "%a, %d %b %H:%M"
 
 [custom.lf_level]
-command = "echo :lf$LF_LEVEL:"
+command = "echo lf$LF_LEVEL"
 when = "[ ! -z $LF_LEVEL ]"
 style = "bg:cyan fg:black"
-format = "[$output]($style)"
+format = "\\[ [$output]($style) \\]"
 
 [custom.chroot]
-command = "echo :chroot:"
+command = "echo chroot"
 when = "ischroot"
 style = "bg:blue fg:black"
-format = "[$output]($style)"
+format = "\\[ [$output]($style) \\]"
 
