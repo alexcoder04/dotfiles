@@ -22,7 +22,7 @@ source "$ZDOTDIR/abbreviations.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/bookmarks.zsh"
 source "$ZDOTDIR/functions.zsh"
-source "$ZDOTDIR/lf_vars.zsh"
+[ -f "$XDG_CONFIG_HOME/lf/vars.sh" ] && source "$XDG_CONFIG_HOME/lf/vars.sh"
 
 # ---------------------------------------------------------
 # HISTORY CONFIGURATION

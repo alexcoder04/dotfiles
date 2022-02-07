@@ -23,6 +23,10 @@ set ignorecase
 set info size
 set incsearch
 
+set shell /bin/sh
+set shellopts '-eu'
+set ifs "\n"
+
 set promptfmt "\033[34;1m[ \033[32;1m%u\033[31m@\033[33m%h \033[34;1m]\033[0m in \033[36;1;4m%d\033[0;1;35m%f \033[0m"
 
 # -----------------------------------------------------
@@ -51,7 +55,7 @@ cmd reload-window :{{
 }}
 
 cmd select-all %{{
-    ls | xargs -I{} lf -remote "send $id toggle {}"
+    /bin/ls | xargs -I{} lf -remote "send $id toggle {}"
 }}
 
 cmd chmodx ${{
@@ -66,7 +70,15 @@ cmd sizeof %{{
 
 cmd trash %trash-put $fx
 cmd remove_interactive %rm -i $fx
-cmd remove_force %rm -rf $fx
+cmd remove_force %{{
+    printf "\033[33mSure [Y/n]?\033[0m "
+    read ans
+    if [ "$ans" = "Y" ]; then
+        rm -rf $fx
+    else
+        echo "\033[31mAborted\033[0m"
+    fi
+}}
 
 # from: https://github.com/gokcehan/lf/wiki/Tips#bulk-rename-multiple-files
 cmd bulk-rename ${{
@@ -90,7 +102,7 @@ cmd bulk-rename ${{
 }}
 
 cmd add_wallpaper %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
-cmd set_wallpaper %feh --bg-scale --no-fehbg "$f"
+cmd set_wallpaper %wallpaper-select --set "$f"
 
 cmd share_http ${{
     for file in $fx; do
@@ -161,7 +173,7 @@ cmd open ${{
 
 cmd new-name %{{
     set -f
-    printf "new name: "
+    printf "\033[32mNew name:\033[0m "
     read newname
     mv "$f" "$newname"
 }}
@@ -173,12 +185,13 @@ cmd normalize-name %{{
 # from https://github.com/gokcehan/lf/wiki/Tips#new-folder-with-selected-items
 cmd folder-with-items %{{
     set -f
-    printf "folder name: "
+    printf "\033[32mFolder name:\033[0m "
     read newd
     mkdir -- "$newd"
     mv -- $fx "$newd"
 }}
 
+# set terminal title
 cmd on-cd %{{
     printf "\033]0; $(pwd | sed "s|$HOME|~|" | tail -c 30) \007" > /dev/tty
 }}
@@ -209,36 +222,50 @@ map a
 map r
 map i
 
+# rename
 map rr rename
 map rR rename; cmd-word-back; cmd-left
 map RR new-name
 map <c-r> bulk-rename
+map _ normalize-name
 
+# git
 map gp git_pull
 map gs git_status
 
+# working with archives
 map ae unarchive
 map act archive_tar
 map acz archive_zip
 
+# create stuff
 map md push %mkdir<space>
 map mD folder-with-items
 map mf push %touch<space>
-map x chmodx
+map me push $$EDITOR<space>
+
+# delete stuff
 map dd trash
 map DD remove_interactive
 map dD remove_force
-map c cut
-map U clear
-map e $$EDITOR "$f"
-map wp add_wallpaper
+
+# view in
 map T $$SHELL
-map H set hidden!
-map wp set_wallpaper
-map <c-l> reload-window
+map e $$EDITOR "$f"
+map b &setsid nsxiv -q -t -r "$f"
+
+# actions
 map <c-a> select-all
-map _ normalize-name
+map U clear
+map c cut
+map x chmodx
 map i sizeof
+
+# visual
+map <c-l> reload-window
+map wpa add_wallpaper
+map wps set_wallpaper
+map H set hidden!
 
 # -----------------------------------------------------
 # STARTUP
