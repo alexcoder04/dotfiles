@@ -12,7 +12,7 @@
 " BASIC SETTINGS
 " -------------------------------------------------
 set nocompatible
-set mouse=
+set mouse=nv
 set clipboard+=unnamedplus
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set autoindent
@@ -67,10 +67,10 @@ hi! NonText ctermbg=NONE guibg=NONE
 " file tree and fuzzy finder
 "nmap <C-n> :NERDTreeToggle<CR>
 " disable arrow keys in normal mode xD
-nnoremap <Left> :echo "you fool..."<CR>
-nnoremap <Right> :echo "you fool..."<CR>
-nnoremap <Up> :echo "you fool..."<CR>
-nnoremap <Down> :echo "you fool..."<CR>
+"nnoremap <Left> :echo "you fool..."<CR>
+"nnoremap <Right> :echo "you fool..."<CR>
+"nnoremap <Up> :echo "you fool..."<CR>
+"nnoremap <Down> :echo "you fool..."<CR>
 " working with tabs
 nnoremap <leader>g :tabnext<CR>
 nnoremap <leader>G :tabprevious<CR>

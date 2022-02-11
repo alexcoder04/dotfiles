@@ -3,6 +3,8 @@
 CONFIG_FOLDER="$XDG_CONFIG_HOME/alacritty"
 [ -d "$CONFIG_FOLDER" ] || mkdir -p "$CONFIG_FOLDER"
 
+RECONF_COLORSCHEME="${RECONF_COLORSCHEME:-dracula}"
+
 cp -v "./alacritty.yml" "$CONFIG_FOLDER/alacritty.yml"
-cp -v "./$COLORSCHEME.yml" "$CONFIG_FOLDER/colorscheme.yml"
+cp -v "./colorschemes/$RECONF_COLORSCHEME.yml" "$CONFIG_FOLDER/colorscheme.yml"
 

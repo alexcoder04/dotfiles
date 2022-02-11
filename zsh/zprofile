@@ -11,8 +11,8 @@
 #
 
 case "$(tty)" in
-    /dev/tty*)
-        eval "$(ssh-agent)"
-        setfont "ter-118n" ;;
+  /dev/tty*)
+    eval "$(ssh-agent)"
+    setfont "ter-118n" ;;
 esac
 

@@ -94,6 +94,7 @@ alias bat="bat --plain --theme=Dracula --paging=never"
 alias df="df -h"
 alias duf="duf -theme ansi -hide-fs devtmpfs -hide-mp /sys/fs/cgroup --avail-threshold=1G,512M --usage-threshold=0.75,0.9"
 alias ffmpeg="ffmpeg -hide_banner"
+alias free="free -m"
 alias lsblk="lsblk -f"
 alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
 

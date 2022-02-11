@@ -12,19 +12,24 @@
 import os
 import subprocess
 
+def getenv(key, default):
+    if key in os.environ:
+        return os.environ[key]
+    return default
+
 # get env vars
-HOME = os.getenv("HOME")
-XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME")
+HOME = getenv("HOME", os.path.expanduser("~"))
+XDG_CONFIG_HOME = getenv("XDG_CONFIG_HOME", os.path.join(HOME, ".config"))
 
 # define colors
-MY_BLACK = os.getenv("COLOR_BLACK")
-MY_DARK_BLUE = os.getenv("COLOR_DARK_BLUE")
-MY_LIGHT_BLUE = os.getenv("COLOR_CYAN")
-MY_WHITE = os.getenv("COLOR_WHITE")
-MY_DARK_GREY = os.getenv("COLOR_DARK_GREY")
-MY_GREEN = os.getenv("COLOR_GREEN")
-MY_RED = os.getenv("COLOR_RED")
-MY_YELLOW = os.getenv("COLOR_YELLOW")
+MY_BLACK = getenv("COLOR_BLACK", "#000000")
+MY_DARK_BLUE = getenv("COLOR_DARK_BLUE", "#000088")
+MY_LIGHT_BLUE = getenv("COLOR_CYAN", "#00ffff")
+MY_WHITE = getenv("COLOR_WHITE", "#ffffff")
+MY_DARK_GREY = getenv("COLOR_DARK_GREY", "#555555")
+MY_GREEN = getenv("COLOR_GREEN", "#00ff00")
+MY_RED = getenv("COLOR_RED", "#ff0000")
+MY_YELLOW = getenv("COLOR_YELLOW", "#ffff00")
 
 # smaller font size on smaller screens
 def get_font_size():
@@ -35,7 +40,6 @@ def get_font_size():
         if " connected " in i and "mm x " in i
         ]
     for i in active_screens:
-        os.system(f"sh -c notify-send '{i}'")
         x, _, _ = i.split()[-3:]
         # small if one of the screens smaller than 250mm tall
         if int(x.replace("mm", "")) < 250:

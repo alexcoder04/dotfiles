@@ -1,10 +1,20 @@
 #!/bin/sh
 
+install_default(){
+  cp -v "./picom.conf" "$XDG_CONFIG_HOME/picom.conf"
+  exit 0
+}
+
+install_jonaburg(){
+  echo "./picom.conf+./picom.jonaburg.conf -> $XDG_CONFIG_HOME/picom.conf"
+  cat "./picom.conf" "./picom.jonaburg.conf" > "$XDG_CONFIG_HOME/picom.conf"
+  exit 0
+}
+
+command -v pacman >/dev/null || install_default
+
 case "$(pacman -Q picom)" in
-  *picom-jonaburg-git*)
-    echo "./picom.conf+./picom.jonaburg.conf -> $XDG_CONFIG_HOME/picom.conf"
-    cat "./picom.conf" "./picom.jonaburg.conf" > "$XDG_CONFIG_HOME/picom.conf" ;;
-  *)
-    cp -v "./picom.conf" "$XDG_CONFIG_HOME/picom.conf" ;;
+  *picom-jonaburg*) install_jonaburg ;;
+  *) install_default ;;
 esac
 

@@ -16,10 +16,10 @@ xrdb -load "$XDG_CONFIG_HOME/X11/Xresources"
 
 if [ -z "$WINDOW_MANAGER" ]; then
   exec i3
-else
-  case "$WINDOW_MANAGER" in
-    qtile*) export XDG_CURRENT_DESKTOP="qtile" ;;
-  esac
-  exec $WINDOW_MANAGER
 fi
+
+case "$WINDOW_MANAGER" in
+  qtile*) export XDG_CURRENT_DESKTOP="qtile" ;;
+esac
+exec $WINDOW_MANAGER
 

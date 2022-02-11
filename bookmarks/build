@@ -14,7 +14,7 @@ die(){
   exit 1
 }
 
-[ -z "$1" ] && die "Missing argument"
+[ -z "$1" ] && die "please specify an output format"
 
 sourcefiles="${2:-./source*}"
 

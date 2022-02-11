@@ -31,9 +31,9 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 HISTORY_IGNORE="(git add *|git commit *|* && exa --icons|mpv http*)"
-HISTFILE=~/.cache/zsh/zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTFILE="$HOME/.cache/zsh/zsh_history"
+HISTSIZE=15000
+SAVEHIST=15000
 
 # ---------------------------------------------------------
 # AUTOCOMPLETION
@@ -87,20 +87,24 @@ unsetopt beep extendedglob notify
 # PROMPT
 # ---------------------------------------------------------
 case "$TERM" in
-    xterm*)
-        export STARSHIP_CONFIG="$HOME/.config/starship.toml"
-        eval "$(starship init zsh)" ;;
-    screen)
-        export STARSHIP_CONFIG="$HOME/.config/starship-ascii.toml"
-        eval "$(starship init zsh)" ;;
-    *)
-        export STARSHIP_CONFIG="$HOME/.config/starship-ascii.toml"
-        eval "$(starship init zsh)" ;;
+  xterm*)
+    export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+    eval "$(starship init zsh)" ;;
+  screen)
+    export STARSHIP_CONFIG="$HOME/.config/starship-ascii.toml"
+    eval "$(starship init zsh)" ;;
+  *)
+    export STARSHIP_CONFIG="$HOME/.config/starship-ascii.toml"
+    eval "$(starship init zsh)" ;;
 esac
-[ -z "$LF_LEVEL" ] && source "$ZDOTDIR/startup.zsh"
 
 # ---------------------------------------------------------
 # SYNTAX HIGHLIGHTING
 # ---------------------------------------------------------
 source "+ZSH_SYNTAX_PLUGIN+"
+
+# ---------------------------------------------------------
+# STARTUP STUFF IN NOT INSIDE LF
+# ---------------------------------------------------------
+[ -z "$LF_LEVEL" ] && source "$ZDOTDIR/startup.zsh"
 

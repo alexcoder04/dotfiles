@@ -35,8 +35,7 @@ install_i3blocks(){
 # -----------------------------------------------------------------------------
 # DEFAULT MODE IS I3BLOCKS
 # -----------------------------------------------------------------------------
-[ -z "$RECONF_I3_MODE" ] \
-  && export RECONF_I3_MODE="blocks"
+export RECONF_I3_MODE="${RECONF_I3_MODE:-blocks}"
 
 case "$RECONF_I3_MODE" in
   # -----------------------------------------------------------------------------
@@ -93,8 +92,14 @@ case "$RECONF_I3_MODE" in
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X i3blocks -c ~/.config/sway/i3blocks.conf"
 
     echo "./pre.config+./main.config+./wayland.config+./bar.config+[keys]+[addons] -> $CONFIG_DIR/config"
-    cat "./pre.config" "./wayland.config" "./main.config" "./bar.config" <(../wm-utils/sxhkdtosway.py <../wm-utils/sxhkdrc) $RECONF_I3_ADDONS | ../reconf \
-      > "$CONFIG_DIR/config"
+    cat \
+        "./pre.config" \
+        "./wayland.config" \
+        "./main.config" \
+        "./bar.config" \
+        <(../wm-utils/sxhkdtosway.py <../wm-utils/sxhkdrc) \
+        $RECONF_I3_ADDONS \
+        | ../reconf > "$CONFIG_DIR/config"
 
     install_i3blocks
 

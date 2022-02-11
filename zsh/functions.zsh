@@ -16,7 +16,7 @@ conf(){
     bash)  $EDITOR "$DOTFILES_REPO/bash/bashrc" ;;
     zsh)   $EDITOR "$DOTFILES_REPO/zsh/zshrc" ;;
     vim)   $EDITOR "$DOTFILES_REPO/vim/init.vim" ;;
-    sxhkd) $EDITOR "$DOTFILES_REPO/wm-utils/sxhkdrc" ;;
+    sxhkd) $EDITOR "$DOTFILES_REPO/sxhkd/sxhkdrc" ;;
     *) echo "$1 is not a valid argument" ;;
   esac
 }
