@@ -4,7 +4,9 @@ CONFIG_DIR="$XDG_CONFIG_HOME/nvim"
 
 [ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR"
 
-echo "./init.vim -> $CONFIG_DIR/init.vim"
-cat "./init.vim" | ../reconf \
-		> "$CONFIG_DIR/init.vim"
+for f in *.vim; do
+  echo "./$f > $CONFIG_DIR/$f"
+  sed '/^$/d; /^"/d' "./$f" >"$CONFIG_DIR/$f"
+done
+
 

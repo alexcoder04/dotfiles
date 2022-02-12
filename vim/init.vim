@@ -24,10 +24,10 @@ set ignorecase
 let mapleader=" "
 filetype plugin indent on
 syntax on
-if $NVIMCACHE != ""
-  set dir=$NVIMCACHE
-else
+if $NVIMCACHE == ""
   set dir=$HOME/.cache/nvim
+else
+  set dir=$NVIMCACHE
 endif
 
 " -------------------------------------------------
@@ -99,8 +99,8 @@ nnoremap S :%s///g<Left><Left><Left>
 
 " jump to the next placeholder
 inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
-inoremap :; ;;
 nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
+inoremap :; ;;
 
 " -------------------------------------------------
 " DO STUFF WITH LEADER KEY
@@ -115,8 +115,10 @@ nnoremap <leader>t2 ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>exp
 nnoremap <leader>cp gg:r<Space>~/Projects/alexcoder04/copyright-note-template<CR>
 
 " format
-nnoremap <leader>f :CocCommand prettier.formatFile<CR>:w<CR>
-nnoremap <leader>fa :autocmd BufWritePre :CocCommand prettier.formatFile<CR>
+if $VIM_HEAVY_PLUGINS == "yes"
+  nnoremap <leader>f :CocCommand prettier.formatFile<CR>:w<CR>
+  nnoremap <leader>fa :autocmd BufWritePre :CocCommand prettier.formatFile<CR>
+endif
 
 " build LaTeX and MD, run Python
 autocmd FileType tex nnoremap <leader>p :w<CR>:!latex-build "%"<CR>
@@ -139,126 +141,10 @@ autocmd FileType markdown nnoremap <leader>tm :TableModeToggle<CR>
 nnoremap <leader>ll :set tw=80<CR>
 
 " -------------------------------------------------
-" AUTOMATION
+" OTHER CONFIG FILES
 " -------------------------------------------------
-" fix file types
-autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
-autocmd BufEnter $DOTFILES_REPO/sh/aliases set filetype=sh
-autocmd BufEnter $DOTFILES_REPO/sh/env set filetype=sh
-autocmd BufEnter $XDG_CONFIG_HOME/i3/config set filetype=i3config
-autocmd BufEnter $XDG_CONFIG_HOME/newsboat/*.urls set filetype=conf
-autocmd BufEnter *.muttrc set filetype=neomuttrc
-autocmd BufEnter *.prefs2 set filetype=sh
-autocmd BufEnter *.tex set filetype=tex
-autocmd BufEnter *dunstrc set filetype=dosini
-autocmd BufEnter /etc/init.d/* set filetype=sh
-
-" tab settings for diffrent file types
-autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab
-autocmd BufEnter *.sh set tabstop=2 shiftwidth=2 expandtab
-
-" put current line in the middle if typing
-autocmd InsertEnter * norm zz
-
-" remove trailing white spaces on save
-autocmd BufWritePre * %s/\s+$//e
-
-" format JS files with coc-prettier
-autocmd BufWritePre *.js CocCommand prettier.formatFile
-autocmd BufWritePre *.json CocCommand prettier.formatFile
-autocmd BufWritePre *.css CocCommand prettier.formatFile
-
-" re-generate config files after editing
-autocmd BufWritePost $DOTFILES_REPO/vim/init.vim !$DOTFILES_REPO/install vim
-autocmd BufWritePost $DOTFILES_REPO/fish/dynamic/config.fish !$DOTFILES_REPO/install fish
-autocmd BufWritePost $DOTFILES_REPO/bash/bashrc !$DOTFILES_REPO/install bash
-autocmd BufWritePost $DOTFILES_REPO/wm-utils/sxhkdrc !$DOTFILES_REPO/install wm-utils && killall sxhkd && sxhkd &
-autocmd BufWritePost $DOTFILES_REPO/zsh/* !$DOTFILES_REPO/install zsh
-autocmd BufWritePost $DOTFILES_REPO/cron/crontab !$DOTFILES_REPO/install cron
-autocmd BufWritePost $DOTFILES_REPO/lf/* !$DOTFILES_REPO/install lf
-autocmd BufWritePost $DOTFILES_REPO/qutebrowser/config.py !$DOTFILES_REPO/install qutebrowser
-
-" copy arduino files to clipboard on save to paste them into Arduino IDE
-autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
-
-" settings in LaTeX
-autocmd FileType tex set tw=80
-
-" -------------------------------------------------
-" AUTO-INSERT OFTEN USED PHRASES
-" -------------------------------------------------
-
-" html tags
-autocmd FileType html nnoremap ;! i<!DOCTYPE html><Enter><html<Space>dir="ltr"><Enter><head><Enter><meta<Space>charset="utf-8"<Space>/><Enter><meta<Space>name="viewport"<Space>content="width=device-width,<Space>initial-scale=1.0"><Enter><title><++></title><Enter><++><Enter></head><Enter><body><Enter><++><Enter></body><Enter></html><Esc>gg/<++><CR>"_c4l
-autocmd FileType html inoremap ;d <div></div><Enter><++><Esc>k0f>a
-autocmd FileType html inoremap ;p <p></p><Enter><++><Esc>k0f>a
-autocmd FileType html inoremap ;1 <h1></h1><Enter><++><Esc>k0f>a
-autocmd FileType html inoremap ;2 <h2></h2><Enter><++><Esc>k0f>a
-autocmd FileType html inoremap ;3 <h3></h3><Enter><++><Esc>k0f>a
-autocmd FileType html inoremap ;i <em></em><Space><++><Esc>FeT>i
-autocmd FileType html inoremap ;b <b></b><Space><++><Esc>FbT>i
-autocmd FileType html inoremap ;ul <ul><Enter><Enter></ul><Enter><++><Esc>2ki
-autocmd FileType html inoremap ;li <li></li><Enter><++><Esc>k0f>a
-autocmd FileType html inoremap ;ln <link<Space>rel="stylesheet"<Space>href="" /><Enter><++><Esc>k$F"i
-autocmd FileType html inoremap ;s <script<Space>src=""<Space>defer></script><Enter><++><Esc>k0f"a
-autocmd FileType html inoremap ;a <a<Space>href=""><++></a><Enter><++><Esc>k0f"a
-autocmd FileType html inoremap ;btn <button id=""><++></button><Enter><++><Esc>k0f"a
-
-" JS
-autocmd FileType javascript inoremap ;cl console.log();<Enter><++><Esc>k0t(i
-
-" markdown
-autocmd FileType markdown inoremap ;i ** <++><Esc>F*i
-autocmd FileType markdown inoremap ;b **** <++><Esc>F*hi
-autocmd FileType markdown inoremap ;` ```<Enter><++><Enter>```<Enter><++><Esc>3kA
-autocmd FileType markdown inoremap ;1 #<Enter><++><Esc>kA<Space>
-autocmd FileType markdown inoremap ;2 ##<Enter><++><Esc>kA<Space>
-autocmd FileType markdown inoremap ;3 ###<Enter><++><Esc>kA<Space>
-autocmd FileType markdown inoremap ;l <Enter><Esc>I<Space>-<Space>
-
-" LaTeX
-autocmd FileType tex inoremap ;1 \section{}<Enter><++><Esc>k0f{a
-autocmd FileType tex inoremap ;2 \subsection{}<Enter><++><Esc>k0f{a
-autocmd FileType tex inoremap ;3 \subsubsection{}<Enter><++><Esc>k0f{a
-autocmd FileType tex inoremap ;4 \subsubsubsection{}<Enter><++><Esc>k0f{a
-autocmd FileType tex inoremap ;i \textit{}<Space><++><Esc>F{a
-autocmd FileType tex inoremap ;b \textbf{}<Space><++><Esc>F{a
-autocmd FileType tex inoremap ;i \emph{}<Space><++><Esc>F{a
-autocmd FileType tex inoremap ;u \underline{}<Space><++><Esc>F{a
-autocmd FileType tex inoremap ;ul \begin{itemize}<Enter>\item<Space><Enter>\end{itemize}<Esc>kA
-autocmd FileType tex inoremap ;ol \begin{enumerate}<Enter>\item<Space><Enter>\end{enumerate}<Esc>kA
-autocmd FileType tex inoremap ;l <Enter>\item<Space>
-
-" python
-autocmd FileType python inoremap ;if if :<Enter><++><Enter><Backspace><++><Esc>2k0t:a
-autocmd FileType python inoremap ;ie if :<Enter><++><Enter>else:<Enter><++><Enter><Backspace><++><Esc>4k0t:a
-autocmd FileType python inoremap ;ir if :<Enter><++><Enter>return<++><Enter><Backspace><++><Esc>3k0t:a
-autocmd FileType python inoremap ;l elif :<Enter><++><Enter><Backspace><++><Esc>2k0t:a
-autocmd FileType python inoremap ;e else:<Enter><Backspace><++><Esc>kA<Enter>
-autocmd FileType python inoremap ;f for in <++>:<Enter><++><Enter><Backspace><++><Esc>2k0tii<Space>
-autocmd FileType python inoremap ;w while :<Enter><++><Enter><Backspace><++><Esc>2k0t:a
-autocmd FileType python inoremap ;p print()<Enter><++><Esc>kt)a
-autocmd FileType python inoremap ;s self.
-autocmd FileType python inoremap ;d def (<++>):<Enter><++><Enter><Backspace><++><Esc>2k0t(a
-autocmd FileType python inoremap ;t try :<Enter><++><Enter>except <++>Exception:<Enter><++><Enter><Backspace><++><Esc>4k0t:a
-autocmd FileType python inoremap ;c class :<Enter>def __init__(self<++>):<Enter><++><Enter><Backspace><++><Enter><Backspace><++><Esc>4k0t:a
-autocmd FileType python inoremap ;r return<Space>
-autocmd FileType python inoremap ;im if<Space>__name__<Space>==<Space>"__main__":<Enter>
-
-" arduino
-autocmd FileType arduino inoremap ;void void (<++>){<Enter><++><Enter>}<Enter><++><Esc>3k0t(a
-autocmd FileType arduino inoremap ;int int (<++>){<Enter><++><Enter>return <++>;<Enter>}<Enter><++><Esc>4k0t(a
-autocmd FileType arduino inoremap ;if if (){<Enter><++><Enter>}<Enter><++><Esc>3k0t)a
-autocmd FileType arduino inoremap ;d delay();<Enter><++><Esc>k0t)a
-autocmd FileType arduino inoremap ;spr Serial.print();<Enter><++><Esc>k0t)a
-autocmd FileType arduino inoremap ;spl Serial.println();<Enter><++><Esc>k0t)a
-
-" auto-generate shebangs
-autocmd FileType python nnoremap #! ggO#!/usr/bin/env<Space>python3<Esc>
-autocmd FileType sh nnoremap #! ggO#!/bin/sh<Esc>
-
-" newsboat yt subs
-autocmd FileType conf inoremap ;y https://www.youtube.com/feeds/videos.xml?channel_id=<++><Space>"yt"<Space><++><Esc>0
+source $XDG_CONFIG_HOME/nvim/snippets.vim
+source $XDG_CONFIG_HOME/nvim/automation.vim
 
 " -------------------------------------------------
 " OTHER STUFF
@@ -283,13 +169,16 @@ let g:lightline = {
   \ }
 set noshowmode " we don't need to show the mode, lightline takes care of it
 
+
 " go stuff
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_generate_tags = 1
+if $VIM_HEAVY_PLUGINS == "yes"
+  let g:go_highlight_types = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_functions = 1
+  let g:go_highlight_function_calls = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_extra_types = 1
+  let g:go_highlight_build_constraints = 1
+  let g:go_highlight_generate_tags = 1
+endif
 

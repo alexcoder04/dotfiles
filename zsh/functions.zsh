@@ -21,24 +21,21 @@ conf(){
   esac
 }
 
+show_image_url(){
+  tempfile="${TMPDIR:-/tmp}/${1##*/}"
+  curl "$1" >"$tempfile" \
+    && nsxiv "$tempfile" & disown
+}
+
 # download and show some information that is hard to remember
 remember(){
   case "$1" in
-    ascii)
-      curl "http://www.asciitable.com/index/asciifull.gif" \
-        > /tmp/.ascii.gif
-      nsxiv /tmp/.ascii.gif & ;;
-    raspi_pins)
-      curl "https://i1.wp.com/mbrobotics.es/blog/wp-content/uploads/2018/05/Raspberry-GPIO-Pins_B_plus.jpg" \
-        > /tmp/.raspi.jpg
-      nsxiv /tmp/.raspi.jpg & ;;
-    latex_colors)
-      curl "https://sharelatex-wiki-cdn-671420.c.cdn77.org/learn-scripts/images/d/d3/ColoursEx6.png" \
-        >/tmp/latexcolors.png
-      nsxiv /tmp/latexcolors.png & ;;
+    ascii) show_image_url "https://www.translationroyale.com/wp-content/uploads/2020/02/ASCII-Table-The-History-of-Unicode-and-Its-Role-in-the-Digital-World-Translation-Royale-1024x959.png" ;;
+    raspi-pins) show_image_url "https://i1.wp.com/mbrobotics.es/blog/wp-content/uploads/2018/05/Raspberry-GPIO-Pins_B_plus.jpg" ;;
+    latex-colors) show_image_url "https://sharelatex-wiki-cdn-671420.c.cdn77.org/learn-scripts/images/d/d3/ColoursEx6.png" ;;
+    list) echo "ascii, raspi-pins, latex-colors" ;;
     *) echo "invalid argument" ;;
   esac
-  disown
 }
 
 # mount a luks encrypted drive
