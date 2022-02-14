@@ -25,12 +25,8 @@ esac
 # ---------------------------------------------------------
 # ALIASES
 # ---------------------------------------------------------
-if [ -f "$XDG_DATA_HOME/bash/aliases.bash" ]; then
-    source "$XDG_DATA_HOME/bash/aliases.bash"
-fi
-if [ -f "$XDG_DATA_HOME/bash/bookmarks.bash" ]; then
-    source "$XDG_DATA_HOME/bash/bookmarks.bash"
-fi
+[ -f "$XDG_DATA_HOME/bash/aliases.bash" ] && source "$XDG_DATA_HOME/bash/aliases.bash"
+[ -f "$XDG_DATA_HOME/bash/bookmarks.bash" ] && source "$XDG_DATA_HOME/bash/bookmarks.bash"
 
 # ---------------------------------------------------------
 # HISTORY OPTIONS

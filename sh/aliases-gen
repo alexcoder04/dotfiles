@@ -15,13 +15,13 @@ die(){
 case "$output" in
   bash)
     echo "#!/bin/bash"
-    sed 's/^ABBREVIATION\s/alias /; s/^GLOBAL_ALIAS\s/alias /' "./aliases" ;;
+    sed -E 's/^ABBREVIATION\s/alias /; s/^GLOBAL_ALIAS\s/alias /; /^(#|$)/d' "./aliases" ;;
   zsh)
     echo "#!/usr/bin/zsh"
-    sed 's/^ABBREVIATION\s/abbrev-alias /; s/^GLOBAL_ALIAS\s/alias -g /' "./aliases" ;;
+    sed -E 's/^ABBREVIATION\s/abbrev-alias /; s/^GLOBAL_ALIAS\s/alias -g /; /^(#|$)/d' "./aliases" ;;
   fish)
     echo "#!/usr/bin/fish"
-    sed 's/^ABBREVIATION\s/abbrev /; s/^GLOBAL_ALIAS\s/alias /' "./aliases" ;;
+    sed -e 's/^ABBREVIATION\s/abbrev /; s/^GLOBAL_ALIAS\s/alias /; /^(#|$)/d' "./aliases" ;;
   *) die "unknown output format" ;;
 esac
 
