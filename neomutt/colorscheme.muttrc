@@ -1,0 +1,49 @@
+
+# general
+color error             red          default
+color warning           yellow       default
+color prompt  underline brightyellow default
+color search            default      green
+color markers           yellow       default # + if line continues
+color tilde             yellow       default
+
+# message index
+color index        brightred   default "~D" # deleted
+color index        brightgreen default "~N" # new
+color index        brightblue  default "~Q" # replied
+color index_date   cyan        default
+color index_number yellow      default
+color index_size   blue        default
+
+# sidebar
+color sidebar_new       green default
+color sidebar_unread    green default
+
+# highlight in messages
+color hdrdefault        cyan          default # headers
+color header            brightcyan    default "^(From)"
+color header            brightmagenta default "^(Subject)"
+color header            brightcyan    default "^(CC|BCC)"
+
+# attachments and quoted content
+color attachment blue         default
+color quoted     brightyellow default
+color quoted1    yellow       default
+color signature  yellow       default
+
+# markdown
+color body           brightwhite default "\\*.+\\*" # *text*
+color body           brightwhite default "\\*\\*.+\\*\\*" # **text**
+color body underline white       default "_.+_" # _text_
+
+# emails and urls
+color body           brightcyan  default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # email addresses
+color body           brightcyan  default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URLs
+
+# some other important information
+color body underline default     default "[0-2]?[0-9](:|.)[0-9][0-9]\\s?(Uhr)?" # time (e.g. 12:50)
+color body underline default     default "[0-3]?[0-9]\\.[0-1]?[0-9](\\.(20|19)?[0-9][0-9])?" # dates (e. g. 25.11.2022)
+color body underline default     default "(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag)" # days of the week
+color attach_headers brightwhite default "(Attachment\\s\#[0-9]+:\\s.+\\.pdf)" # pdf attachments
+color body           brightgreen default "^PS:.*" # PS: ...
+

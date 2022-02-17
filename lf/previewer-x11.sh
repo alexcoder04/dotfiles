@@ -47,11 +47,14 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     text/*)
       case "${file##*.}" in
         ino) lang="-l C" ;;
-        config|conf|cfg) lang="-l conf" ;;
+        config|conf|cfg|muttrc) lang="-l conf" ;;
         prefs2) lang="-l sh" ;;
         *) lang="" ;;
       esac
-      bat --plain --theme=Dracula --paging=never --color=always $lang "$file"
+      bat --plain --paging=never --color=always $lang "$file"
+      ;;
+    application/json)
+      bat --plain --paging=never --color=always "$file"
       ;;
     */pdf)
       pdftotext -l 5 "$file" -
@@ -67,9 +70,6 @@ if [ -n "$FIFO_UEBERZUG" ]; then
     application/zip)
       echo "\033[36mZip archive:\033[0m"
       zipinfo "$file"
-      ;;
-    application/json)
-      bat --plain --theme=Dracula --paging=never --color=always "$file"
       ;;
     audio/*)
       mediainfo "$file"

@@ -23,14 +23,14 @@ case "$(file -Lb --mime-type -- "$file")" in
   text/*)
     case "${file##*.}" in
       ino) lang="-l C" ;;
-      config|conf|cfg) lang="-l conf" ;;
+      config|conf|cfg|muttrc) lang="-l conf" ;;
       prefs2) lang="-l sh" ;;
       *) lang="" ;;
     esac
-    bat --plain --theme=Dracula --paging=never --color=always $lang "$file"
+    bat --plain --paging=never --color=always $lang "$file"
     ;;
   application/json)
-    bat --plain --theme=Dracula --paging=never --color=always "$file"
+    bat --plain --paging=never --color=always "$file"
     ;;
   # pdf text preview
   */pdf)

@@ -5,7 +5,7 @@ CONFIG_DIR="$HOME/.config/neomutt"
 [ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
 
 cp -v "./neomuttrc" "$CONFIG_DIR/"
-cp -v "./${RECONF_COLROSCHEME:-dracula}.muttrc" "$CONFIG_DIR/"
+cp -v "./colorscheme.muttrc" "$CONFIG_DIR/"
 cp -v "./keybinds.muttrc" "$CONFIG_DIR/"
 cp -v "./mailcap" "$CONFIG_DIR/"
 

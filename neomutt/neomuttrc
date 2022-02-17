@@ -16,14 +16,15 @@ set date_format = "%a,%d.%m.%y"
 set sort = "reverse-date"
 set index_format = "%2C %Z %d %-25.25F %s (%-4.4c)"
 set sidebar_visible
+set sidebar_width = 28
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 
 set editor = "nvim"
 auto_view text/html
 set mailcap_path = "~/.config/neomutt/mailcap:~/.mailcap:/usr/share/neomutt/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap"
-set new_mail_command = "notify-send '%n/%u new mail(s)'"
+set sig_on_top = yes
 
-source "~/.config/neomutt/dracula.muttrc"
+source "~/.config/neomutt/colorscheme.muttrc"
 source `/bin/ls ~/.config/neomutt/login-*.muttrc | rofi -dmenu -i -p account`
 source "~/.config/neomutt/aliases.muttrc"
 source "~/.config/neomutt/keybinds.muttrc"
