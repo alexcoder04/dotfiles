@@ -97,7 +97,7 @@ case "$RECONF_I3_MODE" in
         "./wayland.config" \
         "./main.config" \
         "./bar.config" \
-        <(../wm-utils/sxhkdtosway.py <../wm-utils/sxhkdrc) \
+        <(../sxhkd/sxhkdtosway.py <../sxhkd/sxhkdrc) \
         $RECONF_I3_ADDONS \
         | ../reconf > "$CONFIG_DIR/config"
 

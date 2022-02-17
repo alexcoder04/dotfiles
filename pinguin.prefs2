@@ -32,6 +32,6 @@ export RECONF_BARS_LAUNCHER_COMMAND="killall polybar"
 export RECONF_KEYBOARD_LAYOUT="de"
 
 # other
-export RECONF_COLORSCHEME="dracula"
+export RECONF_COLORSCHEME="gruvbox"
 export RECONF_VIM_HEAVY_PLUGINS="yes"
 

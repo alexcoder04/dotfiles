@@ -36,9 +36,9 @@ endif
 call plug#begin()
 
 " color schemes
-"Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 "Plug 'altercation/vim-colors-solarized'
-Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'dracula/vim', { 'as': 'dracula' }
 
 Plug 'alexcoder04/lightline.vim' " own fork, because of colorschemes
 Plug 'dhruvasagar/vim-table-mode'
@@ -56,7 +56,8 @@ call plug#end()
 " -------------------------------------------------
 set termguicolors
 set cursorline
-colorscheme dracula
+"colorscheme dracula
+colorscheme gruvbox
 " override background color, so it's transparent
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
@@ -165,7 +166,7 @@ let g:coc_global_extensions = [
 
 " lightline config
 let g:lightline = {
-  \ 'colorscheme': 'dracula'
+  \ 'colorscheme': 'gruvbox'
   \ }
 set noshowmode " we don't need to show the mode, lightline takes care of it
 

@@ -1,8 +1,8 @@
 
 # m h  dom mon dow   command
 
-# trim file systems every wednesday at 16:00
-0 16 * * 3 /usr/bin/fstrim /
-1 16 * * 3 /usr/bin/fstrim /home
-2 16 * * 3 /usr/bin/fstrim /boot
+# trim file systems every wednesday and saturday at 16:00
+0 16 * * 3,6 /usr/bin/fstrim /
+1 16 * * 3,6 /usr/bin/fstrim /home
+2 16 * * 3,6 /usr/bin/fstrim /boot
 
