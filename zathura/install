@@ -1,0 +1,9 @@
+#!/bin/sh
+
+CONFIG_DIR="$XDG_CONFIG_HOME/zathura"
+
+[ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
+
+echo "./zathurarc -> $CONFIG_DIR/zathurarc"
+cat "./zathurarc" | ../reconf > "$CONFIG_DIR/zathurarc"
+

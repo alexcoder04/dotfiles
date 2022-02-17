@@ -1,0 +1,39 @@
+
+# behaviour
+set selection-clipboard clipboard
+set incremental-search true
+set scroll-step 70
+
+# bindings
+map r reload
+map R rotate rotate-cw
+map <C-R> rotate rotate-ccw
+map b toggle_statusbar
+map i recolor
+
+# appearance
+set statusbar-h-padding 16
+set statusbar-v-padding 6
+set page-padding 16
+set font monospace normal 15
+set recolor true
+set recolor-keephue true
+set recolor-reverse-video true
+
+# colors
+set completion-bg "+COLOR_BLACK+"
+set completion-fg "+COLOR_WHITE+"
+set completion-highlight-bg "+COLOR_GREEN+"
+set completion-highlight-fg "+COLOR_BLACK+"
+set default-fg "+COLOR_WHITE+"
+set default-bg "+COLOR_BLACK+"
+set inputbar-fg "+COLOR_YELLOW+"
+set inputbar-bg "+COLOR_BLACK+"
+set notification-fg "+COLOR_WHITE+"
+set notification-bg "+COLOR_BLACK+"
+set highlight-color "+COLOR_GREEN+"
+set highlight-fg "+COLOR_GREEN+"
+set highlight-active-color "+COLOR_MAGENTA+"
+set recolor-darkcolor "+COLOR_WHITE+"
+set recolor-lightcolor "+COLOR_BLACK+"
+

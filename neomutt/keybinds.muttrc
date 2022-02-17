@@ -5,6 +5,7 @@ bind index,pager \Co sidebar-open
 
 bind index,pager g noop
 bind index,pager d noop
+bind index h noop
 
 bind pager j next-line
 bind pager k previous-line
