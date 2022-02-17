@@ -31,7 +31,7 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 HISTORY_IGNORE="(git add *|git commit *|* && exa --icons|mpv http*)"
-HISTFILE="$HOME/.cache/zsh/zsh_history"
+HISTFILE="$XDG_CACHE_HOME/zsh/zsh_history"
 HISTSIZE=15000
 SAVEHIST=15000
 
@@ -63,8 +63,7 @@ lfcd () {
 # KEYBINDINGS
 # ---------------------------------------------------------
 KEYTIMEOUT=3
-# vi mode
-bindkey -v
+bindkey -v # vi mode
 # vi navigation in menu
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
@@ -73,9 +72,9 @@ bindkey -M menuselect 'l' vi-forward-char
 # edit command in editor
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
-# run stuff on key press
-bindkey -s '^o' 'lfcd\n'
-bindkey -s '^b' ' &>/dev/null & disown'
+
+bindkey -s '^o' 'lfcd\n' # select folder to open with lf
+bindkey -s '^b' ' &>/dev/null & disown' # run command in the background
 
 # ---------------------------------------------------------
 # OTHER SETTINGS
@@ -87,16 +86,11 @@ unsetopt beep extendedglob notify
 # PROMPT
 # ---------------------------------------------------------
 case "$TERM" in
-  xterm*)
-    export STARSHIP_CONFIG="$HOME/.config/starship.toml"
-    eval "$(starship init zsh)" ;;
-  screen)
-    export STARSHIP_CONFIG="$HOME/.config/starship-ascii.toml"
-    eval "$(starship init zsh)" ;;
-  *)
-    export STARSHIP_CONFIG="$HOME/.config/starship-ascii.toml"
-    eval "$(starship init zsh)" ;;
+  xterm*) export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml" ;;
+  screen) export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship-ascii.toml" ;;
+  *)      export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship-ascii.toml" ;;
 esac
+eval "$(starship init zsh)"
 
 # ---------------------------------------------------------
 # SYNTAX HIGHLIGHTING

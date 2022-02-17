@@ -16,14 +16,17 @@ color index_number yellow      default
 color index_size   blue        default
 
 # sidebar
-color sidebar_new       green default
-color sidebar_unread    green default
+color sidebar_new                 green        default
+color sidebar_unread              green        default
+color sidebar_indicator           black        brightyellow
+color sidebar_highlight underline brightyellow default
 
 # highlight in messages
-color hdrdefault        cyan          default # headers
-color header            brightcyan    default "^(From)"
-color header            brightmagenta default "^(Subject)"
-color header            brightcyan    default "^(CC|BCC)"
+color hdrdefault cyan          default # headers
+color header     brightcyan    default "^(From:)"
+color header     brightgreen   default "^(To:)"
+color header     brightcyan    default "^(CC:|BCC:)"
+color header     brightmagenta default "^(Subject:)"
 
 # attachments and quoted content
 color attachment blue         default

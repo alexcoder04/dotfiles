@@ -6,7 +6,7 @@
 #
 # Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
 #
-# starship config file
+# starship (shell prompt) config file
 
 add_newline = false
 format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in \\[ $directory\\] $git_status$git_branch \\[ $jobs$python$golang$nodejs\\]

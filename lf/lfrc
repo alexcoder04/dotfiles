@@ -16,6 +16,7 @@
 # -----------------------------------------------------
 # BASIC SETTINGS
 # -----------------------------------------------------
+set dircounts
 set drawbox 
 set preview 
 set icons 
@@ -52,6 +53,7 @@ cmd reload-window :{{
     clear
     set-columns
     reload
+    set dircounts
 }}
 
 cmd select-all %{{
@@ -65,7 +67,7 @@ cmd chmodx ${{
 
 cmd sizeof %{{
     echo -n "\033[33mSize: \033[0m"
-    du --max-depth 0 -h "$f" | cut -f1
+    du --max-depth 0 -h "$f" 2>/dev/null | cut -f1
 }}
 
 cmd trash %trash-put $fx
@@ -191,11 +193,6 @@ cmd folder-with-items %{{
     mv -- $fx "$newd"
 }}
 
-# set terminal title
-cmd on-cd %{{
-    printf "\033]0; $(pwd | sed "s|$HOME|~|" | tail -c 30) \007" > /dev/tty
-}}
-
 cmd q :quit
 
 # git commands
@@ -259,7 +256,11 @@ map <c-a> select-all
 map U clear
 map c cut
 map x chmodx
-map i sizeof
+map i :{{
+    set dircounts!
+    calcdirsize
+}}
+map I sizeof
 
 # visual
 map <c-l> reload-window
@@ -271,5 +272,4 @@ map H set hidden!
 # STARTUP
 # -----------------------------------------------------
 set-columns
-on-cd
 
