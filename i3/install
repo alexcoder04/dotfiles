@@ -23,10 +23,10 @@ mkdir -vp "$THEME_DIR"
 # MACHINE_SPECIFIC I3BLOCKS
 # -----------------------------------------------------------------------------
 install_i3blocks(){
-  if [ -f "./$MACHINE-i3blocks.conf" ]; then
-      file="./$MACHINE-i3blocks.conf"
+  if [ -f "./i3blocks-$MACHINE.conf" ]; then
+      file="./i3blocks-$MACHINE.conf"
   else
-      file="./default-i3blocks.conf"
+      file="./i3blocks-default.conf"
   fi
   echo "$file -> $CONFIG_DIR/i3blocks.conf"
   cat "$file" | ../reconf > "$CONFIG_DIR/i3blocks.conf"

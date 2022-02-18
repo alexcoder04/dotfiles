@@ -24,7 +24,7 @@ there are a lot of files in this directory. Here is what they are for:
  - `*.config`: i3 config files for different things (gaps, wayland, bar, ...).
    They are assembled into one file on install depending on which functionality
    is needed.
- - `*-i3blocks.conf`: i3blocks configs for different machines
+ - `i3blocks-*.conf`: i3blocks configs for different machines
  - `dracula-powerline.json`: custom bumblebee-status theme
  - `lock.png`: lock screen image which is merged with a screenshot when the
    screen is locked
