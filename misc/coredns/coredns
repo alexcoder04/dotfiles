@@ -1,0 +1,17 @@
+#!/usr/bin/openrc-run
+
+command="/usr/bin/coredns"
+command_args="-conf /etc/Corefile"
+supervisor="supervise-daemon"
+command_background="yes"
+pidfile="/run/coredns.pid"
+error_log="/var/log/coredns.err"
+
+depend() {
+    need net
+    after clock
+    provide dns
+}
+
+# vim: filetype=sh
+

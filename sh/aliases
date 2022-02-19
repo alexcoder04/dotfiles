@@ -32,6 +32,7 @@ ABBREVIATION gin="git init"
 ABBREVIATION gps="git push"
 ABBREVIATION gpl="git pull --rebase"
 ABBREVIATION grs="git restore"
+ABBREVIATION grau="git remote set-url --add --push origin"
 ABBREVIATION gst="git status"
 
 # --------------------------------------------------------------------
