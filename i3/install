@@ -89,6 +89,7 @@ case "$RECONF_I3_MODE" in
   sway)
     echo "Installing i3 in SWAY mode"
     export CONFIG_DIR="$XDG_CONFIG_HOME/sway"
+    echo $RECONF_PRE_X
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X i3blocks -c ~/.config/sway/i3blocks.conf"
 
     echo "./pre.config+./main.config+./wayland.config+./bar.config+[keys]+[addons] -> $CONFIG_DIR/config"

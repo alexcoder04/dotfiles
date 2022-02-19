@@ -30,6 +30,7 @@ export RECONF_I3_BAR_HEIGHT="height 25"
 export RECONF_I3_ADDONS="./gaps.config"
 export RECONF_BARS_LAUNCHER_COMMAND="killall polybar"
 export RECONF_KEYBOARD_LAYOUT="de"
+export RECONF_PRE_X=""
 
 # other
 export RECONF_COLORSCHEME="gruvbox"
