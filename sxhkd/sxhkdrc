@@ -9,7 +9,7 @@ super + shift + Return
     +TERMINAL_SECONDARY+
 
 # ###################################################################
-# SYSTEM AND WINDOW MANAGER
+# SYSTEM AND WINDOW MANAGER (CTRL+ALT)
 # ###################################################################
 ctrl + alt + s
     screenlock --suspend
@@ -27,14 +27,8 @@ ctrl + alt + e
 # ###################################################################
 super + r
     rofi -show run -modi run
-alt + r
-    flatpak-run
 super + ctrl + r
     rofi -show drun -modi drun
-super + alt + r
-    rofi -show ssh -modi ssh
-#super + Tab
-#    rofi -show window -modi window
 
 # ###################################################################
 # DUNST
@@ -82,6 +76,7 @@ super + plus
 # SECOND ROW
 super + a
     sh -c 'echo "$HOME/.local/share/backgrounds/lauterbach-wallpapers" > /tmp/wpdirs && wallpaper-select random'
+# S: reserved for window manager
 super + d
     +FILEMANAGER_MAIN+
 super + shift + d
@@ -137,17 +132,27 @@ super + shift + F7
     music --stop
 super + F8
     monitors-set --interactive
+# F9, F10, F11: window-manager-reserved
 super + F12
 	fix-keyboard
-# F9, F10, F11: window-manager-reserved
 
 # ###################################################################
 # OTHER KEYS
 # ###################################################################
 XF86MonBrightnessUp
-    doas /usr/local/bin/brightness higher
+    doas /usr/local/bin/brightness higher; pkill -SIGRTMIN+2 i3blocks
 XF86MonBrightnessDown
-    doas /usr/local/bin/brightness lower
+    doas /usr/local/bin/brightness lower; pkill -SIGRTMIN+2 i3blocks
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle; pkill -SIGRTMIN+1 i3blocks
+XF86AudioMicMute
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle; pkill -SIGRTMIN+1 i3blocks
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%; pkill -SIGRTMIN+1 i3blocks
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%; pkill -SIGRTMIN+1 i3blocks
+
 super + Print
     screenshot
 super + shift + Print

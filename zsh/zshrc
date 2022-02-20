@@ -83,6 +83,18 @@ setopt autocd
 unsetopt beep extendedglob notify
 
 # ---------------------------------------------------------
+# SEARCH HISTORY
+# ---------------------------------------------------------
+hist(){
+    selected="$(rofi -dmenu -p "zsh" <"$HISTFILE" | tr "\n" " ")"
+    [ -z "$selected" ] && return
+    case "$XDG_SESSION_TYPE" in
+        wayland) echo -n "$selected" | wl-copy ;;
+        *) echo -n "$selected" | xclip -selection clipboard ;;
+    esac
+}
+
+# ---------------------------------------------------------
 # PROMPT
 # ---------------------------------------------------------
 case "$TERM" in

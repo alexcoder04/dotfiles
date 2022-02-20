@@ -23,10 +23,10 @@ mkdir -vp "$THEME_DIR"
 # MACHINE_SPECIFIC I3BLOCKS
 # -----------------------------------------------------------------------------
 install_i3blocks(){
-  if [ -f "./i3blocks-$MACHINE.conf" ]; then
-      file="./i3blocks-$MACHINE.conf"
+  if [ -f "./blocks-$MACHINE.conf" ]; then
+      file="./blocks-$MACHINE.conf"
   else
-      file="./i3blocks-default.conf"
+      file="./blocks-default.conf"
   fi
   echo "$file -> $CONFIG_DIR/i3blocks.conf"
   cat "$file" | ../reconf > "$CONFIG_DIR/i3blocks.conf"
@@ -45,8 +45,14 @@ case "$RECONF_I3_MODE" in
     echo "Installing i3 in BLOCKS mode"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X i3blocks -c ~/.config/i3/i3blocks.conf"
 
-    echo "./pre.config+./main.config+./bar.config+./x11.config+[addons] -> $CONFIG_DIR/config"
-    cat "./pre.config" "./x11.config" "./main.config" "./bar.config" $RECONF_I3_ADDONS \
+    echo "pre + x11-pre + main + bar + x11-after + [addons] -> $CONFIG_DIR/config"
+    cat \
+        "./i3-pre.config" \
+        "./i3-x11-pre.config" \
+        "./i3-main.config" \
+        "./i3-bar.config" \
+        "./i3-x11-after.config" \
+        $RECONF_I3_ADDONS \
         | ../reconf > "$CONFIG_DIR/config"
 
     install_i3blocks
@@ -60,8 +66,13 @@ case "$RECONF_I3_MODE" in
     echo "Installing i3 in POLYBAR mode"
     export RECONF_BARS_LAUNCHER_COMMAND="$RECONF_PRE_X bar-launch i3-polybar"
 
-    echo "./pre.config+./main.config+./x11.config+[addons] -> $CONFIG_DIR/config"
-    cat "./pre.config" "./x11.config" "./main.config" $RECONF_I3_ADDONS \
+    echo "pre + x11-pre + main + x11-after + [addons] -> $CONFIG_DIR/config"
+    cat \
+        "./i3-pre.config" \
+        "./i3-x11-pre.config" \
+        "./main.config" \
+        "./i3-x11-after.config" \
+        $RECONF_I3_ADDONS \
         | ../reconf > "$CONFIG_DIR/config"
 
     ;;
@@ -73,8 +84,14 @@ case "$RECONF_I3_MODE" in
     echo "Installing i3 in POWERLINE mode"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X $CONFIG_DIR/start_bumblebee"
 
-    echo "./pre.config+./main.config+./bar.config+./x11.config+[addons] -> $CONFIG_DIR/config"
-    cat "./pre.config" "./x11.config" "./main.config" "./bar.config" $RECONF_I3_ADDONS \
+    echo "pre + x11-pre + main + bar + x1-after + [addons] -> $CONFIG_DIR/config"
+    cat \
+        "./i3-pre.config" \
+        "./i3-x11-pre.config" \
+        "./i3-main.config" \
+        "./i3-bar.config" \
+        "./i3-x11-after.config" \
+        $RECONF_I3_ADDONS \
         | ../reconf > "$CONFIG_DIR/config"
 
     cp -v "./dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
@@ -88,16 +105,16 @@ case "$RECONF_I3_MODE" in
   # -----------------------------------------------------------------------------
   sway)
     echo "Installing i3 in SWAY mode"
-    export CONFIG_DIR="$XDG_CONFIG_HOME/sway"
-    echo $RECONF_PRE_X
+    export CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sway"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X i3blocks -c ~/.config/sway/i3blocks.conf"
 
-    echo "./pre.config+./main.config+./wayland.config+./bar.config+[keys]+[addons] -> $CONFIG_DIR/config"
+    echo "pre + wayland-pre + main + bar + wayland-after + [keys] + [addons] -> $CONFIG_DIR/config"
     cat \
-        "./pre.config" \
-        "./wayland.config" \
-        "./main.config" \
-        "./bar.config" \
+        "./i3-pre.config" \
+        "./i3-wayland-pre.config" \
+        "./i3-main.config" \
+        "./i3-bar.config" \
+        "./i3-wayland-after.config" \
         <(../sxhkd/sxhkdtosway.py <../sxhkd/sxhkdrc) \
         $RECONF_I3_ADDONS \
         | ../reconf > "$CONFIG_DIR/config"
