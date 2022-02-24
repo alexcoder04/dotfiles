@@ -16,7 +16,6 @@
 # -----------------------------------------------------
 # BASIC SETTINGS
 # -----------------------------------------------------
-set dircounts
 set drawbox 
 set preview 
 set icons 
@@ -146,7 +145,7 @@ cmd open ${{
 		application/pdf | application/vnd* | application/epub*)
 			setsid -f zathura "$f" >/dev/null 2>&1 ;;
 		image/*)
-			setsid -f nsxiv $fx ;;
+			setsid -f nsxiv -a $fx ;;
 		audio/*)
 			mpv --audio-display=no $fx ;;
 		video/*)
@@ -256,10 +255,7 @@ map <c-a> select-all
 map U clear
 map c cut
 map x chmodx
-map i :{{
-    set dircounts!
-    calcdirsize
-}}
+map i calcdirsize
 map I sizeof
 
 # visual

@@ -40,9 +40,13 @@ remember(){
 
 # mount a luks encrypted drive
 # use:
-# `luks-mount /dev/sdX <mapper-name>` # /dev/sdX -> /media/<mapper-name>
-luks-mount(){
+# `mount-luks /dev/sdX <mapper-name>` # /dev/sdX -> /media/<mapper-name>
+mount-luks(){
   [ -z "$1" ] && exit 1
+  if [ "$1" = "--help" ]; then
+    echo "mount-luks /dev/sdX <name> # => /dev/sdX -> /media/<name>"
+    return 0
+  fi
   [ -z "$2" ] && exit 1
   doas cryptsetup open "$1" "$2" \
     && doas mount -v "/dev/mapper/$2" "/media/$2"

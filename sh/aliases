@@ -98,6 +98,7 @@ alias ffmpeg="ffmpeg -hide_banner"
 alias free="free -m"
 alias lsblk="lsblk -f"
 alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
+alias nneomutt="mbsync -c ~/.config/mbsync/mbsyncrc -a && neomutt"
 
 # handy stuff
 ABBREVIATION chx="chmod +x"

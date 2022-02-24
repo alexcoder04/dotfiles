@@ -24,7 +24,8 @@ case "$1" in
   bash)
     awk '{print "alias",$1 "=\"cd",$2 "\""}' <(cat $sourcefiles) ;;
   zsh)
-    awk '{print "abbrev-alias",$1 "=\"cd",$2,"&& exa --icons --group-directories-first\""}' <(cat $sourcefiles) ;;
+    echo '_bookmark-ls(){ exa --icons --group-directories-first }'
+    awk '{print "abbrev-alias",$1 "=\"cd",$2,"&& _bookmark-ls\""}' <(cat $sourcefiles) ;;
   fish)
     awk '{print "abbr",$1,"\"cd",$2 "\""}' <(cat $sourcefiles) ;;
   *)
