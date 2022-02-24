@@ -19,7 +19,7 @@ export RECONF_FILEMANAGER_SECONDARY="alacritty -e sh -c 'export TERM=xterm; . $D
 export RECONF_PAGER="nvimpager"
 export RECONF_SETTINGS_APP="cinnamon-settings"
 export RECONF_TERMINAL_MAIN="alacritty"
-export RECONF_TERMINAL_SECONDARY="alacritty"
+export RECONF_TERMINAL_SECONDARY="foot"
 export RECONF_VISUAL="nvim"
 
 # i3

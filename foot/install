@@ -1,0 +1,8 @@
+#!/bin/sh
+
+CONFIG_FOLDER="$XDG_CONFIG_HOME/foot"
+[ -d "$CONFIG_FOLDER" ] || mkdir -vp "$CONFIG_FOLDER"
+
+RECONF_COLORSCHEME="${RECONF_COLORSCHEME:-dracula}"
+
+../reconf <"./foot.ini" | sed -E 's/=#/=/g' >"$CONFIG_FOLDER/foot.ini"
