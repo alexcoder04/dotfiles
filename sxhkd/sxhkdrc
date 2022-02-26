@@ -61,15 +61,15 @@ super + Insert
 # FIRST ROW
 # Q, W: reserved for window manager
 super + e
-    +TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e trans -shell de:en
+    +TERMINAL_MAIN+ --class "i3_float,i3_float" -e trans -shell de:en
 super + shift + e
-    +TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e trans -shell en:de
+    +TERMINAL_MAIN+ --class "i3_float,i3_float" -e trans -shell en:de
 # R: reserved for run prompt
 # Z: reserved for window manager
 super + i
     internet-search
 super + p
-    +TERMINAL_MAIN+ --class "+TERMINAL_MAIN+,i3_float" -e python
+    +TERMINAL_MAIN+ --class "i3_float,i3_float" -e python
 super + plus
     pavucontrol
 
