@@ -8,3 +8,5 @@ echo "./env -> $CONFIG_DIR/env.sh"
 cat "./binsh" "./env" | ../reconf \
     > "$CONFIG_DIR/env.sh"
 
+cp -v "./colors.sh" "$CONFIG_DIR/colors.sh"
+

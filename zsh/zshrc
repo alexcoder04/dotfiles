@@ -23,6 +23,7 @@ source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/bookmarks.zsh"
 source "$ZDOTDIR/functions.zsh"
 [ -f "$XDG_CONFIG_HOME/lf/vars.sh" ] && source "$XDG_CONFIG_HOME/lf/vars.sh"
+[ -f "$XDG_CONFIG_HOME/colors.sh" ] && source "$XDG_CONFIG_HOME/colors.sh"
 
 # ---------------------------------------------------------
 # HISTORY CONFIGURATION
