@@ -1,7 +1,7 @@
 
 # MY .FILES
 
-![my desktop](./misc/screenshots/default.png)
+![my desktop](./misc/screenshots/sway-i3blocks-gruvbox-screenshot-2022.png)
 
 In case you didn't know, dotfiles are configuration files on Unix-like operating
 systems like Linux. Because they start with a `.`, so they don't show up in you
