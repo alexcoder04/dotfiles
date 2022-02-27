@@ -72,7 +72,7 @@ cmd sizeof %{{
 cmd trash %trash-put $fx
 cmd remove_interactive %rm -i $fx
 cmd remove_force %{{
-    printf "\033[33mSure [Y/n]?\033[0m "
+    printf "\033[33mDel \"$(basename "$f")\" - Sure [Y/n]?\033[0m "
     read ans
     if [ "$ans" = "Y" ]; then
         rm -rf $fx
@@ -180,7 +180,7 @@ cmd new-name %{{
 }}
 
 cmd normalize-name %{{
-    mv "$f" "$(echo "$f" | sed 's/\s/_/g')"
+    mv "$f" "$(basename "$f" | sed 's/\s/_/g')"
 }}
 
 # from https://github.com/gokcehan/lf/wiki/Tips#new-folder-with-selected-items
