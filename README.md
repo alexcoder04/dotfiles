@@ -16,8 +16,8 @@ care about compatibility with different systems other than the ones I use.
 However, you are welcome to look through my configs and integrate them into
 your setup if you find something useful.
 
-Note that most of the configs rely heavily on my scripts
-(https://github.com/alexcoder04/scripts).
+My scripts (https://github.com/alexcoder04/scripts) are required for most things
+to function properly.
 
 ## Installation system
 

@@ -9,10 +9,7 @@
 #      
 # generate bookmarks for different applications
 
-die(){
-  echo "$1"
-  exit 1
-}
+. libsh || exit 1
 
 [ -z "$1" ] && die "please specify an output format"
 
