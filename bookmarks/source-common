@@ -7,4 +7,4 @@ tdoc               $HOME/Documents
 tdow               $HOME/Downloads
 tcd                $HOME/Projects
 tsh                $XDG_DATA_HOME
-tconf              $XDG_CONFIG_HOME
+tcfg               $XDG_CONFIG_HOME

@@ -2,8 +2,6 @@
 
 file="$1"; shift
 
-# -----------------------------------------------------------------------------
-# image stuff
 draw() {
   ~/.config/lf/draw_img.sh "$@"
   exit 1
@@ -19,8 +17,8 @@ cache() {
     draw "$@"
   fi
 }
-# -----------------------------------------------------------------------------
 
+# ueberzug previews
 preview_image_ueberzug(){
   orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
   if [ -n "$orientation" ] && [ "$orientation" != 1 ]; then
@@ -45,7 +43,7 @@ preview_image(){
   if [ "$XDG_SESSION_TYPE" = "x11" ] && command -v ueberzug >/dev/null; then
     preview_image_ueberzug "$@"
   else
-    timg -g "${2}x${3}" "$file"
+    timg -g "${3}x${2}" "$file"
   fi
 }
 
@@ -55,7 +53,7 @@ preview_video(){
     preview_video_ueberzug "$@"
   else
     ffmpegthumbnailer -i "$file" -o - -c png -s 0 \
-      | timg -g "${2}x${3}" -
+      | timg -g "${3}x${2}" -
   fi
 }
 

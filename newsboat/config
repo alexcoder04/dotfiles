@@ -19,6 +19,9 @@ browser "sh -c 'qutebrowser %u >/dev/null 2>&1 &'"
 macro v set browser "sh -c 'notify-send video_starts... && mpv --no-terminal %u >/dev/null 2>&1 &'" ; open-in-browser ; set browser "sh -c 'qutebrowser %u >/dev/null 2>&1 &'"
 macro w set browser "w3m %u" ; open-in-browser ; set browser "sh -c 'qutebrowser %u >/dev/null 2>&1 &'"
 
+external-url-viewer "newsboat-iv"
+bind-key I show-urls
+
 color info cyan white bold
 color listnormal blue default
 color listnormal_unread red default

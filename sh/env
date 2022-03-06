@@ -30,6 +30,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export PYTHONSTARTUP="$DOTFILES_REPO/misc/pythonrc"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export XRESOURCES="$XDG_CONFIG_HOME/X11/Xresources"
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 

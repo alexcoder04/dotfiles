@@ -6,7 +6,7 @@
 # path
 export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
 export RECONF_SCRIPTS_DIR="$HOME/Scripts"
-export RECONF_ENV_PATH="$RECONF_SCRIPTS_DIR:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+export RECONF_ENV_PATH="$CARGO_HOME/bin:$RECONF_SCRIPTS_DIR:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 export RECONF_PATH="$RECONF_ENV_PATH"
 
 # default programs
@@ -17,6 +17,7 @@ export RECONF_FILEMANAGER_MAIN="pcmanfm-qt"
 export RECONF_FILEMANAGER_SECONDARY="qterminal -e lf"
 export RECONF_PAGER="less"
 export RECONF_TERMINAL_MAIN="qterminal"
+export RECONF_TERMINAL_SECONDARY="sh -c 'LIBGL_ALWAYS_SOFTWARE=1 exec alacritty'"
 
 # i3
 export RECONF_I3_BAR_HEIGHT=""

@@ -18,8 +18,7 @@ cd "../sh" && ./aliases-gen "zsh" \
     > "$CONFIG_DIR/aliases.zsh"
 cd "$pre"
 
-/bin/ls *.zsh \
-  | xargs -I{} sh -c "cat {} | ../reconf > \"$CONFIG_DIR/{}\" && echo \"{} -> $CONFIG_DIR/{}\""
+cp -v ./*.zsh "$CONFIG_DIR/"
 
 if [ -f "./startup.$1" ]; then
   cp -v "./startup.$1" "$CONFIG_DIR/startup.zsh"
