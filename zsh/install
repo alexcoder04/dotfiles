@@ -37,7 +37,5 @@ cd "$pre"
 echo "creating cache dir"
 [ -d "$HOME/.cache/zsh" ] || mkdir -v "$HOME/.cache/zsh"
 
-cp -v "../lf/vars.sh" "$CONFIG_DIR/lf_vars.zsh"
-
 ../install starship
 
