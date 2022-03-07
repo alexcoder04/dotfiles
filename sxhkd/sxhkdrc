@@ -157,4 +157,6 @@ super + Print
     screenshot
 super + shift + Print
     screenshot --select
+super + ctrl + Print
+    scrcord start
 
