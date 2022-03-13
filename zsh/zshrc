@@ -31,7 +31,7 @@ source "$ZDOTDIR/functions.zsh"
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
-HISTORY_IGNORE="(git add *|git commit *|* && exa --icons|mpv http*)"
+HISTORY_IGNORE="(git add *|git commit *|* _bookmark-ls|mpv http*)"
 HISTFILE="$XDG_CACHE_HOME/zsh/zsh_history"
 HISTSIZE=15000
 SAVEHIST=15000
@@ -82,18 +82,6 @@ bindkey -s '^b' ' &>/dev/null & disown' # run command in the background
 # ---------------------------------------------------------
 setopt autocd
 unsetopt beep extendedglob notify
-
-# ---------------------------------------------------------
-# SEARCH HISTORY
-# ---------------------------------------------------------
-hist(){
-    selected="$(rofi -dmenu -p "zsh" <"$HISTFILE" | tr "\n" " ")"
-    [ -z "$selected" ] && return
-    case "$XDG_SESSION_TYPE" in
-        wayland) echo -n "$selected" | wl-copy ;;
-        *) echo -n "$selected" | xclip -selection clipboard ;;
-    esac
-}
 
 # ---------------------------------------------------------
 # PROMPT

@@ -38,6 +38,16 @@ remember(){
   esac
 }
 
+# search history
+hist(){
+  selected="$(tac "$HISTFILE" | rofi -dmenu -p "zsh" | tr "\n" " ")"
+  [ -z "$selected" ] && return
+  case "$XDG_SESSION_TYPE" in
+    wayland) echo -n "$selected" | wl-copy ;;
+    *) echo -n "$selected" | xclip -selection clipboard ;;
+  esac
+}
+
 # mount a luks encrypted drive
 # use:
 # `mount-luks /dev/sdX <mapper-name>` # /dev/sdX -> /media/<mapper-name>
