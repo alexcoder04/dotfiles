@@ -1,6 +1,6 @@
 troot              /
 tm                 /media
-tdot               $DOTFILES_REPO
+tdt                $DOTFILES_REPO
 tbin               $SCRIPTS_DIR
 th                 $HOME
 tdoc               $HOME/Documents

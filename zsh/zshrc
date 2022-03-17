@@ -63,7 +63,7 @@ lfcd(){
 fzfcd(){
     dest="$(cat "$DOTFILES_REPO/bookmarks/source-"* | awk '{print $2}' | sort | fzf)"
     [ -z "$dest" ] && return
-    cd "$dest"
+    cd "$(eval "echo $dest")"
 }
 
 # ---------------------------------------------------------
@@ -80,8 +80,8 @@ bindkey -M menuselect 'l' vi-forward-char
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-bindkey -s '^o' 'lfcd\n' # select folder to open with lf
-bindkey -s '^i' 'fzfcd\n' # select folder to open with fzf
+bindkey -s '^f' 'lfcd\n' # select folder to open with lf
+bindkey -s '^o' 'fzfcd\n' # select folder to open with fzf
 bindkey -s '^b' ' &>/dev/null & disown' # run command in the background
 
 # ---------------------------------------------------------
