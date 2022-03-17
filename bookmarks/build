@@ -17,14 +17,14 @@ sourcefiles="${2:-./source*}"
 
 case "$1" in
   lf)
-    awk '{print "map",$1,"$lf -remote \"send $id cd",$2 "\""}' <(cat $sourcefiles) ;;
+    awk '/^t/{print "map",$1,"$lf -remote \"send $id cd",$2 "\""}' <(cat $sourcefiles) ;;
   bash)
-    awk '{print "alias",$1 "=\"cd",$2 "\""}' <(cat $sourcefiles) ;;
+    awk '/^t/{print "alias",$1 "=\"cd",$2 "\""}' <(cat $sourcefiles) ;;
   zsh)
     echo '_bookmark-ls(){ exa --icons --group-directories-first }'
-    awk '{print "abbrev-alias",$1 "=\"cd",$2,"&& _bookmark-ls\""}' <(cat $sourcefiles) ;;
+    awk '/^t/{print "abbrev-alias",$1 "=\"cd",$2,"&& _bookmark-ls\""}' <(cat $sourcefiles) ;;
   fish)
-    awk '{print "abbr",$1,"\"cd",$2 "\""}' <(cat $sourcefiles) ;;
+    awk '/^t/{print "abbr",$1,"\"cd",$2 "\""}' <(cat $sourcefiles) ;;
   *)
     die "Not supported output format" ;;
 esac

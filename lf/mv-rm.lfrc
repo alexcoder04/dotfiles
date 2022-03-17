@@ -1,0 +1,54 @@
+
+# FUNCTIONS
+cmd normalize-name %{{
+  mv "$f" "$(basename "$f" | sed 's/\s/_/g')"
+}}
+
+cmd new-name %{{
+  set -f
+  printf "\033[32mNew name:\033[0m "
+  read newname
+  mv "$f" "$newname"
+}}
+
+# from: https://github.com/gokcehan/lf/wiki/Tips#bulk-rename-multiple-files
+cmd bulk-rename ${{
+  old="$(mktemp)"
+  new="$(mktemp)"
+  [ -z "$fs" ] && fs="$(ls)"
+  printf '%s\n' "$fs" >"$old"
+  printf '%s\n' "$fs" >"$new"
+  $EDITOR "$new"
+  [ "$(wc -l <"$new")" -ne "$(wc -l <"$old")" ] && exit
+  paste "$old" "$new" | while IFS= read -r names; do
+    src="$(printf '%s' "$names" | cut -f1)"
+    dst="$(printf '%s' "$names" | cut -f2)"
+    if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+      continue
+    fi
+    mv -- "$src" "$dst"
+  done
+  rm -- "$old" "$new"
+  lf -remote "send $id unselect"
+}}
+
+# KEYBINDS
+# rename
+map _ normalize-name
+map rr rename
+map rR push rr<a-b><a-b><a-f>
+map RR new-name
+map <c-r> bulk-rename
+
+# delete
+map dd %trash-put $fx
+map DD %rm -i $fx
+map dD %{{
+  printf "\033[33mDel \"$(basename "$f")\" - Sure [Y/n]?\033[0m "
+  read ans
+  [ "$ans" = "Y" ] \
+    && rm -rf $fx \
+    || echo "\033[31mAborted\033[0m"
+}}
+
+

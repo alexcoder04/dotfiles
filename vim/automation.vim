@@ -13,7 +13,7 @@
 " -------------------------------------------------
 " fix file types
 autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
-autocmd BufEnter $DOTFILES_REPO/lf/lfrc set filetype=config
+autocmd BufEnter $DOTFILES_REPO/lf/*lfrc set filetype=config
 autocmd BufEnter $DOTFILES_REPO/sh/aliases set filetype=sh
 autocmd BufEnter $DOTFILES_REPO/sh/env set filetype=sh
 autocmd BufEnter $XDG_CONFIG_HOME/i3/config set filetype=i3config

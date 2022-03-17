@@ -20,6 +20,7 @@ export RECONF_TERMINAL_MAIN="qterminal"
 export RECONF_TERMINAL_SECONDARY="sh -c 'LIBGL_ALWAYS_SOFTWARE=1 exec alacritty'"
 
 # i3
+export RECONF_I3_BORDER_WIDTH=1
 export RECONF_I3_BAR_HEIGHT=""
 export RECONF_I3_FONT_BAR="Monospace 8"
 export RECONF_I3_FONT_PANGO="Monospace 8"

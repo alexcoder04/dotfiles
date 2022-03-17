@@ -39,172 +39,37 @@ set cleaner ~/.config/lf/clear_img.sh
 # COMMANDS
 # -----------------------------------------------------
 cmd set-columns ${{
-    w=$(tput cols)
-    if [ $w -le 100 ]; then
-        lf -remote "send $id set ratios 1:2"
-    else
-        lf -remote "send $id set ratios 1:2:3"
-    fi
+  w=$(tput cols)
+  if [ $w -le 100 ]; then
+    lf -remote "send $id set ratios 1:2"
+  else
+    lf -remote "send $id set ratios 1:2:3"
+  fi
 }}
 
 cmd reload-window :{{
-    unselect
-    clear
-    set-columns
-    reload
-    set dircounts
+  unselect
+  clear
+  set-columns
+  reload
+  set dircounts
 }}
 
 cmd select-all %{{
-    /bin/ls | xargs -I{} lf -remote "send $id toggle {}"
+  /bin/ls | xargs -I{} lf -remote "send $id toggle {}"
 }}
 
 cmd chmodx ${{
-    chmod +x "$f"
-    lf -remote 'send reload'
+  chmod +x "$f"
+  lf -remote 'send reload'
 }}
 
-cmd sizeof %{{
-    echo -n "\033[33mSize: \033[0m"
-    du --max-depth 0 -h "$f" 2>/dev/null | cut -f1
-}}
-
-cmd trash %trash-put $fx
-cmd remove_interactive %rm -i $fx
-cmd remove_force %{{
-    printf "\033[33mDel \"$(basename "$f")\" - Sure [Y/n]?\033[0m "
-    read ans
-    if [ "$ans" = "Y" ]; then
-        rm -rf $fx
-    else
-        echo "\033[31mAborted\033[0m"
-    fi
-}}
-
-# from: https://github.com/gokcehan/lf/wiki/Tips#bulk-rename-multiple-files
-cmd bulk-rename ${{
-    old="$(mktemp)"
-    new="$(mktemp)"
-    [ -z "$fs" ] && fs="$(ls)"
-    printf '%s\n' "$fs" >"$old"
-    printf '%s\n' "$fs" >"$new"
-    $EDITOR "$new"
-    [ "$(wc -l <"$new")" -ne "$(wc -l <"$old")" ] && exit
-    paste "$old" "$new" | while IFS= read -r names; do
-        src="$(printf '%s' "$names" | cut -f1)"
-        dst="$(printf '%s' "$names" | cut -f2)"
-        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
-            continue
-        fi
-        mv -- "$src" "$dst"
-    done
-    rm -- "$old" "$new"
-    lf -remote "send $id unselect"
-}}
-
-cmd add_wallpaper %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
-cmd set_wallpaper %wallpaper-select --set "$f"
-
-cmd share_http ${{
-    for file in $fx; do
-        share_http "$file"
-    done
-}}
-
-# from: <https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc#L80>
-cmd unarchive !{{
-	case "$f" in
-		*.tar.bz2)    tar xjf "$f"   ;;
-		*.tar.gz)     tar xzf "$f"   ;;
-		*.bz2)        bunzip2 "$f"   ;;
-		*.rar)        unrar x "$f"   ;;
-		*.gz)         gunzip "$f"    ;;
-		*.tar)        tar xf "$f"    ;;
-		*.tbz2)       tar xjf "$f"   ;;
-		*.tgz)        tar xzf "$f"   ;;
-		*.zip)        unzip "$f"     ;;
-		*.Z)          uncompress "$f";;
-		*.7z)         7z x "$f"      ;;
-		*.tar.xz)     tar xf "$f"    ;;
-		*.tar.zst)    unzstd "$f"    ;;
-		*) echo "Unsupported format" ;;
-	esac
-}}
-
-cmd archive_tar !{{
-    echo "$fx" | xargs -n 1 basename | xargs -t tar -vczf "$f.tar.gz"
-}}
-
-cmd archive_zip !{{
-    echo "$fx" | xargs -n 1 basename | xargs -t zip -r "$f.zip"
-}}
-
-# adapted from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
-cmd open ${{
-	case "$(file --mime-type "$f" -b)" in
-		application/pdf | application/vnd* | application/epub*)
-			setsid -f zathura "$f" >/dev/null 2>&1 ;;
-		image/*)
-			setsid -f nsxiv -a $fx ;;
-		audio/*)
-			mpv --audio-display=no $fx ;;
-		video/*)
-			setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-		text/* | application/json)
-			nvim -c 'nnoremap H :q<CR>' "$f" ;;
-        application/gzip)
-            extract_to="$(basename "$f" .tar.gz)"
-            if [ -d "$extract_to" ]; then
-                counter=1
-                while [ -d "$extract_to-$counter" ]; do
-                    counter=$(($counter+1))
-                done
-                extract_to="$extract_to-$counter"
-            fi
-            mkdir "$extract_to"
-            tar -xzf "$f" -C "$extract_to" ;;
-		*)
-            if [ ! -s "$f" ]; then
-                nvim -c 'nnoremap H :q<CR>' "$f"
-            else
-                setsid -f xdg-open "$f" >/dev/null 2>&1
-            fi ;;
-	esac
-}}
-
-cmd new-name %{{
-    set -f
-    printf "\033[32mNew name:\033[0m "
-    read newname
-    mv "$f" "$newname"
-}}
-
-cmd normalize-name %{{
-    mv "$f" "$(basename "$f" | sed 's/\s/_/g')"
-}}
-
-# from https://github.com/gokcehan/lf/wiki/Tips#new-folder-with-selected-items
-cmd folder-with-items %{{
-    set -f
-    printf "\033[32mFolder name:\033[0m "
-    read newd
-    mkdir -- "$newd"
-    mv -- $fx "$newd"
+cmd bookmark-create %{{
+  echo "_ $PWD" >>"$DOTFILES_REPO/bookmarks/source-auto"
+  echo "added \033[32m$PWD\033[0m to bookmarks"
 }}
 
 cmd q :quit
-
-# git commands
-cmd git_pull ${{
-    echo "git:-------------------------------------------"
-    git pull --rebase || true; echo "press ENTER"; read _
-}}
-
-cmd git_status ${{
-    echo "git:-------------------------------------------"
-    git status || true; echo "press ENTER to exit or s<enter> to enter a shell"; read inp
-    [ "$inp" = "s" ] && $SHELL
-}}
 
 # -----------------------------------------------------
 # KEYBINDS
@@ -218,51 +83,18 @@ map a
 map r
 map i
 
-# rename
-map rr rename
-map rR rename; cmd-word-back; cmd-left
-map RR new-name
-map <c-r> bulk-rename
-map _ normalize-name
-
-# git
-map gp git_pull
-map gs git_status
-
-# working with archives
-map ae unarchive
-map act archive_tar
-map acz archive_zip
-
-# create stuff
-map md push %mkdir<space>
-map mD folder-with-items
-map mf push %touch<space>
-map me push $$EDITOR<space>
-
-# delete stuff
-map dd trash
-map DD remove_interactive
-map dD remove_force
-
-# view in
-map T $$SHELL
-map e $$EDITOR "$f"
-map b &setsid nsxiv -q -t -r "$f"
-
 # actions
 map <c-a> select-all
 map U clear
 map c cut
 map x chmodx
-map i calcdirsize
-map I sizeof
-
-# visual
 map <c-l> reload-window
-map wpa add_wallpaper
-map wps set_wallpaper
 map H set hidden!
+map mm bookmark-create
+
+# wallpaper
+map wpa %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
+map wps %wallpaper-select --set "$f"
 
 # -----------------------------------------------------
 # STARTUP

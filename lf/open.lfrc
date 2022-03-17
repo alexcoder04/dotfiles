@@ -1,0 +1,39 @@
+
+# OPENER SCRIPT
+# adapted from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
+cmd open ${{
+  case "$(file --mime-type -b "$f")" in
+    */pdf | application/vnd* | application/epub*)
+      setsid -f zathura "$f" >/dev/null 2>&1 ;;
+    image/*)
+      setsid -f nsxiv -a $fx ;;
+    audio/*)
+      mpv --audio-display=no $fx ;;
+    video/*)
+      setsid -f mpv "$f" -quiet >/dev/null 2>&1 ;;
+    text/* | application/json)
+      nvim -c 'nnoremap H :q<CR>' "$f" ;;
+    application/gzip)
+      extract_tmp="${TMPDIR:-/tmp}/$(basename "$f" .tar.gz)-$(echo "$f" | md5sum | cut -d" " -f1)"
+      mkdir "$extract_tmp"
+      tar -xzf "$f" -C "$extract_tmp"
+      launch lf "$extract_tmp" ;;
+    *)
+      [ -s "$f" ] \
+        && setsid -f xdg-open "$f" >/dev/null 2>&1 \
+        || nvim -c 'nnoremap H :q<CR>' "$f" ;;
+  esac
+}}
+
+# FZF EXTENSION
+map O ${{
+  dest="$(cat "$DOTFILES_REPO/bookmarks/source-"* | awk '{print $2}' | sort | fzf)"
+  [ -z "$dest" ] && exit 0
+  exec sh -c "lf -remote \"send $id cd $dest\""
+}}
+
+# VIEW IN
+map T $$SHELL
+map e $nvim -c 'nnoremap H :q<CR>' "$f"
+map b &setsid nsxiv -q -t -r "$f"
+

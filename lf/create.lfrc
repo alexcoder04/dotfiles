@@ -1,0 +1,16 @@
+
+# FUNCTIONS
+cmd folder-with-items %{{
+    set -f
+    printf "\033[32mFolder name:\033[0m "
+    read newd
+    mkdir "$newd"
+    mv $fx "$newd"
+}}
+
+# KEYBINDS
+map md push %mkdir<space>
+map mD folder-with-items
+map mf push %touch<space>
+map mF push $$EDITOR<space>
+

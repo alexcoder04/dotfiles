@@ -1,5 +1,8 @@
 
 The bookmark system can read a source file and output it in different formats.
+Bookmarks mapped to an alias not starting with `t` are ignored. However, they
+can be read by other applications directly from the source files (like my
+`fzf` extensions for zsh and lf)
 
 ## Example:
 
@@ -8,6 +11,7 @@ The bookmark system can read a source file and output it in different formats.
 ```conf
 tdow ~/Downloads
 tm /media
+_ ~/Pictures
 ```
 
 ### Output for bash
