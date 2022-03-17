@@ -2,46 +2,27 @@
 
 file="$1"; shift
 
+# draw image with ueberzug
 draw() {
-  ~/.config/lf/draw_img.sh "$@"
+  if [ -n "$FIFO_UEBERZUG" ]; then
+    path="$(printf '%s' "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    printf '{"action": "add", "identifier": "preview", "x": %d, "y": %d, "width": %d, "height": %d, "scaler": "contain", "scaling_position_x": 0.5, "scaling_position_y": 0.5, "path": "%s"}\n' \
+      "$4" "$5" "$2" "$3" "$1" >"$FIFO_UEBERZUG"
+  fi
   exit 1
-}
-
-hash() {
-  printf '%s/.cache/lf/%s' "$HOME" \
-    "$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
-}
-
-cache() {
-  if [ -f "$1" ]; then
-    draw "$@"
-  fi
-}
-
-# ueberzug previews
-preview_image_ueberzug(){
-  orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
-  if [ -n "$orientation" ] && [ "$orientation" != 1 ]; then
-    cache="$(hash "$file").jpg"
-    cache "$cache" "$@"
-    convert -- "$file" -auto-orient "$cache"
-    draw "$cache" "$@"
-  else
-    draw "$file" "$@"
-  fi
-}
-
-preview_video_ueberzug(){
-  cache="$(hash "$file").jpg"
-  cache "$cache" "$@"
-  ffmpegthumbnailer -i "$file" -o "$cache" -s 0
-  draw "$cache" "$@"
 }
 
 # image preview
 preview_image(){
   if [ "$XDG_SESSION_TYPE" = "x11" ] && command -v ueberzug >/dev/null; then
-    preview_image_ueberzug "$@"
+    orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
+    if [ -n "$orientation" ] && [ "$orientation" != 1 ]; then
+      cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' "$file" | sha256sum | cut -d" " -f1).jpg"
+      [ -f "$cache_file" ] || convert "$file" -auto-orient "$cache_file"
+      draw "$cache_file" "$@"
+    else
+      draw "$file" "$@"
+    fi
   else
     timg -g "${3}x${2}" "$file"
   fi
@@ -49,11 +30,19 @@ preview_image(){
 
 # video preview
 preview_video(){
+  cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' "$file" | sha256sum | cut -d" " -f1).jpg"
+  if [ ! -f "$cache_file" ]; then
+    ffmpegthumbnailer -i "$file" -o "$cache_file" -s 0
+    convert \
+      "$cache_file" \
+      "$DOTFILES_REPO/lf/play-icon.png" \
+      -gravity center -composite -matte \
+      "$cache_file"
+  fi
   if [ "$XDG_SESSION_TYPE" = "x11" ] && command -v ueberzug >/dev/null; then
-    preview_video_ueberzug "$@"
+    draw "$cache_file" "$@"
   else
-    ffmpegthumbnailer -i "$file" -o - -c png -s 0 \
-      | timg -g "${3}x${2}" -
+    timg -g "${3}x${2}" "$cache_file"
   fi
 }
 
@@ -68,10 +57,13 @@ case "$(file -Lb --mime-type -- "$file")" in
   image/*) # images
     preview_image "$@"
     ;;
-  video/*)
+  video/*) # videos
     preview_video "$@"
     ;;
-  text/* | application/json) # text files with syntax highilghting
+  audio/*) # audio
+    mediainfo "$1"
+    ;;
+  text/* | application/json | */xml) # text files with syntax highilghting
     case "${file##*.}" in
       ino) lang="-l C" ;;
       config|conf|cfg|muttrc) lang="-l conf" ;;
