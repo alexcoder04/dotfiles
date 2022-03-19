@@ -13,4 +13,5 @@ map md push %mkdir<space>
 map mD folder-with-items
 map mf push %touch<space>
 map mF push $$EDITOR<space>
+map ml push $ln<space>-s<space>
 

@@ -34,6 +34,7 @@ map O ${{
 
 # VIEW IN
 map T $$SHELL
+map <c-t> push !
 map e $nvim -c 'nnoremap H :q<CR>' "$f"
 map b &setsid nsxiv -q -t -r "$f"
 
