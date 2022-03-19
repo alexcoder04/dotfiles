@@ -9,5 +9,5 @@ cat "./binsh" "./env" | ../reconf \
     > "$CONFIG_DIR/env.sh"
 
 echo "./colors.sh -> $CONFIG_DIR/colors.sh"
-sed -E '/^#/d; /^$/d' "./colors.sh" >"$CONFIG_DIR/colors.sh"
+sed -E '/^#/d; /^$/d' "./binsh" "./colors.sh" >"$CONFIG_DIR/colors.sh"
 

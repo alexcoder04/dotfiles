@@ -3,7 +3,7 @@
 # adapted from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
 cmd open ${{
   case "$(file --mime-type -b "$f")" in
-    */pdf | application/vnd* | application/epub*)
+    */pdf | application/epub*)
       setsid -f zathura "$f" >/dev/null 2>&1 ;;
     image/*)
       setsid -f nsxiv -a $fx ;;
@@ -18,6 +18,8 @@ cmd open ${{
       mkdir "$extract_tmp"
       tar -xzf "$f" -C "$extract_tmp"
       launch lf "$extract_tmp" ;;
+    *opendocument*)
+      setsid -f libreoffice "$f" >/dev/null 2>&1 ;;
     *)
       [ -s "$f" ] \
         && setsid -f xdg-open "$f" >/dev/null 2>&1 \

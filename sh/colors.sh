@@ -1,11 +1,8 @@
-#!/bin/sh
-
 # -----------------------------------------------------------------------------
 # LF ICONS
 # -----------------------------------------------------------------------------
-# in tty
-if [ "$TERM" = "linux" ]; then
-  export LF_ICONS="\
+case "$TERM" in
+  linux) export LF_ICONS="\
 tw=D:\
 st=D:\
 ow=D:\
@@ -14,10 +11,8 @@ di=D:\
 fi=F:\
 ln=L:\
 or=L:\
-ex=E:"
-# in GUI
-else
-  export LF_ICONS="\
+ex=E:" ;;
+  *) export LF_ICONS="\
 tw=:\
 st=:\
 ow=:\
@@ -185,40 +180,41 @@ ex=:\
 *.pptx=:\
 *.odp=:\
 *.tex=:\
-"
-fi
+" ;;
+esac
 
 # -----------------------------------------------------------------------------
 # LF COLORS
 # -----------------------------------------------------------------------------
-export LF_COLORS="\
+BASIC_LF_COLORS="\
+ln=01;36:\
+di=01;34:\
+# ----- ignored/dimmed files
 .git/=02:\
 .gitignore*=02:\
 node_modules/=02:\
+# project files
 Makefile*=02;33:\
 PKGBUILD*=02;33:\
+go.mod*=02;33:\
+go.sum*=02;33:\
+# ----- text documents
 README*=33:\
 LICENSE.*=33:\
-go.mod=02;33:\
-go.sum=02;33:\
 *.md=33:\
 *.tex=01;33:\
+# ----- images
 *.JPG=36:\
-*.avi=02;36:\
 *.gif=36:\
 *.jpeg=36:\
 *.jpg=36:\
-*.mkv=02;36:\
-*.mp3=02;36:\
-*.mp4=02;36:\
-*.ogg=02;36:\
 *.png=36:\
-*.webm=02;36:\
 *.webp=36:\
+# ----- documents
 *.pdf=35:\
 *.odt=02;35:\
 *.odp=02;35:\
-*.sh=32:\
+# -----archives
 *.apk=34:\
 *.bz2=34:\
 *.gz=34:\
@@ -229,14 +225,55 @@ go.sum=02;33:\
 *.7z=34:\
 *.xz=34:\
 *.zst=34:\
-*.py=02;34:\
+# ----- executables and scripts
+ex=01;32:\
+*.sh=32:\
+"
+
+# more specific colors in 256-color terminals
+case "$TERM" in
+  xterm-256color)
+    ADDITIONAL_LF_COLORS="\
+# ----- HTML/CSS/JS
+*.html=38;5;202:\
+*.css=38;5;33:\
+*.js=38;5;220:\
+# ----- programming languages
+*.py=38;5;33:\
+*.go=38;5;123:\
+# ----- videos
+*.avi=02;36:\
+*.mkv=02;36:\
+*.mp4=02;36:\
+*.webm=02;36:\
+# ----- audio
+*.mp3=38;5;66:\
+*.ogg=38;5;66:\
+*.opus=38;5;66:\
+" ;;
+  *)
+    ADDITIONAL_LF_COLORS="\
+# ----- HTML/CSS/JS
 *.html=01;35:\
 *.css=01;35:\
 *.js=01;35:\
-ln=01;36:\
-di=01;34:\
-ex=01;32:\
-"
+# ----- programming languages
+*.py=02;34:\
+*.go=0:\
+# ----- videos and audio
+*.avi=02;36:\
+*.mkv=02;36:\
+*.mp3=02;36:\
+*.mp4=02;36:\
+*.ogg=02;36:\
+*.opus=02;36:\
+*.webm=02;36:\
+" ;;
+esac
+
+export LF_COLORS="${BASIC_LF_COLORS}${ADDITIONAL_LF_COLORS}"
+unset BASIC_LF_COLORS
+unset ADDITIONAL_LF_COLORS
 
 # -----------------------------------------------------------------------------
 # EXA COLORS
