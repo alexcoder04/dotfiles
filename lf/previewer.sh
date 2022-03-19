@@ -46,6 +46,18 @@ preview_video(){
   fi
 }
 
+preview_pdf(){
+  # as images on X11 with ueberzug
+  if [ "$XDG_SESSION_TYPE" = "x11" ] && command -v ueberzug >/dev/null; then
+    cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' "$file" | sha256sum | cut -d" " -f1)"
+    [ -f "$cache_file" ] || pdftoppm -jpeg -singlefile "$file" "$cache_file"
+    draw "$cache_file.jpg" "$@"
+  # as text on wayland
+  else
+    pdftotext -l 5 "$file" -
+  fi
+}
+
 # empty file
 if [ ! -s "$file" ]; then
   echo "\033[0;41mEmpty file\033[0m"
@@ -65,8 +77,9 @@ case "$(file -Lb --mime-type -- "$file")" in
     ;;
   text/* | application/json | */xml) # text files with syntax highilghting
     case "${file##*.}" in
-      ino) lang="-l C" ;;
       config|conf|cfg|muttrc) lang="-l conf" ;;
+      ino) lang="-l C" ;;
+      lfrc) lang="-l conf" ;;
       prefs2) lang="-l sh" ;;
       *) lang="" ;;
     esac
@@ -76,8 +89,11 @@ case "$(file -Lb --mime-type -- "$file")" in
     echo "\033[36mE-Mail:\033[0m"
     cat "$file"
     ;;
-  */pdf) # pdf text preview
-    pdftotext -l 5 "$file" -
+  */pdf) # pdfc as images
+    preview_pdf "$@"
+    ;;
+  *opendocument*) # Libre Office documents
+    odt2txt "$file"
     ;;
   # different archives
   application/gzip)

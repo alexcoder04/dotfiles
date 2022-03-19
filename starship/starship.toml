@@ -9,9 +9,11 @@
 # starship (shell prompt) config file
 
 add_newline = false
-format = """[\\[](blue) $username[@](red)$hostname [\\]](blue) in \\[ $directory\\] $git_status$git_branch \\[ $jobs$python$golang$nodejs\\]
-${custom.chroot} ${custom.lf_level} $character"""
+format = """[\\[ $username[@](red)$hostname$localip \\]](blue) in $directory$git_status$git_branch using \\[ $shell${custom.linux}$python$golang$nodejs\\] $jobs
+${custom.chroot}${custom.lf_level}$character"""
 right_format = "$cmd_duration $time"
+
+continuation_prompt = "[▶ ](blue)"
 
 [username]
 style_user = "green bold"
@@ -33,10 +35,10 @@ style = "bold cyan"
 read_only_style = "red bold"
 read_only = "+STARSHIP_READ_ONLY+"
 home_symbol = "+STARSHIP_HOME+"
-format = "[$path]($style) [$read_only]($read_only_style)"
+format = "\\[ [$path]($style) [$read_only]($read_only_style)\\]"
 
 [git_status]
-format = "[git](blue):\\[$ahead_behind $staged$untracked$modified$renamed$deleted$conflicted$stashed\\]"
+format = " [git](blue):\\[$ahead_behind $staged$untracked$modified$renamed$deleted$conflicted$stashed\\]"
 ahead = "[A](yellow)"
 behind = "[B](red)"
 diverged = "[D](red)"
@@ -55,15 +57,15 @@ symbol = "+STARSHIP_GIT_BRANCH+"
 format = " on [$symbol$branch]($style)"
 
 [jobs]
-format = "[$symbol$number]($style) "
+format = "\\[ [$symbol$number]($style) \\]"
 symbol = "+STARSHIP_JOBS+"
 style = "purple bold"
 number_threshold = 1
 
 [character]
-success_symbol = "[+STARSHIP_SUCCESS+](bold green)"
-error_symbol = "[+STARSHIP_ERROR+](bold red)"
-vicmd_symbol = "[+STARSHIP_VI+](bold blue)"
+success_symbol = " [+STARSHIP_SUCCESS+](bold green)"
+error_symbol = " [+STARSHIP_ERROR+](bold red)"
+vicmd_symbol = " [+STARSHIP_VI+](bold blue)"
 
 [cmd_duration]
 format = "\\[[$duration]($style)\\]"
@@ -74,15 +76,42 @@ format = "\\[[$time]($style)\\]"
 style = "yellow"
 time_format = "%a, %d %b %H:%M"
 
+[localip]
+format = "/[$localipv4]($style)"
+
+[shell]
+format = "[$indicator]($style) "
+style = "white"
+disabled = false
+bash_indicator = "🐃"
+fish_indicator = "🐟"
+zsh_indicator = ""
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[golang]
+format = "[$symbol($version )]($style)"
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+
 [custom.lf_level]
 command = "echo lf$LF_LEVEL"
 when = "[ ! -z $LF_LEVEL ]"
 style = "bg:cyan fg:black"
-format = "\\[ [$output]($style) \\]"
+format = " \\[ [$output]($style) \\]"
 
 [custom.chroot]
 command = "echo chroot"
 when = "ischroot"
 style = "bg:blue fg:black"
 format = "\\[ [$output]($style) \\]"
+
+[custom.linux]
+command = "uname -r | cut -d- -f1"
+format = "[ $output]($style) "
+style = "purple bold"
+when = "true"
+os = "linux"
 
