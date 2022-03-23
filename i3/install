@@ -10,7 +10,6 @@
 # i3 config installer
 # it became quite complex over the time, supporting multiple themes (modes)
 # and different machines
-# 
 
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/i3"
 THEME_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/bumblebee-status/themes"
@@ -30,6 +29,15 @@ install_i3blocks(){
   fi
   echo "$file -> $CONFIG_DIR/i3blocks.conf"
   cat "$file" | ../reconf > "$CONFIG_DIR/i3blocks.conf"
+}
+
+# -----------------------------------------------------------------------------
+# BUMBLEBEE-STATUS INSTALLER
+# -----------------------------------------------------------------------------
+install_bumblebee-status(){
+  ./bumblebee-theme-gen.py >"$THEME_DIR/powerline-custom.json"
+  cp -v "./start_bumblebee" "$CONFIG_DIR/start_bumblebee"
+  chmod -v +x "$CONFIG_DIR/start_bumblebee"
 }
 
 # -----------------------------------------------------------------------------
@@ -94,16 +102,14 @@ case "$RECONF_I3_MODE" in
         $RECONF_I3_ADDONS \
         | ../reconf > "$CONFIG_DIR/config"
 
-    cp -v "./dracula-powerline.json" "$THEME_DIR/dracula-powerline-custom.json"
-    cp -v "./start_bumblebee" "$CONFIG_DIR/start_bumblebee"
-    chmod -v +x "$CONFIG_DIR/start_bumblebee"
+    install_bumblebee-status
 
     ;;
 
   # -----------------------------------------------------------------------------
   # SWAY (I3BLOCKS) MODE
   # -----------------------------------------------------------------------------
-  sway)
+  sway | sway-blocks)
     echo "Installing i3 in SWAY mode"
     export CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sway"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X i3blocks -c ~/.config/sway/i3blocks.conf"
@@ -120,6 +126,29 @@ case "$RECONF_I3_MODE" in
         | ../reconf > "$CONFIG_DIR/config"
 
     install_i3blocks
+
+    ;;
+
+  # -----------------------------------------------------------------------------
+  # SWAY (POWERLINE) MODE
+  # -----------------------------------------------------------------------------
+  sway-powerline)
+    echo "Installing i3 in SWAY-POWERLINE mode"
+    export CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sway"
+    export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X $CONFIG_DIR/start_bumblebee"
+
+    echo "pre + wayland-pre + main + bar + wayland-after + [keys] + [addons] -> $CONFIG_DIR/config"
+    cat \
+        "./i3-pre.config" \
+        "./i3-wayland-pre.config" \
+        "./i3-main.config" \
+        "./i3-bar.config" \
+        "./i3-wayland-after.config" \
+        <(../sxhkd/sxhkdtosway.py <../sxhkd/sxhkdrc) \
+        $RECONF_I3_ADDONS \
+        | ../reconf > "$CONFIG_DIR/config"
+
+    install_bumblebee-status
 
     ;;
 

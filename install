@@ -43,7 +43,7 @@ install_subfolder(){
   . "./colorschemes/$RECONF_COLORSCHEME.prefs2"
 
   cd "$1"
-  echo "Installing $1 for $machine..."
+  echo "Installing \033[34m$1\033[0m for \033[33m$machine\033[0m..."
   ./install "$machine"
   cd "$OLDPWD"
 }
@@ -53,7 +53,7 @@ install_subfolder(){
 # ------------------------------------------------------------------
 cd "$CONFIG_REPO"
 if [ -z "$1" ]; then
-  echo "You need to provide a package to install"
+  echo "\033[31mYou need to provide a package to install\033[0m"
   exit 1
 fi
 

@@ -12,7 +12,7 @@
 # ---------------------------------------------------------
 # ENVIROMENTAL VARIABLES
 # ---------------------------------------------------------
-source "$HOME/.local/share/bash/env.bash"
+source "$HOME/.config/bash/env.bash"
 
 # ---------------------------------------------------------
 # If not running interactively, don't do anything
@@ -23,10 +23,11 @@ case $- in
 esac
 
 # ---------------------------------------------------------
-# ALIASES
+# ALIASES, BOOKMARKS, COLORS
 # ---------------------------------------------------------
-[ -f "$XDG_DATA_HOME/bash/aliases.bash" ] && source "$XDG_DATA_HOME/bash/aliases.bash"
-[ -f "$XDG_DATA_HOME/bash/bookmarks.bash" ] && source "$XDG_DATA_HOME/bash/bookmarks.bash"
+[ -f "$XDG_CONFIG_HOME/bash/aliases.bash" ] && source "$XDG_CONFIG_HOME/bash/aliases.bash"
+[ -f "$XDG_CONFIG_HOME/bash/bookmarks.bash" ] && source "$XDG_CONFIG_HOME/bash/bookmarks.bash"
+[ -f "$XDG_CONFIG_HOME/colors.sh" ] && source "$XDG_CONFIG_HOME/colors.sh"
 
 # ---------------------------------------------------------
 # HISTORY OPTIONS

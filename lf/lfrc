@@ -6,12 +6,7 @@
 # 
 # Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
 #
-# some functions from other sources:
-# <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
-# <https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc#L80>
-# <https://github.com/gokcehan/lf/wiki/Tips>
-#                                                          
-# lf config
+# lf (file manager) config
 
 # -----------------------------------------------------
 # BASIC SETTINGS
@@ -91,6 +86,7 @@ map x chmodx
 map <c-l> reload-window
 map H set hidden!
 map mm bookmark-create
+map B !cat "$DOTFILES_REPO/bookmarks/source-"* | awk '{print $2}' | sort
 
 # wallpaper
 map wpa %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"

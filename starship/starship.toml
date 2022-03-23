@@ -110,7 +110,7 @@ format = "\\[ [$output]($style) \\]"
 
 [custom.linux]
 command = "uname -r | cut -d- -f1"
-format = "[ $output]($style) "
+format = "[ v$output]($style) "
 style = "purple bold"
 when = "true"
 os = "linux"

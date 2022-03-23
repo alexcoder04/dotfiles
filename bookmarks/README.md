@@ -2,7 +2,7 @@
 The bookmark system can read a source file and output it in different formats.
 Bookmarks mapped to an alias not starting with `t` are ignored. However, they
 can be read by other applications directly from the source files (like my
-`fzf` extensions for zsh and lf)
+`fzf` extensions for `zsh` and `lf`)
 
 ## Example:
 
@@ -19,6 +19,14 @@ _ ~/Pictures
 ```bash
 alias tdow="cd ~/Downloads"
 alias tm="cd /media"
+```
+
+### Output for zsh
+
+```zsh
+_bookmark-ls(){ exa --icons --group-directories-first }
+abbrev-alias tdow="cd ~/Downloads && _bookmark-ls"
+abbrev-alias tm="cd /media && _bookmark-ls"
 ```
 
 ### Output for lf

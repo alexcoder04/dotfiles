@@ -22,7 +22,6 @@ source "$ZDOTDIR/abbreviations.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/bookmarks.zsh"
 source "$ZDOTDIR/functions.zsh"
-[ -f "$XDG_CONFIG_HOME/lf/vars.sh" ] && source "$XDG_CONFIG_HOME/lf/vars.sh"
 [ -f "$XDG_CONFIG_HOME/colors.sh" ] && source "$XDG_CONFIG_HOME/colors.sh"
 
 # ---------------------------------------------------------
@@ -47,23 +46,23 @@ compinit
 _com_options+=(globdots)
 
 # ---------------------------------------------------------
-# CD INTO FOLDER SELECTED INSIDE LF
+# CD INTO FOLDER SELECTED USING LF OR FZF
 # ---------------------------------------------------------
 # from https://github.com/LukeSmithxyz/voidrice/blob/master/.config/zsh/.zshrc
 lfcd(){
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp" >/dev/null
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    fi
+  tmp="$(mktemp)"
+  lf -last-dir-path="$tmp" "$@"
+  if [ -f "$tmp" ]; then
+    dir="$(cat "$tmp")"
+    rm -f "$tmp" >/dev/null
+    [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+  fi
 }
 
 fzfcd(){
-    dest="$(cat "$DOTFILES_REPO/bookmarks/source-"* | awk '{print $2}' | sort | fzf)"
-    [ -z "$dest" ] && return
-    cd "$(eval "echo $dest")"
+  dest="$(cat "$DOTFILES_REPO/bookmarks/source-"* | awk '{print $2}' | sort | fzf)"
+  [ -z "$dest" ] && return
+  cd "$(eval "echo $dest")"
 }
 
 # ---------------------------------------------------------
@@ -106,7 +105,7 @@ eval "$(starship init zsh)"
 source "+ZSH_SYNTAX_PLUGIN+"
 
 # ---------------------------------------------------------
-# STARTUP STUFF IN NOT INSIDE LF
+# STARTUP STUFF IF NOT INSIDE LF
 # ---------------------------------------------------------
 [ -z "$LF_LEVEL" ] && source "$ZDOTDIR/startup.zsh"
 

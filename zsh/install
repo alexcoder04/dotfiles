@@ -8,8 +8,8 @@ echo "./zshrc -> $CONFIG_DIR/.zshrc"
 cat "./zshrc" | ../reconf \
     > "$CONFIG_DIR/.zshrc"
 
-echo "../sh/env -> $HOME/.zshenv"
-cat "./_header" "../sh/env" | ../reconf \
+echo "../sh/env.sh -> $HOME/.zshenv"
+cat "./_header" "../sh/env.sh" | ../reconf \
     > "$HOME/.zshenv"
 
 echo "../sh/aliases -> $CONFIG_DIR/aliases.zsh"
