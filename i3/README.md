@@ -21,22 +21,23 @@ My config became quite complex over the time, and it can be assembled in very
 different ways depending on which theme I want or which machine I'm on, so
 there are a lot of files in this directory. Here is what they are for:
 
- - `*.config`: i3 config files for different things (gaps, wayland, bar, ...).
+ - `i3-*.config`: i3 config files for different things (gaps, wayland, bar, ...).
    They are assembled into one file on install depending on which functionality
    is needed.
- - `i3blocks-*.conf`: i3blocks configs for different machines
+ - `blocks-*.conf`: i3blocks configs for different machines
  - `dracula-powerline.json`: custom bumblebee-status theme
  - `lock.png`: lock screen image which is merged with a screenshot when the
    screen is locked
- - `start-bumblebee`: startup script for bumblebee-status with all the options I
+ - `start_bumblebee`: startup script for bumblebee-status with all the options I
    want
 
 ### Available themes ("modes")
 
- - i3blocks
+ - blocks (i3blocks)
  - powerline (feat. bumblebee-status)
  - polybar (you guessed it, using polybar)
- - sway (sway version, using i3blocks)
+ - sway-blocks (sway version, using i3blocks)
+ - sway-powerline (sway version, using bumblebee-status)
 
 ---
 

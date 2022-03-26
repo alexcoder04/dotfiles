@@ -17,15 +17,14 @@ def getenv(key, default):
         return os.environ[key]
     return default
 
-# get env vars
 HOME = getenv("HOME", os.path.expanduser("~"))
 XDG_CONFIG_HOME = getenv("XDG_CONFIG_HOME", os.path.join(HOME, ".config"))
 
-# get colors
 MY_BLACK = getenv("RECONF_COLOR_BLACK", "#000000")
 MY_BLUE = getenv("RECONF_COLOR_BLUE", "#0000ff")
 MY_DARK_BLUE = getenv("RECONF_COLOR_DARK_BLUE", "#000088")
 MY_LIGHT_BLUE = getenv("RECONF_COLOR_CYAN", "#00ffff")
+MY_LIGHT_GREY = getenv("RECONF_COLOR_LIGHT_GREY", "#888888")
 MY_WHITE = getenv("RECONF_COLOR_WHITE", "#ffffff")
 MY_DARK_GREY = getenv("RECONF_COLOR_DARK_GREY", "#555555")
 MY_GREEN = getenv("RECONF_COLOR_GREEN", "#00ff00")
@@ -62,9 +61,8 @@ theme = {
             "charged": { "fg": MY_BLACK, "bg": MY_GREEN },
             "AC": { "fg": MY_BLACK, "bg": MY_GREEN }
             },
-        "display": {
-            "fg": MY_BLUE
-            }
+        "sys": { "fg": MY_BLUE, "bg": MY_BLACK },
+        "brightness": { "fg": MY_BLACK, "bg": MY_WHITE }
         }
 
 print(json.dumps(theme))
