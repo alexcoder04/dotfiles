@@ -32,6 +32,7 @@ MY_GREEN = getenv("RECONF_COLOR_GREEN", "#00ff00")
 MY_RED = getenv("RECONF_COLOR_RED", "#ff0000")
 MY_YELLOW = getenv("RECONF_COLOR_YELLOW", "#ffff00")
 MY_ORANGE = getenv("RECONF_COLOR_ORANGE", "#ff8800")
+MY_MAGENTA = getenv("RECONF_COLOR_MAGENTA", "#ff0044")
 
 theme = {
         "icons": ["awesome-fonts"],
@@ -45,8 +46,11 @@ theme = {
             { "fg": MY_WHITE, "bg": MY_BLACK }
             ],
         "kernel": { "fg": MY_BLACK, "bg": MY_BLUE },
-        "sensors": { "fg": MY_BLACK, "bg": MY_BLUE },
-        "nic": { "up": { "fg": MY_BLACK, "bg": MY_GREEN } },
+        "sensors": { "fg": MY_BLACK, "bg": MY_MAGENTA },
+        "nic": {
+            "up": { "fg": MY_BLACK, "bg": MY_GREEN },
+            "warning": { "fg": MY_BLACK, "bg": MY_GREEN }
+            },
         "diskspace": { "fg": MY_YELLOW },
         "cpu": {
             "bg": MY_YELLOW, "fg": MY_BLACK,
