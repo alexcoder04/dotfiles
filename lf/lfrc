@@ -59,6 +59,11 @@ cmd chmodx ${{
   lf -remote 'send reload'
 }}
 
+cmd unchmodx ${{
+  chmod 600 "$f"
+  lf -remote 'send reload'
+}}
+
 cmd bookmark-create %{{
   echo "_ $PWD" >>"$DOTFILES_REPO/bookmarks/source-auto"
   echo "added \033[32m$PWD\033[0m to bookmarks"
@@ -83,6 +88,7 @@ map <c-a> select-all
 map U clear
 map c cut
 map x chmodx
+map <c-x> unchmodx
 map <c-l> reload-window
 map H set hidden!
 map mm bookmark-create

@@ -104,6 +104,10 @@ case "$(file -Lb --mime-type -- "$file")" in
     echo "\033[36mZstd Archive:\033[0m"
     tar --zstd -tf "$file" | xargs -I{} echo " {}"
     ;;
+  application/x-xz)
+    echo "\033[36mXz Archive:\033[0m"
+    tar -tJf "$file" | xargs -I{} echo " {}"
+    ;;
   application/x-tar | applicationx-ustar)
     echo "\033[36mTar archive:\033[0m"
     tar -tf "$file" | xargs -I{} echo " {}"

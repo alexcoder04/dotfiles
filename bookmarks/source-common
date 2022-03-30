@@ -1,10 +1,10 @@
 troot              /
 tm                 /media
 tdt                $DOTFILES_REPO
-tbin               $SCRIPTS_DIR
+tbn                $SCRIPTS_DIR
 th                 $HOME
 tdoc               $HOME/Documents
 tdow               $HOME/Downloads
-tcd                $HOME/Projects
+tcd                $HOME/Repos
 tsh                $XDG_DATA_HOME
 tcfg               $XDG_CONFIG_HOME

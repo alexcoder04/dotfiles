@@ -3,7 +3,7 @@
 # TERMINAL
 # ###################################################################
 super + Return
-    +TERMINAL_MAIN+
+    launch $SHELL
 
 super + shift + Return
     +TERMINAL_SECONDARY+
@@ -61,15 +61,15 @@ super + Insert
 # FIRST ROW
 # Q, W: reserved for window manager
 super + e
-    +TERMINAL_MAIN+ --class "i3_float,i3_float" -e trans -shell de:en
+    launch -f trans -shell de:en
 super + shift + e
-    +TERMINAL_MAIN+ --class "i3_float,i3_float" -e trans -shell en:de
+    launch -f trans -shell en:de
 # R: reserved for run prompt
 # Z: reserved for window manager
 super + i
     internet-search
 super + p
-    +TERMINAL_MAIN+ --class "i3_float,i3_float" -e python
+    launch -f python
 super + plus
     pavucontrol
 
@@ -95,11 +95,11 @@ super + ctrl + f
 super + y
     sh -c 'rofi -dmenu -p video | xargs mpv & notify-send -t 1000 "opening video..."'
 super + x
-    +TERMINAL_MAIN+ -e htop
+    launch htop
 super + v
-    +TERMINAL_MAIN+ -e nvim
+    launch nvim
 super + b
-    +TERMINAL_MAIN+ -e newsboat-selector
+    launch newsboat-selector
 super + m
     signal-desktop
 super + period

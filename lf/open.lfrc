@@ -11,7 +11,7 @@ cmd open ${{
       mpv --audio-display=no $fx ;;
     video/*)
       setsid -f mpv "$f" -quiet >/dev/null 2>&1 ;;
-    text/* | application/json)
+    text/* | application/json | message/rfc822)
       nvim -c 'nnoremap H :q<CR>' "$f" ;;
     application/gzip)
       extract_tmp="${TMPDIR:-/tmp}/$(basename "$f" .tar.gz)-$(echo "$f" | md5sum | cut -d" " -f1)"
