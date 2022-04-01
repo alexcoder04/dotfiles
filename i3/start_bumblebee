@@ -12,7 +12,7 @@
 #                                                          
 
 exec bumblebee-status \
-  -m datetime shell:bitcoin arch_update cpu sensors memory battery nic brightness amixer shell:sys \
+  -m datetime shell:bitcoin arch_update cpu sensors memory battery nic brightness pasink shell:sys \
   -p \
     datetime.format="%d.%m.%Y %T" \
     bitcoin.command="bitcoinprice -si" bitcoin.interval=1800 \
@@ -23,7 +23,7 @@ exec bumblebee-status \
     battery.interval=17 battery.left-click="true" \
     nic.format="" nic.exclude="eth,lo,enp,virbr" nic.interval=13 nic.right-click="wifi-toggle && notify-send 'wifi toggled'" \
     brightness.use_acpi="True" brightness.wheel-up="doas /usr/local/bin/brightness higher" brightness.wheel-down="doas /usr/local/bin/brightness lower" \
-    amixer.interval=20 amixer.right-click="pavucontrol" \
+    pasink.interval=20 pasink.limit=150% \
     sys.command='echo -n " $(uname -r | cut -d- -f1) / "; echo "$XDG_SESSION_TYPE" | head -c 1 | tr "[:lower:]" "[:upper:]"' sys.interval=3600 \
   -t powerline-custom
 

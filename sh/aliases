@@ -45,15 +45,15 @@ alias cls='[ "$(seq 1 3 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cya
 if command -v exa >/dev/null; then
   case "$(tty)" in
     /dev/tty*)
-      alias ls="exa -hl --group-directories-first"
+      alias ls="exa -hl --group-directories-first"; alias ll=ls
       alias la="exa -ahl --group-directories-first" ;;
     *)
-      alias ls="exa -hl --icons --group-directories-first"
+      alias ls="exa -hl --icons --group-directories-first"; alias ll=ls
       alias la="exa -ahl --icons --group-directories-first" ;;
   esac
   alias tree="exa -T -L 3"
 else
-  alias ls="ls -lFh --color=auto --group-directories-first"
+  alias ls="ls -lFh --color=auto --group-directories-first"; alias ll=ls
   alias la="ls -AlF --color=auto --group-directories-first"
 fi
 
@@ -65,7 +65,7 @@ ABBREVIATION mv="mv -iv"
 ABBREVIATION rm="rm -iv"
 ABBREVIATION rmd="rm -Ifvr"
 
-# grep and diff
+# grep and diff colors
 GLOBAL_ALIAS grep="grep --color=auto"
 GLOBAL_ALIAS egrep="egrep --color=auto"
 GLOBAL_ALIAS fgrep="fgrep --color=auto"

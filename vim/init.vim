@@ -113,7 +113,7 @@ nnoremap <leader>b :w<CR>:!./build.sh<CR>
 nnoremap <leader>t2 ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
 
 " add nice copyright note
-nnoremap <leader>cp gg:r<Space>~/Projects/alexcoder04/copyright-note-template<CR>
+nnoremap <leader>cp gg:r<Space>~/Repos/alexcoder04/copyright-note-template<CR>
 
 " format
 if $VIM_HEAVY_PLUGINS == "yes"
@@ -169,7 +169,6 @@ let g:lightline = {
   \ 'colorscheme': 'gruvbox'
   \ }
 set noshowmode " we don't need to show the mode, lightline takes care of it
-
 
 " go stuff
 if $VIM_HEAVY_PLUGINS == "yes"

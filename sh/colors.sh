@@ -263,6 +263,7 @@ case "$TERM" in
 *.go=0:\
 # ----- videos and audio
 *.avi=02;36:\
+*.m4v=02;36:\
 *.mkv=02;36:\
 *.mp3=02;36:\
 *.mp4=02;36:\
