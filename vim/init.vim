@@ -130,10 +130,6 @@ autocmd BufEnter *.bm.md nnoremap <leader>P :w<CR>:!md-preview -i "%" -t beamer 
 autocmd FileType python nnoremap <leader>p :w<CR>:!python3 "%"<CR>
 autocmd FileType go nnoremap <leader>p :w<CR>:GoRun .<CR>
 
-" LaTeX \begin\end ENV
-autocmd FileType tex nnoremap <leader>e yyI\begin{<Esc>A}<Esc>pI\end{<Esc>A}<Esc>O
-autocmd FileType tex imap ;e <Esc>b<leader>e
-
 " table mode in MD
 autocmd FileType markdown TableModeEnable
 autocmd FileType markdown nnoremap <leader>tm :TableModeToggle<CR>

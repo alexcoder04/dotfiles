@@ -12,7 +12,7 @@
 " AUTO-INSERT OFTEN USED PHRASES
 " -------------------------------------------------
 " html tags
-autocmd FileType html nnoremap ;! i<!DOCTYPE html><Enter><html<Space>dir="ltr"><Enter><head><Enter><meta<Space>charset="utf-8"<Space>/><Enter><meta<Space>name="viewport"<Space>content="width=device-width,<Space>initial-scale=1.0"><Enter><title><++></title><Enter><++><Enter></head><Enter><body><Enter><++><Enter></body><Enter></html><Esc>gg/<++><CR>"_c4l
+autocmd FileType html inoremap ;! i<!DOCTYPE html><Enter><html<Space>dir="ltr"><Enter><head><Enter><meta<Space>charset="utf-8"<Space>/><Enter><meta<Space>name="viewport"<Space>content="width=device-width,<Space>initial-scale=1.0"><Enter><title><++></title><Enter><++><Enter></head><Enter><body><Enter><++><Enter></body><Enter></html><Esc>gg/<++><CR>"_c4l
 autocmd FileType html inoremap ;d <div></div><Enter><++><Esc>k0f>a
 autocmd FileType html inoremap ;p <p></p><Enter><++><Esc>k0f>a
 autocmd FileType html inoremap ;1 <h1></h1><Enter><++><Esc>k0f>a
@@ -31,12 +31,12 @@ autocmd FileType html inoremap ;btn <button id=""><++></button><Enter><++><Esc>k
 autocmd FileType javascript inoremap ;cl console.log();<Enter><++><Esc>k0t(i
 
 " markdown
-autocmd FileType markdown inoremap ;i ** <++><Esc>F*i
-autocmd FileType markdown inoremap ;b **** <++><Esc>F*hi
-autocmd FileType markdown inoremap ;` ```<Enter><++><Enter>```<Enter><++><Esc>3kA
 autocmd FileType markdown inoremap ;1 #<Enter><++><Esc>kA<Space>
 autocmd FileType markdown inoremap ;2 ##<Enter><++><Esc>kA<Space>
 autocmd FileType markdown inoremap ;3 ###<Enter><++><Esc>kA<Space>
+autocmd FileType markdown inoremap ;i ** <++><Esc>F*i
+autocmd FileType markdown inoremap ;b **** <++><Esc>F*hi
+autocmd FileType markdown inoremap ;` ```<Enter><++><Enter>```<Enter><++><Esc>3kA
 autocmd FileType markdown inoremap ;l <Enter><Esc>I<Space>-<Space>
 
 " LaTeX
@@ -44,13 +44,25 @@ autocmd FileType tex inoremap ;1 \section{}<Enter><++><Esc>k0f{a
 autocmd FileType tex inoremap ;2 \subsection{}<Enter><++><Esc>k0f{a
 autocmd FileType tex inoremap ;3 \subsubsection{}<Enter><++><Esc>k0f{a
 autocmd FileType tex inoremap ;4 \subsubsubsection{}<Enter><++><Esc>k0f{a
+
 autocmd FileType tex inoremap ;i \textit{}<Space><++><Esc>F{a
 autocmd FileType tex inoremap ;b \textbf{}<Space><++><Esc>F{a
-autocmd FileType tex inoremap ;i \emph{}<Space><++><Esc>F{a
 autocmd FileType tex inoremap ;u \underline{}<Space><++><Esc>F{a
+
 autocmd FileType tex inoremap ;ul \begin{itemize}<Enter>\item<Space><Enter>\end{itemize}<Esc>kA
 autocmd FileType tex inoremap ;ol \begin{enumerate}<Enter>\item<Space><Enter>\end{enumerate}<Esc>kA
 autocmd FileType tex inoremap ;l <Enter>\item<Space>
+
+autocmd FileType tex inoremap ;c \cdot<Space>
+autocmd FileType tex inoremap ;sq \sqrt{}<Space><++><Esc>F{a
+autocmd FileType tex inoremap ;f \frac{}{<++>}<Space><++><Esc>F{F{a
+autocmd FileType tex inoremap ;$ $$<Space><Esc>hi
+
+autocmd FileType tex inoremap ;! <Esc>:r $HOME/Documents/Templates/latex/default.tex<Enter>
+autocmd FileType tex nnoremap <leader>e yyI\begin{<Esc>A}<Esc>pI\end{<Esc>A}<Esc>O
+autocmd FileType tex imap ;e <Esc>b<leader>e
+autocmd FileType tex nnoremap <leader>m i\begin{mdframed}[linecolor=red]<Enter>\end{mdframed}<Esc>O
+autocmd FileType tex inoremap ;us \usepackage{}<Esc>i
 
 " python
 autocmd FileType python inoremap ;if if :<Enter><++><Enter><Backspace><++><Esc>2k0t:a
