@@ -53,10 +53,11 @@ autocmd FileType tex inoremap ;ul \begin{itemize}<Enter>\item<Space><Enter>\end{
 autocmd FileType tex inoremap ;ol \begin{enumerate}<Enter>\item<Space><Enter>\end{enumerate}<Esc>kA
 autocmd FileType tex inoremap ;l <Enter>\item<Space>
 
-autocmd FileType tex inoremap ;c \cdot<Space>
+autocmd FileType tex inoremap ;. \cdot<Space>
 autocmd FileType tex inoremap ;sq \sqrt{}<Space><++><Esc>F{a
 autocmd FileType tex inoremap ;f \frac{}{<++>}<Space><++><Esc>F{F{a
-autocmd FileType tex inoremap ;$ $$<Space><Esc>hi
+autocmd FileType tex inoremap ;$ $$<Space><++><Esc>F$i
+autocmd FileType tex inoremap ;D \Delta<Space>
 
 autocmd FileType tex inoremap ;! <Esc>:r $HOME/Documents/Templates/latex/default.tex<Enter>
 autocmd FileType tex nnoremap <leader>e yyI\begin{<Esc>A}<Esc>pI\end{<Esc>A}<Esc>O

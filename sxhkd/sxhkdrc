@@ -112,6 +112,8 @@ super + underscore
 # ###################################################################
 # FUNCTION KEYS
 # ###################################################################
+super + F1
+    kbd-layout-select
 super + F3
     killall picom; picom --experimental-backends
 super + F4
