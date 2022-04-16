@@ -102,7 +102,9 @@ eval "$(starship init zsh)"
 # ---------------------------------------------------------
 # SYNTAX HIGHLIGHTING
 # ---------------------------------------------------------
-source "+ZSH_SYNTAX_PLUGIN+"
+ZSH_SYNTAX="+ZSH_SYNTAX_PLUGIN+"
+[ -f "$ZSH_SYNTAX" ] && source "$ZSH_SYNTAX"
+unset ZSH_SYNTAX
 
 # ---------------------------------------------------------
 # STARTUP STUFF IF NOT INSIDE LF

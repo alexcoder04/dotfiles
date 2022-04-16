@@ -1,4 +1,5 @@
 #!/bin/sh
+# in progress
 
 echo "Assuming your current location ($PWD) as \$DOTFILES_REPO..."
 

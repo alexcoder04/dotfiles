@@ -74,8 +74,6 @@ super + plus
     pavucontrol
 
 # SECOND ROW
-super + a
-    sh -c 'echo "$HOME/.local/share/backgrounds/lauterbach-wallpapers" > /tmp/wpdirs && wallpaper-select random'
 # S: reserved for window manager
 super + d
     +FILEMANAGER_MAIN+
@@ -117,9 +115,9 @@ super + F1
 super + F3
     killall picom; picom --experimental-backends
 super + F4
-    password
+    pwmgr
 super + shift + F4
-    password --otp
+    pwmgr --otp
 super + F5
     addmount
 super + ctrl + F5

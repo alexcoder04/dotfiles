@@ -10,5 +10,5 @@
 # delete old (>1 month) lf caches (they may contain sensible information, so let's not save them forever :)
 0 */2 * * * find "$HOME/.cache/lf" -atime 30 | xargs -n1 -I{} rm -f {}
 # so maybe this way?
-0 */2 * * * /bin/rm -rf /home/alex/.w3m
+0 */2 * * * /bin/rm -rf /home/alex/.w3m /home/alex/Downloads /home/alex/Desktop
 

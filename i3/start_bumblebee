@@ -5,11 +5,9 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
 # 
-# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 # 
 # start up bumblebee-status with my settings
-# requires: bumblebee-status
-#                                                          
 
 exec bumblebee-status \
   -m datetime shell:bitcoin arch_update cpu sensors memory battery nic brightness pasink shell:sys \
@@ -19,7 +17,7 @@ exec bumblebee-status \
     arch_update.interval=1800 \
     cpu.interval=2 cpu.warning=25 cpu.critical=50 cpu.left-click="true" \
     sensors.interval=10 sensors.use_sensors="False" \
-    memory.usedonly="True" memory.warning=20 memory.critical=30 memory.interval=11 memory.left-click="true" \
+    memory.usedonly="True" memory.warning=25 memory.critical=40 memory.interval=11 memory.left-click="true" \
     battery.interval=17 battery.left-click="true" \
     nic.format="" nic.exclude="eth,lo,enp,virbr" nic.interval=13 nic.right-click="wifi-toggle && notify-send 'wifi toggled'" \
     brightness.use_acpi="True" brightness.wheel-up="doas /usr/local/bin/brightness higher" brightness.wheel-down="doas /usr/local/bin/brightness lower" \
