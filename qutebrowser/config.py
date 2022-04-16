@@ -5,11 +5,13 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|
 #
-# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 # 
 # qutebrowser config
+# TODO resource-saving settings on second laptop
 
 import os
+import random
 import subprocess
 
 def getenv(key, default):
@@ -33,8 +35,9 @@ MY_YELLOW = getenv("COLOR_YELLOW", "#ffff00")
 
 # smaller font size on smaller screens
 def get_font_size():
+    if getenv("XDG_SESSION_TYPE", "x11") == "wayland":
+        return "15pt"
     # all active screens with xrandr
-    # TODO what about wayland?
     active_screens = [
         i for i in subprocess.check_output("xrandr").decode("utf-8").split("\n")
         if " connected " in i and "mm x " in i
@@ -92,7 +95,7 @@ c.fonts.default_size = get_font_size()
 c.fonts.web.family.standard = "Inconsolata"
 
 # how to show tabs
-c.tabs.favicons.scale = 0.7
+c.tabs.favicons.scale = 0.8
 c.tabs.favicons.show = "always"
 c.tabs.padding = { "top": 5, "bottom": 5, "left": 5, "right": 5 }
 c.tabs.position = "left"
@@ -128,10 +131,28 @@ config.bind("Y", "yank selection")
 config.load_autoconfig()
 
 # some privacy options
-# TODO auto-change user agent
-c.content.headers.user_agent = "Mozilla/5.0 (X11; Linux x86_64; rv:93.0) Gecko/20100101 Firefox/93.0"
+# user agents list from https://github.com/Kikobeats/top-user-agents, MIT license
+user_agents = [
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15",
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Safari/605.1.15",
+  "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0",
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 YaBrowser/22.1.0.2517 Yowser/2.5 Safari/537.36",
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0",
+  "Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0",
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36",
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36",
+  "Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0",
+]
+c.content.headers.user_agent = user_agents[random.randint(0, len(user_agents) - 1)]
+c.content.blocking.method = "both"
+c.content.cookies.accept = "no-unknown-3rdparty"
+c.content.geolocation = False
 
 # other settings
-c.qt.args = ["blink-settings=darkMode=1"]
+c.completion.delay = 50
+c.content.pdfjs = True
+c.input.partial_timeout = 2000
+c.qt.args = ["--blink-settings=darkMode=1"]
 c.scrolling.smooth = False
 

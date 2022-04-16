@@ -8,7 +8,6 @@
 # Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
 # 
 # qtile config
-# 
 
 # -----------------------------------------------------------------------------
 # IMPORTS

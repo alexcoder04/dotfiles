@@ -4,7 +4,7 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
 # 
-# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 #
 # highlighting from
 # <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/newsboat/config>
@@ -12,7 +12,7 @@
 # newsboat (RSS reader) config
 
 auto-reload no
-reload-threads 16
+reload-threads 32
 
 browser "sh -c 'qutebrowser %u >/dev/null 2>&1 &'"
 
