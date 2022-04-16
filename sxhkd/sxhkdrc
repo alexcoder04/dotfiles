@@ -114,6 +114,8 @@ super + F1
     kbd-layout-select
 super + F3
     killall picom; picom --experimental-backends
+super + shift + F3
+    droidscreen
 super + F4
     pwmgr
 super + shift + F4
