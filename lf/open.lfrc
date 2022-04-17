@@ -14,10 +14,24 @@ cmd open ${{
     text/* | application/json | message/rfc822)
       nvim -c 'nnoremap H :q<CR>' "$f" ;;
     application/gzip)
-      extract_tmp="${TMPDIR:-/tmp}/$(basename "$f" .tar.gz)-$(echo "$f" | md5sum | cut -d" " -f1)"
-      mkdir "$extract_tmp"
-      tar -xzf "$f" -C "$extract_tmp"
-      launch lf "$extract_tmp" ;;
+      extract_tmp="${TMPDIR:-/tmp}/archive-preview/$(echo "$f" | md5sum | cut -d" " -f1)"
+      if [ ! -d "$extract_tmp" ]; then
+        mkdir -p "$extract_tmp"
+        tar -xzf "$f" -C "$extract_tmp"
+      fi
+      setsid -f launch lf "$extract_tmp" ;;
+    application/zip)
+      case "$f" in
+        *.epub)
+          setsid -f zathura "$f" >/dev/null 2>&1 ;;
+        *)
+          extract_tmp="${TMPDIR:-/tmp}/archive-preview/$(echo "$f" | md5sum | cut -d" " -f1)"
+          if [ ! -d "$extract_tmp" ]; then
+            mkdir -p "$extract_tmp"
+            unzip "$f" -d "$extract_tmp"
+          fi
+          setsid -f launch lf "$extract_tmp" ;;
+      esac ;;
     *opendocument*)
       setsid -f libreoffice "$f" >/dev/null 2>&1 ;;
     *)

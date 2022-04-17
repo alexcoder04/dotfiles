@@ -213,6 +213,7 @@ LICENSE.*=33:\
 *.webp=36:\
 # ----- documents
 *.pdf=35:\
+*.epub=35:\
 *.odt=02;35:\
 *.odp=02;35:\
 # -----archives

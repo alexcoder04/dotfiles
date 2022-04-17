@@ -113,8 +113,16 @@ case "$(file -Lb --mime-type -- "$file")" in
     tar -tf "$file" | xargs -I{} echo " {}"
     ;;
   application/zip)
-    echo "\033[36mZip archive:\033[0m"
-    zipinfo "$file"
+    case "$file" in
+      *.epub)
+        zipinfo -1 "$file" \
+          | grep -m 1 '.xhtml$' \
+          | xargs -I{} unzip -p "$file" {} | w3m -dump -T text/html
+          ;;
+      *)
+        echo "\033[36mZip archive:\033[0m"
+        zipinfo "$file" ;;
+    esac
     ;;
   *) # executables and binary files
     [ -x "$file" ] \
