@@ -83,6 +83,10 @@ map a
 map r
 map i
 
+# move
+map J :push hjl
+map K :push hkl
+
 # actions
 map <c-a> select-all
 map U clear

@@ -66,6 +66,9 @@ fi
 
 # check file type
 case "$(file -Lb --mime-type -- "$file")" in
+  *.djvu)
+    echo "\033[36mDJVU file\033[0m"
+    ;;
   image/*) # images
     preview_image "$@"
     ;;

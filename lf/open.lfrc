@@ -3,7 +3,7 @@
 # adapted from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
 cmd open ${{
   case "$(file --mime-type -b "$f")" in
-    */pdf | application/epub*)
+    */pdf | application/epub* | *djvu )
       setsid -f zathura "$f" >/dev/null 2>&1 ;;
     image/*)
       setsid -f nsxiv -a $fx ;;

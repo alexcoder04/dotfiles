@@ -3,6 +3,7 @@
 set selection-clipboard clipboard
 set incremental-search true
 set scroll-step 70
+set page-cache-size 50
 
 # bindings
 map r reload
