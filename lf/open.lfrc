@@ -30,7 +30,7 @@ cmd open ${{
             mkdir -p "$extract_tmp"
             unzip "$f" -d "$extract_tmp"
           fi
-          setsid -f launch lf "$extract_tmp" ;;
+          setsid -f launch lf "$extract_tmp" >/dev/null 2>&1 ;;
       esac ;;
     *opendocument*)
       setsid -f libreoffice "$f" >/dev/null 2>&1 ;;
