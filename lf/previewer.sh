@@ -65,7 +65,7 @@ if [ ! -s "$file" ]; then
 fi
 
 # check file type
-case "$(file -Lb --mime-type -- "$file")" in
+case "$(file -Lb --mime-type "$file")" in
   *.djvu)
     echo "\033[36mDJVU file\033[0m"
     ;;
@@ -115,6 +115,10 @@ case "$(file -Lb --mime-type -- "$file")" in
     echo "\033[36mTar archive:\033[0m"
     tar -tf "$file" | xargs -I{} echo " {}"
     ;;
+  application/x-bzip2)
+    echo "\033[36mBzip2 Archive:\033[0m"
+    tar -tjf "$file" | xargs -I{} echo " {}"
+    ;;
   application/zip)
     case "$file" in
       *.epub)
@@ -124,13 +128,16 @@ case "$(file -Lb --mime-type -- "$file")" in
           ;;
       *)
         echo "\033[36mZip archive:\033[0m"
-        zipinfo "$file" ;;
+        zipinfo "$file" | tail -n +3 | head -n -1 | awk '{ print " ",$9 }' ;;
     esac
     ;;
   *) # executables and binary files
-    [ -x "$file" ] \
-      && echo "\033[0;46mBinary executable\033[0m" \
-      || echo "\033[0;46mBinary file\033[0m"
+    if [ -x "$file" ]; then
+      echo "\033[0;46mBinary executable\033[0m"
+    else
+      echo "\033[0;46mBinary file\033[0m"
+      echo "($(file -Lb --mime-type "$file"))"
+    fi
     ;;
 esac
 

@@ -97,7 +97,7 @@ format = "[$symbol($version )]($style)"
 format = "[$symbol($version )]($style)"
 
 [custom.lf_level]
-command = "echo lf$LF_LEVEL"
+command = "[ $LF_LEVEL = 1 ] && echo lf || echo lf$LF_LEVEL"
 when = "[ ! -z $LF_LEVEL ]"
 style = "bg:cyan fg:black"
 format = " \\[ [$output]($style) \\]"

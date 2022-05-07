@@ -1,0 +1,86 @@
+Modules:
+   - Name: date
+     Pre: " "
+     Command: "date"
+     Args: ["+%d.%m.%Y - %R:%S"]
+     Interval: 1
+
+   - Name: bitcoin
+     ForegroundColor: "*green"
+     Pre: " "
+     Command: "sh"
+     Args: ['-c', '[ "$BLOCK_BUTTON" = 1 ] && notify-send "Crypto prices" "$(bitcoinprice -c BTC -sni)\n$(bitcoinprice -c XMR -sni)"; bitcoinprice -s']
+     Interval: 1200
+
+   - Name: volume
+     Post: " "
+     Command: "i3-volume"
+     ForegroundColor: "*purple"
+     Interval: 15
+     Signal: 1
+
+   - Name: cpu
+     ForegroundColor: "*yellow"
+     Pre: " "
+     Command: "cpustat"
+     Interval: 2
+
+   - Name: temp
+     ForegroundColor: "*light_grey"
+     Command: "i3-temp"
+     Interval: 5
+
+   - Name: mem
+     ForegroundColor: "*cyan"
+     Pre: "  "
+     Command: "ramstate"
+     Args: ["--with-shared"]
+     Interval: 15
+
+   - Name: wifi
+     Pre: " "
+     Command: "i3-internet"
+     Interval: 15
+     Markup: pango
+
+   - Name: updates
+     ForegroundColor: "*purple"
+     Command: "sh"
+     Args: ['-c', 'u="$(checkupdates | wc -l)"; [ "$u" = 0 ] || echo "  $u "']
+     Interval: 1200
+
+   - Name: scrcord
+     Command: "i3-scrcord"
+     Interval: 1200
+     Signal: 3
+     Markup: pango
+
+   - Name: disk
+     ForegroundColor: "*yellow"
+     Pre: "  "
+     Command: "diskspacecheck"
+     Interval: 1200
+
+   - Name: battery
+     Command: "i3-battery"
+     Interval: 15
+
+   - Name: brightness
+     Command: "i3-brightness"
+     Interval: 15
+     Signal: 2
+
+   - Name: kernel
+     ForegroundColor: "*purple"
+     Pre: " "
+     Command: "sh"
+     Args: ["-c", "uname -r | cut -d- -f1"]
+     Interval: 1200
+
+   - Name: dispserver
+     ForegroundColor: "*blue"
+     Pre: " "
+     Command: "sh"
+     Args: ["-c", '[ "$BLOCK_BUTTON" = 1 ] && notify-send "$XDG_SESSION_TYPE" "$(get_desktop)"; echo "$XDG_SESSION_TYPE" | head -c 1 | tr "[:lower:]" "[:upper:]"; echo']
+     Interval: 1200
+

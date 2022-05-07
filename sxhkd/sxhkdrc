@@ -142,18 +142,18 @@ super + F12
 # OTHER KEYS
 # ###################################################################
 XF86MonBrightnessUp
-    sh -c 'doas /usr/local/bin/brightness higher; pkill -SIGRTMIN+2 i3blocks'
+    sh -c 'doas /usr/local/bin/brightness higher; pkill -SIGRTMIN+2 "i3blocks|kherson"'
 XF86MonBrightnessDown
-    sh -c 'doas /usr/local/bin/brightness lower; pkill -SIGRTMIN+2 i3blocks'
+    sh -c 'doas /usr/local/bin/brightness lower; pkill -SIGRTMIN+2 "i3blocks|kherson"'
 
 XF86AudioMute
-    sh -c 'pactl set-sink-mute @DEFAULT_SINK@ toggle; pkill -SIGRTMIN+1 i3blocks'
+    sh -c 'pactl set-sink-mute @DEFAULT_SINK@ toggle; pkill -SIGRTMIN+1 "i3blocks|kherson"'
 XF86AudioMicMute
-    sh -c 'pactl set-source-mute @DEFAULT_SOURCE@ toggle; pkill -SIGRTMIN+1 i3blocks'
+    sh -c 'pactl set-source-mute @DEFAULT_SOURCE@ toggle; pkill -SIGRTMIN+1 "i3blocks|kherson"'
 XF86AudioLowerVolume
-    sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; pkill -SIGRTMIN+1 i3blocks'
+    sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; pkill -SIGRTMIN+1 "i3blocks|kherson"'
 XF86AudioRaiseVolume
-    sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; pkill -SIGRTMIN+1 i3blocks'
+    sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; pkill -SIGRTMIN+1 "i3blocks|kherson"'
 
 super + Print
     screenshot

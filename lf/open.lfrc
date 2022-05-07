@@ -2,6 +2,15 @@
 # OPENER SCRIPT
 # adapted from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
 cmd open ${{
+  extract_tar(){
+    extract_tmp="${TMPDIR:-/tmp}/archive-preview/$(echo "$f" | md5sum | cut -d" " -f1)"
+    if [ ! -d "$extract_tmp" ]; then
+      mkdir -p "$extract_tmp"
+      tar "$1" "$f" -C "$extract_tmp"
+    fi
+    setsid -f launch lf "$extract_tmp"
+  }
+
   case "$(file --mime-type -b "$f")" in
     */pdf | application/epub* | *djvu )
       setsid -f zathura "$f" >/dev/null 2>&1 ;;
@@ -14,12 +23,9 @@ cmd open ${{
     text/* | application/json | message/rfc822)
       nvim -c 'nnoremap H :q<CR>' "$f" ;;
     application/gzip)
-      extract_tmp="${TMPDIR:-/tmp}/archive-preview/$(echo "$f" | md5sum | cut -d" " -f1)"
-      if [ ! -d "$extract_tmp" ]; then
-        mkdir -p "$extract_tmp"
-        tar -xzf "$f" -C "$extract_tmp"
-      fi
-      setsid -f launch lf "$extract_tmp" ;;
+      extract_tar "-xzf" ;;
+    application/x-bzip2)
+      extract_tar "-xjf" ;;
     application/zip)
       case "$f" in
         *.epub)
