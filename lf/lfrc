@@ -82,6 +82,7 @@ map w
 map a
 map r
 map i
+map p
 
 # move
 map J :push hjl
@@ -91,6 +92,7 @@ map K :push hkl
 map <c-a> select-all
 map U clear
 map c cut
+map p :paste; clear
 map x chmodx
 map <c-x> unchmodx
 map <c-l> reload-window

@@ -26,18 +26,19 @@ there are a lot of files in this directory. Here is what they are for:
    is needed.
  - `blocks-*.conf`: i3blocks configs for different machines
  - `dracula-powerline.json`: custom bumblebee-status theme
- - `lock.png`: lock screen image which is merged with a screenshot when the
-   screen is locked
- - `start_bumblebee`: startup script for bumblebee-status with all the options I
-   want
+ - `lock.png`: lock screen image which is merged with a screenshot when the screen is locked
+ - `start_bumblebee`: startup script for bumblebee-status with all the options I want
+ - `kherson.yml`: kherson (my custom replacement for i3blocks/bumblebee-status) config
 
 ### Available themes ("modes")
 
  - blocks (i3blocks)
  - powerline (feat. bumblebee-status)
  - polybar (you guessed it, using polybar)
+ - kherson (my custom replacement for i3blocks written in Go)
  - sway-blocks (sway version, using i3blocks)
  - sway-powerline (sway version, using bumblebee-status)
+ - sway-kherson (sway version, using kherson)
 
 ---
 
