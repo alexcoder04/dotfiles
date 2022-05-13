@@ -94,7 +94,6 @@ unsetopt beep extendedglob notify
 # ---------------------------------------------------------
 case "$TERM" in
   xterm*) export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml" ;;
-  screen) export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship-ascii.toml" ;;
   *)      export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship-ascii.toml" ;;
 esac
 eval "$(starship init zsh)"

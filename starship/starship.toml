@@ -13,7 +13,7 @@ format = """[\\[ $username[@](red)$hostname$localip \\]](blue) in $directory$git
 ${custom.chroot}${custom.lf_level}$character"""
 right_format = "$cmd_duration $time"
 
-continuation_prompt = "[▶ ](blue)"
+continuation_prompt = "[+STARSHIP_CONTINUATION+ ](blue)"
 
 [username]
 style_user = "green bold"
@@ -83,9 +83,9 @@ format = "/[$localipv4]($style)"
 format = "[$indicator]($style) "
 style = "white"
 disabled = false
-bash_indicator = "🐃"
-fish_indicator = "🐟"
-zsh_indicator = ""
+bash_indicator = "+STARSHIP_SHELL_BASH+"
+fish_indicator = "+STARSHIP_SHELL_FISH+"
+zsh_indicator = "+STARSHIP_SHELL_ZSH+"
 
 [python]
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
@@ -110,7 +110,7 @@ format = "\\[ [$output]($style) \\]"
 
 [custom.linux]
 command = "uname -r | cut -d- -f1"
-format = "[ v$output]($style) "
+format = "[+STARSHIP_LINUX+v$output]($style) "
 style = "purple bold"
 when = "true"
 os = "linux"
