@@ -11,15 +11,17 @@ map R rotate rotate-cw
 map <C-R> rotate rotate-ccw
 map b toggle_statusbar
 map i recolor
+map p exec "pdfpc \"$FILE\""
 
 # appearance
 set statusbar-h-padding 16
 set statusbar-v-padding 6
 set page-padding 16
-set font monospace normal 15
+set font "monospace normal 12"
 set recolor true
 set recolor-keephue true
 set recolor-reverse-video true
+set guioptions ""
 
 # colors
 set completion-bg "+COLOR_BLACK+"

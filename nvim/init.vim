@@ -4,7 +4,7 @@
 " | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 "  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
 " 
-" Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+" Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 "                                                          
 " init.vim for NeoVim
 
