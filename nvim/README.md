@@ -1,5 +1,5 @@
 
-# vim, well I mean NeoVim
+# NeoVim
 
 Neovim is my text editor of choice nowadays. The config might be a little
 bloated at some points and contains features I already forgot about (do I really

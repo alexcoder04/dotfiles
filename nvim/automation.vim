@@ -44,7 +44,7 @@ if $VIM_HEAVY_PLUGINS == "yes"
 endif
 
 " re-generate config files after editing
-autocmd BufWritePost $DOTFILES_REPO/vim/*.vim !$DOTFILES_REPO/install vim
+autocmd BufWritePost $DOTFILES_REPO/nvim/*.vim !$DOTFILES_REPO/install nvim
 autocmd BufWritePost $DOTFILES_REPO/fish/dynamic/config.fish !$DOTFILES_REPO/install fish
 autocmd BufWritePost $DOTFILES_REPO/bash/bashrc !$DOTFILES_REPO/install bash
 autocmd BufWritePost $DOTFILES_REPO/wm-utils/sxhkdrc !$DOTFILES_REPO/install wm-utils && killall sxhkd && sxhkd &

@@ -86,7 +86,7 @@ case "$(file -Lb --mime-type "$file")" in
       prefs2) lang="-l sh" ;;
       *) lang="" ;;
     esac
-    bat --plain --paging=never --color=always $lang "$file"
+    nvimpager -c "$file"
     ;;
   message/rfc822) # emails
     echo "\033[36mE-Mail:\033[0m"

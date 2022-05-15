@@ -9,58 +9,11 @@
 " init.vim for NeoVim
 
 " -------------------------------------------------
-" BASIC SETTINGS
-" -------------------------------------------------
-set nocompatible
-set mouse=nv
-set clipboard+=unnamedplus
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-set autoindent
-set fileformat=unix
-set number relativenumber
-set smartcase
-set colorcolumn=80
-set ignorecase
-let mapleader=" "
-filetype plugin indent on
-syntax on
-if $NVIMCACHE == ""
-  set dir=$HOME/.cache/nvim
-else
-  set dir=$NVIMCACHE
-endif
-
-" -------------------------------------------------
 " PLUGINS
 " -------------------------------------------------
-call plug#begin()
+let g:load_editor_plugins = "yes"
 
-" color schemes
-Plug 'morhetz/gruvbox'
-"Plug 'altercation/vim-colors-solarized'
-"Plug 'dracula/vim', { 'as': 'dracula' }
-
-Plug 'alexcoder04/lightline.vim' " own fork, because of colorschemes
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'mboughaba/i3config.vim'
-
-if $VIM_HEAVY_PLUGINS == "yes"
-  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-endif
-
-call plug#end()
-
-" -------------------------------------------------
-" APPEARANCE
-" -------------------------------------------------
-set termguicolors
-set cursorline
-"colorscheme dracula
-colorscheme gruvbox
-" override background color, so it's transparent
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
+" plugins themselves are loaded in common.vim
 
 " -------------------------------------------------
 " KEYBINDINGS
@@ -140,6 +93,7 @@ nnoremap <leader>ll :set tw=80<CR>
 " -------------------------------------------------
 " OTHER CONFIG FILES
 " -------------------------------------------------
+source $XDG_CONFIG_HOME/nvim/common.vim
 source $XDG_CONFIG_HOME/nvim/snippets.vim
 source $XDG_CONFIG_HOME/nvim/automation.vim
 
@@ -159,12 +113,6 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-go'
   \ ]
-
-" lightline config
-let g:lightline = {
-  \ 'colorscheme': 'gruvbox'
-  \ }
-set noshowmode " we don't need to show the mode, lightline takes care of it
 
 " go stuff
 if $VIM_HEAVY_PLUGINS == "yes"

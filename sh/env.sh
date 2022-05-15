@@ -50,10 +50,6 @@ export PATH="+ENV_PATH+"
 
 # colors
 export COLORSCHEME="+COLORSCHEME+"
-case "$COLORSCHEME" in
-    dracula) export BAT_THEME="Dracula" ;;
-    gruvbox) export BAT_THEME="gruvbox-dark" ;;
-esac
 
 export COLOR_BLACK="+COLOR_BLACK+"
 export COLOR_RED="+COLOR_RED+"
