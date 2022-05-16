@@ -16,7 +16,7 @@ Modules:
      Post: " "
      Command: "i3-volume"
      ForegroundColor: "*purple"
-     Interval: 15
+     Interval: 20
      Signal: 1
 
    - Name: cpu
@@ -28,14 +28,14 @@ Modules:
    - Name: temp
      ForegroundColor: "*light_grey"
      Command: "i3-temp"
-     Interval: 5
+     Interval: 7
 
    - Name: mem
      ForegroundColor: "*cyan"
      Pre: "  "
      Command: "ramstate"
      Args: ["--with-shared"]
-     Interval: 15
+     Interval: 13
 
    - Name: wifi
      Pre: " "
@@ -47,11 +47,11 @@ Modules:
      ForegroundColor: "*purple"
      Command: "sh"
      Args: ['-c', 'u="$(checkupdates | wc -l)"; [ "$u" = 0 ] || echo "  $u "']
-     Interval: 1200
+     Interval: 3600
 
    - Name: scrcord
      Command: "i3-scrcord"
-     Interval: 1200
+     Interval: 1800
      Signal: 3
      Markup: pango
 
@@ -67,7 +67,7 @@ Modules:
 
    - Name: brightness
      Command: "i3-brightness"
-     Interval: 15
+     Interval: 30
      Signal: 2
 
    - Name: kernel
@@ -75,12 +75,12 @@ Modules:
      Pre: " "
      Command: "sh"
      Args: ["-c", "uname -r | cut -d- -f1"]
-     Interval: 1200
+     Interval: 3600
 
    - Name: dispserver
      ForegroundColor: "*blue"
      Pre: " "
      Command: "sh"
      Args: ["-c", '[ "$BLOCK_BUTTON" = 1 ] && notify-send "$XDG_SESSION_TYPE" "$(get_desktop)"; echo "$XDG_SESSION_TYPE" | head -c 1 | tr "[:lower:]" "[:upper:]"; echo']
-     Interval: 1200
+     Interval: 3600
 
