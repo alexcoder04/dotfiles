@@ -5,7 +5,7 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
 # 
-# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 # 
 # i3 config installer
 # it became quite complex over the time, supporting multiple themes (modes)
@@ -50,6 +50,10 @@ install_kherson(){
     cp -v "./kherson.yml" "$config_folder/config.yml"
 }
 
+print_install_message(){
+    echo -e "Installing i3 in \033[36m$1\033[0m mode"
+}
+
 # -----------------------------------------------------------------------------
 # DEFAULT MODE IS I3BLOCKS
 # -----------------------------------------------------------------------------
@@ -60,7 +64,7 @@ case "$RECONF_I3_MODE" in
   # I3BLOCKS MODE
   # -----------------------------------------------------------------------------
   blocks) 
-    echo "Installing i3 in BLOCKS mode"
+    print_install_message "BLOCKS"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X i3blocks"
 
     echo "pre + x11-pre + main + bar + x11-after + [addons] -> $CONFIG_DIR/config"
@@ -81,7 +85,7 @@ case "$RECONF_I3_MODE" in
   # POLYBAR MODE
   # -----------------------------------------------------------------------------
   polybar)
-    echo "Installing i3 in POLYBAR mode"
+    print_install_message "POLYBAR"
     export RECONF_BARS_LAUNCHER_COMMAND="$RECONF_PRE_X bar-launch i3-polybar"
 
     echo "pre + x11-pre + main + x11-after + [addons] -> $CONFIG_DIR/config"
@@ -99,7 +103,7 @@ case "$RECONF_I3_MODE" in
   # POWERLINE (BUMBLEBEE-STATUS) MODE
   # -----------------------------------------------------------------------------
   powerline)
-    echo "Installing i3 in POWERLINE mode"
+    print_install_message "POWERLINE"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X bumblebee-status"
 
     echo "pre + x11-pre + main + bar + x1-after + [addons] -> $CONFIG_DIR/config"
@@ -120,7 +124,7 @@ case "$RECONF_I3_MODE" in
   # KHERSON MODE
   # -----------------------------------------------------------------------------
   kherson)
-    echo "Installing i3 in SWAY-KHERSON mode"
+    print_install_message "KHERSON"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X kherson"
 
     echo "pre + x11-pre + main + bar + x11-after + [addons] -> $CONFIG_DIR/config"
@@ -141,7 +145,7 @@ case "$RECONF_I3_MODE" in
   # SWAY (I3BLOCKS) MODE
   # -----------------------------------------------------------------------------
   sway | sway-blocks)
-    echo "Installing i3 in SWAY mode"
+    print_install_message "SWAY"
     export CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sway"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X i3blocks"
 
@@ -164,7 +168,7 @@ case "$RECONF_I3_MODE" in
   # SWAY (POWERLINE) MODE
   # -----------------------------------------------------------------------------
   sway-powerline)
-    echo "Installing i3 in SWAY-POWERLINE mode"
+    print_install_message "SWAY-POWERLINE"
     export CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sway"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X bumblebee-status"
 
@@ -187,7 +191,7 @@ case "$RECONF_I3_MODE" in
   # SWAY (KHERSON) MODE
   # -----------------------------------------------------------------------------
   sway-kherson)
-    echo "Installing i3 in SWAY-KHERSON mode"
+    print_install_message "SWAY-KHERSON"
     export CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sway"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X kherson"
 

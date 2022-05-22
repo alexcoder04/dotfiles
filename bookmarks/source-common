@@ -1,7 +1,7 @@
 trt             /
 tm              /media
 tdt             $DOTFILES_REPO
-tbn             $SCRIPTS_DIR
+ts              $SCRIPTS_DIR
 th              $HOME
 tdoc            $HOME/Documents
 tdow            $HOME/Downloads

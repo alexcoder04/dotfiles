@@ -38,7 +38,7 @@ export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 export BROWSER="+BROWSER_MAIN+"
 export EDITOR="+EDITOR_MAIN+"
 export PAGER=+PAGER+
-export TERMINAL="+TERMINAL_MAIN+"
+export TERMINAL="launch"
 export VISUAL="+VISUAL+"
 
 # GTK
