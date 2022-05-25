@@ -5,7 +5,7 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|
 #
-# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 #      
 # zsh config
 
@@ -43,26 +43,26 @@ zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/zshrc"
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
-_com_options+=(globdots)
+setopt globdots
 
 # ---------------------------------------------------------
 # CD INTO FOLDER SELECTED USING LF OR FZF
 # ---------------------------------------------------------
-# from https://github.com/LukeSmithxyz/voidrice/blob/master/.config/zsh/.zshrc
 lfcd(){
-  tmp="$(mktemp)"
+  tmp="${TMPDIR:-/tmp}/.lfcd"
   lf -last-dir-path="$tmp" "$@"
-  if [ -f "$tmp" ]; then
-    dir="$(cat "$tmp")"
-    rm -f "$tmp" >/dev/null
-    [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-  fi
+  [ -f "$tmp" ] || return
+  dir="$(cat "$tmp")"
+  rm -f "$tmp"
+  [ -d "$dir" ] && cd "$dir"
 }
 
 fzfcd(){
   dest="$(cat "$DOTFILES_REPO/bookmarks/source-"* | awk '{print $2}' | sort | fzf)"
   [ -z "$dest" ] && return
-  cd "$(eval "echo $dest")"
+  # maybe it's like $XDG_CONFIG_HOME
+  dir="$(eval "echo $dest")"
+  [ -d "$dir" ] && cd "$dir"
 }
 
 # ---------------------------------------------------------

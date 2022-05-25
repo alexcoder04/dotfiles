@@ -13,32 +13,46 @@
 
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/i3"
 THEME_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/bumblebee-status/themes"
+I3BLOCKS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/i3blocks"
 MACHINE="$1"
-[ -z "$RECONF_I3_MODE" ] && RECONF_I3_MODE="${RIM:-blocks}"
 
 mkdir -vp "$CONFIG_DIR"
-mkdir -vp "$THEME_DIR"
+cp -v "./lock.png" "$CONFIG_DIR/lock.png"
+
+if [ -z "$RECONF_I3_MODE" ]; then
+  [ -z "$RIM" ] \
+    && export RECONF_I3_MODE="kherson" \
+    || export RECONF_I3_MODE="$RIM"
+fi
 
 # -----------------------------------------------------------------------------
-# MACHINE_SPECIFIC I3BLOCKS
+# HELPER FUNCTIONS
+# -----------------------------------------------------------------------------
+print_install_message(){
+    echo -e "Installing i3 in \033[36m$1\033[0m mode"
+}
+
+# -----------------------------------------------------------------------------
+# MACHINE SPECIFIC I3BLOCKS
 # -----------------------------------------------------------------------------
 install_i3blocks(){
   if [ -f "./blocks-$MACHINE.conf" ]; then
-      file="./blocks-$MACHINE.conf"
+    file="./blocks-$MACHINE.conf"
   else
-      file="./blocks-default.conf"
+    file="./blocks-default.conf"
   fi
-  mkdir -vp "$XDG_CONFIG_HOME/i3blocks"
-  echo "$file -> $XDG_CONFIG_HOME/i3blocks/config"
-  cat "$file" | ../reconf > "$XDG_CONFIG_HOME/i3blocks/config"
+  mkdir -vp "$I3BLOCKS_DIR"
+  echo "$file -> $I3BLOCKS_DIR/config"
+  ../reconf <"$file" >"$I3BLOCKS_DIR/config"
 }
 
 # -----------------------------------------------------------------------------
 # BUMBLEBEE-STATUS INSTALLER
 # -----------------------------------------------------------------------------
 install_bumblebee-status(){
+  mkdir -vp "$THEME_DIR"
   ./bumblebee-theme-gen.py >"$THEME_DIR/powerline-custom.json"
-  cp -v "./bumblebee-status.conf" "$XDG_CONFIG_HOME"
+  cp -v "./bumblebee-status.conf" "${XDG_CONFIG_HOME:-$HOME/.config}"
 }
 
 # -----------------------------------------------------------------------------
@@ -49,15 +63,6 @@ install_kherson(){
     mkdir -vp "$config_folder"
     cp -v "./kherson.yml" "$config_folder/config.yml"
 }
-
-print_install_message(){
-    echo -e "Installing i3 in \033[36m$1\033[0m mode"
-}
-
-# -----------------------------------------------------------------------------
-# DEFAULT MODE IS I3BLOCKS
-# -----------------------------------------------------------------------------
-export RECONF_I3_MODE="${RECONF_I3_MODE:-blocks}"
 
 case "$RECONF_I3_MODE" in
   # -----------------------------------------------------------------------------
@@ -144,7 +149,7 @@ case "$RECONF_I3_MODE" in
   # -----------------------------------------------------------------------------
   # SWAY (I3BLOCKS) MODE
   # -----------------------------------------------------------------------------
-  sway | sway-blocks)
+  sway-blocks)
     print_install_message "SWAY"
     export CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sway"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X i3blocks"
@@ -190,7 +195,7 @@ case "$RECONF_I3_MODE" in
   # -----------------------------------------------------------------------------
   # SWAY (KHERSON) MODE
   # -----------------------------------------------------------------------------
-  sway-kherson)
+  sway-kherson | sway)
     print_install_message "SWAY-KHERSON"
     export CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sway"
     export RECONF_I3_STATUS_COMMAND="$RECONF_PRE_X kherson"
@@ -214,11 +219,6 @@ case "$RECONF_I3_MODE" in
     echo "Unknown mode!"
     exit 1 ;;
 esac
-
-# -----------------------------------------------------------------------------
-# EVERYONE NEEDS THE LOCK SCREEN ICON
-# -----------------------------------------------------------------------------
-cp -v "./lock.png" "$CONFIG_DIR/lock.png"
 
 echo "YOU NEED TO RESTART I3 TO APPLY THE NEW CONFIGURATION!"
 
