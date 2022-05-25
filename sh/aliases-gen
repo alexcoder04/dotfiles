@@ -6,19 +6,19 @@
   && output="bash" \
   || output="$1"
 
-[ -f "./aliases" ] \
+[ -f "./aliases.sh" ] \
   || die "aliases source file not found"
 
 case "$output" in
   bash)
-    echo "#!/bin/bash"
-    sed -E 's/^ABBREVIATION\s/alias /; s/^GLOBAL_ALIAS\s/alias /; /^(#|$)/d' "./aliases" ;;
+    echo '#!/bin/bash'
+    sed -E 's/^ABBREVIATION\s/alias /; s/^GLOBAL_ALIAS\s/alias /; /^(#|$)/d' "./aliases.sh" ;;
   zsh)
-    echo "#!/usr/bin/zsh"
-    sed -E 's/^ABBREVIATION\s/abbrev-alias /; s/^GLOBAL_ALIAS\s/alias -g /; /^(#|$)/d' "./aliases" ;;
+    echo '#!/usr/bin/zsh'
+    sed -E 's/^ABBREVIATION\s/abbrev-alias /; s/^GLOBAL_ALIAS\s/alias -g /; /^(#|$)/d' "./aliases.sh" ;;
   fish)
-    echo "#!/usr/bin/fish"
-    sed -e 's/^ABBREVIATION\s/abbrev /; s/^GLOBAL_ALIAS\s/alias /; /^(#|$)/d' "./aliases" ;;
+    echo '#!/usr/bin/fish'
+    sed -e 's/^ABBREVIATION\s/abbrev /; s/^GLOBAL_ALIAS\s/alias /; /^(#|$)/d' "./aliases.sh" ;;
   *) die "unknown output format" ;;
 esac
 

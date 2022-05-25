@@ -6,8 +6,6 @@
 # paths
 export RECONF_SCRIPTS_DIR="$HOME/Scripts"
 export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
-export RECONF_ENV_PATH="$RECONF_SCRIPTS_DIR:$HOME/Applications:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/defaul/bin"
-export RECONF_PATH="$RECONF_ENV_PATH"
 export RECONF_ZSH_SYNTAX_PLUGIN="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # programs

@@ -6,8 +6,6 @@
 # path
 export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
 export RECONF_SCRIPTS_DIR="$HOME/Scripts"
-export RECONF_ENV_PATH="$CARGO_HOME/bin:$RECONF_SCRIPTS_DIR:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
-export RECONF_PATH="$RECONF_ENV_PATH"
 
 # default programs
 export RECONF_BROWSER_MAIN="firefox-esr"

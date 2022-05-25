@@ -4,7 +4,7 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|
 #
-# Copyright (c) 2020-2021 alexcoder04 <https://github.com/alexcoder04>
+# Copyright (c) 2020-2022 alexcoder04 <https://github.com/alexcoder04>
 #      
 # shell environmental variables
 
@@ -16,15 +16,15 @@ export SCRIPTS_DIR="+SCRIPTS_DIR+"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_DIRS="/etc/xdg"
 export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_DIRS="/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:/home/alex/.local/share/flatpak/exports/share"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
+
+export XDG_DATA_DIRS="/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$XDG_DATA_HOME/flatpak/exports/share"
 
 # tricks so other programs accept XDG
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GNUPGHOME="$XDG_DATA_HOME/gpg"
 export GOPATH="$XDG_DATA_HOME/go"
-export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
@@ -38,15 +38,19 @@ export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 export BROWSER="+BROWSER_MAIN+"
 export EDITOR="+EDITOR_MAIN+"
 export PAGER=+PAGER+
-export TERMINAL="launch"
+export TERMINAL="launch" # terminal emulator wrapper
 export VISUAL="+VISUAL+"
 
 # GTK
-export GTK2_RC_FILES=/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc
+export GTK2_RC_FILES="/usr/share/themes/Arc-Dark/gtk-2.0/gtkrc"
 export NO_AT_BRIDGE=1
 
+# PATH parts
+PERL_PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+PMS_PATH="$CARGO_HOME/bin:$GOPATH/bin"
+
 # finally, PATH
-export PATH="+ENV_PATH+"
+export PATH="$SCRIPTS_DIR:$HOME/.local/Applications:$HOME/.local/bin:$PMS_PATH:/usr/local/bin:/usr/bin:$PERL_PATH:/usr/lib/jvm/default/bin:/usr/local/sbin:/usr/sbin"
 
 # colors
 export COLORSCHEME="+COLORSCHEME+"
