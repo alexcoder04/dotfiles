@@ -49,7 +49,7 @@ nnoremap <leader><C-l> :vertical resize +5<CR>
 nnoremap / :set<Space>hlsearch<CR>/
 
 " global replace
-nnoremap S :%s///g<Left><Left><Left>
+nnoremap S :%s//g<Left><Left>
 
 " jump to the next placeholder
 inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l

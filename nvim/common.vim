@@ -31,6 +31,29 @@ else
 endif
 
 " -------------------------------------------------
+" FILE TYPES
+" -------------------------------------------------
+" detect
+autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
+autocmd BufEnter $DOTFILES_REPO/lf/*lfrc set filetype=config
+autocmd BufEnter $DOTFILES_REPO/sh/aliases set filetype=sh
+autocmd BufEnter $DOTFILES_REPO/sh/env set filetype=sh
+autocmd BufEnter $XDG_CONFIG_HOME/i3/config set filetype=i3config
+autocmd BufEnter $XDG_CONFIG_HOME/lf/lfrc set filetype=config
+autocmd BufEnter $XDG_CONFIG_HOME/newsboat/*.urls set filetype=conf
+autocmd BufEnter *.muttrc set filetype=neomuttrc
+autocmd BufEnter *.prefs2 set filetype=sh
+autocmd BufEnter *.tex set filetype=tex
+autocmd BufEnter *bumblebee-status.conf set filetype=dosini
+autocmd BufEnter *dunstrc set filetype=dosini
+autocmd BufEnter /etc/init.d/* set filetype=sh
+
+" settings
+autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab
+autocmd BufEnter *.sh set tabstop=2 shiftwidth=2 expandtab
+autocmd FileType tex set tw=80
+
+" -------------------------------------------------
 " PLUGINS
 " -------------------------------------------------
 call plug#begin()

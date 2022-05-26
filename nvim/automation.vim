@@ -4,31 +4,13 @@
 " | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 "  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
 " 
-" Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+" Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 " 
 " doing stuff automaticly in nvim
 
 " -------------------------------------------------
 " AUTOMATION
 " -------------------------------------------------
-" fix file types
-autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
-autocmd BufEnter $DOTFILES_REPO/lf/*lfrc set filetype=config
-autocmd BufEnter $DOTFILES_REPO/sh/aliases set filetype=sh
-autocmd BufEnter $DOTFILES_REPO/sh/env set filetype=sh
-autocmd BufEnter $XDG_CONFIG_HOME/i3/config set filetype=i3config
-autocmd BufEnter $XDG_CONFIG_HOME/lf/lfrc set filetype=config
-autocmd BufEnter $XDG_CONFIG_HOME/newsboat/*.urls set filetype=conf
-autocmd BufEnter *.muttrc set filetype=neomuttrc
-autocmd BufEnter *.prefs2 set filetype=sh
-autocmd BufEnter *.tex set filetype=tex
-autocmd BufEnter *dunstrc set filetype=dosini
-autocmd BufEnter /etc/init.d/* set filetype=sh
-
-" settings for diffrent file types
-autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab
-autocmd BufEnter *.sh set tabstop=2 shiftwidth=2 expandtab
-autocmd FileType tex set tw=80
 
 " put current line in the middle if typing
 autocmd InsertEnter * norm zz

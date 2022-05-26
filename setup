@@ -4,7 +4,7 @@
 echo "Assuming your current location ($PWD) as \$DOTFILES_REPO..."
 
 if [ -z "$SCRIPTS_DIR" ]; then
-  echo -n "Enter scripts location (empty for $HOME/Scripts): "
+  printf '%s' "Enter scripts location (empty for $HOME/Scripts): "
   read choice
   
   if [ -z "$choice" ]; then

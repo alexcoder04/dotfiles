@@ -1,7 +1,7 @@
 
 # FUNCTIONS
 cmd sizeof %{{
-  echo -n "\033[33mSize: \033[0m"
+  printf '%s' "\033[33mSize: \033[0m"
   du --max-depth 0 -h "$f" 2>/dev/null | cut -f1
 }}
 
