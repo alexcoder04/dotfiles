@@ -101,7 +101,11 @@ eval "$(starship init zsh)"
 # ---------------------------------------------------------
 # SYNTAX HIGHLIGHTING
 # ---------------------------------------------------------
-ZSH_SYNTAX="+ZSH_SYNTAX_PLUGIN+"
+if command -v pacman >/dev/null; then
+  ZSH_SYNTAX="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+else
+  ZSH_SYNTAX="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
 [ -f "$ZSH_SYNTAX" ] && source "$ZSH_SYNTAX"
 unset ZSH_SYNTAX
 

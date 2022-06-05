@@ -29,4 +29,4 @@ export RECONF_BARS_LAUNCHER_COMMAND="killall polybar"
 export RECONF_COLORSCHEME="dracula"
 export RECONF_VIM_HEAVY_PLUGINS="no"
 export RECONF_KEYBOARD_LAYOUT="en_US"
-export RECONF_ZSH_SYNTAX_PLUGIN="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+

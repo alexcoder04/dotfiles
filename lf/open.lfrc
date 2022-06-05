@@ -48,7 +48,7 @@ cmd open ${{
 }}
 
 # FZF EXTENSION
-map O ${{
+map <c-o> ${{
   dest="$(cat "$DOTFILES_REPO/bookmarks/source-"* | awk '{print $2}' | sort | fzf)"
   [ -z "$dest" ] && exit 0
   exec sh -c "lf -remote \"send $id cd $dest\""

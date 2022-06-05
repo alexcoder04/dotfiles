@@ -37,7 +37,7 @@ export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 # prefered programs
 export BROWSER="+BROWSER_MAIN+"
 export EDITOR="+EDITOR_MAIN+"
-export PAGER=+PAGER+
+export PAGER="+PAGER+"
 export TERMINAL="launch" # terminal emulator wrapper
 export VISUAL="+VISUAL+"
 
@@ -47,10 +47,11 @@ export NO_AT_BRIDGE=1
 
 # PATH parts
 PERL_PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+BASE_PATH="/usr/local/bin:/usr/bin:$PERL_PATH:/usr/lib/jvm/default/bin:/usr/local/sbin:/usr/sbin"
 PMS_PATH="$CARGO_HOME/bin:$GOPATH/bin"
 
 # finally, PATH
-export PATH="$SCRIPTS_DIR:$HOME/.local/Applications:$HOME/.local/bin:$PMS_PATH:/usr/local/bin:/usr/bin:$PERL_PATH:/usr/lib/jvm/default/bin:/usr/local/sbin:/usr/sbin"
+export PATH="$SCRIPTS_DIR:$HOME/.local/Applications:$HOME/.local/bin:$PMS_PATH:$BASE_PATH"
 
 # colors
 export COLORSCHEME="+COLORSCHEME+"
