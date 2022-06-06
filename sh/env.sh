@@ -47,7 +47,7 @@ export NO_AT_BRIDGE=1
 
 # PATH parts
 PERL_PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
-BASE_PATH="/usr/local/bin:/usr/bin:$PERL_PATH:/usr/lib/jvm/default/bin:/usr/local/sbin:/usr/sbin"
+BASE_PATH="/usr/local/bin:/usr/bin:/bin:$PERL_PATH:/usr/lib/jvm/default/bin:/usr/local/sbin:/usr/sbin:/sbin"
 PMS_PATH="$CARGO_HOME/bin:$GOPATH/bin"
 
 # finally, PATH
@@ -80,6 +80,7 @@ export COLOR_DARK_BLUE="+COLOR_DARK_BLUE+"
 export SECOND_MONITOR_POSITION="+SECOND_MONITOR_POSITION+"
 export KEYBOARD_LAYOUT="+KEYBOARD_LAYOUT+"
 export VIM_HEAVY_PLUGINS="+VIM_HEAVY_PLUGINS+"
+export GOPROXY="direct"
 if [ -d "/media/cache/nvim" ]; then
   export NVIMCACHE="/media/cache/nvim"
 else
