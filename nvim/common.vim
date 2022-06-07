@@ -59,18 +59,20 @@ autocmd FileType tex set tw=80
 call plug#begin()
 
 " color schemes
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 "Plug 'altercation/vim-colors-solarized'
-"Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dracula/vim', { 'as': 'dracula' }
 
-Plug 'alexcoder04/lightline.vim' " own fork, because of colorschemes
 Plug 'mboughaba/i3config.vim'
 Plug 'https://git.sr.ht/~sircmpwn/hare.vim'
+Plug 'ap/vim-css-color'
 
 " editor plugins
 let g:load_editor_plugins = get(g:, 'load_editor_plugins', "no")
 if g:load_editor_plugins == "yes"
+  Plug 'alexcoder04/lightline.vim' " own fork, because of colorschemes
   Plug 'dhruvasagar/vim-table-mode'
+  Plug 'luochen1990/rainbow'
 
   if $VIM_HEAVY_PLUGINS == "yes"
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -82,7 +84,7 @@ call plug#end()
 
 " lightline config
 let g:lightline = {
-  \ 'colorscheme': 'gruvbox'
+  \ 'colorscheme': 'dracula'
   \ }
 set noshowmode " we don't need to show the mode, lightline takes care of it
 
@@ -91,8 +93,8 @@ set noshowmode " we don't need to show the mode, lightline takes care of it
 " -------------------------------------------------
 set termguicolors
 set cursorline
-"colorscheme dracula
-colorscheme gruvbox
+colorscheme dracula
+"colorscheme gruvbox
 " override background color, so it's transparent
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE

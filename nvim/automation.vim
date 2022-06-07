@@ -15,9 +15,6 @@
 " put current line in the middle if typing
 autocmd InsertEnter * norm zz
 
-" remove trailing white spaces on save
-autocmd BufWritePre * %s/\s+$//e
-
 " format files with coc-prettier
 if $VIM_HEAVY_PLUGINS == "yes"
   autocmd BufWritePre *.js CocCommand prettier.formatFile

@@ -18,13 +18,6 @@ let g:load_editor_plugins = "yes"
 " -------------------------------------------------
 " KEYBINDINGS
 " -------------------------------------------------
-" file tree and fuzzy finder
-"nmap <C-n> :NERDTreeToggle<CR>
-" disable arrow keys in normal mode xD
-"nnoremap <Left> :echo "you fool..."<CR>
-"nnoremap <Right> :echo "you fool..."<CR>
-"nnoremap <Up> :echo "you fool..."<CR>
-"nnoremap <Down> :echo "you fool..."<CR>
 " working with tabs
 nnoremap <leader>g :tabnext<CR>
 nnoremap <leader>G :tabprevious<CR>

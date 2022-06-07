@@ -10,6 +10,7 @@ for f in *.vim; do
 done
 
 echo "Installing nvimpager"
+rm -rfv "$XDG_DATA_HOME/nvimpager"
 mkdir -vp "$XDG_CONFIG_HOME/nvimpager"
 ln -sv "$XDG_DATA_HOME/nvim" "$XDG_DATA_HOME/nvimpager"
 echo "./common.vim > $XDG_CONFIG_HOME/nvimpager/init.vim"
