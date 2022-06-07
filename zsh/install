@@ -8,6 +8,8 @@ echo "./zshrc -> $CONFIG_DIR/.zshrc"
 cat "./zshrc" | ../reconf \
     > "$CONFIG_DIR/.zshrc"
 
+cp -v "./zlogout" "$CONFIG_DIR/.zlogout"
+
 echo "../sh/env.sh -> $HOME/.zshenv"
 cat "./_header" "../sh/env.sh" | ../reconf \
     > "$HOME/.zshenv"

@@ -36,7 +36,7 @@ Modules:
      Interval: 2
 
    - Name: temp
-     ForegroundColor: "*light_grey"
+     ForegroundColor: "*bright_grey"
      Command: "i3-temp"
      Interval: 7
 
