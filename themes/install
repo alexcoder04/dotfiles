@@ -9,3 +9,8 @@ cat "./Xresources" | ../reconf \
     > "$CONFIG_DIR/Xresources"
 xrdb "$CONFIG_DIR/Xresources"
 
+wm_init_file="./$RECONF_THEME/wm-init"
+[ -f "$wm_init_file" ] \
+    && mkdir -vp "$XDG_CONFIG_HOME/wm-init" \
+    && cp -v "$wm_init_file" "$XDG_CONFIG_HOME/wm-init/theme"
+

@@ -90,7 +90,7 @@ c.colors.tabs.selected.odd.bg = MY_GREEN
 c.colors.tabs.selected.odd.fg = MY_BLACK
 
 # fonts
-c.fonts.default_family = "Inconsolata"
+c.fonts.default_family = getenv("FONT", "Inconsolata")
 c.fonts.default_size = get_font_size()
 c.fonts.web.family.standard = "Inconsolata"
 

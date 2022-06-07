@@ -10,7 +10,7 @@
     separator_color = frame
     sort = true
 
-    font = Inconsolata 15
+    font = +FONT+ 15
     markup = full
     format = "<b>%s</b>\n%b"
     alignment = left
@@ -20,7 +20,7 @@
 
     dmenu = /usr/bin/rofi -dmenu -i -p "dunst"
     browser = /usr/bin/firefox
-    corner_radius = 5
+    corner_radius = +DUNST_CORNER_RADIUS+
 
     mouse_left_click = close_current
     mouse_middle_click = close_all

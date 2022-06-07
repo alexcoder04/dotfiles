@@ -22,15 +22,12 @@ export RECONF_VISUAL="nvim"
 # i3
 export RECONF_I3_ADDONS="./i3-gaps.config"
 export RECONF_I3_BAR_HEIGHT="height 25"
-export RECONF_I3_BORDER_WIDTH=3
-export RECONF_I3_FONT_BAR="Inconsolata 15"
-export RECONF_I3_FONT_PANGO="Inconsolata 15"
 export RECONF_BARS_LAUNCHER_COMMAND="killall polybar"
 export RECONF_KEYBOARD_LAYOUT="de"
 export RECONF_PRE_X=""
 export RECONF_SECOND_MONITOR_POSITION="right"
 
 # other
-export RECONF_COLORSCHEME="gruvbox"
+export RECONF_THEME="macwal"
 export RECONF_VIM_HEAVY_PLUGINS="yes"
 

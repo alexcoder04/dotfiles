@@ -80,6 +80,7 @@ export COLOR_DARK_BLUE="+COLOR_DARK_BLUE+"
 export SECOND_MONITOR_POSITION="+SECOND_MONITOR_POSITION+"
 export KEYBOARD_LAYOUT="+KEYBOARD_LAYOUT+"
 export VIM_HEAVY_PLUGINS="+VIM_HEAVY_PLUGINS+"
+export FONT="+FONT+"
 export GOPROXY="direct"
 if [ -d "/media/cache/nvim" ]; then
   export NVIMCACHE="/media/cache/nvim"

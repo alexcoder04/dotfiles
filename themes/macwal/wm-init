@@ -1,0 +1,5 @@
+#!/bin/sh
+
+SET_WALLPAPER=false
+wallpaper-select --set "$HOME/PicVidMus/Wallpaper/abstract-wallpapers/macwal.jpeg" &
+

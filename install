@@ -40,7 +40,7 @@ install_subfolder(){
 
   echo "Sourcing settings..."
   . "./$machine.prefs2"
-  . "./colorschemes/$RECONF_COLORSCHEME.prefs2"
+  . "./themes/$RECONF_THEME/$RECONF_THEME.prefs2"
 
   cd "$1"
   echo "Installing \033[34m$1\033[0m for \033[33m$machine\033[0m..."

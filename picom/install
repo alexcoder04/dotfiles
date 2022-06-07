@@ -1,20 +1,15 @@
 #!/bin/sh
 
-install_default(){
-  cp -v "./picom.conf" "$XDG_CONFIG_HOME/picom.conf"
-  exit 0
-}
-
-install_jonaburg(){
-  echo "./picom.conf+./picom.jonaburg.conf -> $XDG_CONFIG_HOME/picom.conf"
-  cat "./picom.conf" "./picom.jonaburg.conf" > "$XDG_CONFIG_HOME/picom.conf"
-  exit 0
-}
-
-command -v pacman >/dev/null || install_default
-
 case "$(pacman -Q picom)" in
-  *picom-jonaburg*) install_jonaburg ;;
-  *) install_default ;;
+  *picom-jonaburg*) add_file="./picom.jonaburg.conf" ;;
+  *) add_file="" ;;
 esac
+
+[ -f "../themes/$RECONF_THEME/picom.$RECONF_THEME.conf" ] \
+  && theme_file="../themes/$RECONF_THEME/picom.$RECONF_THEME.conf" \
+  || theme_file="./picom.default-theme.conf"
+
+echo "./picom.conf+$theme_file+$add_file -> $XDG_CONFIG_HOME/picom.conf"
+cat "./picom.conf" "$theme_file" "$add_file" 2>/dev/null \
+  | ../reconf > "$XDG_CONFIG_HOME/picom.conf"
 
