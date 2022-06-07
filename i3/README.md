@@ -25,9 +25,9 @@ there are a lot of files in this directory. Here is what they are for:
    They are assembled into one file on install depending on which functionality
    is needed.
  - `blocks-*.conf`: i3blocks configs for different machines
- - `dracula-powerline.json`: custom bumblebee-status theme
  - `lock.png`: lock screen image which is merged with a screenshot when the screen is locked
- - `start_bumblebee`: startup script for bumblebee-status with all the options I want
+ - `bumblebee-status.conf`: bumblebee-status config
+ - `bumblebee-theme-gen.py`: bumblebee-status theme generator
  - `kherson.yml`: kherson (my custom replacement for i3blocks/bumblebee-status) config
 
 ### Available themes ("modes")

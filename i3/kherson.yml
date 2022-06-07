@@ -1,3 +1,13 @@
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2022 alexcoder04 <alexcoder04@protonmail.com>
+# 
+# kherson (custom i3bar status line generator written in Go) config
+
 Modules:
    - Name: date
      Pre: " "
@@ -15,7 +25,7 @@ Modules:
    - Name: volume
      Post: " "
      Command: "i3-volume"
-     ForegroundColor: "*purple"
+     ForegroundColor: "*magenta"
      Interval: 20
      Signal: 1
 
@@ -44,7 +54,7 @@ Modules:
      Markup: pango
 
    - Name: updates
-     ForegroundColor: "*purple"
+     ForegroundColor: "*magenta"
      Command: "sh"
      Args: ['-c', 'u="$(checkupdates | wc -l)"; [ "$u" = 0 ] || echo "  $u "']
      Interval: 3600
@@ -71,7 +81,7 @@ Modules:
      Signal: 2
 
    - Name: kernel
-     ForegroundColor: "*purple"
+     ForegroundColor: "*magenta"
      Pre: " "
      Command: "sh"
      Args: ["-c", "uname -r | cut -d- -f1"]

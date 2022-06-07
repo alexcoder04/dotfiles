@@ -3,6 +3,47 @@
 CONFIG_FOLDER="$XDG_CONFIG_HOME/foot"
 [ -d "$CONFIG_FOLDER" ] || mkdir -vp "$CONFIG_FOLDER"
 
-RECONF_COLORSCHEME="${RECONF_COLORSCHEME:-dracula}"
+cat <<EOF | sed -E 's/=#/=/' >"$CONFIG_FOLDER/foot.ini"
+# generated with alexcoder04 dotfiles foot config generator: $RECONF_THEME
+term=xterm-256color
 
-../reconf <"./foot.ini" | sed -E 's/=#/=/g' >"$CONFIG_FOLDER/foot.ini"
+font=$RECONF_FONT:size=15
+bold-text-in-bright=no
+workers=4
+
+[scrollback]
+lines=10000
+
+[cursor]
+blink=yes
+
+[colors]
+alpha=0.8
+background=$RECONF_COLOR_BLACK
+foreground=$RECONF_COLOR_WHITE
+regular0=$RECONF_COLOR_BLACK
+regular1=$RECONF_COLOR_RED
+regular2=$RECONF_COLOR_GREEN
+regular3=$RECONF_COLOR_YELLOW
+regular4=$RECONF_COLOR_BLUE
+regular5=$RECONF_COLOR_MAGENTA
+regular6=$RECONF_COLOR_CYAN
+regular7=$RECONF_COLOR_LIGHT_GREY
+bright0=$RECONF_COLOR_BRIGHT_BLACK
+bright1=$RECONF_COLOR_BRIGHT_RED
+bright2=$RECONF_COLOR_BRIGHT_GREEN
+bright3=$RECONF_COLOR_BRIGHT_YELLOW
+bright4=$RECONF_COLOR_BRIGHT_BLUE
+bright5=$RECONF_COLOR_BRIGHT_MAGENTA
+bright6=$RECONF_COLOR_BRIGHT_CYAN
+bright7=$RECONF_COLOR_BRIGHT_WHITE
+dim0=$RECONF_COLOR_DIM_BLACK
+dim1=$RECONF_COLOR_DIM_RED
+dim2=$RECONF_COLOR_DIM_GREEN
+dim3=$RECONF_COLOR_DIM_YELLOW
+dim4=$RECONF_COLOR_DIM_BLUE
+dim5=$RECONF_COLOR_DIM_MAGENTA
+dim6=$RECONF_COLOR_DIM_CYAN
+dim7=$RECONF_COLOR_DIM_WHITE
+EOF
+

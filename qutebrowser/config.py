@@ -25,7 +25,7 @@ XDG_CONFIG_HOME = getenv("XDG_CONFIG_HOME", os.path.join(HOME, ".config"))
 
 # define colors
 MY_BLACK = getenv("COLOR_BLACK", "#000000")
-MY_DARK_BLUE = getenv("COLOR_DARK_BLUE", "#000088")
+MY_DARK_BLUE = getenv("COLOR_BLUE", "#000088")
 MY_LIGHT_BLUE = getenv("COLOR_CYAN", "#00ffff")
 MY_WHITE = getenv("COLOR_WHITE", "#ffffff")
 MY_DARK_GREY = getenv("COLOR_DARK_GREY", "#555555")
