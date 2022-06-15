@@ -14,11 +14,11 @@ or=Ł:\
 ex=R:\
 " ;;
   *) export LF_ICONS="\
-tw=:\
-st=:\
-ow=:\
-dt=:\
-di=:\
+tw=:\
+st=:\
+ow=:\
+dt=:\
+di=:\
 fi=:\
 ln=:\
 or=:\

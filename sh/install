@@ -5,9 +5,9 @@ CONFIG_DIR="$XDG_CONFIG_HOME"
 [ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
 
 echo "./env.sh -> $CONFIG_DIR/env.sh"
-cat "./binsh" "./env.sh" | ../reconf \
+cat "./_header" "./env.sh" | ../reconf \
     > "$CONFIG_DIR/env.sh"
 
 echo "./colors.sh -> $CONFIG_DIR/colors.sh"
-sed -E '/^#/d; /^$/d' "./binsh" "./colors.sh" >"$CONFIG_DIR/colors.sh"
+sed -E '/^#/d; /^$/d' "./_header" "./colors.sh" >"$CONFIG_DIR/colors.sh"
 

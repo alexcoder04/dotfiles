@@ -4,25 +4,30 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
 # 
-# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 #
 # lf (file manager) config
 
 # -----------------------------------------------------
 # BASIC SETTINGS
 # -----------------------------------------------------
+set dircounts
 set drawbox 
 set preview 
 set icons 
 set ignorecase 
 set info size
 set incsearch
+set incfilter
 
 set shell /bin/sh
 set shellopts '-eu'
 set ifs "\n"
 
+set hiddenfiles ".*:!.local:!.config:!.gitignore"
 set promptfmt "\033[34;1m[ \033[32;1m%u\033[31m@\033[33m%h \033[34;1m]\033[0m in \033[36;1;4m%d\033[0;1;35m%f \033[0m"
+set scrolloff 5
+set truncatechar "…"
 
 # -----------------------------------------------------
 # PREVIEWS
@@ -54,12 +59,12 @@ cmd select-all %{{
   /bin/ls | xargs -I{} lf -remote "send $id toggle {}"
 }}
 
-cmd chmodx ${{
+cmd chmodx %{{
   chmod +x "$f"
   lf -remote 'send reload'
 }}
 
-cmd unchmodx ${{
+cmd unchmodx %{{
   chmod 600 "$f"
   lf -remote 'send reload'
 }}
@@ -69,20 +74,30 @@ cmd bookmark-create %{{
   echo "added \033[32m$PWD\033[0m to bookmarks"
 }}
 
+cmd copy-path %{{
+  if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    printf '%s' "$f" | wl-copy >/dev/null 2>/dev/null \
+      && (echo "\033[32m$f\033[0m copied to clipboard"; exit)
+  fi
+  printf '%s' "$f" | xclip -selection clipboard >/dev/null 2>/dev/null \
+    && (echo "\033[32m$f\033[0m copied to clipboard"; exit)
+}}
+
 cmd q :quit
 
 # -----------------------------------------------------
 # KEYBINDS
 # -----------------------------------------------------
 # Remove default mappings
-map m
-map e
-map d
-map w
 map a
-map r
+map d
+map e
 map i
+map m
 map p
+map r
+map w
+map y
 
 # move
 map J :push hjl
@@ -91,14 +106,18 @@ map K :push hkl
 # actions
 map <c-a> select-all
 map U clear
-map c cut
+map yy copy
+map yp copy-path
+map cc cut
 map p :paste; clear
 map x chmodx
-map <c-x> unchmodx
+map X unchmodx
 map <c-l> reload-window
 map H set hidden!
 map mm bookmark-create
 map B !cat "$DOTFILES_REPO/bookmarks/source-"* | awk '{print $2}' | sort
+map ( filter
+map ) setfilter ""
 
 # wallpaper
 map wpa %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"

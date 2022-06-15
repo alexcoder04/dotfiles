@@ -1,26 +1,28 @@
 
 # FUNCTIONS
 cmd sizeof %{{
-  printf '%s' "\033[33mSize: \033[0m"
+  printf "\033[33mSize: \033[0m"
   du --max-depth 0 -h "$f" 2>/dev/null | cut -f1
 }}
 
-cmd git_pull ${{
-  echo "\033[34mgit:\033[0m-------------------------------------------"
-  git pull --rebase || true; echo "press ENTER"; read _
+cmd git_pull !{{
+  printf "\033[34mgit:\033[0m"
+  for i in $(seq 1 $(($(tput cols)-4))); do printf "-"; done
+  git pull --rebase || true
 }}
 
 cmd git_status ${{
-  echo "\033[34mgit:\033[0m-------------------------------------------"
+  printf "\033[34mgit:\033[0m"
+  for i in $(seq 1 $(($(tput cols)-4))); do printf "-"; done
   git status || true; echo "press ENTER to exit or s<enter> to enter a shell"; read inp
   [ "$inp" = "s" ] && $SHELL || exit 0
 }}
 
 # KEYBINDS
-map i calcdirsize
+map i :set nodircounts; calcdirsize
 map I sizeof
 
 map gpl git_pull
 map gst git_status
-map gdf $git diff
+map gdf !git diff
 
