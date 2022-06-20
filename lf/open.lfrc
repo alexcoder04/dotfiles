@@ -3,10 +3,19 @@
 # adapted from <https://github.com/LukeSmithxyz/voidrice/blob/master/.config/lf/lfrc>
 cmd open ${{
   extract_tar(){
-    extract_tmp="${TMPDIR:-/tmp}/archive-preview/$(echo "$f" | md5sum | cut -d" " -f1)"
+    archive_id="$(echo "$f" | md5sum | cut -d" " -f1)"
+    extract_tmp="${TMPDIR:-/tmp}/archive-preview/$archive_id"
+    archive_hash="$(md5sum "$f" | cut -d" " -f1)"
     if [ ! -d "$extract_tmp" ]; then
       mkdir -p "$extract_tmp"
       tar "$1" "$f" -C "$extract_tmp"
+      printf "$archive_hash" >"$extract_tmp.md5sum"
+    fi
+    if [ ! "$archive_hash" = "$(cat "$extract_tmp.md5sum")" ]; then
+      rm -rf "$extract_tmp" "$extract_tmp.md5sum"
+      mkdir -p "$extract_tmp"
+      tar "$1" "$f" -C "$extract_tmp"
+      printf "$archive_hash" >"$extract_tmp.md5sum"
     fi
     setsid -f launch lf "$extract_tmp"
   }
@@ -31,10 +40,19 @@ cmd open ${{
         *.epub)
           setsid -f zathura "$f" >/dev/null 2>&1 ;;
         *)
+          archive_id="$(echo "$f" | md5sum | cut -d" " -f1)"
           extract_tmp="${TMPDIR:-/tmp}/archive-preview/$(echo "$f" | md5sum | cut -d" " -f1)"
+          archive_hash="$(md5sum "$f" | cut -d" " -f1)"
           if [ ! -d "$extract_tmp" ]; then
             mkdir -p "$extract_tmp"
             unzip "$f" -d "$extract_tmp"
+            printf "$archive_hash" >"$extract_tmp.md5sum"
+          fi
+          if [ ! "$archive_hash" = "$(cat "$extract_tmp.md5sum")" ]; then
+            rm -rf "$extract_tmp" "$extract_tmp.md5sum"
+            mkdir -p "$extract_tmp"
+            unzip "$f" -d "$extract_tmp"
+            printf "$archive_hash" >"$extract_tmp.md5sum"
           fi
           setsid -f launch lf "$extract_tmp" >/dev/null 2>&1 ;;
       esac ;;

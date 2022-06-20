@@ -90,6 +90,7 @@ cmd q :quit
 # -----------------------------------------------------
 # Remove default mappings
 map a
+map c
 map d
 map e
 map i
