@@ -23,14 +23,14 @@ if $VIM_HEAVY_PLUGINS == "yes"
 endif
 
 " re-generate config files after editing
-autocmd BufWritePost $DOTFILES_REPO/nvim/*.vim !$DOTFILES_REPO/install nvim
-autocmd BufWritePost $DOTFILES_REPO/fish/dynamic/config.fish !$DOTFILES_REPO/install fish
 autocmd BufWritePost $DOTFILES_REPO/bash/bashrc !$DOTFILES_REPO/install bash
+autocmd BufWritePost $DOTFILES_REPO/cron/crontab !$DOTFILES_REPO/install cron
+autocmd BufWritePost $DOTFILES_REPO/fish/dynamic/config.fish !$DOTFILES_REPO/install fish
+autocmd BufWritePost $DOTFILES_REPO/lf/* !$DOTFILES_REPO/install lf
+autocmd BufWritePost $DOTFILES_REPO/nvim/*.vim !$DOTFILES_REPO/install nvim
+autocmd BufWritePost $DOTFILES_REPO/qutebrowser/config.py !$DOTFILES_REPO/install qutebrowser
 autocmd BufWritePost $DOTFILES_REPO/wm-utils/sxhkdrc !$DOTFILES_REPO/install wm-utils && killall sxhkd && sxhkd &
 autocmd BufWritePost $DOTFILES_REPO/zsh/* !$DOTFILES_REPO/install zsh
-autocmd BufWritePost $DOTFILES_REPO/cron/crontab !$DOTFILES_REPO/install cron
-autocmd BufWritePost $DOTFILES_REPO/lf/* !$DOTFILES_REPO/install lf
-autocmd BufWritePost $DOTFILES_REPO/qutebrowser/config.py !$DOTFILES_REPO/install qutebrowser
 
 " copy arduino files to clipboard on save to paste them into Arduino IDE
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard

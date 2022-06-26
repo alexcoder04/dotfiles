@@ -98,8 +98,7 @@ alias duf="duf -theme ansi -hide-fs devtmpfs -hide-mp /sys/fs/cgroup --avail-thr
 alias ffmpeg="ffmpeg -hide_banner"
 alias free="free -m"
 alias lsblk="lsblk -f"
-alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
-alias nneomutt="mbsync -c ~/.config/mbsync/mbsyncrc -a && neomutt"
+alias nneomutt="mbsync -a && neomutt"
 
 # handy stuff
 ABBREVIATION chx="chmod +x"

@@ -35,10 +35,12 @@ endif
 " -------------------------------------------------
 " detect
 autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
+autocmd BufEnter $DOTFILES_REPO/i3/blocks*.conf set filetype=dosini
 autocmd BufEnter $DOTFILES_REPO/lf/*lfrc set filetype=config
 autocmd BufEnter $DOTFILES_REPO/sh/aliases set filetype=sh
 autocmd BufEnter $DOTFILES_REPO/sh/env set filetype=sh
 autocmd BufEnter $XDG_CONFIG_HOME/i3/config set filetype=i3config
+autocmd BufEnter $XDG_CONFIG_HOME/i3blocks/config set filetype=dosini
 autocmd BufEnter $XDG_CONFIG_HOME/lf/lfrc set filetype=config
 autocmd BufEnter *ewsboat/*.urls set filetype=conf
 autocmd BufEnter *.muttrc set filetype=neomuttrc
@@ -58,11 +60,6 @@ autocmd FileType tex set tw=80
 " PLUGINS
 " -------------------------------------------------
 call plug#begin()
-
-" color schemes
-"Plug 'morhetz/gruvbox'
-"Plug 'altercation/vim-colors-solarized'
-Plug 'dracula/vim', { 'as': 'dracula' }
 
 Plug 'mboughaba/i3config.vim'
 Plug 'https://git.sr.ht/~sircmpwn/hare.vim'
@@ -94,9 +91,6 @@ set noshowmode " we don't need to show the mode, lightline takes care of it
 " -------------------------------------------------
 set termguicolors
 set cursorline
-colorscheme dracula
-"colorscheme gruvbox
-" override background color, so it's transparent
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
+
+source $XDG_CONFIG_HOME/nvim/color.vim
 

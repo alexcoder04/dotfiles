@@ -119,3 +119,11 @@ if $VIM_HEAVY_PLUGINS == "yes"
   let g:go_highlight_generate_tags = 1
 endif
 
+" show syntax highlight group
+function! Syn()
+  for id in synstack(line("."), col("."))
+    echo synIDattr(id, "name")
+  endfor
+endfunction
+nnoremap <leader>h :call Syn()<enter>
+
