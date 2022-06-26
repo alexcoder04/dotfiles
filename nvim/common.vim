@@ -81,8 +81,9 @@ endif
 call plug#end()
 
 " lightline config
+source $XDG_CONFIG_HOME/nvim/lightline-env.vim
 let g:lightline = {
-  \ 'colorscheme': 'dracula'
+  \ 'colorscheme': 'env'
   \ }
 set noshowmode " we don't need to show the mode, lightline takes care of it
 
