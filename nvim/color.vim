@@ -18,7 +18,6 @@ hi DiffAdd         guifg=#2aa7e9
 hi DiffChange      guifg=#a3b1c2              
 hi DiffDelete      guifg=#F85F46              
 hi DiffText                                    gui=italic,bold
-
 hi Directory       guifg=#2aa7e9               gui=bold
 hi Error           guifg=#ffcc66 guibg=#112233
 hi ErrorMsg        guifg=#FC2050 guibg=#112233 gui=bold
@@ -30,29 +29,23 @@ hi Function        guifg=#2aa7e9
 hi Identifier      guifg=#ff9108
 hi Ignore          guifg=#253647 guibg=bg
 hi IncSearch       guifg=#ffcc66 guibg=#112233
-
 hi Keyword         guifg=#fc5479               gui=bold
 hi Label           guifg=#ffcc66               gui=none
 hi Macro           guifg=#ffb11a               gui=italic
 hi SpecialKey      guifg=#2aa7e9               gui=italic
-
 hi MatchParen      guifg=#ffcc66 guibg=#112233 gui=bold
 hi ModeMsg         guifg=#ffcc66
 hi MoreMsg         guifg=#ffcc66
 hi Operator        guifg=#fc5479
-
-" complete menu
 hi Pmenu           guifg=#59baee guibg=#112233
 hi PmenuSel                      guibg=#253647
 hi PmenuSbar                     guibg=#112233
 hi PmenuThumb      guifg=#59baee
-
 hi PreCondit       guifg=#2aa7e9               gui=bold
 hi PreProc         guifg=#2aa7e9
 hi Question        guifg=#2aa7e9
 hi Repeat          guifg=#FC2050               gui=bold
 hi Search          guifg=#112233 guibg=#ffcc66
-" marks
 hi SignColumn      guifg=#2aa7e9 guibg=#253647
 hi SpecialChar     guifg=#FC2050               gui=bold
 hi SpecialComment  guifg=#253647               gui=bold
@@ -71,20 +64,16 @@ hi Structure       guifg=#59baee
 hi Tag             guifg=#FC2050               gui=italic
 hi Title           guifg=#ff9108
 hi Todo            guifg=#e0e4fb guibg=#112233 gui=italic,bold
-
 hi Typedef         guifg=#59baee
 hi Type            guifg=#59baee               gui=none
 hi Underlined      guifg=#253647               gui=underline
-
 hi VertSplit       guifg=#253647 guibg=#112233 gui=bold
 hi Visual                        guibg=#112233
 hi link VisualNOS Visual
 hi WarningMsg      guifg=#e0e4fb guibg=#112233 gui=bold
 hi WildMenu        guifg=#59baee guibg=#112233
-
 hi TabLineFill     guifg=#112233 guibg=#112233
 hi TabLine         guibg=#112233 guifg=#253647 gui=none
-
 hi Normal          guifg=#e0e4fb guibg=NONE
 hi Comment         guifg=#a3b1c2               gui=italic
 hi CursorLine                    guibg=#253647
@@ -102,10 +91,12 @@ hi goFunctionCall  guifg=#3d8adb               gui=bold
 hi goPredefinedIdentifiers guifg=#fc5479       gui=italic
 hi goOperator      guifg=#ffffff
 hi goStatement     guifg=#FC2050               gui=italic,bold
+hi link goConditional goStatement
+hi link goRepeat goStatement
 
 " Vim
 hi vimGroup        guifg=#3d8adb               gui=italic
-hi vimAutoEvent    guifg=#3d8adb               gui=italic
+hi link vimAutoEvent vimGroup
 hi vimAutoCmdSfxList guifg=#2573c6             gui=italic
 hi vimEnvvar       guifg=#b748bc
 hi vimMapLhs       guifg=#ffb11a
@@ -116,7 +107,7 @@ hi link pythonFunction goFunctionCall
 hi link pythonBuiltin goFunctionCall
 
 " SH
-hi shLoop          guifg=#FC2050               gui=italic,bold
+hi link shLoop goStatement
 hi link shConditional shLoop
 hi shRange         guifg=#ff9108               gui=italic
 hi link shFunction goFunctionCall
@@ -126,20 +117,20 @@ hi texTypeSize     guifg=#3d8adb               gui=italic
 hi texStatement    guifg=#ffb11a               gui=bold
 
 " Markdown
-hi markdownItalic  guifg=#ffcc66               gui=italic
+hi markdownBold    guifg=#ffcc66               gui=bold
+hi markdownCode    guifg=#ffffff guibg=#112233
+hi link markdownCodeBlock markdownCode
+hi markdownCodeDelimiter guifg=#2573c6         gui=bold
+hi markdownError   guifg=#ffcc66
 hi markdownH1      guifg=#FC2050               gui=bold
 hi markdownH2      guifg=#fc5479               gui=bold
 hi markdownH3      guifg=#fa7e6b               gui=bold
-hi markdownError   guifg=#ffcc66
-hi markdownListMarker guifg=#59baee            gui=bold
-hi markdownCode    guifg=#ffffff guibg=#112233
-hi markdownCodeDelimiter guifg=#2573c6         gui=bold
-hi markdownRule    guifg=#2573c6               gui=bold
-hi markdownLinkText guifg=#59baee              gui=underline
+hi markdownItalic  guifg=#ffcc66               gui=italic
 hi markdownLinkDelimiter guifg=#ffb11a
 hi link markdownLinkTextDelimiter markdownLinkDelimiter
-hi markdownBold    guifg=#ffcc66               gui=bold
-hi link markdownCodeBlock markdownCode
+hi markdownLinkText guifg=#59baee              gui=underline
+hi markdownListMarker guifg=#59baee            gui=bold
+hi markdownRule    guifg=#2573c6               gui=bold
 
 " Cron
 hi crontabCmd      guifg=#e0e4fb
@@ -170,7 +161,12 @@ hi link htmlEndTag htmlTag
 
 " Lua
 hi link luaStatement goStatement
-hi link luaRepeat luaStatement
 hi link luaCond luaStatement
+hi link luaRepeat luaStatement
 hi link luaFunction goFunctionCall
+hi luaNspireGc   guifg=#ffb11a
+hi link luaNspireEvent luaNspireGc
+
+" Make
+hi link makeTarget goFunctionCall
 

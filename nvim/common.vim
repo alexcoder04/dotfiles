@@ -57,6 +57,12 @@ autocmd BufEnter *.sh set tabstop=2 shiftwidth=2 expandtab
 autocmd FileType tex set tw=80
 
 " -------------------------------------------------
+" SYNTAX
+" -------------------------------------------------
+autocmd FileType lua syn keyword luaNspireGc gc contained
+autocmd FileType lua syn match luaNspireEvent /on\./ contained
+
+" -------------------------------------------------
 " PLUGINS
 " -------------------------------------------------
 call plug#begin()
@@ -68,7 +74,7 @@ Plug 'ap/vim-css-color'
 " editor plugins
 let g:load_editor_plugins = get(g:, 'load_editor_plugins', "no")
 if g:load_editor_plugins == "yes"
-  Plug 'alexcoder04/lightline.vim' " own fork, because of colorschemes
+  Plug 'itchyny/lightline.vim'
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'luochen1990/rainbow'
 
@@ -81,11 +87,11 @@ endif
 call plug#end()
 
 " lightline config
-source $XDG_CONFIG_HOME/nvim/lightline-env.vim
-let g:lightline = {
-  \ 'colorscheme': 'env'
-  \ }
-set noshowmode " we don't need to show the mode, lightline takes care of it
+if g:load_editor_plugins == "yes"
+  source $XDG_CONFIG_HOME/nvim/lightline-env.vim
+  let g:lightline = { 'colorscheme': 'env' }
+  set noshowmode " we don't need to show the mode, lightline takes care of it
+endif
 
 " -------------------------------------------------
 " APPEARANCE
