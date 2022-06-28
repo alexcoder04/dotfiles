@@ -10,9 +10,9 @@ cat "./zshrc" | ../reconf \
 
 cp -v "./zlogout" "$CONFIG_DIR/.zlogout"
 
-echo "../sh/env.sh -> $HOME/.zshenv"
+echo "../sh/env.sh -> $CONFIG_DIR/.zshenv"
 cat "./_header" "../sh/env.sh" | ../reconf \
-    > "$HOME/.zshenv"
+    > "$CONFIG_DIR/.zshenv"
 
 echo "../sh/aliases -> $CONFIG_DIR/aliases.zsh"
 pre="$(pwd)"

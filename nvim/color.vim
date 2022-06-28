@@ -86,13 +86,21 @@ hi SpecialKey      guifg=#a3b1c2
 
 " LANGUAGES
 " Go
-hi goType          guifg=#3d8adb               gui=italic
+hi goDecimalInt    guifg=#b748bc
+hi goFunction      guifg=#59baee               gui=bold
 hi goFunctionCall  guifg=#3d8adb               gui=bold
-hi goPredefinedIdentifiers guifg=#fc5479       gui=italic
+hi goHexadecimalInt guifg=#c672cb
 hi goOperator      guifg=#ffffff
+hi goPredefinedIdentifiers guifg=#fc5479       gui=italic
 hi goStatement     guifg=#FC2050               gui=italic,bold
+hi goType          guifg=#3d8adb               gui=italic
 hi link goConditional goStatement
+hi link goDeclaration goStatement
+hi link goFloat goDecimalInt
+hi link goFloats goType
 hi link goRepeat goStatement
+hi link goSignedInts goType
+hi link goUnsignedInts goType
 
 " Vim
 hi vimGroup        guifg=#3d8adb               gui=italic
@@ -101,16 +109,21 @@ hi vimAutoCmdSfxList guifg=#2573c6             gui=italic
 hi vimEnvvar       guifg=#b748bc
 hi vimMapLhs       guifg=#ffb11a
 
-" Python
-hi link pythonStatement goStatement
-hi link pythonFunction goFunctionCall
+" Python -> Go
 hi link pythonBuiltin goFunctionCall
+hi link pythonConditional goStatement
+hi link pythonFunction goFunctionCall
+hi link pythonNumber goDecimalInt
+hi link pythonRepeat goStatement
+hi link pythonStatement goStatement
 
-" SH
-hi link shLoop goStatement
+" SH -> Go
 hi link shConditional shLoop
-hi shRange         guifg=#ff9108               gui=italic
 hi link shFunction goFunctionCall
+hi link shLoop goStatement
+hi link shRange shLoop
+hi link shSet goStatement
+hi link shStatement goStatement
 
 " TeX
 hi texTypeSize     guifg=#3d8adb               gui=italic
@@ -155,18 +168,21 @@ hi tomlTable     guifg=#59baee                 gui=bold
 " Roff
 hi link nroffReqName nroffReqLeader
 
-" HTML
+" HTML -> Markdown
 hi link htmlLink markdownLinkText
 hi link htmlEndTag htmlTag
 
-" Lua
-hi link luaStatement goStatement
+" Lua -> Go
 hi link luaCond luaStatement
-hi link luaRepeat luaStatement
 hi link luaFunction goFunctionCall
+hi link luaNumber goDecimalInt
+hi link luaRepeat luaStatement
+hi link luaStatement goStatement
+
 hi luaNspireGc   guifg=#ffb11a
 hi link luaNspireEvent luaNspireGc
+hi link luaNspirePlatform luaNspireGc
 
-" Make
+" Make -> Go
 hi link makeTarget goFunctionCall
 

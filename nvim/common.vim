@@ -59,8 +59,10 @@ autocmd FileType tex set tw=80
 " -------------------------------------------------
 " SYNTAX
 " -------------------------------------------------
-autocmd FileType lua syn keyword luaNspireGc gc contained
-autocmd FileType lua syn match luaNspireEvent /on\./ contained
+autocmd FileType lua syn match luaNspireEvent /on\.\w*/ contained
+autocmd FileType lua syn match luaNspireGc /gc:\(clipRect\|drawArc\|drawImage\|drawLine\|drawPolyLine\|drawRect\|drawString\|fillArc\|fillPolygon\|fillRect\|getStringHeight\|getStringWidth\|setAlpha\|setColorRGB\|setFont\|setPen\)/ contained
+autocmd FileType lua syn match luaNspirePlatform /platform\.window:invalidate/ contained
+
 
 " -------------------------------------------------
 " PLUGINS

@@ -4,7 +4,7 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|
 #
-# Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+# Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 #      
 # shell aliases template
 
@@ -97,6 +97,7 @@ alias df="df -h"
 alias duf="duf -theme ansi -hide-fs devtmpfs -hide-mp /sys/fs/cgroup --avail-threshold=1G,512M --usage-threshold=0.75,0.9"
 alias ffmpeg="ffmpeg -hide_banner"
 alias free="free -m"
+alias irssi="irssi --config=\"$XDG_CONFIG_HOME/irssi/config\" --home=\"$XDG_DATA_HOME/irssi\""
 alias lsblk="lsblk -f"
 alias nneomutt="mbsync -a && neomutt"
 

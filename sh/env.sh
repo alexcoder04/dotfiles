@@ -22,9 +22,11 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$XDG_DATA_HOME/flatpak/exports/share"
 
 # tricks so other programs accept XDG
+export ANDROID_HOME="$XDG_DATA_HOME/android"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GNUPGHOME="$XDG_DATA_HOME/gpg"
 export GOPATH="$XDG_DATA_HOME/go"
+export KERAS_HOME="$XDG_SHARE_HOME/keras"
 export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/mbsyncrc"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
