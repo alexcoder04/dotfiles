@@ -12,7 +12,7 @@ export ZDOTDIR="$HOME/.config/zsh"
 export DOTFILES_REPO="+DOTFILES_REPO+"
 export SCRIPTS_DIR="+SCRIPTS_DIR+"
 
-# XDG variables
+# XDG variables {{{
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_DIRS="/etc/xdg"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -20,8 +20,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 export XDG_DATA_DIRS="/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$XDG_DATA_HOME/flatpak/exports/share"
+# }}}
 
-# tricks so other programs accept XDG
+# tricks so other programs accept XDG {{{
 export ANDROID_HOME="$XDG_DATA_HOME/android"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GNUPGHOME="$XDG_DATA_HOME/gpg"
@@ -36,6 +37,7 @@ export PYTHONSTARTUP="$DOTFILES_REPO/misc/pythonrc"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export XRESOURCES="$XDG_CONFIG_HOME/X11/Xresources"
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
+# }}}
 
 # prefered programs
 export BROWSER="+BROWSER_MAIN+"
@@ -56,7 +58,7 @@ PMS_PATH="$CARGO_HOME/bin:$GOPATH/bin"
 # finally, PATH
 export PATH="$SCRIPTS_DIR:$HOME/.local/Applications:$HOME/.local/bin:$PMS_PATH:$BASE_PATH"
 
-# colors
+# colors {{{
 export COLORSCHEME="+THEME+"
 
 export COLOR_BLACK="+COLOR_BLACK+"
@@ -75,6 +77,7 @@ export COLOR_MAGENTA="+COLOR_MAGENTA+"
 export COLOR_RED="+COLOR_RED+"
 export COLOR_WHITE="+COLOR_WHITE+"
 export COLOR_YELLOW="+COLOR_YELLOW+"
+# }}}
 
 # different settings
 export SECOND_MONITOR_POSITION="+SECOND_MONITOR_POSITION+"

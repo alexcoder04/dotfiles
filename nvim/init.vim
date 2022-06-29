@@ -10,11 +10,13 @@
 
 " -----------------------------------------------------------------------------
 " BASIC SETTINGS
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 let mapleader=" "
 set autoindent
 set clipboard+=unnamedplus
 set colorcolumn=80
+set foldenable
+set foldmethod=marker
 set ignorecase
 set mouse=nv
 set nocompatible
@@ -27,16 +29,18 @@ else
   set dir=$NVIMCACHE
 endif
 
+" }}}
+
 " -----------------------------------------------------------------------------
 " PLUGINS
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 let g:load_editor_plugins = "yes"
 
-" plugins themselves are loaded in common.vim
+" plugins themselves are loaded in common.vim }}}
 
 " -----------------------------------------------------------------------------
 " KEYBINDINGS
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 " working with tabs
 nnoremap <leader>g :tabnext<CR>
 nnoremap <leader>G :tabprevious<CR>
@@ -68,9 +72,11 @@ inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
 nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 inoremap :; ;;
 
+" }}}
+
 " -----------------------------------------------------------------------------
 " DO STUFF WITH LEADER KEY
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 " compile a project
 nnoremap <leader>b :w<CR>:!./build.sh<CR>
 
@@ -102,17 +108,20 @@ autocmd FileType markdown nnoremap <leader>tm :TableModeToggle<CR>
 " line width
 nnoremap <leader>ll :set tw=80<CR>
 
+" }}}
+
 " -----------------------------------------------------------------------------
 " OTHER CONFIG FILES
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 source $XDG_CONFIG_HOME/nvim/common.vim
 source $XDG_CONFIG_HOME/nvim/snippets.vim
 source $XDG_CONFIG_HOME/nvim/automation.vim
 source $XDG_CONFIG_HOME/nvim/statusline.vim
+" }}}
 
 " -----------------------------------------------------------------------------
 " OTHER STUFF
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-pairs',
@@ -146,4 +155,6 @@ function! Syn()
   endfor
 endfunction
 nnoremap <leader>h :call Syn()<enter>
+
+" }}}
 

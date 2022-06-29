@@ -8,7 +8,7 @@
 " 
 " Neovim status line
 
-" mode maps
+" mode maps {{{
 let s:ul_mode_map = {
     \ 'n': 'NORMAL',
     \ 'i': 'INSERT',
@@ -31,7 +31,9 @@ let s:ul_mode_color_map = {
     \ 'c': "%#ULCommandMode#"
     \ }
 
-" highlighting
+" }}}
+
+" highlighting {{{
 hi ULDefault guibg=#112233 guifg=#e0e4fb
 hi ULNormalMode guibg=#b748bc guifg=#e0e4fb gui=bold
 hi ULInsertMode guibg=#2aa7e9 guifg=#112233 gui=bold
@@ -44,7 +46,9 @@ hi ULPosition guibg=#253647 guifg=#e0e4fb
 hi UlLine guibg=#253647 guifg=#ffcc66
 hi UlLines guibg=#253647 guifg=#3d8adb
 
-" components
+" }}}
+
+" components {{{
 function ULGetMode()
     return get(s:ul_mode_color_map, mode(), "") . "\ " . get(s:ul_mode_map, mode(), "") .  "\ %#ULDefault#"
 endfunction
@@ -70,6 +74,8 @@ endfunction
 function ULGetFilePosition()
     return "%#UlPosition#%3(%c%):%#UlLine#%3(%l%)%#UlPosition#/%#UlLines#%L%#UlPosition#\ (%3(%p%)%%)"
 endfunction
+
+" }}}
 
 " put everything together
 set laststatus=2

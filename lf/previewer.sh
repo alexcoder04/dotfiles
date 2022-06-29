@@ -2,7 +2,7 @@
 
 file="$1"; shift
 
-# draw image with ueberzug
+# draw image with ueberzug {{{
 draw() {
   if [ -n "$FIFO_UEBERZUG" ]; then
     path="$(printf '%s' "$1" | sed 's/\\/\\\\/g;s/"/\\"/g')"
@@ -11,8 +11,9 @@ draw() {
   fi
   exit 1
 }
+# }}}
 
-# image preview
+# image preview {{{
 preview_image(){
   if [ "$XDG_SESSION_TYPE" = "x11" ] && command -v ueberzug >/dev/null; then
     orientation="$(identify -format '%[EXIF:Orientation]\n' -- "$file")"
@@ -27,8 +28,9 @@ preview_image(){
     timg -g "${3}x${2}" "$file"
   fi
 }
+# }}}
 
-# video preview
+# video preview {{{
 preview_video(){
   cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' "$file" | sha256sum | cut -d" " -f1).jpg"
   if [ ! -f "$cache_file" ]; then
@@ -45,7 +47,9 @@ preview_video(){
     timg -g "${3}x${2}" "$cache_file"
   fi
 }
+# }}}
 
+# pdf preview {{{
 preview_pdf(){
   # as images on X11 with ueberzug
   if [ "$XDG_SESSION_TYPE" = "x11" ] && command -v ueberzug >/dev/null; then
@@ -57,6 +61,7 @@ preview_pdf(){
     pdftotext -l 5 "$file" -
   fi
 }
+# }}}
 
 # empty file
 if [ ! -s "$file" ]; then

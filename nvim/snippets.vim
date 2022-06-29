@@ -4,14 +4,14 @@
 " | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 "  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
 " 
-" Copyright (c) 2021 alexcoder04 <https://github.com/alexcoder04>
+" Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
 " 
 " snippets for different file types in nvim
 
 " -------------------------------------------------
 " AUTO-INSERT OFTEN USED PHRASES
 " -------------------------------------------------
-" html tags
+" html tags {{{
 autocmd FileType html inoremap ;! i<!DOCTYPE html><Enter><html<Space>dir="ltr"><Enter><head><Enter><meta<Space>charset="utf-8"<Space>/><Enter><meta<Space>name="viewport"<Space>content="width=device-width,<Space>initial-scale=1.0"><Enter><title><++></title><Enter><++><Enter></head><Enter><body><Enter><++><Enter></body><Enter></html><Esc>gg/<++><CR>"_c4l
 autocmd FileType html inoremap ;d <div></div><Enter><++><Esc>k0f>a
 autocmd FileType html inoremap ;p <p></p><Enter><++><Esc>k0f>a
@@ -26,11 +26,12 @@ autocmd FileType html inoremap ;ln <link<Space>rel="stylesheet"<Space>href="" />
 autocmd FileType html inoremap ;s <script<Space>src=""<Space>defer></script><Enter><++><Esc>k0f"a
 autocmd FileType html inoremap ;a <a<Space>href=""><++></a><Enter><++><Esc>k0f"a
 autocmd FileType html inoremap ;btn <button id=""><++></button><Enter><++><Esc>k0f"a
+" }}}
 
 " JS
 autocmd FileType javascript inoremap ;cl console.log();<Enter><++><Esc>k0t(i
 
-" markdown
+" markdown {{{
 autocmd FileType markdown inoremap ;1 #<Enter><++><Esc>kA<Space>
 autocmd FileType markdown inoremap ;2 ##<Enter><++><Esc>kA<Space>
 autocmd FileType markdown inoremap ;3 ###<Enter><++><Esc>kA<Space>
@@ -38,8 +39,9 @@ autocmd FileType markdown inoremap ;i ** <++><Esc>F*i
 autocmd FileType markdown inoremap ;b **** <++><Esc>F*hi
 autocmd FileType markdown inoremap ;` ```<Enter><++><Enter>```<Enter><++><Esc>3kA
 autocmd FileType markdown inoremap ;l <Enter><Esc>I<Space>-<Space>
+" }}}
 
-" LaTeX
+" LaTeX {{{
 autocmd FileType tex inoremap ;1 \section{}<Enter><++><Esc>k0f{a
 autocmd FileType tex inoremap ;2 \subsection{}<Enter><++><Esc>k0f{a
 autocmd FileType tex inoremap ;3 \subsubsection{}<Enter><++><Esc>k0f{a
@@ -64,8 +66,9 @@ autocmd FileType tex nnoremap <leader>e yyI\begin{<Esc>A}<Esc>pI\end{<Esc>A}<Esc
 autocmd FileType tex imap ;e <Esc>b<leader>e
 autocmd FileType tex nnoremap <leader>m i\begin{mdframed}[linecolor=red]<Enter>\end{mdframed}<Esc>O
 autocmd FileType tex inoremap ;us \usepackage{}<Esc>i
+" }}}
 
-" python
+" python {{{
 autocmd FileType python inoremap ;if if :<Enter><++><Enter><Backspace><++><Esc>2k0t:a
 autocmd FileType python inoremap ;ie if :<Enter><++><Enter>else:<Enter><++><Enter><Backspace><++><Esc>4k0t:a
 autocmd FileType python inoremap ;ir if :<Enter><++><Enter>return<++><Enter><Backspace><++><Esc>3k0t:a
@@ -80,14 +83,16 @@ autocmd FileType python inoremap ;t try :<Enter><++><Enter>except <++>Exception:
 autocmd FileType python inoremap ;c class :<Enter>def __init__(self<++>):<Enter><++><Enter><Backspace><++><Enter><Backspace><++><Esc>4k0t:a
 autocmd FileType python inoremap ;r return<Space>
 autocmd FileType python inoremap ;im if<Space>__name__<Space>==<Space>"__main__":<Enter>
+" }}}
 
-" arduino
+" arduino {{{
 autocmd FileType arduino inoremap ;void void (<++>){<Enter><++><Enter>}<Enter><++><Esc>3k0t(a
 autocmd FileType arduino inoremap ;int int (<++>){<Enter><++><Enter>return <++>;<Enter>}<Enter><++><Esc>4k0t(a
 autocmd FileType arduino inoremap ;if if (){<Enter><++><Enter>}<Enter><++><Esc>3k0t)a
 autocmd FileType arduino inoremap ;d delay();<Enter><++><Esc>k0t)a
 autocmd FileType arduino inoremap ;spr Serial.print();<Enter><++><Esc>k0t)a
 autocmd FileType arduino inoremap ;spl Serial.println();<Enter><++><Esc>k0t)a
+" }}}
 
 " auto-generate shebangs
 autocmd FileType python nnoremap #! ggO#!/usr/bin/env<Space>python3<Esc>

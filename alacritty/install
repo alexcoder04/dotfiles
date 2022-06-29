@@ -41,6 +41,7 @@ key_bindings:
   - { key: Up,    mods: Shift,   mode: ~Alt,        action: ScrollHalfPageUp,  }
   - { key: Down,  mods: Shift,   mode: ~Alt,        action: ScrollHalfPageDown }
 
+# colors {{{
 colors:
   primary:
     background: '$RECONF_COLOR_BLACK'
@@ -75,5 +76,6 @@ colors:
     magenta: '$RECONF_COLOR_DIM_MAGENTA'
     cyan:    '$RECONF_COLOR_DIM_BLUE'
     white:   '$RECONF_COLOR_DIM_WHITE'
+# }}}
 EOF
 

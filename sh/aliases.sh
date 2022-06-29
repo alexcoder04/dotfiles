@@ -8,18 +8,19 @@
 #      
 # shell aliases template
 
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # APT COMMANDS
-# --------------------------------------------------------------------
+# ------------------------------------------------------------------------- {{{
 ABBREVIATION sagi="sudo apt install"
 ABBREVIATION sau="sudo apt update"
 ABBREVIATION saup="sudo apt upgrade"
 ABBREVIATION apts="apt search"
 ABBREVIATION alu="apt list --upgradeable"
+# }}}
 
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # GIT COMMANDS
-# --------------------------------------------------------------------
+# ------------------------------------------------------------------------- {{{
 ABBREVIATION gad="git add"
 ABBREVIATION gada="git add -A"
 ABBREVIATION gbr="git branch"
@@ -35,10 +36,11 @@ ABBREVIATION gpl="git pull --rebase"
 ABBREVIATION grs="git restore"
 ABBREVIATION grau="git remote set-url --add --push origin"
 ABBREVIATION gst="git status"
+# }}}
 
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # BASIC BASIC TERMINAL COMMANDS
-# --------------------------------------------------------------------
+# ------------------------------------------------------------------------- {{{
 # the only thing DOS is superior in: it has a shorter clear command
 alias cls='[ "$(seq 1 3 | shuf -n 1)" = "1" ] && timeout 0.5 cmatrix -u 1 -C cyan; clear'
 
@@ -78,10 +80,11 @@ case "$0" in
   *zsh) alias Exit="disown && exit" ;;
   *bash) alias Exit="disown -a && exit" ;;
 esac
+# }}}
 
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # REBIND SOME STUFF
-# --------------------------------------------------------------------
+# ------------------------------------------------------------------------- {{{
 # everything is neovim
 GLOBAL_ALIAS v="nvim"
 GLOBAL_ALIAS vi="nvim"
@@ -124,4 +127,5 @@ alias sq="WINDOW_MANAGER='qtile start' sx"
 # translator
 ABBREVIATION de:en="trans -shell de:en"
 ABBREVIATION en:de="trans -shell en:de"
+# }}}
 

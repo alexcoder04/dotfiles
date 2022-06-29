@@ -15,7 +15,7 @@ export RECONF_I3_GAPS_OUTER=5
 
 # -----------------------------------------------------------------------------
 # COLORS
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------- {{{
 export RECONF_COLOR_BLACK="#112233"
 export RECONF_COLOR_RED="#F85F46"
 export RECONF_COLOR_GREEN="#2aa7e9"
@@ -46,4 +46,6 @@ export RECONF_COLOR_DIM_BLUE="$RECONF_COLOR_BRIGHT_BLUE"
 export RECONF_COLOR_DIM_MAGENTA="$RECONF_COLOR_BRIGHT_MAGENTA"
 export RECONF_COLOR_DIM_CYAN="$RECONF_COLOR_BRIGHT_CYAN"
 export RECONF_COLOR_DIM_WHITE="#c9d0f8"
+
+# }}}
 

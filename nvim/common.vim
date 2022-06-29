@@ -10,15 +10,17 @@
 
 " -----------------------------------------------------------------------------
 " BASIC SETTINGS
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 filetype plugin indent on
 set fileformat=unix
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 syntax on
 
+" }}}
+
 " -----------------------------------------------------------------------------
 " FILE TYPES
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 " detect
 autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
 autocmd BufEnter $DOTFILES_REPO/i3/blocks*.conf set filetype=dosini
@@ -42,16 +44,20 @@ autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab
 autocmd BufEnter *.sh set tabstop=2 shiftwidth=2 expandtab
 autocmd FileType tex set tw=80
 
+" }}}
+
 " -----------------------------------------------------------------------------
 " SYNTAX
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 autocmd FileType lua syn match luaNspireEvent /on\.\w*/ contained
 autocmd FileType lua syn match luaNspireGc /gc:\(clipRect\|drawArc\|drawImage\|drawLine\|drawPolyLine\|drawRect\|drawString\|fillArc\|fillPolygon\|fillRect\|getStringHeight\|getStringWidth\|setAlpha\|setColorRGB\|setFont\|setPen\)/ contained
 autocmd FileType lua syn match luaNspirePlatform /platform\.window:invalidate/ contained
 
+" }}}
+
 " -----------------------------------------------------------------------------
 " PLUGINS
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 call plug#begin()
 
 " syntax plugins
@@ -72,11 +78,15 @@ endif
 
 call plug#end()
 
+" }}}
+
 " -----------------------------------------------------------------------------
 " APPEARANCE
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 set termguicolors
 set cursorline
 
 source $XDG_CONFIG_HOME/nvim/color.vim
+
+" }}}
 

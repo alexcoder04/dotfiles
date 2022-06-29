@@ -9,12 +9,11 @@
 " custom Neovim colorscheme
 
 hi clear
-
 let g:colors_name="macwal"
 
 " -----------------------------------------------------------------------------
 " GENERAL
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 hi Boolean         guifg=#fc5479
 hi Character       guifg=#ffcc66
 hi link Number Boolean
@@ -35,8 +34,8 @@ hi Error           guifg=#ffcc66 guibg=#112233
 hi ErrorMsg        guifg=#FC2050 guibg=#112233 gui=bold
 hi Exception       guifg=#2aa7e9               gui=bold
 hi Float           guifg=#2573c6
-hi FoldColumn      guifg=#253647 guibg=#112233
-hi link Folded FoldColumn
+hi FoldColumn      guifg=#ffcc66 guibg=#112233
+hi Folded          guifg=#ffcc66 guibg=#112233
 hi Function        guifg=#2aa7e9
 hi Identifier      guifg=#ff9108
 hi Ignore          guifg=#253647 guibg=bg
@@ -96,9 +95,11 @@ hi LineNr          guifg=#a3b1c2
 hi NonText         guifg=#a3b1c2 guibg=NONE
 hi SpecialKey      guifg=#a3b1c2
 
+" }}}
+
 " -----------------------------------------------------------------------------
 " LANGUAGES
-" -----------------------------------------------------------------------------
+" ------------------------------------------------------------------------- {{{
 " Go
 hi goDecimalInt    guifg=#b748bc
 hi goFunction      guifg=#59baee               gui=bold
@@ -138,6 +139,7 @@ hi link shLoop goStatement
 hi link shRange shLoop
 hi link shSet goStatement
 hi link shStatement goStatement
+hi link shCaseBar Statement
 
 " TeX
 hi texTypeSize     guifg=#3d8adb               gui=italic
@@ -199,4 +201,6 @@ hi link luaNspirePlatform luaNspireGc
 
 " Make -> Go
 hi link makeTarget goFunctionCall
+
+" }}}
 
