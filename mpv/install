@@ -3,8 +3,13 @@
 CONFIG_DIR="$XDG_CONFIG_HOME/mpv"
 
 [ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
+[ -d "$CONFIG_DIR/scripts" ] || mkdir -vp "$CONFIG_DIR/scripts"
+[ -d "$CONFIG_DIR/script-opts" ] || mkdir -vp "$CONFIG_DIR/script-opts"
 
 cp -v "./mpv.conf" "$CONFIG_DIR/"
-cp -rv "./script-opts" "$CONFIG_DIR/"
-cp -rv "./scripts" "$CONFIG_DIR/"
+cp -v "./mpv_thumbnail_script.conf" "$CONFIG_DIR/script-opts/mpv_thumbnail_script.conf"
+
+cd ./thumbnails
+./concat_files.py -r -o "$CONFIG_DIR/scripts/mpv_thumbnail_script_client_osc.lua" "cat_osc.json"
+./concat_files.py -r -o "$CONFIG_DIR/scripts/mpv_thumbnail_script_server.lua" "cat_server.json"
 

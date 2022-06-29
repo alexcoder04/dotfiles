@@ -1,0 +1,3 @@
+[submodule "mpv/thumbnails"]
+	path = mpv/thumbnails
+	url = https://github.com/marzzzello/mpv_thumbnail_script.git
