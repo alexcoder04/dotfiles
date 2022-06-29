@@ -40,9 +40,9 @@ hi ULCommandMode guibg=#2573c6 guifg=#e0e4fb gui=bold
 hi ULModified guibg=#112233 guifg=#ffb11a
 hi ULReadonly guibg=#112233 guifg=#F85F46 gui=bold
 hi ULLanguage guibg=#2573c6 guifg=#e0e4fb
-hi ULPosition guibg=#e0e4fb guifg=#112233
-hi UlLine guibg=#e0e4fb guifg=#2573c6
-hi UlLines guibg=#e0e4fb guifg=#b748bc
+hi ULPosition guibg=#253647 guifg=#e0e4fb
+hi UlLine guibg=#253647 guifg=#ffcc66
+hi UlLines guibg=#253647 guifg=#3d8adb
 
 " components
 function ULGetMode()

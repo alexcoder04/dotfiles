@@ -3,9 +3,9 @@
 # ------------------------------------------------------------------
 # SETTINGS
 # ------------------------------------------------------------------
-CONFIG_REPO="${DOTFILES_REPO:-$HOME/Dotfiles}"
-if [ ! -d "$CONFIG_REPO" ]; then
-  echo "$CONFIG_REPO does not exist"
+export DOTFILES_REPO="${DOTFILES_REPO:-$HOME/Dotfiles}"
+if [ ! -d "$DOTFILES_REPO" ]; then
+  echo "$DOTFILES_REPO does not exist"
   exit 1
 fi
 
@@ -13,7 +13,20 @@ fi
 # FUNCTIONS
 # ------------------------------------------------------------------
 install_subfolder(){
-  [ -z "$1" ] && return
+  if [ -z "$1" ]; then
+    echo "\033[31mYou need to provide a package to install\033[0m"
+    exit 1
+  fi
+
+  if [ ! -d "$1" ]; then
+    echo "\033[31m$1 is not a directory\033[0m"
+    return
+  fi
+
+  if [ ! -x "$1/install" ]; then
+    echo "\033[31minstall script for $1 does not exist or is not executable, aborting\033[0m"
+    return
+  fi
 
   if [ -z "$2" ]; then
     if [ -f "$XDG_DATA_HOME/conf-pc-name" ]; then
@@ -28,22 +41,12 @@ install_subfolder(){
     echo "using provided argument for machine name"
   fi
 
-  if [ ! -d "$1" ]; then
-    echo "$1 is not a directory"
-    return
-  fi
-
-  if [ ! -x "$1/install" ]; then
-    echo "install script does not exist or is not executable, aborting."
-    return
-  fi
-
   echo "Sourcing settings..."
   . "./$machine.prefs2"
   . "./themes/$RECONF_THEME/$RECONF_THEME.prefs2"
 
-  cd "$1"
   echo "Installing \033[34m$1\033[0m for \033[33m$machine\033[0m..."
+  cd "$1"
   ./install "$machine"
   cd "$OLDPWD"
 }
@@ -51,11 +54,6 @@ install_subfolder(){
 # ------------------------------------------------------------------
 # ACTUAL SCRIPT
 # ------------------------------------------------------------------
-cd "$CONFIG_REPO"
-if [ -z "$1" ]; then
-  echo "\033[31mYou need to provide a package to install\033[0m"
-  exit 1
-fi
-
-install_subfolder "$1"
+cd "$DOTFILES_REPO"
+install_subfolder "$@"
 
