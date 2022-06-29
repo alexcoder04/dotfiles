@@ -8,31 +8,17 @@
 "                                                          
 " common settings for nvim and nvimpager
 
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " BASIC SETTINGS
-" -------------------------------------------------
-set nocompatible
-set mouse=nv
-set clipboard+=unnamedplus
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-set autoindent
-set fileformat=unix
-set number relativenumber
-set smartcase
-set colorcolumn=80
-set ignorecase
-let mapleader=" "
+" -----------------------------------------------------------------------------
 filetype plugin indent on
+set fileformat=unix
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 syntax on
-if $NVIMCACHE == ""
-  set dir=$HOME/.cache/nvim
-else
-  set dir=$NVIMCACHE
-endif
 
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " FILE TYPES
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " detect
 autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
 autocmd BufEnter $DOTFILES_REPO/i3/blocks*.conf set filetype=dosini
@@ -56,27 +42,25 @@ autocmd BufEnter *.c set tabstop=4 shiftwidth=4 expandtab
 autocmd BufEnter *.sh set tabstop=2 shiftwidth=2 expandtab
 autocmd FileType tex set tw=80
 
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " SYNTAX
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 autocmd FileType lua syn match luaNspireEvent /on\.\w*/ contained
 autocmd FileType lua syn match luaNspireGc /gc:\(clipRect\|drawArc\|drawImage\|drawLine\|drawPolyLine\|drawRect\|drawString\|fillArc\|fillPolygon\|fillRect\|getStringHeight\|getStringWidth\|setAlpha\|setColorRGB\|setFont\|setPen\)/ contained
 autocmd FileType lua syn match luaNspirePlatform /platform\.window:invalidate/ contained
 
-
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " PLUGINS
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 call plug#begin()
 
+" syntax plugins
 Plug 'mboughaba/i3config.vim'
 Plug 'https://git.sr.ht/~sircmpwn/hare.vim'
 Plug 'ap/vim-css-color'
 
 " editor plugins
-let g:load_editor_plugins = get(g:, 'load_editor_plugins', "no")
-if g:load_editor_plugins == "yes"
-  Plug 'itchyny/lightline.vim'
+if get(g:, 'load_editor_plugins', "no") == "yes"
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'luochen1990/rainbow'
 
@@ -88,16 +72,9 @@ endif
 
 call plug#end()
 
-" lightline config
-if g:load_editor_plugins == "yes"
-  source $XDG_CONFIG_HOME/nvim/lightline-env.vim
-  let g:lightline = { 'colorscheme': 'env' }
-  set noshowmode " we don't need to show the mode, lightline takes care of it
-endif
-
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " APPEARANCE
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 set termguicolors
 set cursorline
 

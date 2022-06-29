@@ -1,8 +1,20 @@
+"        _                        _            ___  _  _   
+"   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+"  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+" | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+"  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+" 
+" Copyright (c) 2022 alexcoder04 <alexcoder04@protonmail.com>
+" 
+" custom Neovim colorscheme
 
 hi clear
 
 let g:colors_name="macwal"
 
+" -----------------------------------------------------------------------------
+" GENERAL
+" -----------------------------------------------------------------------------
 hi Boolean         guifg=#fc5479
 hi Character       guifg=#ffcc66
 hi link Number Boolean
@@ -84,7 +96,9 @@ hi LineNr          guifg=#a3b1c2
 hi NonText         guifg=#a3b1c2 guibg=NONE
 hi SpecialKey      guifg=#a3b1c2
 
+" -----------------------------------------------------------------------------
 " LANGUAGES
+" -----------------------------------------------------------------------------
 " Go
 hi goDecimalInt    guifg=#b748bc
 hi goFunction      guifg=#59baee               gui=bold

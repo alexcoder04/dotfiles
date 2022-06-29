@@ -8,16 +8,35 @@
 "                                                          
 " init.vim for NeoVim
 
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
+" BASIC SETTINGS
+" -----------------------------------------------------------------------------
+let mapleader=" "
+set autoindent
+set clipboard+=unnamedplus
+set colorcolumn=80
+set ignorecase
+set mouse=nv
+set nocompatible
+set number relativenumber
+set smartcase
+
+if $NVIMCACHE == ""
+  set dir=$HOME/.cache/nvim
+else
+  set dir=$NVIMCACHE
+endif
+
+" -----------------------------------------------------------------------------
 " PLUGINS
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 let g:load_editor_plugins = "yes"
 
 " plugins themselves are loaded in common.vim
 
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " KEYBINDINGS
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " working with tabs
 nnoremap <leader>g :tabnext<CR>
 nnoremap <leader>G :tabprevious<CR>
@@ -49,9 +68,9 @@ inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
 nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 inoremap :; ;;
 
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " DO STUFF WITH LEADER KEY
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " compile a project
 nnoremap <leader>b :w<CR>:!./build.sh<CR>
 
@@ -68,13 +87,13 @@ if $VIM_HEAVY_PLUGINS == "yes"
 endif
 
 " build LaTeX and MD, run Python
-autocmd FileType tex nnoremap <leader>p :w<CR>:!latex-build "%"<CR>
-autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview -i "%"<CR>
-autocmd FileType markdown nnoremap <leader>P :w<CR>:!md-preview -i "%" -e<CR>
-autocmd BufEnter *.bm.md nnoremap <leader>p :w<CR>:!md-preview -i "%" -t beamer<CR>
 autocmd BufEnter *.bm.md nnoremap <leader>P :w<CR>:!md-preview -i "%" -t beamer -e<CR>
-autocmd FileType python nnoremap <leader>p :w<CR>:!python3 "%"<CR>
+autocmd BufEnter *.bm.md nnoremap <leader>p :w<CR>:!md-preview -i "%" -t beamer<CR>
 autocmd FileType go nnoremap <leader>p :w<CR>:GoRun .<CR>
+autocmd FileType markdown nnoremap <leader>P :w<CR>:!md-preview -i "%" -e<CR>
+autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview -i "%"<CR>
+autocmd FileType python nnoremap <leader>p :w<CR>:!python3 "%"<CR>
+autocmd FileType tex nnoremap <leader>p :w<CR>:!latex-build "%"<CR>
 
 " table mode in MD
 autocmd FileType markdown TableModeEnable
@@ -83,16 +102,17 @@ autocmd FileType markdown nnoremap <leader>tm :TableModeToggle<CR>
 " line width
 nnoremap <leader>ll :set tw=80<CR>
 
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " OTHER CONFIG FILES
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 source $XDG_CONFIG_HOME/nvim/common.vim
 source $XDG_CONFIG_HOME/nvim/snippets.vim
 source $XDG_CONFIG_HOME/nvim/automation.vim
+source $XDG_CONFIG_HOME/nvim/statusline.vim
 
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " OTHER STUFF
-" -------------------------------------------------
+" -----------------------------------------------------------------------------
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-pairs',
