@@ -154,6 +154,9 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     sh -c 'doas /usr/local/bin/brightness lower; pkill -SIGRTMIN+2 "i3blocks|kherson"'
 
+XF86Calculator
+    launch -f python3
+
 XF86AudioMute
     sh -c 'pactl set-sink-mute @DEFAULT_SINK@ toggle; pkill -SIGRTMIN+1 "i3blocks|kherson"'
 XF86AudioMicMute

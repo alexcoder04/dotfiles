@@ -33,3 +33,6 @@ autocmd BufWritePost $DOTFILES_REPO/zsh/* !$DOTFILES_REPO/install zsh
 " copy arduino files to clipboard on save to paste them into Arduino IDE
 autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
 
+" spell-checking in latex
+autocmd FileType tex set spell spelllang=de
+

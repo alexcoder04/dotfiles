@@ -9,6 +9,11 @@ for f in *.vim; do
   sed '/^$/d; /^"/d' "./$f" >"$CONFIG_DIR/$f"
 done
 
+for f in *.template; do
+  echo "./$f > $CONFIG_DIR/${f%.*}"
+  ../reconf <"$f" | sed '/^$/d; /^"/d' >"$CONFIG_DIR/${f%.*}"
+done
+
 echo "Installing nvimpager"
 rm -rfv "$XDG_DATA_HOME/nvimpager"
 mkdir -vp "$XDG_CONFIG_HOME/nvimpager"

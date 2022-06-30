@@ -25,6 +25,7 @@ syntax on
 autocmd BufEnter $DOTFILES_REPO/i3/*.config set filetype=i3config
 autocmd BufEnter $DOTFILES_REPO/i3/blocks*.conf set filetype=dosini
 autocmd BufEnter $DOTFILES_REPO/lf/*lfrc set filetype=config
+autocmd BufEnter $DOTFILES_REPO/nvim/*.template set filetype=vim
 autocmd BufEnter $DOTFILES_REPO/sh/aliases set filetype=sh
 autocmd BufEnter $DOTFILES_REPO/sh/env set filetype=sh
 autocmd BufEnter $XDG_CONFIG_HOME/i3/config set filetype=i3config
@@ -68,7 +69,6 @@ Plug 'ap/vim-css-color'
 " editor plugins
 if get(g:, 'load_editor_plugins', "no") == "yes"
   Plug 'dhruvasagar/vim-table-mode'
-  Plug 'luochen1990/rainbow'
 
   if $VIM_HEAVY_PLUGINS == "yes"
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }

@@ -50,7 +50,17 @@ hi UlLines guibg=#253647 guifg=#3d8adb
 
 " components {{{
 function ULGetMode()
-    return get(s:ul_mode_color_map, mode(), "") . "\ " . get(s:ul_mode_map, mode(), "") .  "\ %#ULDefault#"
+    return "" . get(s:ul_mode_color_map, mode(), "") . "\ " . get(s:ul_mode_map, mode(), "") .  "\ %#ULDefault#"
+endfunction
+
+function ULGetFileName()
+    let fname = expand("%:p")
+    let wsize = winwidth("%")
+    if len(fname) > wsize - 43 " this is pretty arbitrary
+        return "\ %f\ "
+    else
+        return "\ %F\ "
+    endif
 endfunction
 
 function ULGetReadonly()
@@ -80,7 +90,7 @@ endfunction
 " put everything together
 set laststatus=2
 
-set statusline=%{%ULGetMode()%}%{%ULGetReadonly()%}%{%ULGetModified()%}\ %F\ %#Normal#
+set statusline=%{%ULGetMode()%}%{%ULGetReadonly()%}%{%ULGetModified()%}%{%ULGetFileName()%}%#Normal#
 set statusline+=%=
 set statusline+=%{%ULGetFileInfo()%}%#Normal#\ %{%ULGetFilePosition()%}
 

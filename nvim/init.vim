@@ -13,7 +13,7 @@
 " ------------------------------------------------------------------------- {{{
 let mapleader=" "
 set autoindent
-set clipboard+=unnamedplus
+"set clipboard+=unnamedplus " system keyboard
 set colorcolumn=80
 set foldenable
 set foldmethod=marker
@@ -71,6 +71,9 @@ nnoremap S :%s//g<Left><Left>
 inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
 nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 inoremap :; ;;
+
+" system keyboard
+nnoremap <C-c> "*Y :let @+=@*<Enter>
 
 " }}}
 
