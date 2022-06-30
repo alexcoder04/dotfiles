@@ -29,7 +29,7 @@ autocmd FileType html inoremap ;btn <button id=""><++></button><Enter><++><Esc>k
 " }}}
 
 " JS
-autocmd FileType javascript inoremap ;cl console.log();<Enter><++><Esc>k0t(i
+autocmd FileType javascript inoremap ;cl console.log();<Enter><++><Esc>k0f(a
 
 " markdown {{{
 autocmd FileType markdown inoremap ;1 #<Enter><++><Esc>kA<Space>
@@ -71,7 +71,7 @@ autocmd FileType tex inoremap ;us \usepackage{}<Esc>i
 " python {{{
 autocmd FileType python inoremap ;if if :<Enter><++><Enter><Backspace><++><Esc>2k0t:a
 autocmd FileType python inoremap ;ie if :<Enter><++><Enter>else:<Enter><++><Enter><Backspace><++><Esc>4k0t:a
-autocmd FileType python inoremap ;ir if :<Enter><++><Enter>return<++><Enter><Backspace><++><Esc>3k0t:a
+autocmd FileType python inoremap ;ir if :<Enter><++><Enter>return<++><Enter><++><Esc>3k0t:a
 autocmd FileType python inoremap ;l elif :<Enter><++><Enter><Backspace><++><Esc>2k0t:a
 autocmd FileType python inoremap ;e else:<Enter><Backspace><++><Esc>kA<Enter>
 autocmd FileType python inoremap ;f for in <++>:<Enter><++><Enter><Backspace><++><Esc>2k0tii<Space>
