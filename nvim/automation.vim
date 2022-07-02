@@ -19,7 +19,7 @@ autocmd InsertEnter * norm zz
 if $VIM_HEAVY_PLUGINS == "yes"
   autocmd BufWritePre *.js CocCommand prettier.formatFile
   autocmd BufWritePre *.json CocCommand prettier.formatFile
-  autocmd BufWritePre *.css CocCommand prettier.formatFile
+  autocmd BufWritePre *.css,*.scss,*.sass CocCommand prettier.formatFile
 endif
 
 " re-generate config files after editing

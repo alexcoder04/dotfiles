@@ -24,7 +24,6 @@ set shell /bin/sh
 set shellopts '-eu'
 set ifs "\n"
 
-set hiddenfiles ".*:!.local:!.config:!.gitignore"
 set promptfmt "\033[34;1m[ \033[32;1m%u\033[31m@\033[33m%h \033[34;1m]\033[0m in \033[36;1;4m%d\033[0;1;35m%f \033[0m"
 set scrolloff 5
 set truncatechar "…"
@@ -87,6 +86,9 @@ cmd copy-path %{{
 
 cmd q :quit
 
+cmd zen-enable :set hiddenfiles ".*:!.local:!.config:Makefile:README*:LICENSE*:*.1:go.mod:go.sum:__pycache__"
+cmd zen-disable :set hiddenfiles ".*:!.local:!.config:!.gitignore:__pycache__"
+
 # }}}
 
 # -----------------------------------------------------------------------------
@@ -123,6 +125,8 @@ map mm bookmark-create
 map B !cat "$DOTFILES_REPO/bookmarks/source-"* | awk '{print $2}' | sort
 map ( filter
 map ) setfilter ""
+map zz zen-enable
+map ZZ zen-disable
 
 # wallpaper
 map wpa %cp -v "$f" "$XDG_DATA_HOME/backgrounds/my-wallpapers/"
@@ -134,4 +138,5 @@ map wps %wallpaper-select --set "$f"
 # STARTUP
 # -----------------------------------------------------------------------------
 set-columns
+zen-disable
 
