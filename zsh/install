@@ -39,5 +39,3 @@ cd "$pre"
 echo "creating cache dir"
 [ -d "$HOME/.cache/zsh" ] || mkdir -v "$HOME/.cache/zsh"
 
-../install starship
-

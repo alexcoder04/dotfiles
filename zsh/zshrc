@@ -16,17 +16,19 @@
 
 # ---------------------------------------------------------
 # SOURCE OTHER FILES
-# ---------------------------------------------------------
+# --------------------------------------------------------- {{{
 source "$ZDOTDIR/cursor.zsh"
 source "$ZDOTDIR/abbreviations.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/bookmarks.zsh"
 source "$ZDOTDIR/functions.zsh"
+source "$ZDOTDIR/prompt.zsh"
 [ -f "$XDG_CONFIG_HOME/colors.sh" ] && source "$XDG_CONFIG_HOME/colors.sh"
+# }}}
 
 # ---------------------------------------------------------
 # HISTORY CONFIGURATION
-# ---------------------------------------------------------
+# --------------------------------------------------------- {{{
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
@@ -34,20 +36,22 @@ HISTORY_IGNORE="(git add *|git commit *|* _bookmark-ls|mpv http*)"
 HISTFILE="$XDG_CACHE_HOME/zsh/zsh_history"
 HISTSIZE=15000
 SAVEHIST=15000
+# }}}
 
 # ---------------------------------------------------------
 # AUTOCOMPLETION
-# ---------------------------------------------------------
+# --------------------------------------------------------- {{{
 autoload -U compinit
 zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/zshrc"
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 setopt globdots
+# }}}
 
 # ---------------------------------------------------------
 # CD INTO FOLDER SELECTED USING LF OR FZF
-# ---------------------------------------------------------
+# --------------------------------------------------------- {{{
 lfcd(){
   tmp="${TMPDIR:-/tmp}/.lfcd"
   lf -last-dir-path="$tmp" "$@"
@@ -64,10 +68,11 @@ fzfcd(){
   dir="$(eval "echo $dest")"
   [ -d "$dir" ] && cd "$dir"
 }
+# }}}
 
 # ---------------------------------------------------------
 # KEYBINDINGS
-# ---------------------------------------------------------
+# --------------------------------------------------------- {{{
 KEYTIMEOUT=3
 bindkey -v # vi mode
 # vi navigation in menu
@@ -82,21 +87,13 @@ bindkey '^e' edit-command-line
 bindkey -s '^f' 'lfcd\n' # select folder to open with lf
 bindkey -s '^o' 'fzfcd\n' # select folder to open with fzf
 bindkey -s '^b' ' &>/dev/null & disown' # run command in the background
+# }}}
 
 # ---------------------------------------------------------
 # OTHER SETTINGS
 # ---------------------------------------------------------
 setopt autocd
 unsetopt beep extendedglob notify
-
-# ---------------------------------------------------------
-# PROMPT
-# ---------------------------------------------------------
-case "$TERM" in
-  xterm*) export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml" ;;
-  *)      export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship-ascii.toml" ;;
-esac
-eval "$(starship init zsh)"
 
 # ---------------------------------------------------------
 # SYNTAX HIGHLIGHTING

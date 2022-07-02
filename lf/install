@@ -4,13 +4,8 @@ CONFIG_DIR="$HOME/.config/lf"
 
 [ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
 
-[ -f "../themes/$RECONF_THEME/prompt.lfrc" ] \
-    && prompt_file="../themes/$RECONF_THEME/prompt.lfrc" \
-    || prompt_file="./prompt.lfrc"
-
 echo "./*lfrc + bookmarks -> $CONFIG_DIR/lfrc"
 sed '/^$/d; /^#/d' \
-    "$prompt_file" \
     "./lfrc" \
     "./open.lfrc" \
     "./archives.lfrc" \

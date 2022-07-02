@@ -102,6 +102,7 @@ alias ffmpeg="ffmpeg -hide_banner"
 alias free="free -m"
 alias irssi="irssi --config=\"$XDG_CONFIG_HOME/irssi/config\" --home=\"$XDG_DATA_HOME/irssi\""
 alias lsblk="lsblk -f"
+alias mbsync="mbsync -c $XDG_CONFIG_HOME/mbsync/mbsyncrc"
 alias nneomutt="mbsync -a && neomutt"
 
 # handy stuff
