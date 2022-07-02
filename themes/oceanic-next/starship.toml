@@ -1,0 +1,114 @@
+#        _                        _            ___  _  _
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|
+#
+# Copyright (c) 2021-2022 alexcoder04 <https://github.com/alexcoder04>
+#
+# starship (shell prompt) config file powerline theme
+
+add_newline = false
+
+format = """$username[@](bg:red white)[\uE0B8](red bg:yellow)${hostname}[in](bg:white black)$directory$git_status$git_branch using $shell${custom.linux}$python$golang$nodejs
+${custom.chroot}${custom.lf_level}$cmd_duration$jobs$character"""
+
+continuation_prompt = "[\uE0B8 ](blue)"
+
+[username]
+style_user = "black bg:green bold"
+format = "[\uE0BE](green)[$user]($style)[\uE0B8](green bg:red)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+style = "bg:yellow black"
+format =  "[$hostname]($style)[\uE0B8](yellow bg:white)"
+disabled = false
+
+[directory]
+truncation_length = 5
+truncation_symbol = "…/"
+style = "bold bg:cyan"
+read_only_style = "bold bg:cyan"
+read_only = "+STARSHIP_READ_ONLY+"
+home_symbol = "+STARSHIP_HOME+"
+format = "[\uE0BE](bg:white cyan)[$path]($style)[ $read_only]($read_only_style)[\uE0B8](cyan)"
+
+[git_status]
+format = "[\uE0BE](blue)[git:](bg:blue white)[\uE0BE](black bg:blue)[$ahead_behind $staged$untracked$modified$renamed$deleted$conflicted$stashed](bg:black)"
+ahead = "[A](yellow bg:black)"
+behind = "[B](red bg:black)"
+diverged = "[D](red bg:black)"
+up_to_date = "[+STARSHIP_GIT_OK+](green bg:black)"
+conflicted = "[=](red bg:black)"
+untracked = "[?](red bg:black)"
+stashed = "$"
+modified = "[!](red bg:black)"
+staged = "[+](cyan bg:black)"
+renamed = "[>](red bg:black)"
+deleted = "[x](red bg:black)"
+
+[git_branch]
+style = "bg:yellow black"
+symbol = "+STARSHIP_GIT_BRANCH+"
+format = "[\uE0BE](yellow bg:black)[on $symbol$branch]($style)[\uE0B8](yellow)"
+
+[jobs]
+format = "[\uE0BE](purple)[$symbol$number]($style)[\uE0B8](purple) "
+symbol = "+STARSHIP_JOBS+"
+style = "bg:purple bold"
+number_threshold = 1
+
+[character]
+success_symbol = "[\uE0BE](green)[ \\\\ ](bold bg:green)[\uE0B8](green)"
+error_symbol = "[\uE0BE](red)[ ! ](bold bg:red)[\uE0B8](red)"
+vicmd_symbol = "[\uE0BE](blue)[ +STARSHIP_VI+](bold bg:blue)[\uE0B8](blue)"
+
+[cmd_duration]
+style = "bg:yellow black"
+format = "[\uE0BE](yellow)[$duration]($style)[\uE0B8](yellow) "
+
+[localip]
+format = "/[$localipv4]($style)"
+
+[shell]
+format = "[\uE0BE](white)[$indicator]($style)"
+style = "bg:white black"
+disabled = false
+bash_indicator = "+STARSHIP_SHELL_BESH+"
+fish_indicator = "+STARSHIP_SHELL_FISH+"
+zsh_indicator = "+STARSHIP_SHELL_ZSH+"
+
+[python]
+style = "bg:yellow black"
+format = "via [\uE0BE](yellow)[${symbol}${version}]($style)[\uE0B8](yellow)"
+
+[golang]
+style = "bg:blue"
+format = "via [\uE0BE](blue)[${symbol}${version}]($style)[\uE0B8](blue)"
+
+[nodejs]
+style = "bg:green"
+format = "via [\uE0BE](green)[${symbol}${version}]($style)[\uE0B8](green)"
+
+[custom.lf_level]
+command = "[ $LF_LEVEL = 1 ] && echo lf || echo lf$LF_LEVEL"
+when = "[ ! -z $LF_LEVEL ]"
+style = "bg:cyan fg:black"
+format = " [\uE0BE](cyan)[$output]($style)[\uE0B8](cyan)"
+
+[custom.chroot]
+command = "echo chroot"
+when = "ischroot"
+style = "bg:blue fg:black"
+format = "[\uE0BE](blue)[$output]($style)[\uE0B8](blue)"
+
+[custom.linux]
+command = "uname -r | cut -d- -f1"
+format = "[\uE0BE](bg:white purple)[+STARSHIP_LINUX+v$output]($style)[\uE0B8](purple)"
+style = "bg:purple bold"
+when = "true"
+os = "linux"
+

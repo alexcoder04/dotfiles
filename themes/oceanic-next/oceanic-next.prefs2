@@ -1,0 +1,52 @@
+
+# -----------------------------------------------------------------------------
+# MISC
+# -----------------------------------------------------------------------------
+export RECONF_DUNST_CORNER_RADIUS=5
+export RECONF_FONT="Iosevka"
+
+# -----------------------------------------------------------------------------
+# I3
+# -----------------------------------------------------------------------------
+export RECONF_I3_BORDER_WIDTH=3
+export RECONF_I3_FONT="$RECONF_FONT 15"
+export RECONF_I3_GAPS_INNER=7
+export RECONF_I3_GAPS_OUTER=3
+export RECONF_I3_BAR_HEIGHT="height 27"
+
+# -----------------------------------------------------------------------------
+# COLORS
+# ------------------------------------------------------------------------- {{{
+export RECONF_COLOR_BLACK="#1B2B34"
+export RECONF_COLOR_RED="#EC5f67"
+export RECONF_COLOR_GREEN="#99C794"
+export RECONF_COLOR_YELLOW="#FAC863"
+export RECONF_COLOR_BLUE="#6699CC"
+export RECONF_COLOR_MAGENTA="#C594C5"
+export RECONF_COLOR_CYAN="#5FB3B3"
+export RECONF_COLOR_WHITE="#D8DEE9"
+
+export RECONF_COLOR_DARK_GREY="#4F5B66"
+export RECONF_COLOR_LIGHT_GREY="#C0C5CE"
+export RECONF_COLOR_ORANGE="#F99157"
+
+export RECONF_COLOR_BRIGHT_BLACK="$RECONF_COLOR_BLACK"
+export RECONF_COLOR_BRIGHT_RED="#f4a4a8"
+export RECONF_COLOR_BRIGHT_GREEN="#bfdcbc"
+export RECONF_COLOR_BRIGHT_YELLOW="#fcdc9c"
+export RECONF_COLOR_BRIGHT_BLUE="#9fbfdf"
+export RECONF_COLOR_BRIGHT_MAGENTA="#dbbddb"
+export RECONF_COLOR_BRIGHT_CYAN="#97cece"
+export RECONF_COLOR_BRIGHT_WHITE="#fbfbfb"
+
+export RECONF_COLOR_DIM_BLACK="$RECONF_COLOR_BLACK"
+export RECONF_COLOR_DIM_RED="$RECONF_COLOR_BRIGHT_RED"
+export RECONF_COLOR_DIM_GREEN="$RECONF_COLOR_BRIGHT_GREEN"
+export RECONF_COLOR_DIM_YELLOW="$RECONF_COLOR_BRIGHT_YELLOW"
+export RECONF_COLOR_DIM_BLUE="$RECONF_COLOR_BRIGHT_BLUE"
+export RECONF_COLOR_DIM_MAGENTA="$RECONF_COLOR_BRIGHT_MAGENTA"
+export RECONF_COLOR_DIM_CYAN="$RECONF_COLOR_BRIGHT_CYAN"
+export RECONF_COLOR_DIM_WHITE="#CDD3DE"
+
+# }}}
+

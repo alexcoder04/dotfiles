@@ -15,10 +15,9 @@
   green:      +COLOR_GREEN+;
   yellow:     +COLOR_YELLOW+;
   blue:       +COLOR_BLUE+;
-  mangenta:   +COLOR_MAGENTA+;
   cyan:       +COLOR_CYAN+;
-  purple:     +COLOR_PURPLE+;
-  emphasis:   +COLOR_DARK_BLUE+;
+  purple:     +COLOR_MAGENTA+;
+  emphasis:   +COLOR_BLUE+;
   text:       +COLOR_WHITE+;
   fg:         +COLOR_WHITE+;
   bg:         rgba(46, 46, 46, 0.8);

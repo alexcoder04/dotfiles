@@ -2,9 +2,11 @@
 
 echo "default:"
 . "./icons.prefs2"
-echo "./starship.toml -> $XDG_CONFIG_HOME/starship.toml"
-cat "./starship.toml" | ../reconf \
-    > "$XDG_CONFIG_HOME/starship.toml"
+[ -f "../themes/$RECONF_THEME/starship.toml" ] \
+    && file="../themes/$RECONF_THEME/starship.toml" \
+    || file="./starship.toml"
+echo "$file -> $XDG_CONFIG_HOME/starship.toml"
+../reconf <"$file" >"$XDG_CONFIG_HOME/starship.toml"
 
 echo
 

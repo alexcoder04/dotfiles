@@ -1,0 +1,119 @@
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2022 alexcoder04 <alexcoder04@protonmail.com>
+# 
+# kherson (custom i3bar status line generator written in Go) config
+
+Options:
+  PowerlineTheme: true
+  PowerlineSeparator: "\uE0BE"
+
+Modules:
+   - Name: date
+     Pre: " "
+     Post: " "
+     BackgroundColor: "*white"
+     ForegroundColor: "*black"
+     Command: "date"
+     Args: ["+%d.%m.%Y - %R:%S"]
+     Interval: 1
+
+   - Name: battery
+     Command: "i3-battery"
+     Interval: 15
+
+   - Name: bitcoin
+     BackgroundColor: "*green"
+     ForegroundColor: "*black"
+     Pre: " "
+     Command: "sh"
+     Args: ['-c', '[ "$BLOCK_BUTTON" = 1 ] && notify-send "Crypto prices" "$(bitcoinprice -c BTC -sni)\n$(bitcoinprice -c XMR -sni)"; bitcoinprice -s']
+     Interval: 1200
+
+   - Name: volume
+     Post: " "
+     Command: "i3-volume"
+     BackgroundColor: "*magenta"
+     ForegroundColor: "*black"
+     Interval: 20
+     Signal: 1
+
+   - Name: cpu
+     BackgroundColor: "*yellow"
+     ForegroundColor: "*black"
+     Pre: " "
+     Post: " "
+     Command: "cpustat"
+     Interval: 2
+
+   - Name: temp
+     BackgroundColor: "*bright_grey"
+     ForegroundColor: "*black"
+     Command: "i3-temp"
+     Post: " "
+     Interval: 7
+
+   - Name: mem
+     BackgroundColor: "*cyan"
+     ForegroundColor: "*black"
+     Pre: "  "
+     Post: " "
+     Command: "ramstate"
+     Args: ["--with-shared"]
+     Interval: 13
+
+   - Name: wifi
+     Pre: " "
+     Post: " "
+     Command: "i3-internet"
+     Interval: 15
+     Markup: pango
+
+   - Name: updates
+     BackgroundColor: "*magenta"
+     ForegroundColor: "*black"
+     Command: "sh"
+     Args: ['-c', 'u="$(checkupdates | wc -l)"; [ "$u" = 0 ] || echo "  $u "']
+     Interval: 3600
+
+   - Name: scrcord
+     Command: "i3-scrcord"
+     Interval: 1800
+     Signal: 3
+     Markup: pango
+
+   - Name: disk
+     BackgroundColor: "*yellow"
+     ForegroundColor: "*black"
+     Pre: "  "
+     Post: " "
+     Command: "diskspacecheck"
+     Interval: 1200
+
+   - Name: brightness
+     Command: "i3-brightness"
+     Interval: 30
+     Signal: 2
+
+   - Name: kernel
+     BackgroundColor: "*magenta"
+     ForegroundColor: "*black"
+     Pre: " "
+     Post: " "
+     Command: "sh"
+     Args: ["-c", "uname -r | cut -d- -f1"]
+     Interval: 3600
+
+   - Name: dispserver
+     BackgroundColor: "*blue"
+     ForegroundColor: "*black"
+     Pre: " "
+     Post: " "
+     Command: "sh"
+     Args: ["-c", '[ "$BLOCK_BUTTON" = 1 ] && notify-send "$XDG_SESSION_TYPE" "$(get_desktop)"; echo "$XDG_SESSION_TYPE" | head -c 1 | tr "[:lower:]" "[:upper:]"; echo']
+     Interval: 3600
+

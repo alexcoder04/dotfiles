@@ -27,6 +27,6 @@ export RECONF_PRE_X=""
 export RECONF_SECOND_MONITOR_POSITION="right"
 
 # other
-export RECONF_THEME="macwal"
+export RECONF_THEME="oceanic-next"
 export RECONF_VIM_HEAVY_PLUGINS="yes"
 
