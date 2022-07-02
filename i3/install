@@ -61,7 +61,10 @@ install_bumblebee-status(){
 install_kherson(){
     config_folder="${XDG_CONFIG_HOME:-$HOME/.config}/kherson"
     mkdir -vp "$config_folder"
-    cp -v "./kherson.yml" "$config_folder/config.yml"
+    [ -f "../themes/$RECONF_THEME/kherson.$RECONF_THEME.yml" ] \
+      && config_file="../themes/$RECONF_THEME/kherson.$RECONF_THEME.yml" \
+      || config_file="./kherson.yml"
+    cp -v "$config_file" "$config_folder/config.yml"
 }
 
 case "$RECONF_I3_MODE" in

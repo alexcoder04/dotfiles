@@ -33,7 +33,8 @@ remember(){
     ascii) show_image_url "https://www.translationroyale.com/wp-content/uploads/2020/02/ASCII-Table-The-History-of-Unicode-and-Its-Role-in-the-Digital-World-Translation-Royale-1024x959.png" ;;
     raspi-pins) show_image_url "https://i1.wp.com/mbrobotics.es/blog/wp-content/uploads/2018/05/Raspberry-GPIO-Pins_B_plus.jpg" ;;
     latex-colors) show_image_url "https://sharelatex-wiki-cdn-671420.c.cdn77.org/learn-scripts/images/d/d3/ColoursEx6.png" ;;
-    list | help | --help) echo "ascii, raspi-pins, latex-colors" ;;
+    powerline) show_image_url "https://raw.githubusercontent.com/ryanoasis/powerline-extra-symbols/master/img/fontforge.png" ;;
+    list | help | --help) echo "ascii, raspi-pins, latex-colors, powerline" ;;
     *) echo "invalid argument" ;;
   esac
 }
