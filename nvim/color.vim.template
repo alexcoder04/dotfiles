@@ -204,3 +204,19 @@ hi link makeTarget goFunctionCall
 
 " }}}
 
+" -----------------------------------------------------------------------------
+" STATUSLINE
+" ------------------------------------------------------------------------- {{{
+hi ULDefault guibg=+COLOR_BLACK+ guifg=+COLOR_WHITE+
+hi ULNormalMode guibg=+COLOR_BLUE+ guifg=+COLOR_WHITE+ gui=bold
+hi ULInsertMode guibg=+COLOR_GREEN+ guifg=+COLOR_BLACK+ gui=bold
+hi ULVisualMode guibg=+COLOR_YELLOW+ guifg=+COLOR_BLACK+ gui=bold
+hi ULCommandMode guibg=+COLOR_CYAN+ guifg=+COLOR_WHITE+ gui=bold
+hi ULModified guibg=+COLOR_BLACK+ guifg=+COLOR_YELLOW+
+hi ULReadonly guibg=+COLOR_BLACK+ guifg=+COLOR_RED+ gui=bold
+hi ULLanguage guibg=+COLOR_CYAN+ guifg=+COLOR_WHITE+
+hi ULPosition guibg=+COLOR_DARK_GREY+ guifg=+COLOR_WHITE+
+hi UlLine guibg=+COLOR_DARK_GREY+ guifg=+COLOR_BRIGHT_YELLOW+
+hi UlLines guibg=+COLOR_DARK_GREY+ guifg=+COLOR_BRIGHT_CYAN+
+" }}}
+
