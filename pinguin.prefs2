@@ -4,8 +4,8 @@
 # -----------------------------------------------------------------------------
 
 # paths
-export RECONF_SCRIPTS_DIR="$HOME/Scripts"
 export RECONF_DOTFILES_REPO="$HOME/Dotfiles"
+export RECONF_SCRIPTS_DIR="$HOME/Scripts"
 
 # programs
 export RECONF_BROWSER_MAIN="qutebrowser"

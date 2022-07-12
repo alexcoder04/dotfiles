@@ -12,6 +12,6 @@ export RECONF_EDITOR_MAIN="nvim"
 export RECONF_PAGER="less"
 
 # other
-export RECONF_COLORSCHEME="gruvbox"
+export RECONF_THEME="oceanic-next"
 export RECONF_VIM_HEAVY_PLUGINS="no"
 
