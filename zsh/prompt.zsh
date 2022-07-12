@@ -14,7 +14,7 @@
 # --------------------------------------------------------- {{{
 _prompt_check_git(){
   [ -d ".git" ] || return
-  echo "on %F{yellow}  $(git branch | cut -d" " -f2)%f"
+  echo "on %F{yellow}  $(git branch | grep -E "^\\* " | cut -d" " -f2)%f"
 }
 
 _prompt_check_chroot(){
@@ -35,7 +35,7 @@ _prompt_check_pwd() {
 # VI/INSERT MODE INDICATOR
 # --------------------------------------------------------- {{{
 # from http://pawelgoscicki.com/archives/2012/09/vi-mode-indicator-in-zsh-prompt/
-vim_ins_mode="%(?.%F{green}%f.%F{red}%f)"
+vim_ins_mode="%(?.%F{green} %f.%F{red} %f)"
 vim_cmd_mode="%F{blue}%f"
 vim_mode=$vim_ins_mode
 

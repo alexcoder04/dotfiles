@@ -3,7 +3,7 @@
 # MISC
 # -----------------------------------------------------------------------------
 export RECONF_DUNST_CORNER_RADIUS=5
-export RECONF_FONT="Iosevka"
+export RECONF_FONT="JetBrainsMono Nerd Font"
 
 # -----------------------------------------------------------------------------
 # I3

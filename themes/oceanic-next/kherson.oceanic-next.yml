@@ -10,7 +10,7 @@
 
 Options:
   PowerlineTheme: true
-  PowerlineSeparator: "\uE0BE"
+  PowerlineSeparator: "\uE0B2"
 
 Modules:
    - Name: date

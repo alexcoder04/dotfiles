@@ -195,12 +195,19 @@ di=01;34:\
 # ----- ignored/dimmed files
 .git/=02:\
 .gitignore*=02:\
+.gitattributes*=02:\
+*.bak=02:\
+.env*=02:\
 node_modules/=02:\
 # project files
 Makefile*=02;33:\
 PKGBUILD*=02;33:\
 go.mod*=02;33:\
 go.sum*=02;33:\
+package.json*=02;33:\
+package-lock.json*=02;33:\
+Dockerfile*=02;33:\
+Procfile*=02;33:\
 # ----- text documents
 README*=33:\
 LICENSE.*=33:\

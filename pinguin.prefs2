@@ -24,7 +24,7 @@ export RECONF_I3_BAR_HEIGHT="height 25"
 export RECONF_BARS_LAUNCHER_COMMAND="killall polybar"
 export RECONF_KEYBOARD_LAYOUT="de"
 export RECONF_PRE_X=""
-export RECONF_SECOND_MONITOR_POSITION="right"
+export RECONF_SECOND_MONITOR_POSITION="left"
 
 # other
 export RECONF_THEME="oceanic-next"

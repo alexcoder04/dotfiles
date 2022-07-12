@@ -101,7 +101,7 @@ alias duf="duf -theme ansi -hide-fs devtmpfs -hide-mp /sys/fs/cgroup --avail-thr
 alias ffmpeg="ffmpeg -hide_banner"
 alias free="free -m"
 alias irssi="irssi --config=\"$XDG_CONFIG_HOME/irssi/config\" --home=\"$XDG_DATA_HOME/irssi\""
-alias lsblk="lsblk -f"
+alias lsblk="lsblk -o NAME,FSTYPE,LABEL,UUID,SIZE,FSAVAIL,FSUSE%,MOUNTPOINT"
 alias mbsync="mbsync -c $XDG_CONFIG_HOME/mbsync/mbsyncrc"
 alias nneomutt="mbsync -a && neomutt"
 
@@ -118,15 +118,11 @@ alias newsboat="newsboat-selector"
 command -v lf_run >/dev/null && alias lf="lf_run"
 
 # Working with disks
-ABBREVIATION umount-luks="sudo umount /media/drive && sudo cryptsetup close drive"
-ABBREVIATION driveoff="sudo hdparm -Y"
+alias umount-luks="sudo umount /media/drive && sudo cryptsetup close drive"
+alias driveoff="sudo hdparm -Y"
 
-# sx starts up Xorg, so sw starts up Wayland (Sway) xD
+# SX Starts Xorg, so SW Starts Wayland (SWay) xD
 alias sw="sway"
 alias sq="WINDOW_MANAGER='qtile start' sx"
-
-# translator
-ABBREVIATION de:en="trans -shell de:en"
-ABBREVIATION en:de="trans -shell en:de"
 # }}}
 

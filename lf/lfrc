@@ -86,8 +86,8 @@ cmd copy-path %{{
 
 cmd q :quit
 
-cmd zen-enable :set hiddenfiles ".*:!.local:!.config:Makefile:README*:LICENSE*:*.1:go.mod:go.sum:__pycache__"
-cmd zen-disable :set hiddenfiles ".*:!.local:!.config:!.gitignore:__pycache__"
+cmd zen-enable :set hiddenfiles ".*:!.local:!.config:Makefile:README*:LICENSE*:*.1:go.mod:go.sum:__pycache__:node_modules:package*.json:Procfile:Dockerfile"
+cmd zen-disable :set hiddenfiles ".*:!.local:!.config:!.gitignore:__pycache__:node_modules"
 
 # }}}
 

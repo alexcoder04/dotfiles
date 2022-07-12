@@ -72,6 +72,8 @@ super + shift + e
 # Z: reserved for window manager
 super + i
     internet-search
+super + shift + i
+    qute-open
 super + p
     launch -f python
 super + plus
