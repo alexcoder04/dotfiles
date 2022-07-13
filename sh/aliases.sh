@@ -121,6 +121,9 @@ command -v lf_run >/dev/null && alias lf="lf_run"
 alias umount-luks="sudo umount /media/drive && sudo cryptsetup close drive"
 alias driveoff="sudo hdparm -Y"
 
+# sh prompt
+GLOBAL_ALIAS sh="PS1='$PWD \$ ' sh"
+
 # SX Starts Xorg, so SW Starts Wayland (SWay) xD
 alias sw="sway"
 alias sq="WINDOW_MANAGER='qtile start' sx"

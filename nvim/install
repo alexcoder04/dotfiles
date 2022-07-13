@@ -1,8 +1,10 @@
 #!/bin/sh
 
 CONFIG_DIR="$XDG_CONFIG_HOME/nvim"
+PAGER_DIR="$XDG_CONFIG_HOME/nvimpager"
 
-[ -d "$CONFIG_DIR" ] || mkdir -p "$CONFIG_DIR"
+# NVIM {{{
+[ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
 
 for f in *.vim; do
   echo "./$f > $CONFIG_DIR/$f"
@@ -14,10 +16,20 @@ for f in *.template; do
   ../reconf <"$f" | sed '/^$/d; /^"/d' >"$CONFIG_DIR/${f%.*}"
 done
 
+cp -rvu "./ftdetect" "$CONFIG_DIR"
+cp -rvu "./ftplugin" "$CONFIG_DIR"
+cp -rvu "./syntax" "$CONFIG_DIR"
+# }}}
+
+# NVIMPAGER {{{
 echo "Installing nvimpager"
-rm -rfv "$XDG_DATA_HOME/nvimpager"
-mkdir -vp "$XDG_CONFIG_HOME/nvimpager"
-ln -sv "$XDG_DATA_HOME/nvim" "$XDG_DATA_HOME/nvimpager"
-echo "./common.vim > $XDG_CONFIG_HOME/nvimpager/init.vim"
-sed '/^$/d; /^"/d' "./common.vim" >"$XDG_CONFIG_HOME/nvimpager/init.vim"
+
+[ -d "$PAGER_DIR" ] || mkdir -vp "$PAGER_DIR"
+
+echo "./common.vim > $PAGER_DIR/init.vim"
+sed '/^$/d; /^"/d' "./common.vim" >"$PAGER_DIR/init.vim"
+
+[ -e "$PAGER_DIR/ftdetect" ] || ln -sv "$CONFIG_DIR/ftdetect" "$PAGER_DIR/ftdetect"
+[ -e "$PAGER_DIR/syntax" ] || ln -sv "$CONFIG_DIR/syntax" "$PAGER_DIR/syntax"
+# }}}
 

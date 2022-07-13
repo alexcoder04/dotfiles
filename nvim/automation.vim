@@ -22,17 +22,14 @@ if $VIM_HEAVY_PLUGINS == "yes"
   autocmd BufWritePre *.css,*.scss,*.sass CocCommand prettier.formatFile
 endif
 
+" markdown table mode
+autocmd FileType markdown TableModeEnable
+
 " re-generate config files after editing
 autocmd BufWritePost $DOTFILES_REPO/bash/bashrc !$DOTFILES_REPO/install bash
 autocmd BufWritePost $DOTFILES_REPO/cron/crontab !$DOTFILES_REPO/install cron
 autocmd BufWritePost $DOTFILES_REPO/lf/*lfrc,$DOTFILES_REPO/lf/previewer.sh !$DOTFILES_REPO/install lf
 autocmd BufWritePost $DOTFILES_REPO/nvim/*.vim,$DOTFILES_REPO/nvim/*.template !$DOTFILES_REPO/install nvim
 autocmd BufWritePost $DOTFILES_REPO/qutebrowser/config.py !$DOTFILES_REPO/install qutebrowser
-autocmd BufWritePost $DOTFILES_REPO/zsh/* !$DOTFILES_REPO/install zsh
-
-" copy arduino files to clipboard on save to paste them into Arduino IDE
-autocmd BufWritePost *.ino !cat "%" | xclip -selection clipboard
-
-" spell-checking in latex
-autocmd FileType tex set spell spelllang=de
+autocmd BufWritePost $DOTFILES_REPO/zsh/*.zsh,$DOTFILES_REPO/zsh/z* !$DOTFILES_REPO/install zsh
 

@@ -15,13 +15,12 @@ let mapleader=" "
 set autoindent
 set clipboard+=unnamedplus " system keyboard
 set colorcolumn=80
-set foldenable
-set foldmethod=marker
-set ignorecase
+set foldenable foldmethod=marker
+set ignorecase smartcase
 set mouse=nv
 set nocompatible
 set number relativenumber
-set smartcase
+set timeoutlen=500
 
 if $NVIMCACHE == ""
   set dir=$HOME/.cache/nvim
@@ -83,9 +82,6 @@ inoremap :; ;;
 " compile a project
 nnoremap <leader>b :w<CR>:!./build.sh<CR>
 
-" add a vim setings line for tabs=2
-nnoremap <leader>t2 ggo#<Space>vim:<Space>tabstop=2<Space>shiftwidth=2<Space>expandtab<Esc>
-
 " add nice copyright note
 nnoremap <leader>cp gg:r<Space>~/Repos/alexcoder04/copyright-note-template<CR>
 
@@ -98,15 +94,6 @@ endif
 " build LaTeX and MD, run Python
 autocmd BufEnter *.bm.md nnoremap <leader>P :w<CR>:!md-preview -i "%" -t beamer -e<CR>
 autocmd BufEnter *.bm.md nnoremap <leader>p :w<CR>:!md-preview -i "%" -t beamer<CR>
-autocmd FileType go nnoremap <leader>p :w<CR>:GoRun .<CR>
-autocmd FileType markdown nnoremap <leader>P :w<CR>:!md-preview -i "%" -e<CR>
-autocmd FileType markdown nnoremap <leader>p :w<CR>:!md-preview -i "%"<CR>
-autocmd FileType python nnoremap <leader>p :w<CR>:!python3 "%"<CR>
-autocmd FileType tex nnoremap <leader>p :w<CR>:!latex-build "%"<CR>
-
-" table mode in MD
-autocmd FileType markdown TableModeEnable
-autocmd FileType markdown nnoremap <leader>tm :TableModeToggle<CR>
 
 " line width
 nnoremap <leader>ll :set tw=80<CR>
@@ -117,7 +104,6 @@ nnoremap <leader>ll :set tw=80<CR>
 " OTHER CONFIG FILES
 " ------------------------------------------------------------------------- {{{
 source $XDG_CONFIG_HOME/nvim/common.vim
-source $XDG_CONFIG_HOME/nvim/snippets.vim
 source $XDG_CONFIG_HOME/nvim/automation.vim
 source $XDG_CONFIG_HOME/nvim/statusline.vim
 " }}}
@@ -125,22 +111,22 @@ source $XDG_CONFIG_HOME/nvim/statusline.vim
 " -----------------------------------------------------------------------------
 " OTHER STUFF
 " ------------------------------------------------------------------------- {{{
-" coc config
-let g:coc_global_extensions = [
-  \ 'coc-pairs',
-  \ 'coc-snippets',
-  \ 'coc-prettier',
-  \ 'coc-json',
-  \ 'coc-html',
-  \ 'coc-css',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
-  \ 'coc-pyright',
-  \ 'coc-go'
-  \ ]
-
-" go stuff
 if $VIM_HEAVY_PLUGINS == "yes"
+" coc config
+  let g:coc_global_extensions = [
+    \ 'coc-pairs',
+    \ 'coc-snippets',
+    \ 'coc-prettier',
+    \ 'coc-json',
+    \ 'coc-html',
+    \ 'coc-css',
+    \ 'coc-tsserver',
+    \ 'coc-eslint',
+    \ 'coc-pyright',
+    \ 'coc-go'
+    \ ]
+
+  " go stuff
   let g:go_highlight_types = 1
   let g:go_highlight_fields = 1
   let g:go_highlight_functions = 1

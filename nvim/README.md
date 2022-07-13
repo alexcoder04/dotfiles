@@ -11,7 +11,7 @@ as a syntax-highlighting cat replacement.
 ## Some of the key features
 
  - Coc plugin
- - lightline.vim plugin
+ - custom statusline
  - custom bindings for navigating tabs and splits
  - building previews for MD files (handled by extra script)
  - auto-install most important of my dotfiles after editing
