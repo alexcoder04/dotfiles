@@ -40,7 +40,7 @@ hi link iCursor Cursor
 call MyHL('Debug', $COLOR_LIGHT_GREY, '', 'bold')
 call MyHL('Define', $COLOR_GREEN, '', '')
 hi link Delimiter Debug
-call MyHL('Directory', $COLOR_GREEN, '', 'bold')
+call MyHL('Directory', $COLOR_BLUE, '', 'bold')
 call MyHL('Error', $COLOR_BRIGHT_YELLOW, $COLOR_BLACK, '')
 call MyHL('ErrorMsg', $COLOR_MAGENTA, $COLOR_BLACK, 'bold')
 call MyHL('Exception', $COLOR_GREEN, '', 'bold')
@@ -124,6 +124,9 @@ hi link goFloat goDecimalInt
 hi link goFloats goType
 hi link goRepeat goStatement
 hi link goSignedInts goType
+hi link goTypeConstructor goType
+hi link goTypeName goType
+hi link goExtraType goType
 hi link goUnsignedInts goType
 
 " Vim
@@ -197,6 +200,7 @@ call MyHL('tomlTable', $COLOR_BRIGHT_GREEN, '', 'bold')
 hi link nroffReqName nroffReqLeader
 
 " HTML -> Markdown
+call MyHL('htmlArg', $COLOR_GREEN, '', 'italic')
 hi link htmlLink markdownLinkText
 hi link htmlEndTag htmlTag
 
@@ -212,12 +216,21 @@ hi link luaNspireEvent luaNspireGc
 hi link luaNspirePlatform luaNspireGc
 
 " Make -> Go
+call MyHL('makeIdent', $COLOR_BLUE, '', '')
+call MyHL('makeCommands', $COLOR_MAGENTA, '', '')
 hi link makeTarget goFunctionCall
 
 " Diff
 call MyHL('DiffFile', $COLOR_BLUE, '', 'bold')
 call MyHL('DiffRemoved', $COLOR_RED, '', 'italic')
 call MyHL('DiffAdded', $COLOR_GREEN, '', '')
+
+" SASS
+call MyHL('sassClass', $COLOR_BLUE, '', 'bold')
+
+" C -> Go
+hi link cType goType
+hi link cPreCondit cDefine
 
 " }}}
 
