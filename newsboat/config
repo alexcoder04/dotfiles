@@ -12,7 +12,7 @@
 # newsboat (RSS reader) config
 
 auto-reload no
-reload-threads 32
+reload-threads 64
 
 browser "sh -c 'qutebrowser %u >/dev/null 2>&1 &'"
 
@@ -23,10 +23,10 @@ external-url-viewer "newsboat-iv"
 bind-key I show-urls
 
 color info cyan white bold
-color listnormal blue default
-color listnormal_unread red default
-color listfocus green black standout bold
-color listfocus_unread black yellow bold
+color listnormal white default
+color listnormal_unread blue default
+color listfocus green black bold
+color listfocus_unread yellow black bold
 color article white default bold
 
 unbind-key j

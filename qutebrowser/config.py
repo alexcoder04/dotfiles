@@ -88,6 +88,7 @@ c.colors.tabs.selected.even.bg = MY_GREEN
 c.colors.tabs.selected.even.fg = MY_BLACK
 c.colors.tabs.selected.odd.bg = MY_GREEN
 c.colors.tabs.selected.odd.fg = MY_BLACK
+c.colors.webpage.darkmode.enabled = True
 
 # fonts
 c.fonts.default_family = getenv("FONT", "Inconsolata")

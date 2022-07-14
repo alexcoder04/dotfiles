@@ -40,10 +40,6 @@ hi link iCursor Cursor
 call MyHL('Debug', $COLOR_LIGHT_GREY, '', 'bold')
 call MyHL('Define', $COLOR_GREEN, '', '')
 hi link Delimiter Debug
-call MyHL('DiffAdd', $COLOR_GREEN, '', '')
-call MyHL('DiffChange', $COLOR_LIGHT_GREY, '', '')
-call MyHL('DiffDelete', $COLOR_RED, '', '')
-call MyHL('DiffText', '', '', 'italic,bold')
 call MyHL('Directory', $COLOR_GREEN, '', 'bold')
 call MyHL('Error', $COLOR_BRIGHT_YELLOW, $COLOR_BLACK, '')
 call MyHL('ErrorMsg', $COLOR_MAGENTA, $COLOR_BLACK, 'bold')
@@ -217,6 +213,11 @@ hi link luaNspirePlatform luaNspireGc
 
 " Make -> Go
 hi link makeTarget goFunctionCall
+
+" Diff
+call MyHL('DiffFile', $COLOR_BLUE, '', 'bold')
+call MyHL('DiffRemoved', $COLOR_RED, '', 'italic')
+call MyHL('DiffAdded', $COLOR_GREEN, '', '')
 
 " }}}
 

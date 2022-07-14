@@ -18,7 +18,6 @@ set colorcolumn=80
 set foldenable foldmethod=marker
 set ignorecase smartcase
 set mouse=nv
-set nocompatible
 set number relativenumber
 set timeoutlen=500
 
