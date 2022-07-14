@@ -58,7 +58,14 @@ preview_pdf(){
     draw "$cache_file.jpg" "$@"
   # as text on wayland
   else
-    pdftotext -l 5 "$file" -
+    if [ "$(pdftotext -l 3 "$file" - | wc -l)" = 0 ]; then
+      #echo "\033[35mNo text found in this pdf\033[0m"
+      cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' "$file" | sha256sum | cut -d" " -f1)"
+      [ -f "$cache_file" ] || pdftoppm -jpeg -singlefile "$file" "$cache_file"
+      timg -g "${3}x${2}" "$cache_file.jpg"
+      return
+    fi
+    pdftotext -l 3 "$file" -
   fi
 }
 # }}}

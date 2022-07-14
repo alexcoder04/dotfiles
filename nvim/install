@@ -4,21 +4,18 @@ CONFIG_DIR="$XDG_CONFIG_HOME/nvim"
 PAGER_DIR="$XDG_CONFIG_HOME/nvimpager"
 
 # NVIM {{{
-[ -d "$CONFIG_DIR" ] || mkdir -vp "$CONFIG_DIR"
+create_symlink(){
+  ln -sv "$DOTFILES_REPO/nvim" "$CONFIG_DIR"
+}
 
-for f in *.vim; do
-  echo "./$f > $CONFIG_DIR/$f"
-  sed '/^$/d; /^"/d' "./$f" >"$CONFIG_DIR/$f"
-done
-
-for f in *.template; do
-  echo "./$f > $CONFIG_DIR/${f%.*}"
-  ../reconf <"$f" | sed '/^$/d; /^"/d' >"$CONFIG_DIR/${f%.*}"
-done
-
-cp -rvu "./ftdetect" "$CONFIG_DIR"
-cp -rvu "./ftplugin" "$CONFIG_DIR"
-cp -rvu "./syntax" "$CONFIG_DIR"
+if [ ! -e "$CONFIG_DIR" ]; then
+  create_symlink
+else
+  if [ ! -h "$CONFIG_DIR" ] || [ ! "$(readlink "$CONFIG_DIR")" = "$DOTFILES_REPO/nvim" ]; then
+    rm -rfv "$CONFIG_DIR"
+    create_symlink
+  fi
+fi
 # }}}
 
 # NVIMPAGER {{{
@@ -26,10 +23,10 @@ echo "Installing nvimpager"
 
 [ -d "$PAGER_DIR" ] || mkdir -vp "$PAGER_DIR"
 
-echo "./common.vim > $PAGER_DIR/init.vim"
-sed '/^$/d; /^"/d' "./common.vim" >"$PAGER_DIR/init.vim"
+[ -e "$PAGER_DIR/init.vim" ] || ln -sv "$CONFIG_DIR/common.vim" "$PAGER_DIR/init.vim"
 
 [ -e "$PAGER_DIR/ftdetect" ] || ln -sv "$CONFIG_DIR/ftdetect" "$PAGER_DIR/ftdetect"
 [ -e "$PAGER_DIR/syntax" ] || ln -sv "$CONFIG_DIR/syntax" "$PAGER_DIR/syntax"
+[ -e "$PAGER_DIR/colors" ] || ln -sv "$CONFIG_DIR/colors" "$PAGER_DIR/colors"
 # }}}
 

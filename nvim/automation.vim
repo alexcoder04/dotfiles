@@ -29,7 +29,6 @@ autocmd FileType markdown TableModeEnable
 autocmd BufWritePost $DOTFILES_REPO/bash/bashrc !$DOTFILES_REPO/install bash
 autocmd BufWritePost $DOTFILES_REPO/cron/crontab !$DOTFILES_REPO/install cron
 autocmd BufWritePost $DOTFILES_REPO/lf/*lfrc,$DOTFILES_REPO/lf/previewer.sh !$DOTFILES_REPO/install lf
-autocmd BufWritePost $DOTFILES_REPO/nvim/*.vim,$DOTFILES_REPO/nvim/*.template !$DOTFILES_REPO/install nvim
 autocmd BufWritePost $DOTFILES_REPO/qutebrowser/config.py !$DOTFILES_REPO/install qutebrowser
 autocmd BufWritePost $DOTFILES_REPO/zsh/*.zsh,$DOTFILES_REPO/zsh/z* !$DOTFILES_REPO/install zsh
 

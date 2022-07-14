@@ -34,11 +34,11 @@ let s:ul_mode_color_map = {
 " }}}
 
 " components {{{
-function ULGetMode()
+function! ULGetMode()
     return "" . get(s:ul_mode_color_map, mode(), "") . "\ " . get(s:ul_mode_map, mode(), "") .  "\ %#ULDefault#"
 endfunction
 
-function ULGetFileName()
+function! ULGetFileName()
     let fname = expand("%:p")
     let wsize = winwidth("%")
     if len(fname) > wsize - 43 " this is pretty arbitrary
@@ -48,25 +48,25 @@ function ULGetFileName()
     endif
 endfunction
 
-function ULGetReadonly()
+function! ULGetReadonly()
     if &readonly == 1
         return "%#ULReadonly#\ [RO]%#ULDefault#"
     endif
     return ""
 endfunction
 
-function ULGetModified()
+function! ULGetModified()
     if &modified == 1
         return "%#ULModified#\ [M]%#ULDefault#"
     endif
     return ""
 endfunction
 
-function ULGetFileInfo()
+function! ULGetFileInfo()
     return "%#ULDefault#[\ %#ULLanguage#" . toupper(&filetype) . "%#ULDefault#\ |\ " . &fileencoding . "\ |\ " . &fileformat . "\ ]"
 endfunction
 
-function ULGetFilePosition()
+function! ULGetFilePosition()
     return "%#UlPosition#%3(%c%):%#UlLine#%3(%l%)%#UlPosition#/%#UlLines#%L%#UlPosition#\ (%3(%p%)%%)"
 endfunction
 

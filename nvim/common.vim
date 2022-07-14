@@ -48,7 +48,8 @@ call plug#end()
 set termguicolors
 set cursorline
 
-source $XDG_CONFIG_HOME/nvim/color.vim
+" custom colorscheme which loads colors from environmental variables
+colorscheme env
 
 " }}}
 

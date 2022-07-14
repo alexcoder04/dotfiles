@@ -71,14 +71,6 @@ inoremap ;; <Esc>:set<Space>nohlsearch<CR>/<++><CR>"_c4l
 nnoremap <Space><Space> :set<Space>nohlsearch<CR>/<++><CR>"_c4l
 inoremap :; ;;
 
-" system keyboard
-"nnoremap <C-c> "*Y :let @+=@*<Enter>
-
-" }}}
-
-" -----------------------------------------------------------------------------
-" DO STUFF WITH LEADER KEY
-" ------------------------------------------------------------------------- {{{
 " compile a project
 nnoremap <leader>b :w<CR>:!./build.sh<CR>
 
@@ -97,6 +89,11 @@ autocmd BufEnter *.bm.md nnoremap <leader>p :w<CR>:!md-preview -i "%" -t beamer<
 
 " line width
 nnoremap <leader>ll :set tw=80<CR>
+
+" spelling
+nnoremap <leader>r :setlocal spell spelllang=en_us<CR>
+nnoremap <leader>R :setlocal spell spelllang=de<CR>
+nnoremap <leader><c-r> :setlocal spell!<CR>
 
 " }}}
 
